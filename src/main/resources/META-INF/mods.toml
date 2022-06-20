@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="AGPL-3.0"
+
+[[mods]]
+    modId="oredustry"
+    version="0.0.1"
+
+    displayName="OreDustry"
+    authors="NewJumper"
+#    logoFile="examplemod.png"
+#    credits="credits woooo"
+
+    description='''test'''
+
+[[dependencies.oredustry]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40,)"
+    side="BOTH"
+
+[[dependencies.oredustry]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2,1.19)"
+    side="BOTH"
