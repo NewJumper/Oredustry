@@ -90,11 +90,24 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-
+    maven {
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.51'
+
+    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.0.196:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.0.196")
+
+    compileOnly fg.deobf("mcjty.theoneprobe:theoneprobe:1.18-5.1.0-8:api") { transitive = false }
+    runtimeOnly fg.deobf("mcjty.theoneprobe:theoneprobe:1.18-5.1.0-8") { transitive = false }
 }
 
 jar {
