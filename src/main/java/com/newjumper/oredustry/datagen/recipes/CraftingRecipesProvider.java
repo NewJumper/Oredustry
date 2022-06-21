@@ -18,7 +18,7 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(OredustryBlocks.HEAT_GENERATOR.get(), 1)
+        ShapedRecipeBuilder.shaped(OredustryBlocks.ENERGY_GENERATOR.get(), 1)
                 .define('I', Tags.Items.INGOTS_IRON)
                 .define('C', Tags.Items.INGOTS_COPPER)
                 .define('G', Tags.Items.GLASS)
@@ -30,5 +30,18 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
                 .unlockedBy("has_redstone", has(Tags.Items.STORAGE_BLOCKS_REDSTONE)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(OredustryBlocks.HEAT_GENERATOR.get(), 1)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('C', Tags.Items.INGOTS_COPPER)
+                .define('G', Tags.Items.GLASS)
+                .define('B', Tags.Items.STORAGE_BLOCKS_COAL)
+                .define('S', ItemTags.STONE_CRAFTING_MATERIALS)
+                .pattern("ICI")
+                .pattern("GBG")
+                .pattern("SSS")
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+                .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
+                .unlockedBy("has_coal", has(Tags.Items.STORAGE_BLOCKS_COAL)).save(consumer);
     }
 }

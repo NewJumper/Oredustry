@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "oredustry:heat_generator"
+      "oredustry:energy_generator"
     ]
   },
   "criteria": {
@@ -26,12 +26,12 @@
         ]
       }
     },
-    "has_coal": {
+    "has_redstone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:storage_blocks/coal"
+            "tag": "forge:storage_blocks/redstone"
           }
         ]
       }
@@ -39,7 +39,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "oredustry:heat_generator"
+        "recipe": "oredustry:energy_generator"
       }
     }
   },
@@ -47,7 +47,7 @@
     [
       "has_iron",
       "has_copper",
-      "has_coal",
+      "has_redstone",
       "has_the_recipe"
     ]
   ]

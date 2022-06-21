@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "oredustry:pure_copper",
+    "oredustry:pure_gold",
+    "oredustry:pure_iron",
+    "oredustry:pure_netherite"
+  ]
+}

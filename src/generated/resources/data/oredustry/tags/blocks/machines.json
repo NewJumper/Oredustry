@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "oredustry:energy_generator",
+    "oredustry:heat_generator"
+  ]
+}

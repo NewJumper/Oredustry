@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class OredustryLootTables extends BlockLoot {
     @Override
     protected void addTables() {
+        this.dropSelf(OredustryBlocks.ENERGY_GENERATOR.get());
         this.dropSelf(OredustryBlocks.HEAT_GENERATOR.get());
     }
 

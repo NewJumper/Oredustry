@@ -19,6 +19,7 @@ import java.util.function.Supplier;
 public class OredustryBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Oredustry.MOD_ID);
 
+    public static final RegistryObject<Block> ENERGY_GENERATOR = registerBlock("energy_generator", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)), OredustryCreativeTab.OREDUSTRY);
     public static final RegistryObject<Block> HEAT_GENERATOR = registerBlock("heat_generator", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)), OredustryCreativeTab.OREDUSTRY);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> pBlock, CreativeModeTab pTab) {

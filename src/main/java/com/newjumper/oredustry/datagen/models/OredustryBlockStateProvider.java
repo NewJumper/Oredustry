@@ -13,6 +13,7 @@ public class OredustryBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        simpleBlock(OredustryBlocks.ENERGY_GENERATOR.get(), models().cubeBottomTop("energy_generator", modLoc("block/energy_generator"), modLoc("block/energy_generator_bottom"), modLoc("block/energy_generator_top")));
         simpleBlock(OredustryBlocks.HEAT_GENERATOR.get(), models().cubeBottomTop("heat_generator", modLoc("block/heat_generator"), modLoc("block/heat_generator_bottom"), modLoc("block/heat_generator_top")));
     }
 }

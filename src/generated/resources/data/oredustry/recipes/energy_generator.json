@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ICI",
-    "GBG",
+    "GRG",
     "SSS"
   ],
   "key": {
@@ -15,14 +15,14 @@
     "G": {
       "tag": "forge:glass"
     },
-    "B": {
-      "tag": "forge:storage_blocks/coal"
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
     },
     "S": {
       "tag": "minecraft:stone_crafting_materials"
     }
   },
   "result": {
-    "item": "oredustry:heat_generator"
+    "item": "oredustry:energy_generator"
   }
 }
