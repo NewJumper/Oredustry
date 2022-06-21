@@ -5,6 +5,7 @@ import com.newjumper.oredustry.datagen.lang.ENLanguageProvider;
 import com.newjumper.oredustry.datagen.loot.OredustryLootTableProvider;
 import com.newjumper.oredustry.datagen.models.OredustryBlockStateProvider;
 import com.newjumper.oredustry.datagen.models.OredustryItemModelProvider;
+import com.newjumper.oredustry.datagen.recipes.CraftingRecipesProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,5 +28,8 @@ public class DataGenerators {
         // models
         generator.addProvider(new OredustryBlockStateProvider(generator, fileHelper));
         generator.addProvider(new OredustryItemModelProvider(generator, fileHelper));
+
+        // recipes
+        generator.addProvider(new CraftingRecipesProvider(generator));
     }
 }

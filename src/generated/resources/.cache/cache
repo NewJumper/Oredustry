@@ -6,4 +6,6 @@
 717089b9c5e5532aa2f371076baa0a0c0e6cc59c assets/oredustry/models/item/pure_gold.json
 0ecce02686e7433aef5dd0802a6080c9f887e3fb assets/oredustry/models/item/pure_iron.json
 40780b0b3d7f5ca9c814de45a25dca27623b3301 assets/oredustry/models/item/pure_netherite.json
+2b65753bea03b4a75a31fc601149c39146ec14a4 data/oredustry/advancements/recipes/oredustry/heat_generator.json
 ba9c7e4d6507a31575e9749b51242beb30c2b340 data/oredustry/loot_tables/blocks/heat_generator.json
+b2714bfe4b9a45a9fac0101cc7acafc32774b5c5 data/oredustry/recipes/heat_generator.json
