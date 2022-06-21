@@ -1,0 +1,6 @@
+761df504221e7bc6dd86aa368c92a9f3d6f69820 assets/oredustry/blockstates/heat_generator.json
+eacff7b29082e9088cbb046fec14a4583a196234 assets/oredustry/lang/en_us.json
+93206d962e72b63a5cb1155b3ce182fd64ac3378 assets/oredustry/models/block/heat_generator.json
+64d98a636f9b1d45f14d8bdaf62f22754cfbd53c assets/oredustry/models/item/heat_generator.json
+9275622a85951974eb29c1b8384a63bc2d832205 assets/oredustry/models/item/random_item.json
+ba9c7e4d6507a31575e9749b51242beb30c2b340 data/oredustry/loot_tables/blocks/heat_generator.json

@@ -1,0 +1,18 @@
+package com.newjumper.oredustry.datagen.models;
+
+import com.newjumper.oredustry.Oredustry;
+import com.newjumper.oredustry.block.OredustryBlocks;
+import net.minecraft.data.DataGenerator;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
+
+public class OredustryBlockStateProvider extends BlockStateProvider {
+    public OredustryBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
+        super(gen, Oredustry.MOD_ID, exFileHelper);
+    }
+
+    @Override
+    protected void registerStatesAndModels() {
+        simpleBlock(OredustryBlocks.HEAT_GENERATOR.get(), models().cubeBottomTop("heat_generator", modLoc("block/heat_generator"), modLoc("block/heat_generator_bottom"), modLoc("block/heat_generator_top")));
+    }
+}
