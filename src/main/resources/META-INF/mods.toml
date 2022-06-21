@@ -8,7 +8,7 @@ license="AGPL-3.0"
 
     displayName="OreDustry"
     authors="NewJumper"
-#    logoFile="examplemod.png"
+    logoFile="oredustry_banner.png"
 #    credits="credits woooo"
 
     description='''test'''
