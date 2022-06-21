@@ -13,8 +13,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class OredustryItemModelProvider extends ItemModelProvider {
     private final ModelFile GENERATED = getExistingFile(mcLoc("item/generated"));
 
-    public OredustryItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, Oredustry.MOD_ID, existingFileHelper);
+    public OredustryItemModelProvider(DataGenerator pGenerator, ExistingFileHelper existingFileHelper) {
+        super(pGenerator, Oredustry.MOD_ID, existingFileHelper);
     }
 
     @Override

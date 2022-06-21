@@ -7,8 +7,8 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class OredustryBlockStateProvider extends BlockStateProvider {
-    public OredustryBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, Oredustry.MOD_ID, exFileHelper);
+    public OredustryBlockStateProvider(DataGenerator pGenerator, ExistingFileHelper exFileHelper) {
+        super(pGenerator, Oredustry.MOD_ID, exFileHelper);
     }
 
     @Override
