@@ -1,5 +1,8 @@
 {
   "block.oredustry.heat_generator": "Heat Generator",
-  "item.oredustry.random_item": "Random Item",
+  "item.oredustry.pure_copper": "Pure Copper",
+  "item.oredustry.pure_gold": "Pure Gold",
+  "item.oredustry.pure_iron": "Pure Iron",
+  "item.oredustry.pure_netherite": "Pure Netherite",
   "itemGroup.oredustry": "Oredustry"
 }

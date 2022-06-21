@@ -4,7 +4,7 @@ license="AGPL-3.0"
 
 [[mods]]
     modId="oredustry"
-    version="0.0.1"
+    version="0.1.0"
 
     displayName="OreDustry"
     authors="NewJumper"

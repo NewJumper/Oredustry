@@ -23,7 +23,10 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.HEAT_GENERATOR.get());
 
         // ITEMS
-        itemModel(OredustryItems.RANDOM_ITEM.get(), GENERATED);
+        itemModel(OredustryItems.PURE_COPPER.get(), GENERATED);
+        itemModel(OredustryItems.PURE_GOLD.get(), GENERATED);
+        itemModel(OredustryItems.PURE_IRON.get(), GENERATED);
+        itemModel(OredustryItems.PURE_NETHERITE.get(), GENERATED);
     }
 
     public void blockModel(Block block) {
