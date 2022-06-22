@@ -113,7 +113,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "OreDustry",
+                "Specification-Title"     : "Oredustry",
                 "Specification-Vendor"    : "NewJumper",
                 "Specification-Version"   : "${mod_version}",
                 "Implementation-Title"    : "OREDUSTRY",

@@ -1,6 +1,10 @@
 {
+  "block.oredustry.compressor": "Compressor",
+  "block.oredustry.crucible": "Crucible",
   "block.oredustry.energy_generator": "Energy Generator",
   "block.oredustry.heat_generator": "Heat Generator",
+  "block.oredustry.purifier": "Purifier",
+  "block.oredustry.separator": "Separator",
   "item.oredustry.pure_copper": "Pure Copper",
   "item.oredustry.pure_gold": "Pure Gold",
   "item.oredustry.pure_iron": "Pure Iron",

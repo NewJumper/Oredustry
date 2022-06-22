@@ -8,7 +8,7 @@ public class OredustryCreativeTab {
     public static final CreativeModeTab OREDUSTRY = new CreativeModeTab("oredustry") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(OredustryBlocks.HEAT_GENERATOR.get());
+            return new ItemStack(OredustryBlocks.CRUCIBLE.get());
         }
     };
 }

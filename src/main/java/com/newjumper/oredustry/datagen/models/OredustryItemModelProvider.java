@@ -20,6 +20,11 @@ public class OredustryItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         // BLOCKS
+        blockModel(OredustryBlocks.COMPRESSOR.get());
+        blockModel(OredustryBlocks.CRUCIBLE.get());
+        blockModel(OredustryBlocks.PURIFIER.get());
+        blockModel(OredustryBlocks.SEPARATOR.get());
+
         blockModel(OredustryBlocks.ENERGY_GENERATOR.get());
         blockModel(OredustryBlocks.HEAT_GENERATOR.get());
 

@@ -6,12 +6,12 @@ license="AGPL-3.0"
     modId="oredustry"
     version="0.1.0"
 
-    displayName="OreDustry"
+    displayName="Oredustry"
     authors="NewJumper"
     logoFile="oredustry_banner.png"
 #    credits="credits woooo"
 
-    description='''test'''
+    description='''mod'''
 
 [[dependencies.oredustry]]
     modId="forge"
