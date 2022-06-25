@@ -11,11 +11,11 @@ public class CustomEnergyStorage extends EnergyStorage {
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
-        int rc = super.receiveEnergy(maxReceive, simulate);
-        if (rc > 0 && !simulate) {
+        int fe = super.receiveEnergy(maxReceive, simulate);
+        if (fe > 0 && !simulate) {
             onEnergyChanged();
         }
-        return rc;
+        return fe;
     }
 
     @Override

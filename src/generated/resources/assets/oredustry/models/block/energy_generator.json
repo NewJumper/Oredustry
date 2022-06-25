@@ -1,7 +1,8 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
-    "side": "oredustry:block/energy_generator",
+    "side": "oredustry:block/energy_generator_side",
+    "front": "oredustry:block/energy_generator_on",
     "bottom": "oredustry:block/energy_generator_bottom",
     "top": "oredustry:block/energy_generator_top"
   }

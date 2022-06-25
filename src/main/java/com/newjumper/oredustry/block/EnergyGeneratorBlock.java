@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -25,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class EnergyGeneratorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
+    public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
     public EnergyGeneratorBlock(Properties pProperties) {
         super(pProperties);
@@ -49,6 +50,20 @@ public class EnergyGeneratorBlock extends BaseEntityBlock {
     }
 
     @Override
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        if (!pLevel.isClientSide) {
+            boolean flag = pState.getValue(ACTIVE);
+            if (flag != pLevel.hasNeighborSignal(pPos)) {
+                if (flag) {
+                    pLevel.scheduleTick(pPos, this, 4);
+                } else {
+                    pLevel.setBlock(pPos, pState.cycle(ACTIVE), 2);
+                }
+            }
+        }
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING, ACTIVE);
     }
@@ -58,7 +73,6 @@ public class EnergyGeneratorBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-    // CHANGE BELOW
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
@@ -83,7 +97,6 @@ public class EnergyGeneratorBlock extends BaseEntityBlock {
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
-    // CHANGE ABOVE
 
     @Nullable
     @Override

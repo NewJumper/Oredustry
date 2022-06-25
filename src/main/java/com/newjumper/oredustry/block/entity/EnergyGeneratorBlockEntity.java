@@ -33,7 +33,7 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     private LazyOptional<IEnergyStorage> lazyEnergyStorage = LazyOptional.empty();
     private final ItemStackHandler itemHandler;
     private final CustomEnergyStorage energyStorage;
-    private int counter;
+    private int generate;
 
     public EnergyGeneratorBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(OredustryBlockEntities.ENERGY_GENERATOR.get(), pPos, pBlockState);
@@ -68,15 +68,15 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
         super.saveAdditional(pTag);
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.put("energy", energyStorage.serializeNBT());
-        pTag.putInt("storage", counter);
+        pTag.putInt("storage", generate);
     }
 
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
-        if(pTag.contains("inventory")) itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        if(pTag.contains("energy")) energyStorage.deserializeNBT(pTag.get("energy")); // TODO: change to pTag.getCompound("energy");
-        if(pTag.contains("storage")) counter = pTag.getInt("storage");
+        itemHandler.deserializeNBT(pTag.getCompound("inventory"));
+        energyStorage.deserializeNBT(pTag.getCompound("energy"));
+        generate = pTag.getInt("storage");
     }
 
     @Override
@@ -111,22 +111,21 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, EnergyGeneratorBlockEntity pBlockEntity) {
-        if(pBlockEntity.counter > 0) {
+        if(pBlockEntity.generate > 0) {
             pBlockEntity.energyStorage.addEnergy(60);
-            pBlockEntity.counter--;
+            pBlockEntity.generate--;
             setChanged(pLevel, pPos, pState);
         }
 
-        if(pBlockEntity.counter < 1) {
+        if(pBlockEntity.generate < 1) {
             if(pLevel.hasNeighborSignal(pPos)) {
                 pBlockEntity.itemHandler.extractItem(0, 1, false);
-                pBlockEntity.counter = 80;
+                pBlockEntity.generate = 80;
                 setChanged(pLevel, pPos, pState);
             }
         }
 
         sendOutPower(pBlockEntity);
-        System.out.println("tick! " + pBlockEntity.counter);
     }
 
     private static void sendOutPower(EnergyGeneratorBlockEntity pBlockEntity) {
