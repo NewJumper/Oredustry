@@ -24,7 +24,7 @@ public class OredustryBlocks {
     public static final RegistryObject<Block> PURIFIER = registerBlock("purifier", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
     public static final RegistryObject<Block> SEPARATOR = registerBlock("separator", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
 
-    public static final RegistryObject<Block> ENERGY_GENERATOR = registerBlock("energy_generator", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
+    public static final RegistryObject<Block> ENERGY_GENERATOR = registerBlock("energy_generator", () -> new EnergyGeneratorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
     public static final RegistryObject<Block> HEAT_GENERATOR = registerBlock("heat_generator", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> pBlock, CreativeModeTab pTab) {

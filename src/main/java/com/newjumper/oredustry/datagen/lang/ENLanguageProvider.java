@@ -2,11 +2,13 @@ package com.newjumper.oredustry.datagen.lang;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
+import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.item.OredustryItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -19,6 +21,7 @@ public class ENLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         OredustryBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(this::addBlock);
         OredustryItems.ITEMS.getEntries().stream().map(RegistryObject::get).filter(item -> !(item instanceof BlockItem)).forEach(this::addItem);
+        OredustryBlockEntities.BLOCK_ENTITIES.getEntries().stream().map(RegistryObject::get).forEach(this::addContainer);
 
         add("itemGroup.oredustry", "Oredustry");
     }
@@ -31,6 +34,11 @@ public class ENLanguageProvider extends LanguageProvider {
     private void addItem(Item item) {
         String key = item.getRegistryName().getPath();
         add("item.oredustry." + key, convertToName(key));
+    }
+
+    private void addContainer(BlockEntityType<?> blockEntity) {
+        String key = blockEntity.getRegistryName().getPath();
+        add("container.taloi." + key, convertToName(key));
     }
 
     private String convertToName(String key) {
