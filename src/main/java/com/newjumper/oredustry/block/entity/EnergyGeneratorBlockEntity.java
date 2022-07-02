@@ -1,5 +1,6 @@
 package com.newjumper.oredustry.block.entity;
 
+import com.newjumper.oredustry.block.CustomBlockStateProperties;
 import com.newjumper.oredustry.screen.EnergyGeneratorMenu;
 import com.newjumper.oredustry.util.CustomEnergyStorage;
 import net.minecraft.core.BlockPos;
@@ -29,8 +30,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvider {
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-    private LazyOptional<IEnergyStorage> lazyEnergyStorage = LazyOptional.empty();
+    public final int ENERGY_CAPACITY = 50000;
+    public static final int ENERGY_RATE = 50;
+    public static final int ENERGY_OUTPUT = 240;
+
+    private LazyOptional<IItemHandler> lazyItemHandler;
+    private LazyOptional<IEnergyStorage> lazyEnergyStorage;
     private final ItemStackHandler itemHandler;
     private final CustomEnergyStorage energyStorage;
     private int generate;
@@ -38,18 +43,21 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     public EnergyGeneratorBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(OredustryBlockEntities.ENERGY_GENERATOR.get(), pPos, pBlockState);
 
-        this.itemHandler = new ItemStackHandler(1) {
+        this.itemHandler = new ItemStackHandler(3) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
             }
         };
-        this.energyStorage = new CustomEnergyStorage(50000, 0) {
+        this.energyStorage = new CustomEnergyStorage(ENERGY_CAPACITY, 0) {
             @Override
             protected void onEnergyChanged() {
                 setChanged();
             }
         };
+
+        this.lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        this.lazyEnergyStorage = LazyOptional.of(() -> energyStorage);
     }
 
     @Override
@@ -75,15 +83,8 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        energyStorage.deserializeNBT(pTag.getCompound("energy"));
+        energyStorage.deserializeNBT(pTag.get("energy"));
         generate = pTag.getInt("storage");
-    }
-
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyEnergyStorage = LazyOptional.of(() -> energyStorage);
     }
 
     @NotNull
@@ -111,18 +112,9 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, EnergyGeneratorBlockEntity pBlockEntity) {
-        if(pBlockEntity.generate > 0) {
-            pBlockEntity.energyStorage.addEnergy(60);
-            pBlockEntity.generate--;
+        if(pState.getValue(CustomBlockStateProperties.ACTIVE) && pBlockEntity.energyStorage.getEnergyStored() < pBlockEntity.energyStorage.getMaxEnergyStored()) {
+            pBlockEntity.energyStorage.addEnergy(ENERGY_RATE);
             setChanged(pLevel, pPos, pState);
-        }
-
-        if(pBlockEntity.generate < 1) {
-            if(pLevel.hasNeighborSignal(pPos)) {
-                pBlockEntity.itemHandler.extractItem(0, 1, false);
-                pBlockEntity.generate = 80;
-                setChanged(pLevel, pPos, pState);
-            }
         }
 
         sendOutPower(pBlockEntity);
@@ -131,14 +123,14 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     private static void sendOutPower(EnergyGeneratorBlockEntity pBlockEntity) {
         AtomicInteger capacity = new AtomicInteger(pBlockEntity.energyStorage.getEnergyStored());
 
-        if (capacity.get() > 0) {
-            for (Direction direction : Direction.values()) {
+        if(capacity.get() > 0) {
+            for(Direction direction : Direction.values()) {
                 BlockEntity be = pBlockEntity.level.getBlockEntity(pBlockEntity.worldPosition.relative(direction));
 
-                if (be != null) {
+                if(be != null) {
                     boolean doContinue = be.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).map(handler -> {
-                        if (handler.canReceive()) {
-                            int received = handler.receiveEnergy(Math.min(capacity.get(), 200), false);
+                        if(handler.canReceive()) {
+                            int received = handler.receiveEnergy(Math.min(capacity.get(), ENERGY_OUTPUT), false);
                             capacity.addAndGet(-received);
                             pBlockEntity.energyStorage.consumeEnergy(received);
                             setChanged(pBlockEntity.level, pBlockEntity.getBlockPos(), pBlockEntity.getBlockState());
@@ -148,7 +140,7 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
                         }
                     }).orElse(true);
 
-                    if (!doContinue) return;
+                    if(!doContinue) return;
                 }
             }
         }

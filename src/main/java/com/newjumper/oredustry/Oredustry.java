@@ -4,10 +4,15 @@ import com.mojang.logging.LogUtils;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.screen.EnergyGeneratorScreen;
 import com.newjumper.oredustry.screen.OredustryMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -25,5 +30,13 @@ public class Oredustry {
         OredustryMenuTypes.register(eventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientEvents {
+        @SubscribeEvent
+        public static void clientSetup(final FMLClientSetupEvent event) {
+            MenuScreens.register(OredustryMenuTypes.ENERGY_GENERATOR_MENU.get(), EnergyGeneratorScreen::new);
+        }
     }
 }

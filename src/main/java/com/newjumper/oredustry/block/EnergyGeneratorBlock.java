@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class EnergyGeneratorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+    public static final BooleanProperty ACTIVE = CustomBlockStateProperties.ACTIVE;
 
     public EnergyGeneratorBlock(Properties pProperties) {
         super(pProperties);
@@ -52,13 +52,8 @@ public class EnergyGeneratorBlock extends BaseEntityBlock {
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
-            boolean flag = pState.getValue(ACTIVE);
-            if (flag != pLevel.hasNeighborSignal(pPos)) {
-                if (flag) {
-                    pLevel.scheduleTick(pPos, this, 4);
-                } else {
-                    pLevel.setBlock(pPos, pState.cycle(ACTIVE), 2);
-                }
+            if (pState.getValue(ACTIVE) != pLevel.hasNeighborSignal(pPos)) {
+                pLevel.setBlock(pPos, pState.cycle(ACTIVE), 2);
             }
         }
     }

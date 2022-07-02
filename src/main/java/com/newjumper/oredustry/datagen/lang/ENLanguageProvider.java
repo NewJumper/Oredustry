@@ -38,7 +38,7 @@ public class ENLanguageProvider extends LanguageProvider {
 
     private void addContainer(BlockEntityType<?> blockEntity) {
         String key = blockEntity.getRegistryName().getPath();
-        add("container.taloi." + key, convertToName(key));
+        add("container.oredustry." + key, convertToName(key));
     }
 
     private String convertToName(String key) {
