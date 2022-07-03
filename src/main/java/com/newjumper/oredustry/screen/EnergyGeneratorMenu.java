@@ -33,9 +33,9 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 17, 52));
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, 35, 52));
-            this.addSlot(new SlotItemHandler(iItemHandler, 2, 53, 52));
+            this.addSlot(new SlotItemHandler(iItemHandler, 0, 17, 30));
+            this.addSlot(new SlotItemHandler(iItemHandler, 1, 35, 30));
+            this.addSlot(new SlotItemHandler(iItemHandler, 2, 53, 30));
         });
 
         trackPower();
@@ -69,12 +69,12 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
     private void addInventorySlots(Inventory pInventory) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
-                this.addSlot(new Slot(pInventory, j + i * 9 + 9, 8 + j * 18, 98 + i * 18));
+                this.addSlot(new Slot(pInventory, j + i * 9 + 9, 16 + j * 18, 98 + i * 18));
             }
         }
 
         for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(pInventory, i, 8 + i * 18, 156));
+            this.addSlot(new Slot(pInventory, i, 16 + i * 18, 156));
         }
     }
 
@@ -119,7 +119,7 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
         return blockEntity.getCapability(CapabilityEnergy.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
     }
     public int drawEnergy() {
-        return (int) (getEnergy() / 50000.0 * 44);
+        return (int) (getEnergy() / 50000.0 * 56);
     }
     public boolean isLit() {
         return this.blockEntity.getBlockState().getValue(CustomBlockStateProperties.ACTIVE);

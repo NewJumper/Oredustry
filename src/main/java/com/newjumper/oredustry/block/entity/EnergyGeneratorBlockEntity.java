@@ -72,7 +72,7 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag) {
+    protected void saveAdditional(@NotNull CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.put("energy", energyStorage.serializeNBT());
@@ -80,7 +80,7 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     }
 
     @Override
-    public void load(CompoundTag pTag) {
+    public void load(@NotNull CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         energyStorage.deserializeNBT(pTag.get("energy"));
