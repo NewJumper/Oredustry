@@ -3,8 +3,6 @@ package com.newjumper.oredustry.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.block.CustomBlockStateProperties;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -40,7 +38,6 @@ public class EnergyGeneratorScreen extends AbstractContainerScreen<EnergyGenerat
         RenderSystem.setShaderTexture(0, GUI);
         int x = this.leftPos;
         int y = this.topPos;
-
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
         if(this.menu.isLit()) this.blit(pPoseStack, x + 79, y + 27, 176, 0, 18, 17);

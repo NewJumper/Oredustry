@@ -13,7 +13,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -35,8 +34,8 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(iItemHandler -> {
             this.addSlot(new SlotItemHandler(iItemHandler, 0, 17, 52));
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 35, 52));
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 53, 52));
+            this.addSlot(new SlotItemHandler(iItemHandler, 1, 35, 52));
+            this.addSlot(new SlotItemHandler(iItemHandler, 2, 53, 52));
         });
 
         trackPower();

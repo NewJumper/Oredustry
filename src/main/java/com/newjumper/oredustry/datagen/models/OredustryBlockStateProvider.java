@@ -18,7 +18,7 @@ public class OredustryBlockStateProvider extends BlockStateProvider {
         simpleBlock(OredustryBlocks.PURIFIER.get(), models().cubeColumn("purifier", modLoc("block/purifier"), modLoc("block/machine_top")));
         simpleBlock(OredustryBlocks.SEPARATOR.get(), models().cubeColumn("separator", modLoc("block/separator"), modLoc("block/machine_top")));
 
-        horizontalBlock(OredustryBlocks.ENERGY_GENERATOR.get(), models().orientableWithBottom("energy_generator", modLoc("block/energy_generator_side"), modLoc("block/energy_generator_front"), modLoc("block/energy_generator_bottom"), modLoc("block/energy_generator_top")));
+        horizontalBlock(OredustryBlocks.ENERGY_GENERATOR.get(), models().orientableWithBottom("energy_generator", modLoc("block/energy_generator_side"), modLoc("block/energy_generator_on"), modLoc("block/energy_generator_bottom"), modLoc("block/energy_generator_top")));
         simpleBlock(OredustryBlocks.HEAT_GENERATOR.get(), models().cubeBottomTop("heat_generator", modLoc("block/heat_generator"), modLoc("block/heat_generator_bottom"), modLoc("block/heat_generator_top")));
     }
 }
