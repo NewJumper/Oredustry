@@ -6,11 +6,9 @@ import com.newjumper.oredustry.util.OredustryCreativeTab;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.OreBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -30,8 +28,8 @@ public class OredustryBlocks {
     public static final RegistryObject<Block> DENSE_DEEPSLATE_COPPER_ORE = registerBlock("dense_deepslate_copper_ore", () -> new OreBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_COPPER_ORE).strength(4.5f, 3.0f).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> DENSE_GOLD_ORE = registerBlock("dense_gold_ore", () -> new OreBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).strength(3.0f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> DENSE_DEEPSLATE_GOLD_ORE = registerBlock("dense_deepslate_gold_ore", () -> new OreBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_GOLD_ORE).strength(4.5f, 3.0f).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> DENSE_REDSTONE_ORE = registerBlock("dense_redstone_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE).strength(3.0f).requiresCorrectToolForDrops(), UniformInt.of(3, 6))); // TODO: dense redstone and deepslate redstone ores should have a LIT blockstate and work similar to normal redstone ores
-    public static final RegistryObject<Block> DENSE_DEEPSLATE_REDSTONE_ORE = registerBlock("dense_deepslate_redstone_ore", () -> new OreBlock(BlockBehaviour.Properties.copy(DENSE_REDSTONE_ORE.get()).strength(4.5f, 3.0f).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops(), UniformInt.of(3, 6)));
+    public static final RegistryObject<Block> DENSE_REDSTONE_ORE = registerBlock("dense_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_ORE).strength(3.0f).randomTicks().lightLevel((blockState) -> blockState.getValue(BlockStateProperties.LIT) ? 9 : 0).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DENSE_DEEPSLATE_REDSTONE_ORE = registerBlock("dense_deepslate_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.copy(DENSE_REDSTONE_ORE.get()).strength(4.5f, 3.0f).randomTicks().lightLevel((blockState) -> blockState.getValue(BlockStateProperties.LIT) ? 9 : 0).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> DENSE_EMERALD_ORE = registerBlock("dense_emerald_ore", () -> new OreBlock(BlockBehaviour.Properties.copy(Blocks.EMERALD_ORE).strength(3.0f).requiresCorrectToolForDrops(), UniformInt.of(4, 7)));
     public static final RegistryObject<Block> DENSE_DEEPSLATE_EMERALD_ORE = registerBlock("dense_deepslate_emerald_ore", () -> new OreBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_EMERALD_ORE).strength(4.5f, 3.0f).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops(), UniformInt.of(4, 7)));
     public static final RegistryObject<Block> DENSE_LAPIS_ORE = registerBlock("dense_lapis_ore", () -> new OreBlock(BlockBehaviour.Properties.copy(Blocks.LAPIS_ORE).strength(3.0f).requiresCorrectToolForDrops(), UniformInt.of(2, 6)));
