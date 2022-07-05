@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "oredustry:dense_iron_ore",
+    "oredustry:dense_deepslate_iron_ore",
+    "oredustry:dense_copper_ore",
+    "oredustry:dense_deepslate_copper_ore",
+    "oredustry:dense_lapis_ore",
+    "oredustry:dense_deepslate_lapis_ore"
+  ]
+}

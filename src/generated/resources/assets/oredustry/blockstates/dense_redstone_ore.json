@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "oredustry:block/dense_redstone_ore"
+    }
+  }
+}

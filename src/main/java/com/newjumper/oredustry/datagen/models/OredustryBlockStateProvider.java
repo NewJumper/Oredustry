@@ -13,6 +13,23 @@ public class OredustryBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        simpleBlock(OredustryBlocks.DENSE_COAL_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_IRON_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_IRON_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_COPPER_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_COPPER_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_GOLD_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_GOLD_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_REDSTONE_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_REDSTONE_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_EMERALD_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_EMERALD_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_LAPIS_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_LAPIS_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_DIAMOND_ORE.get());
+        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE.get());
+
         simpleBlock(OredustryBlocks.COMPRESSOR.get(), models().cubeColumn("compressor", modLoc("block/compressor"), modLoc("block/machine_top")));
         simpleBlock(OredustryBlocks.CRUCIBLE.get(), models().cubeBottomTop("crucible", modLoc("block/crucible"), modLoc("block/crucible_bottom"), modLoc("block/crucible_top")));
         simpleBlock(OredustryBlocks.PURIFIER.get(), models().cubeColumn("purifier", modLoc("block/purifier"), modLoc("block/machine_top")));

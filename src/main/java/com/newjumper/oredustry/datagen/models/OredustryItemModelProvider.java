@@ -20,11 +20,27 @@ public class OredustryItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         // BLOCKS
+        blockModel(OredustryBlocks.DENSE_COAL_ORE.get());
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE.get());
+        blockModel(OredustryBlocks.DENSE_IRON_ORE.get());
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_IRON_ORE.get());
+        blockModel(OredustryBlocks.DENSE_COPPER_ORE.get());
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_COPPER_ORE.get());
+        blockModel(OredustryBlocks.DENSE_GOLD_ORE.get());
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_GOLD_ORE.get());
+        blockModel(OredustryBlocks.DENSE_REDSTONE_ORE.get());
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_REDSTONE_ORE.get());
+        blockModel(OredustryBlocks.DENSE_EMERALD_ORE.get());
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_EMERALD_ORE.get());
+        blockModel(OredustryBlocks.DENSE_LAPIS_ORE.get());
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_LAPIS_ORE.get());
+        blockModel(OredustryBlocks.DENSE_DIAMOND_ORE.get());
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE.get());
+
         blockModel(OredustryBlocks.COMPRESSOR.get());
         blockModel(OredustryBlocks.CRUCIBLE.get());
         blockModel(OredustryBlocks.PURIFIER.get());
         blockModel(OredustryBlocks.SEPARATOR.get());
-
         blockModel(OredustryBlocks.ENERGY_GENERATOR.get());
         blockModel(OredustryBlocks.HEAT_GENERATOR.get());
 

@@ -1,11 +1,8 @@
 {
   "replace": false,
   "values": [
-    "oredustry:compressor",
-    "oredustry:crucible",
-    "oredustry:purifier",
-    "oredustry:separator",
-    "oredustry:energy_generator",
-    "oredustry:heat_generator"
+    "#oredustry:machines",
+    "#oredustry:dense_ores",
+    "#oredustry:dense_deepslate_ores"
   ]
 }

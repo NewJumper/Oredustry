@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "oredustry:dense_gold_ore",
+    "oredustry:dense_deepslate_gold_ore",
+    "oredustry:dense_redstone_ore",
+    "oredustry:dense_deepslate_redstone_ore",
+    "oredustry:dense_emerald_ore",
+    "oredustry:dense_deepslate_emerald_ore",
+    "oredustry:dense_diamond_ore",
+    "oredustry:dense_deepslate_diamond_ore"
+  ]
+}
