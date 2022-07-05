@@ -19,13 +19,13 @@ import java.util.function.Supplier;
 public class OredustryBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Oredustry.MOD_ID);
 
-    public static final RegistryObject<Block> COMPRESSOR = registerBlock("compressor", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
-    public static final RegistryObject<Block> CRUCIBLE = registerBlock("crucible", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
-    public static final RegistryObject<Block> PURIFIER = registerBlock("purifier", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
-    public static final RegistryObject<Block> SEPARATOR = registerBlock("separator", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
+    public static final RegistryObject<Block> COMPRESSOR = registerBlock("compressor", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()), OredustryCreativeTab.OREDUSTRY);
+    public static final RegistryObject<Block> CRUCIBLE = registerBlock("crucible", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()), OredustryCreativeTab.OREDUSTRY);
+    public static final RegistryObject<Block> PURIFIER = registerBlock("purifier", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()), OredustryCreativeTab.OREDUSTRY);
+    public static final RegistryObject<Block> SEPARATOR = registerBlock("separator", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()), OredustryCreativeTab.OREDUSTRY);
 
-    public static final RegistryObject<Block> ENERGY_GENERATOR = registerBlock("energy_generator", () -> new EnergyGeneratorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
-    public static final RegistryObject<Block> HEAT_GENERATOR = registerBlock("heat_generator", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)), OredustryCreativeTab.OREDUSTRY);
+    public static final RegistryObject<Block> ENERGY_GENERATOR = registerBlock("energy_generator", () -> new EnergyGeneratorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()), OredustryCreativeTab.OREDUSTRY);
+    public static final RegistryObject<Block> HEAT_GENERATOR = registerBlock("heat_generator", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()), OredustryCreativeTab.OREDUSTRY);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> pBlock, CreativeModeTab pTab) {
         RegistryObject<T> block = BLOCKS.register(name, pBlock);
