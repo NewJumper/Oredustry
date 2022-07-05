@@ -2,30 +2,30 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "CIC",
-    "GBG",
-    "SRS"
+    "EGF",
+    "SSS"
   ],
   "key": {
     "C": {
       "tag": "forge:ingots/copper"
     },
     "I": {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:iron_pickaxe"
+    },
+    "E": {
+      "item": "oredustry:energy_cell"
     },
     "G": {
       "tag": "forge:glass"
     },
-    "B": {
-      "tag": "forge:storage_blocks/coal"
+    "F": {
+      "item": "oredustry:fuel_cell"
     },
     "S": {
       "tag": "minecraft:stone_crafting_materials"
-    },
-    "R": {
-      "item": "oredustry:radiator"
     }
   },
   "result": {
-    "item": "oredustry:heat_generator"
+    "item": "oredustry:separator"
   }
 }

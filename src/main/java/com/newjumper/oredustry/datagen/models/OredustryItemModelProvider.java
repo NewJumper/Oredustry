@@ -33,6 +33,10 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         itemModel(OredustryItems.PURE_GOLD.get(), GENERATED);
         itemModel(OredustryItems.PURE_IRON.get(), GENERATED);
         itemModel(OredustryItems.PURE_NETHERITE.get(), GENERATED);
+        itemModel(OredustryItems.ENERGY_CELL.get(), GENERATED);
+        itemModel(OredustryItems.FUEL_CELL.get(), GENERATED);
+        itemModel(OredustryItems.HEAT_CELL.get(), GENERATED);
+        itemModel(OredustryItems.RADIATOR.get(), GENERATED);
     }
 
     public void blockModel(Block block) {

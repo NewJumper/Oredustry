@@ -6,9 +6,13 @@
   "block.oredustry.purifier": "Purifier",
   "block.oredustry.separator": "Separator",
   "container.oredustry.energy_generator": "Energy Generator",
+  "item.oredustry.energy_cell": "Energy Cell",
+  "item.oredustry.fuel_cell": "Fuel Cell",
+  "item.oredustry.heat_cell": "Heat Cell",
   "item.oredustry.pure_copper": "Pure Copper",
   "item.oredustry.pure_gold": "Pure Gold",
   "item.oredustry.pure_iron": "Pure Iron",
   "item.oredustry.pure_netherite": "Pure Netherite",
+  "item.oredustry.radiator": "Radiator",
   "itemGroup.oredustry": "Oredustry"
 }

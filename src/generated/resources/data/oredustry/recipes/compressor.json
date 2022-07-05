@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CRC",
+    "EFH",
+    "SSS"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "R": {
+      "item": "oredustry:radiator"
+    },
+    "E": {
+      "item": "oredustry:energy_cell"
+    },
+    "F": {
+      "item": "oredustry:fuel_cell"
+    },
+    "H": {
+      "item": "oredustry:heat_cell"
+    },
+    "S": {
+      "tag": "minecraft:stone_crafting_materials"
+    }
+  },
+  "result": {
+    "item": "oredustry:compressor"
+  }
+}

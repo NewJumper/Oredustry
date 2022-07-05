@@ -20,11 +20,11 @@ public class CustomEnergyStorage extends EnergyStorage {
 
     @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
-        int reduce = super.extractEnergy(maxExtract, simulate);
-        if (reduce > 0 && !simulate) {
+        int fe = super.extractEnergy(maxExtract, simulate);
+        if (fe > 0 && !simulate) {
             onEnergyChanged();
         }
-        return reduce;
+        return fe;
     }
 
     public void setEnergy(int energy) {

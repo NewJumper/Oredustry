@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GIG",
+    "CEC",
+    "GIG"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "E": {
+      "item": "oredustry:energy_cell"
+    }
+  },
+  "result": {
+    "item": "oredustry:radiator"
+  }
+}
