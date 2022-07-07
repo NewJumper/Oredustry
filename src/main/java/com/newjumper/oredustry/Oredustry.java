@@ -33,7 +33,7 @@ public class Oredustry {
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientEvents {
+    public static class OredustryClient {
         @SubscribeEvent
         public static void clientSetup(final FMLClientSetupEvent event) {
             MenuScreens.register(OredustryMenuTypes.ENERGY_GENERATOR_MENU.get(), EnergyGeneratorScreen::new);

@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Oredustry.MOD_ID)
-public class OreGeneration {
+public class OreGenerationEvent {
     @SubscribeEvent
     public static void generateOres(final BiomeLoadingEvent event) {
         List<Holder<PlacedFeature>> base = event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES);
