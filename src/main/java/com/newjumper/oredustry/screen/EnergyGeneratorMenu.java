@@ -12,6 +12,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -26,6 +27,9 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
     private static final int SLOTS = 3;
     public final EnergyGeneratorBlockEntity blockEntity;
     public final Level level;
+    private Slot waterSlot;
+    private Slot gasSlot;
+    private Slot energySlot;
 
     public EnergyGeneratorMenu(int pContainerId, BlockPos pPos, Inventory pInventory, Player pPlayer) {
         super(OredustryMenuTypes.ENERGY_GENERATOR_MENU.get(), pContainerId);
@@ -35,10 +39,15 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
         checkContainerSize(pInventory, SLOTS);
         addInventorySlots(pInventory);
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 21, 55));
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, 39, 55));
-            this.addSlot(new SlotItemHandler(iItemHandler, 2, 57, 55));
+        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
+            this.waterSlot = this.addSlot(new SlotItemHandler(itemHandler, 0, 21, 55) {
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return stack.is(Items.WATER_BUCKET);
+                }
+            });
+            this.gasSlot = this.addSlot(new SlotItemHandler(itemHandler, 1, 39, 55));
+            this.energySlot = this.addSlot(new SlotItemHandler(itemHandler, 2, 57, 55));
         });
 
         saveData();
@@ -53,10 +62,10 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).ifPresent(iFluidHandler -> {
-                    int waterStored = ((FluidTank)iFluidHandler).getFluidAmount() & 0xffff0000;
-                    iFluidHandler.drain(EnergyGeneratorBlockEntity.WATER_CAPACITY, IFluidHandler.FluidAction.EXECUTE);
-                    iFluidHandler.fill(new FluidStack(Fluids.WATER, waterStored + (pValue & 0xffff)), IFluidHandler.FluidAction.EXECUTE);
+                blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).ifPresent(fluidHandler -> {
+                    int waterStored = ((FluidTank)fluidHandler).getFluidAmount() & 0xffff0000;
+                    fluidHandler.drain(EnergyGeneratorBlockEntity.WATER_CAPACITY, IFluidHandler.FluidAction.EXECUTE);
+                    fluidHandler.fill(new FluidStack(Fluids.WATER, waterStored + (pValue & 0xffff)), IFluidHandler.FluidAction.EXECUTE);
                 });
             }
         });
@@ -68,10 +77,10 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).ifPresent(iFluidHandler -> {
-                    int waterStored = ((FluidTank)iFluidHandler).getFluidAmount() & 0x0000ffff;
-                    iFluidHandler.drain(EnergyGeneratorBlockEntity.WATER_CAPACITY, IFluidHandler.FluidAction.EXECUTE);
-                    iFluidHandler.fill(new FluidStack(Fluids.WATER, waterStored | (pValue << 16)), IFluidHandler.FluidAction.EXECUTE);
+                blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).ifPresent(fluidHandler -> {
+                    int waterStored = ((FluidTank)fluidHandler).getFluidAmount() & 0x0000ffff;
+                    fluidHandler.drain(EnergyGeneratorBlockEntity.WATER_CAPACITY, IFluidHandler.FluidAction.EXECUTE);
+                    fluidHandler.fill(new FluidStack(Fluids.WATER, waterStored | (pValue << 16)), IFluidHandler.FluidAction.EXECUTE);
                 });
             }
         });
@@ -84,9 +93,9 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(iEnergyStorage -> {
-                    int energyStored = iEnergyStorage.getEnergyStored() & 0xffff0000;
-                    ((OredustryEnergyStorage)iEnergyStorage).setEnergy(energyStored + (pValue & 0xffff));
+                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(energyStorage -> {
+                    int energyStored = energyStorage.getEnergyStored() & 0xffff0000;
+                    ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored + (pValue & 0xffff));
                 });
             }
         });
@@ -98,9 +107,9 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(iEnergyStorage -> {
-                    int energyStored = iEnergyStorage.getEnergyStored() & 0x0000ffff;
-                    ((OredustryEnergyStorage)iEnergyStorage).setEnergy(energyStored | (pValue << 16));
+                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(energyStorage -> {
+                    int energyStored = energyStorage.getEnergyStored() & 0x0000ffff;
+                    ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored | (pValue << 16));
                 });
             }
         });
@@ -157,5 +166,14 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
     }
     public int drawEnergy() {
         return getEnergy() == 0 ? 0 : Math.max((int) (getEnergy() / (double) blockEntity.energyStorage.getMaxEnergyStored() * 54), 1);
+    }
+
+    public Slot getSlotAt(int index) {
+        return switch(index) {
+            case 0 -> waterSlot;
+            case 1 -> gasSlot;
+            case 2 -> energySlot;
+            default -> throw new IllegalStateException("Unexpected index at slot " + index);
+        };
     }
 }

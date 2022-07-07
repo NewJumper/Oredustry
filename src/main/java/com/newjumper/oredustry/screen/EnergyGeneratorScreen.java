@@ -72,5 +72,9 @@ public class EnergyGeneratorScreen extends AbstractContainerScreen<EnergyGenerat
             this.blit(pPoseStack, x + 164, y + 16, 232, 76, 12, 58);
             this.blit(pPoseStack, x + 166, y + 72 - this.menu.drawEnergy(), 232, 54 - this.menu.drawEnergy(), 8, this.menu.drawEnergy());
         }
+
+        if(this.menu.getSlotAt(0).hasItem()) this.blit(pPoseStack, x + 23, y + 73, 192, 76, 12 ,2);
+        if(this.menu.getSlotAt(1).hasItem()) this.blit(pPoseStack, x + 41, y + 73, 218, 76, 12 ,2);
+        if(this.menu.getSlotAt(2).hasItem()) this.blit(pPoseStack, x + 59, y + 73, 232, 76, 12 ,2);
     }
 }
