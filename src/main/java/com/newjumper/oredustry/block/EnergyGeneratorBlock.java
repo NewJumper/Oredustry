@@ -37,7 +37,7 @@ public class EnergyGeneratorBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos()));
     }
 
     @Override
@@ -71,12 +71,15 @@ public class EnergyGeneratorBlock extends BaseEntityBlock {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (!pLevel.isClientSide()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof EnergyGeneratorBlockEntity) {
-                if (pPlayer.getMainHandItem().is(Items.WATER_BUCKET)) { // currently does nothing, but might do something... hmmm..???
-                    if(!pPlayer.isCreative()) pPlayer.setItemInHand(pHand, new ItemStack(Items.BUCKET));
-                } else {
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        if(blockEntity instanceof EnergyGeneratorBlockEntity) {
+            if(pPlayer.getMainHandItem().is(Items.WATER_BUCKET)) {
+                if(!pPlayer.isCreative()) pPlayer.setItemInHand(pHand, new ItemStack(Items.BUCKET));
+                ((EnergyGeneratorBlockEntity) blockEntity).addWater(1000);
+            }
+
+            if(!pLevel.isClientSide()) {
+                if(!pPlayer.getMainHandItem().is(Items.WATER_BUCKET)) {
                     NetworkHooks.openGui(((ServerPlayer) pPlayer), (EnergyGeneratorBlockEntity) blockEntity, pPos);
                 }
             }

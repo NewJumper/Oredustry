@@ -2,8 +2,8 @@ package com.newjumper.oredustry.util;
 
 import net.minecraftforge.energy.EnergyStorage;
 
-public class CustomEnergyStorage extends EnergyStorage {
-    public CustomEnergyStorage(int capacity, int maxTransfer) {
+public class OredustryEnergyStorage extends EnergyStorage {
+    public OredustryEnergyStorage(int capacity, int maxTransfer) {
         super(capacity, maxTransfer, 0);
     }
 

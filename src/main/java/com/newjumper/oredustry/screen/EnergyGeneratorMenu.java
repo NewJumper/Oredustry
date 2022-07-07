@@ -2,7 +2,8 @@ package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.CustomBlockStateProperties;
 import com.newjumper.oredustry.block.OredustryBlocks;
-import com.newjumper.oredustry.util.CustomEnergyStorage;
+import com.newjumper.oredustry.block.entity.EnergyGeneratorBlockEntity;
+import com.newjumper.oredustry.util.OredustryEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -12,58 +13,97 @@ import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class EnergyGeneratorMenu extends AbstractContainerMenu {
-    private static final int INV_SLOTS = 36;
     private static final int SLOTS = 3;
-    private final BlockEntity blockEntity;
-    private final Level level;
+    public final EnergyGeneratorBlockEntity blockEntity;
+    public final Level level;
 
     public EnergyGeneratorMenu(int pContainerId, BlockPos pPos, Inventory pInventory, Player pPlayer) {
         super(OredustryMenuTypes.ENERGY_GENERATOR_MENU.get(), pContainerId);
-        this.blockEntity = pPlayer.level.getBlockEntity(pPos);
+        this.blockEntity = (EnergyGeneratorBlockEntity) pPlayer.level.getBlockEntity(pPos);
         this.level = pPlayer.getLevel();
 
         checkContainerSize(pInventory, SLOTS);
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 17, 30));
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, 35, 30));
-            this.addSlot(new SlotItemHandler(iItemHandler, 2, 53, 30));
+            this.addSlot(new SlotItemHandler(iItemHandler, 0, 21, 55));
+            this.addSlot(new SlotItemHandler(iItemHandler, 1, 39, 55));
+            this.addSlot(new SlotItemHandler(iItemHandler, 2, 57, 55));
         });
 
-        trackPower();
+        saveData();
     }
 
-    @Override
-    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
-        Slot sourceSlot = slots.get(pIndex);
-
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
-
-        ItemStack sourceStack = sourceSlot.getItem();
-
-        if (pIndex < INV_SLOTS) {
-            if (!moveItemStackTo(sourceStack, INV_SLOTS, INV_SLOTS + SLOTS, false)) {
-                return ItemStack.EMPTY;
+    private void saveData() {
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return getWater() & 0xffff;
             }
-        } else if (pIndex < INV_SLOTS + SLOTS) {
-            if (!moveItemStackTo(sourceStack, 0, INV_SLOTS, false)) {
-                return ItemStack.EMPTY;
+
+            @Override
+            public void set(int pValue) {
+                blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).ifPresent(iFluidHandler -> {
+                    int waterStored = ((FluidTank)iFluidHandler).getFluidAmount() & 0xffff0000;
+                    iFluidHandler.drain(EnergyGeneratorBlockEntity.WATER_CAPACITY, IFluidHandler.FluidAction.EXECUTE);
+                    iFluidHandler.fill(new FluidStack(Fluids.WATER, waterStored + (pValue & 0xffff)), IFluidHandler.FluidAction.EXECUTE);
+                });
             }
-        } else return ItemStack.EMPTY;
+        });
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return (getWater() >> 16) & 0xffff;
+            }
 
-        if (sourceStack.getCount() == 0) sourceSlot.set(ItemStack.EMPTY);
-        else sourceSlot.setChanged();
+            @Override
+            public void set(int pValue) {
+                blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).ifPresent(iFluidHandler -> {
+                    int waterStored = ((FluidTank)iFluidHandler).getFluidAmount() & 0x0000ffff;
+                    iFluidHandler.drain(EnergyGeneratorBlockEntity.WATER_CAPACITY, IFluidHandler.FluidAction.EXECUTE);
+                    iFluidHandler.fill(new FluidStack(Fluids.WATER, waterStored | (pValue << 16)), IFluidHandler.FluidAction.EXECUTE);
+                });
+            }
+        });
 
-        sourceSlot.onTake(pPlayer, sourceStack);
-        return sourceStack;
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return getEnergy() & 0xffff;
+            }
+
+            @Override
+            public void set(int pValue) {
+                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(iEnergyStorage -> {
+                    int energyStored = iEnergyStorage.getEnergyStored() & 0xffff0000;
+                    ((OredustryEnergyStorage)iEnergyStorage).setEnergy(energyStored + (pValue & 0xffff));
+                });
+            }
+        });
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return (getEnergy() >> 16) & 0xffff;
+            }
+
+            @Override
+            public void set(int pValue) {
+                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(iEnergyStorage -> {
+                    int energyStored = iEnergyStorage.getEnergyStored() & 0x0000ffff;
+                    ((OredustryEnergyStorage)iEnergyStorage).setEnergy(energyStored | (pValue << 16));
+                });
+            }
+        });
     }
 
     private void addInventorySlots(Inventory pInventory) {
@@ -78,50 +118,44 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
         }
     }
 
+    @Override
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
+        Slot sourceSlot = slots.get(pIndex);
+        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
+
+        ItemStack sourceStack = sourceSlot.getItem();
+        if (pIndex < 36) {
+            if (!moveItemStackTo(sourceStack, 36, 36 + SLOTS, false)) return ItemStack.EMPTY;
+        } else if (pIndex < 36 + SLOTS) {
+            if (!moveItemStackTo(sourceStack, 0, 36, false)) return ItemStack.EMPTY;
+        } else return ItemStack.EMPTY;
+
+        if (sourceStack.getCount() == 0) sourceSlot.set(ItemStack.EMPTY);
+        else sourceSlot.setChanged();
+
+        sourceSlot.onTake(pPlayer, sourceStack);
+        return sourceStack;
+    }
 
     @Override
     public boolean stillValid(Player playerIn) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), playerIn, OredustryBlocks.ENERGY_GENERATOR.get());
     }
 
-    private void trackPower() {
-        addDataSlot(new DataSlot() {
-            @Override
-            public int get() {
-                return getEnergy() & 0xffff;
-            }
-
-            @Override
-            public void set(int value) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(storage -> {
-                    int energyStored = storage.getEnergyStored() & 0xffff0000;
-                    ((CustomEnergyStorage)storage).setEnergy(energyStored + (value & 0xffff));
-                });
-            }
-        });
-        addDataSlot(new DataSlot() {
-            @Override
-            public int get() {
-                return (getEnergy() >> 16) & 0xffff;
-            }
-
-            @Override
-            public void set(int value) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(storage -> {
-                    int energyStored = storage.getEnergyStored() & 0x0000ffff;
-                    ((CustomEnergyStorage)storage).setEnergy(energyStored | (value << 16));
-                });
-            }
-        });
+    private int getWater() {
+        return this.blockEntity.fluidTank.getFluidAmount();
+    }
+    private int getEnergy() {
+        return blockEntity.energyStorage.getEnergyStored();
     }
 
-    public int getEnergy() {
-        return blockEntity.getCapability(CapabilityEnergy.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
+    public boolean isActive() {
+        return this.blockEntity.getBlockState().getValue(CustomBlockStateProperties.ACTIVE);
+    }
+    public int drawWater() {
+        return getWater() == 0 ? 0 : Math.max((int) (getWater() / (double) blockEntity.fluidTank.getCapacity() * 42), 1);
     }
     public int drawEnergy() {
-        return (int) (getEnergy() / 50000.0 * 56);
-    }
-    public boolean isLit() {
-        return this.blockEntity.getBlockState().getValue(CustomBlockStateProperties.ACTIVE);
+        return getEnergy() == 0 ? 0 : Math.max((int) (getEnergy() / (double) blockEntity.energyStorage.getMaxEnergyStored() * 54), 1);
     }
 }
