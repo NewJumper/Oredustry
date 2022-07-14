@@ -51,8 +51,8 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     public final FluidTank fluidTank;
     public final OredustryEnergyStorage energyStorage;
 
-    public EnergyGeneratorBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(OredustryBlockEntities.ENERGY_GENERATOR.get(), pPos, pBlockState);
+    public EnergyGeneratorBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(OredustryBlockEntities.ENERGY_GENERATOR.get(), pWorldPosition, pBlockState);
 
         this.itemHandler = new ItemStackHandler(3) {
             @Override
@@ -152,7 +152,7 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
             setChanged(pLevel, pPos, pState);
         }
 
-//        sendOutPower(pBlockEntity);
+        sendOutPower(pBlockEntity);
     }
 
     private static void sendOutPower(EnergyGeneratorBlockEntity pBlockEntity) {
@@ -163,9 +163,9 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
                 BlockEntity be = pBlockEntity.level.getBlockEntity(pBlockEntity.worldPosition.relative(direction));
 
                 if(be != null) {
-                    boolean doContinue = be.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).map(handler -> {
-                        if(handler.canReceive()) {
-                            int received = handler.receiveEnergy(Math.min(capacity.get(), ENERGY_OUTPUT), false);
+                    boolean doContinue = be.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).map(energyStorage -> {
+                        if(energyStorage.canReceive()) {
+                            int received = energyStorage.receiveEnergy(Math.min(capacity.get(), ENERGY_OUTPUT), false);
                             capacity.addAndGet(-received);
                             pBlockEntity.energyStorage.consumeEnergy(received);
                             setChanged(pBlockEntity.level, pBlockEntity.getBlockPos(), pBlockEntity.getBlockState());
@@ -183,13 +183,5 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
 
     private boolean canGenerate(EnergyGeneratorBlockEntity pBlockEntity) {
         return pBlockEntity.getBlockState().getValue(CustomBlockStateProperties.ACTIVE) && pBlockEntity.energyStorage.getEnergyStored() < pBlockEntity.energyStorage.getMaxEnergyStored() && pBlockEntity.fluidTank.getFluid().getAmount() > 0;
-    }
-
-    public void setFluid(FluidStack fluidStack) {
-        this.fluidTank.setFluid(fluidStack);
-    }
-
-    public FluidStack getFluid() {
-        return this.fluidTank.getFluid();
     }
 }
