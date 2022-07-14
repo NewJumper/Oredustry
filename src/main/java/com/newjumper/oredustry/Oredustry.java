@@ -4,8 +4,10 @@ import com.mojang.logging.LogUtils;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.recipe.OredustryRecipes;
 import com.newjumper.oredustry.screen.EnergyGeneratorScreen;
 import com.newjumper.oredustry.screen.OredustryMenuTypes;
+import com.newjumper.oredustry.screen.SeparatorScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,6 +30,7 @@ public class Oredustry {
         OredustryItems.register(eventBus);
         OredustryBlockEntities.register(eventBus);
         OredustryMenuTypes.register(eventBus);
+        OredustryRecipes.register(eventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -36,6 +39,7 @@ public class Oredustry {
     public static class OredustryClient {
         @SubscribeEvent
         public static void clientSetup(final FMLClientSetupEvent event) {
+            MenuScreens.register(OredustryMenuTypes.SEPARATOR_MENU.get(), SeparatorScreen::new);
             MenuScreens.register(OredustryMenuTypes.ENERGY_GENERATOR_MENU.get(), EnergyGeneratorScreen::new);
         }
     }

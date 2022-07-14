@@ -40,7 +40,7 @@ public class OredustryBlocks {
     public static final RegistryObject<Block> COMPRESSOR = registerBlock("compressor", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CRUCIBLE = registerBlock("crucible", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> PURIFIER = registerBlock("purifier", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> SEPARATOR = registerBlock("separator", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> SEPARATOR = registerBlock("separator", () -> new SeparatorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ENERGY_GENERATOR = registerBlock("energy_generator", () -> new EnergyGeneratorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> HEAT_GENERATOR = registerBlock("heat_generator", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
