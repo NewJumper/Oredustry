@@ -5,6 +5,8 @@ import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -75,6 +77,7 @@ public class EnergyGeneratorBlock extends BaseEntityBlock {
         if(blockEntity instanceof EnergyGeneratorBlockEntity) {
             if(pPlayer.getMainHandItem().is(Items.WATER_BUCKET)) {
                 if(!pPlayer.isCreative()) pPlayer.setItemInHand(pHand, new ItemStack(Items.BUCKET));
+                if(!pLevel.isClientSide) pLevel.playSound(null, pPos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1f, 1f);
                 ((EnergyGeneratorBlockEntity) blockEntity).addWater(1000);
             }
 
