@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "oredustry:energy_cell",
+    "oredustry:fuel_cell",
+    "oredustry:heat_cell"
+  ]
+}

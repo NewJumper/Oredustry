@@ -25,6 +25,7 @@ public class OredustryTags {
 
     public static class Items {
         public static final TagKey<Item> PURE_MATERIALS = modTag("pure_materials");
+        public static final TagKey<Item> CELLS = modTag("cells");
 
         public static final TagKey<Item> DENSE_ORES = modTag("dense_ores");
         public static final TagKey<Item> DENSE_DEEPSLATE_ORES = modTag("dense_deepslate_ores");

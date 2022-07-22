@@ -3,6 +3,7 @@ package com.newjumper.oredustry.block;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.block.entity.SeparatorBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,15 +24,16 @@ import net.minecraftforge.network.NetworkHooks;
 
 public class SeparatorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    public static final BooleanProperty ACTIVE = CustomBlockStateProperties.ACTIVE;
 
     public SeparatorBlock(Properties pProperties) {
         super(pProperties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ACTIVE, Boolean.FALSE));
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(LIT, Boolean.FALSE);
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, Boolean.FALSE);
     }
 
     @Override
@@ -46,7 +48,7 @@ public class SeparatorBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, LIT);
+        pBuilder.add(FACING, ACTIVE);
     }
 
     @Override

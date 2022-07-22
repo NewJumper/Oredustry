@@ -1,0 +1,15 @@
+{
+  "type": "oredustry:separating",
+  "ore": {
+    "item": "minecraft:diamond_ore"
+  },
+  "resultitem": {
+    "item": "minecraft:diamond",
+    "count": 2
+  },
+  "resultblock": {
+    "item": "minecraft:stone"
+  },
+  "experience": 0.0,
+  "time": 100
+}

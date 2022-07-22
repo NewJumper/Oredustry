@@ -13,16 +13,18 @@ import net.minecraft.world.level.Level;
 public class SeparatingRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final Ingredient ore;
-    private final ItemStack resultOre;
-    private final ItemStack resultRaw;
-    protected final float experience;
+    private final ItemStack resultItem;
+    private final ItemStack resultBlock;
+    private final float experience;
+    private final int time;
 
-    public SeparatingRecipe(ResourceLocation pId, Ingredient pOre, ItemStack pResultOre, ItemStack pResultRaw, float pExperience) {
+    public SeparatingRecipe(ResourceLocation pId, Ingredient pOre, ItemStack pResultItem, ItemStack pResultOre, float pExperience, int pTime) {
         this.id = pId;
         this.ore = pOre;
-        this.resultOre = pResultOre;
-        this.resultRaw = pResultRaw;
+        this.resultItem = pResultItem;
+        this.resultBlock = pResultOre;
         this.experience = pExperience;
+        this.time = pTime;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public ItemStack assemble(SimpleContainer pContainer) {
-        return resultOre;
+        return resultBlock;
     }
 
     @Override
@@ -51,14 +53,17 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public ItemStack getResultItem() {
-        return resultRaw.copy();
+        return resultItem.copy();
     }
-    public ItemStack getResultOre() {
-        return resultOre.copy();
+    public ItemStack getResultBlock() {
+        return resultBlock.copy();
     }
 
     public float getExperience() {
         return experience;
+    }
+    public int getTime() {
+        return time;
     }
 
     @Override
@@ -83,29 +88,32 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
         @Override
         public SeparatingRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
             Ingredient ore = Ingredient.fromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "ore"));
-            ItemStack resultOre = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "resultore"));
-            ItemStack resultRaw = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "resultraw"));
+            ItemStack resultItem = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "resultitem"));
+            ItemStack resultBlock = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "resultblock"));
             float experience = GsonHelper.getAsFloat(pSerializedRecipe, "experience", 0);
+            int time = GsonHelper.getAsInt(pSerializedRecipe, "time", 200);
 
-            return new SeparatingRecipe(pRecipeId, ore, resultOre, resultRaw, experience);
+            return new SeparatingRecipe(pRecipeId, ore, resultItem, resultBlock, experience, time);
         }
 
         @Override
         public SeparatingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             Ingredient ore = Ingredient.fromNetwork(pBuffer);
-            ItemStack resultOre = pBuffer.readItem();
-            ItemStack resultRaw = pBuffer.readItem();
+            ItemStack resultItem = pBuffer.readItem();
+            ItemStack resultBlock = pBuffer.readItem();
             float experience = pBuffer.readFloat();
+            int time = pBuffer.readVarInt();
 
-            return new SeparatingRecipe(pRecipeId, ore, resultOre, resultRaw, experience);
+            return new SeparatingRecipe(pRecipeId, ore, resultItem, resultBlock, experience, time);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, SeparatingRecipe pRecipe) {
             pRecipe.ore.toNetwork(pBuffer);
-            pBuffer.writeItemStack(pRecipe.getResultItem(), false);
-            pBuffer.writeItemStack(pRecipe.getResultOre(), false);
+            pBuffer.writeItem(pRecipe.getResultItem());
+            pBuffer.writeItem(pRecipe.getResultBlock());
             pBuffer.writeFloat(pRecipe.getExperience());
+            pBuffer.writeVarInt(pRecipe.getTime());
         }
 
         @Override

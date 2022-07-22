@@ -21,11 +21,6 @@ public class EnergyGeneratorScreen extends AbstractContainerScreen<EnergyGenerat
 
     public EnergyGeneratorScreen(EnergyGeneratorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
-    }
-
-    @Override
-    protected void init() {
-        super.init();
         this.imageWidth = 192;
         this.imageHeight = 180;
     }

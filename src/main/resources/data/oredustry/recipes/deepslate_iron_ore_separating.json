@@ -1,0 +1,14 @@
+{
+  "type": "oredustry:separating",
+  "ore": {
+    "item": "minecraft:deepslate_iron_ore"
+  },
+  "resultitem": {
+    "item": "minecraft:iron_ingot",
+    "count": 2
+  },
+  "resultblock": {
+    "item": "minecraft:deepslate"
+  },
+  "experience": 0.0
+}

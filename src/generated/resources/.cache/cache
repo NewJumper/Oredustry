@@ -209,6 +209,7 @@ ba51f36e93f65566b71eb0e4830080d6d2acd656 data/oredustry/recipes/radiator.json
 5a2d3f984c81913f482c077d5fb2d088d10bbcb6 data/oredustry/tags/blocks/dense_deepslate_ores.json
 e64eda953b891990c7374c074e12b7437a94970d data/oredustry/tags/blocks/dense_ores.json
 2ae41e89bacf60f407323d34ff6fc25125d4a6d0 data/oredustry/tags/blocks/machines.json
+4ad862f0b663b3e6b2143ebf5f4e55c27b765b0c data/oredustry/tags/items/cells.json
 5a2d3f984c81913f482c077d5fb2d088d10bbcb6 data/oredustry/tags/items/dense_deepslate_ores.json
 e64eda953b891990c7374c074e12b7437a94970d data/oredustry/tags/items/dense_ores.json
 1fdbe48b5149ffc41546f7a6e1156d17c164b850 data/oredustry/tags/items/pure_materials.json

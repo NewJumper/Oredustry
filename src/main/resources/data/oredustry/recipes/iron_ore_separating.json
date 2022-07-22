@@ -1,0 +1,15 @@
+{
+  "type": "oredustry:separating",
+  "ore": {
+    "item": "minecraft:iron_ore"
+  },
+  "resultitem": {
+    "item": "minecraft:iron_ingot",
+    "count": 2
+  },
+  "resultblock": {
+    "item": "minecraft:stone"
+  },
+  "experience": 0.0,
+  "time": 100
+}

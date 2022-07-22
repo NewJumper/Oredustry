@@ -26,7 +26,7 @@ import net.minecraftforge.items.SlotItemHandler;
 public class EnergyGeneratorMenu extends AbstractContainerMenu {
     private static final int SLOTS = 3;
     public final EnergyGeneratorBlockEntity blockEntity;
-    public final Level level;
+    private final Level level;
     private Slot waterSlot;
     private Slot gasSlot;
     private Slot energySlot;
@@ -116,30 +116,30 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
     }
 
     private void addInventorySlots(Inventory pInventory) {
+        for (int i = 0; i < 9; i++) {
+            this.addSlot(new Slot(pInventory, i, 16 + i * 18, 156));
+        }
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
                 this.addSlot(new Slot(pInventory, j + i * 9 + 9, 16 + j * 18, 98 + i * 18));
             }
-        }
-
-        for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(pInventory, i, 16 + i * 18, 156));
         }
     }
 
     @Override
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
+        if(sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
 
         ItemStack sourceStack = sourceSlot.getItem();
-        if (pIndex < 36) {
-            if (!moveItemStackTo(sourceStack, 36, 36 + SLOTS, false)) return ItemStack.EMPTY;
-        } else if (pIndex < 36 + SLOTS) {
-            if (!moveItemStackTo(sourceStack, 0, 36, false)) return ItemStack.EMPTY;
+        if(pIndex < 36) {
+            if(!moveItemStackTo(sourceStack, 36, 36 + SLOTS, false)) return ItemStack.EMPTY;
+        } else if(pIndex < 36 + SLOTS) {
+            if(!moveItemStackTo(sourceStack, 0, 36, false)) return ItemStack.EMPTY;
         } else return ItemStack.EMPTY;
 
-        if (sourceStack.getCount() == 0) sourceSlot.set(ItemStack.EMPTY);
+        if(sourceStack.getCount() == 0) sourceSlot.set(ItemStack.EMPTY);
         else sourceSlot.setChanged();
 
         sourceSlot.onTake(pPlayer, sourceStack);
