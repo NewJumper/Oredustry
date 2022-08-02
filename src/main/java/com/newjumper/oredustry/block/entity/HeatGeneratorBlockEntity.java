@@ -120,8 +120,6 @@ public class HeatGeneratorBlockEntity extends BlockEntity implements MenuProvide
             pBlockEntity.heatStorage.extractHeat(1);
         }
 
-        if(!pLevel.isClientSide) System.out.println(pBlockEntity.heatStorage.getHeatStored());
-
         setChanged(pLevel, pPos, pState);
     }
 
