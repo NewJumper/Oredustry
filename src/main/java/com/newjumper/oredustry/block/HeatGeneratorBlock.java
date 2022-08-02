@@ -27,7 +27,7 @@ public class HeatGeneratorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty ACTIVE = CustomBlockStateProperties.ACTIVE;
 
-    protected HeatGeneratorBlock(Properties pProperties) {
+    public HeatGeneratorBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ACTIVE, Boolean.FALSE));
     }
