@@ -25,7 +25,7 @@ public class DataGenerators {
         // languages
         generator.addProvider(new ENLanguageProvider(generator));
 
-        // loot
+        // loot tables
         generator.addProvider(new OredustryLootTableProvider(generator));
 
         // models

@@ -1,7 +1,5 @@
 package com.newjumper.oredustry.block.entity;
 
-import com.newjumper.oredustry.block.CustomBlockStateProperties;
-import com.newjumper.oredustry.item.OredustryItems;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
 import com.newjumper.oredustry.screen.SeparatorMenu;
 import com.newjumper.oredustry.util.OredustryEnergyStorage;

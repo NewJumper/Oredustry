@@ -146,7 +146,7 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
             pBlockEntity.fluidTank.fill(new FluidStack(Fluids.WATER, 1000), IFluidHandler.FluidAction.EXECUTE);
         }
 
-        if(pBlockEntity.canGenerate(pBlockEntity)) {
+        if(pBlockEntity.canGenerate()) {
             pBlockEntity.energyStorage.addEnergy(ENERGY_RATE);
             pBlockEntity.fluidTank.drain(WATER_DRAIN_RATE, IFluidHandler.FluidAction.EXECUTE);
             setChanged(pLevel, pPos, pState);
@@ -181,7 +181,7 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
         }
     }
 
-    private boolean canGenerate(EnergyGeneratorBlockEntity pBlockEntity) {
-        return pBlockEntity.getBlockState().getValue(CustomBlockStateProperties.ACTIVE) && pBlockEntity.energyStorage.getEnergyStored() < pBlockEntity.energyStorage.getMaxEnergyStored() && pBlockEntity.fluidTank.getFluid().getAmount() > 0;
+    private boolean canGenerate() {
+        return this.getBlockState().getValue(CustomBlockStateProperties.ACTIVE) && this.energyStorage.getEnergyStored() < this.energyStorage.getMaxEnergyStored() && this.fluidTank.getFluid().getAmount() > 0;
     }
 }

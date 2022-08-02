@@ -11,13 +11,10 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
 
 public class HeatGeneratorMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;

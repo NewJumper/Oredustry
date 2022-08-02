@@ -1,7 +1,6 @@
 package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
-import com.newjumper.oredustry.block.entity.EnergyGeneratorBlockEntity;
 import com.newjumper.oredustry.block.entity.SeparatorBlockEntity;
 import com.newjumper.oredustry.screen.slot.ResultSlot;
 import com.newjumper.oredustry.util.OredustryEnergyStorage;
@@ -12,14 +11,9 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;

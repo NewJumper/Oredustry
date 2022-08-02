@@ -3,7 +3,6 @@ package com.newjumper.oredustry.item;
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.util.OredustryCreativeTab;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -20,8 +19,4 @@ public class OredustryItems {
     public static final RegistryObject<Item> FUEL_CELL = ITEMS.register("fuel_cell", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> HEAT_CELL = ITEMS.register("heat_cell", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> RADIATOR = ITEMS.register("radiator", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
-
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
-    }
 }
