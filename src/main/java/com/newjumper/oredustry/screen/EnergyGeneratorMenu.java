@@ -147,8 +147,8 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public boolean stillValid(Player playerIn) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), playerIn, OredustryBlocks.ENERGY_GENERATOR.get());
+    public boolean stillValid(Player pPlayer) {
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, OredustryBlocks.ENERGY_GENERATOR.get());
     }
 
     private int getWater() {

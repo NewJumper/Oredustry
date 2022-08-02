@@ -90,8 +90,8 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new EnergyGeneratorMenu(pContainerId, this.getBlockPos(), pInventory, pPlayer);
+    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
+        return new EnergyGeneratorMenu(pContainerId, this.getBlockPos(), pPlayerInventory, pPlayer);
     }
 
     @Override

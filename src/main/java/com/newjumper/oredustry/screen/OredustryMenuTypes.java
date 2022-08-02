@@ -13,6 +13,7 @@ public class OredustryMenuTypes {
 
     public static final RegistryObject<MenuType<SeparatorMenu>> SEPARATOR_MENU = MENUS.register("separator_menu", () -> IForgeMenuType.create(SeparatorMenu::new));
     public static final RegistryObject<MenuType<EnergyGeneratorMenu>> ENERGY_GENERATOR_MENU = MENUS.register("energy_generator_menu", () -> IForgeMenuType.create((id, inv, data) -> new EnergyGeneratorMenu(id, data.readBlockPos(), inv, inv.player)));
+    public static final RegistryObject<MenuType<HeatGeneratorMenu>> HEAT_GENERATOR_MENU = MENUS.register("heat_generator_menu", () -> IForgeMenuType.create((id, inv, data) -> new HeatGeneratorMenu(id, data.readBlockPos(), inv, inv.player)));
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);
