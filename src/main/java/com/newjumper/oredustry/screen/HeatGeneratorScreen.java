@@ -50,5 +50,9 @@ public class HeatGeneratorScreen extends AbstractContainerScreen<HeatGeneratorMe
             int frame = (int) (this.menu.blockEntity.getLevel().getGameTime() / 5) % 4;
             this.blit(pPoseStack, x + 86, y + 30, 192, frame * 28, 20, 28);
         }
+
+        if(this.menu.getSlotAt(0).hasItem()) this.blit(pPoseStack, x + 35, y + 23, 192, 144, 16 ,16);
+        if(this.menu.getSlotAt(1).hasItem()) this.blit(pPoseStack, x + 26, y + 41, 192, 144, 16 ,16);
+        if(this.menu.getSlotAt(2).hasItem()) this.blit(pPoseStack, x + 44, y + 41, 192, 144, 16 ,16);
     }
 }

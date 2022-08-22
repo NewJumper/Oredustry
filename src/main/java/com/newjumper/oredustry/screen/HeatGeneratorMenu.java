@@ -2,7 +2,7 @@ package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.HeatGeneratorBlockEntity;
-import com.newjumper.oredustry.util.OredustryEnergyStorage;
+import com.newjumper.oredustry.heat.CapabilityHeat;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -12,16 +12,18 @@ import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class HeatGeneratorMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
-    private static final int MENU_SLOTS = 8;
+    private static final int MENU_SLOTS = 3;
     public final HeatGeneratorBlockEntity blockEntity;
     private final Level level;
-    
+    private Slot fuelSlot;
+    private Slot radiatorSlot;
+    private Slot upgradeSlot;
+
     public HeatGeneratorMenu(int pContainerId, BlockPos pPos, Inventory pInventory, Player pPlayer) {
         super(OredustryMenuTypes.HEAT_GENERATOR_MENU.get(), pContainerId);
         this.blockEntity = (HeatGeneratorBlockEntity) pPlayer.level.getBlockEntity(pPos);
@@ -31,14 +33,9 @@ public class HeatGeneratorMenu extends AbstractContainerMenu {
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
-            this.addSlot(new SlotItemHandler(itemHandler, 0, 26, 33));
-            this.addSlot(new SlotItemHandler(itemHandler, 1, 44, 33));
-            this.addSlot(new SlotItemHandler(itemHandler, 2, 26, 51));
-            this.addSlot(new SlotItemHandler(itemHandler, 3, 44, 51));
-            this.addSlot(new SlotItemHandler(itemHandler, 4, 132, 33));
-            this.addSlot(new SlotItemHandler(itemHandler, 5, 150, 33));
-            this.addSlot(new SlotItemHandler(itemHandler, 6, 132, 51));
-            this.addSlot(new SlotItemHandler(itemHandler, 7, 150, 51));
+            this.fuelSlot = this.addSlot(new SlotItemHandler(itemHandler, 0, 35, 23));
+            this.radiatorSlot = this.addSlot(new SlotItemHandler(itemHandler, 1, 26, 41));
+            this.upgradeSlot = this.addSlot(new SlotItemHandler(itemHandler, 2, 44, 41));
         });
 
         saveData();
@@ -53,9 +50,9 @@ public class HeatGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(energyStorage -> {
-                    int energyStored = energyStorage.getEnergyStored() & 0xffff0000;
-                    ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored + (pValue & 0xffff));
+                blockEntity.getCapability(CapabilityHeat.HEAT).ifPresent(heatStorage -> {
+                    int heatStored = heatStorage.getHeatStored() & 0xffff0000;
+                    heatStorage.setHeat(heatStored + (pValue & 0xffff));
                 });
             }
         });
@@ -67,9 +64,9 @@ public class HeatGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(energyStorage -> {
-                    int energyStored = energyStorage.getEnergyStored() & 0x0000ffff;
-                    ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored | (pValue << 16));
+                blockEntity.getCapability(CapabilityHeat.HEAT).ifPresent(heatStorage -> {
+                    int heatStored = heatStorage.getHeatStored() & 0x0000ffff;
+                    heatStorage.setHeat(heatStored | (pValue << 16));
                 });
             }
         });
@@ -112,6 +109,15 @@ public class HeatGeneratorMenu extends AbstractContainerMenu {
     }
 
     public int getHeat() {
-        return blockEntity.heatStorage.getHeatStored();
+        return this.blockEntity.heatStorage.getHeatStored();
+    }
+
+    public Slot getSlotAt(int index) {
+        return switch(index) {
+            case 0 -> fuelSlot;
+            case 1 -> radiatorSlot;
+            case 2 -> upgradeSlot;
+            default -> throw new IllegalStateException("Unexpected index at slot " + index);
+        };
     }
 }

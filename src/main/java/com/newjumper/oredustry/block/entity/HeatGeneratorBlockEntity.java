@@ -41,7 +41,7 @@ public class HeatGeneratorBlockEntity extends BlockEntity implements MenuProvide
     public HeatGeneratorBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(OredustryBlockEntities.HEAT_GENERATOR.get(), pPos, pBlockState);
 
-        this.itemHandler = new ItemStackHandler(8) {
+        this.itemHandler = new ItemStackHandler(3) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();

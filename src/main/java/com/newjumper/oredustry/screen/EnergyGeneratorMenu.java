@@ -24,6 +24,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class EnergyGeneratorMenu extends AbstractContainerMenu {
+    private static final int INV_SLOTS = 36;
     private static final int SLOTS = 3;
     public final EnergyGeneratorBlockEntity blockEntity;
     private final Level level;
@@ -133,10 +134,10 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
         if(sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
 
         ItemStack sourceStack = sourceSlot.getItem();
-        if(pIndex < 36) {
-            if(!moveItemStackTo(sourceStack, 36, 36 + SLOTS, false)) return ItemStack.EMPTY;
-        } else if(pIndex < 36 + SLOTS) {
-            if(!moveItemStackTo(sourceStack, 0, 36, false)) return ItemStack.EMPTY;
+        if(pIndex < INV_SLOTS) {
+            if(!moveItemStackTo(sourceStack, INV_SLOTS, INV_SLOTS + SLOTS, false)) return ItemStack.EMPTY;
+        } else if(pIndex < INV_SLOTS + SLOTS) {
+            if(!moveItemStackTo(sourceStack, 0, INV_SLOTS, false)) return ItemStack.EMPTY;
         } else return ItemStack.EMPTY;
 
         if(sourceStack.getCount() == 0) sourceSlot.set(ItemStack.EMPTY);
@@ -155,7 +156,7 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
         return this.blockEntity.fluidTank.getFluidAmount();
     }
     private int getEnergy() {
-        return blockEntity.energyStorage.getEnergyStored();
+        return this.blockEntity.energyStorage.getEnergyStored();
     }
 
     public boolean isActive() {
