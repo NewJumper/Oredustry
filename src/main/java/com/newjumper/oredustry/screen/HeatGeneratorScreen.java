@@ -30,7 +30,7 @@ public class HeatGeneratorScreen extends AbstractContainerScreen<HeatGeneratorMe
     @Override
     protected void renderLabels(@NotNull PoseStack pPoseStack, int pMouseX, int pMouseY) {
         this.font.draw(pPoseStack, this.title, (this.imageWidth - this.font.width(this.title)) / 2f, 10, 0x404040);
-        this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY + 12, 0x404040);
+        this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX + 8, this.inventoryLabelY + 14, 0x404040);
 
         TextComponent heat = new TextComponent(this.menu.getHeat() + "°");
         this.font.draw(pPoseStack, heat, (this.imageWidth - this.font.width(heat)) / 2f + 1, 66, 0xffffff);

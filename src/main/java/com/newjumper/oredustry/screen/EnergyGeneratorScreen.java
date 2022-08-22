@@ -34,13 +34,13 @@ public class EnergyGeneratorScreen extends AbstractContainerScreen<EnergyGenerat
 
     @Override
     protected void renderLabels(@NotNull PoseStack pPoseStack, int pMouseX, int pMouseY) {
-        this.font.draw(pPoseStack, this.title, (this.imageWidth - this.font.width(this.title)) / 2f, 13, 0x41C479);
-        this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY + 14, 0x404040);
+        this.font.draw(pPoseStack, this.title, (this.imageWidth - this.font.width(this.title)) / 2f, 10, 0x404040);
+        this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX + 8, this.inventoryLabelY + 14, 0x404040);
 
-        if(isHovering(114, 28, 26, 46, pMouseX, pMouseY)) {
+        if(isHovering(132, 33, 26, 46, pMouseX, pMouseY)) {
             renderTooltip(pPoseStack, waterToolTip.getToolTip(), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
         }
-        if(isHovering(164, 16, 12, 58, pMouseX, pMouseY)) {
+        if(isHovering(164, 21, 12, 58, pMouseX, pMouseY)) {
             renderTooltip(pPoseStack, energyToolTip.getToolTip(), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
         }
     }
@@ -54,22 +54,22 @@ public class EnergyGeneratorScreen extends AbstractContainerScreen<EnergyGenerat
         int y = this.topPos;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+
         if(this.menu.isActive()) {
-            this.blit(pPoseStack, x + 87, y + 27, 192, 0, 18, 18);
-            if(this.menu.drawEnergy() < 54 && this.menu.drawWater() > 0) this.blit(pPoseStack, x + 87, y + 47, 192, 18, 18, 26);
+            if(this.menu.drawEnergy() < 54 && this.menu.drawWater() > 0) this.blit(pPoseStack, x + 84, y + 29, 192, 0, 24, 42);
         }
 
         if(this.menu.drawWater() > 0) {
-            this.blit(pPoseStack, x + 114, y + 28, 192, 76, 26, 46);
-            this.blit(pPoseStack, x + 116, y + 72 - this.menu.drawWater(), 210, 42 - this.menu.drawWater(), 22, this.menu.drawWater());
+            this.blit(pPoseStack, x + 132, y + 33, 192, 42, 26, 46);
+            this.blit(pPoseStack, x + 134, y + 77 - this.menu.drawWater(), 216, 42 - this.menu.drawWater(), 22, this.menu.drawWater());
         }
         if(this.menu.drawEnergy() > 0) {
-            this.blit(pPoseStack, x + 164, y + 16, 232, 76, 12, 58);
-            this.blit(pPoseStack, x + 166, y + 72 - this.menu.drawEnergy(), 232, 54 - this.menu.drawEnergy(), 8, this.menu.drawEnergy());
+            this.blit(pPoseStack, x + 164, y + 21, 218, 42, 12, 58);
+            this.blit(pPoseStack, x + 166, y + 77 - this.menu.drawEnergy(), 238, 54 - this.menu.drawEnergy(), 8, this.menu.drawEnergy());
         }
 
-        if(this.menu.getSlotAt(0).hasItem()) this.blit(pPoseStack, x + 23, y + 73, 192, 76, 12 ,2);
-        if(this.menu.getSlotAt(1).hasItem()) this.blit(pPoseStack, x + 41, y + 73, 218, 76, 12 ,2);
-        if(this.menu.getSlotAt(2).hasItem()) this.blit(pPoseStack, x + 59, y + 73, 232, 76, 12 ,2);
+        if(this.menu.getSlotAt(0).hasItem()) this.blit(pPoseStack, x + 35, y + 23, 192, 120, 16 ,16);
+        if(this.menu.getSlotAt(1).hasItem()) this.blit(pPoseStack, x + 26, y + 41, 192, 120, 16 ,16);
+        if(this.menu.getSlotAt(2).hasItem()) this.blit(pPoseStack, x + 44, y + 41, 192, 120, 16 ,16);
     }
 }

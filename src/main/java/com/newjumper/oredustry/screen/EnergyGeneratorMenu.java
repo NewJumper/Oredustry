@@ -28,8 +28,8 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
     public final EnergyGeneratorBlockEntity blockEntity;
     private final Level level;
     private Slot waterSlot;
-    private Slot gasSlot;
-    private Slot energySlot;
+    private Slot efficiencySlot;
+    private Slot upgradeSlot;
 
     public EnergyGeneratorMenu(int pContainerId, BlockPos pPos, Inventory pInventory, Player pPlayer) {
         super(OredustryMenuTypes.ENERGY_GENERATOR_MENU.get(), pContainerId);
@@ -40,14 +40,14 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
-            this.waterSlot = this.addSlot(new SlotItemHandler(itemHandler, 0, 21, 55) {
+            this.waterSlot = this.addSlot(new SlotItemHandler(itemHandler, 0, 35, 23) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return stack.is(Items.WATER_BUCKET);
                 }
             });
-            this.gasSlot = this.addSlot(new SlotItemHandler(itemHandler, 1, 39, 55));
-            this.energySlot = this.addSlot(new SlotItemHandler(itemHandler, 2, 57, 55));
+            this.efficiencySlot = this.addSlot(new SlotItemHandler(itemHandler, 1, 26, 41));
+            this.upgradeSlot = this.addSlot(new SlotItemHandler(itemHandler, 2, 44, 41));
         });
 
         saveData();
@@ -171,8 +171,8 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
     public Slot getSlotAt(int index) {
         return switch(index) {
             case 0 -> waterSlot;
-            case 1 -> gasSlot;
-            case 2 -> energySlot;
+            case 1 -> efficiencySlot;
+            case 2 -> upgradeSlot;
             default -> throw new IllegalStateException("Unexpected index at slot " + index);
         };
     }
