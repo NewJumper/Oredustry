@@ -19,25 +19,25 @@ public class ENLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        OredustryBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(this::addBlock);
-        OredustryItems.ITEMS.getEntries().stream().map(RegistryObject::get).filter(item -> !(item instanceof BlockItem)).forEach(this::addItem);
-        OredustryBlockEntities.BLOCK_ENTITIES.getEntries().stream().map(RegistryObject::get).forEach(this::addContainer);
+        OredustryBlocks.BLOCKS.getEntries().forEach(this::addBlock);
+        OredustryItems.ITEMS.getEntries().stream().filter(item -> !(item.get() instanceof BlockItem)).forEach(this::addItem);
+        OredustryBlockEntities.BLOCK_ENTITIES.getEntries().forEach(this::addContainer);
 
         add("itemGroup.oredustry", "Oredustry");
     }
 
-    private void addBlock(Block block) {
-        String key = block.getRegistryName().getPath();
+    private void addBlock(RegistryObject<Block> block) {
+        String key = block.getId().getPath();
         add("block.oredustry." + key, convertToName(key));
     }
 
-    private void addItem(Item item) {
-        String key = item.getRegistryName().getPath();
+    private void addItem(RegistryObject<Item> item) {
+        String key = item.getId().getPath();
         add("item.oredustry." + key, convertToName(key));
     }
 
-    private void addContainer(BlockEntityType<?> blockEntity) {
-        String key = blockEntity.getRegistryName().getPath();
+    private void addContainer(RegistryObject<BlockEntityType<?>> blockEntity) {
+        String key = blockEntity.getId().getPath();
         add("container.oredustry." + key, convertToName(key));
     }
 

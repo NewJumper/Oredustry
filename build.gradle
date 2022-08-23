@@ -17,15 +17,15 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
-version = "1.18.2-${mod_version}"
-group = 'com.newjmuper.oredustry'
+version = "${mc_version}-${mod_version}"
+group = 'com.newjumper.oredustry'
 archivesBaseName = 'oredustry'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
-    mappings channel: 'parchment', version: '2022.07.17-1.18.2'
+    mappings channel: 'parchment', version: "2022.08.21-${mc_version}"
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
@@ -101,13 +101,14 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.68'
+    minecraft "net.minecraftforge:forge:${mc_version}-43.1.2"
 
-    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.232:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.232")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
 
-    compileOnly fg.deobf("mcjty.theoneprobe:theoneprobe:1.18-5.1.0-8:api") { transitive = false }
-    runtimeOnly fg.deobf("mcjty.theoneprobe:theoneprobe:1.18-5.1.0-8") { transitive = false }
+    compileOnly fg.deobf("mcjty.theoneprobe:theoneprobe:${top_version}:api") { transitive = false }
+    runtimeOnly fg.deobf("mcjty.theoneprobe:theoneprobe:${top_version}") { transitive = false }
 }
 
 jar {

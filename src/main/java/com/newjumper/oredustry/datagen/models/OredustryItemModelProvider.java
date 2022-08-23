@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
 
 public class OredustryItemModelProvider extends ItemModelProvider {
     private final ModelFile GENERATED = getExistingFile(mcLoc("item/generated"));
@@ -20,46 +21,46 @@ public class OredustryItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         // BLOCKS
-        blockModel(OredustryBlocks.DENSE_COAL_ORE.get());
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE.get());
-        blockModel(OredustryBlocks.DENSE_IRON_ORE.get());
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_IRON_ORE.get());
-        blockModel(OredustryBlocks.DENSE_COPPER_ORE.get());
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_COPPER_ORE.get());
-        blockModel(OredustryBlocks.DENSE_GOLD_ORE.get());
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_GOLD_ORE.get());
-        blockModel(OredustryBlocks.DENSE_REDSTONE_ORE.get());
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_REDSTONE_ORE.get());
-        blockModel(OredustryBlocks.DENSE_EMERALD_ORE.get());
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_EMERALD_ORE.get());
-        blockModel(OredustryBlocks.DENSE_LAPIS_ORE.get());
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_LAPIS_ORE.get());
-        blockModel(OredustryBlocks.DENSE_DIAMOND_ORE.get());
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE.get());
+        blockModel(OredustryBlocks.DENSE_COAL_ORE);
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE);
+        blockModel(OredustryBlocks.DENSE_IRON_ORE);
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_IRON_ORE);
+        blockModel(OredustryBlocks.DENSE_COPPER_ORE);
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_COPPER_ORE);
+        blockModel(OredustryBlocks.DENSE_GOLD_ORE);
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_GOLD_ORE);
+        blockModel(OredustryBlocks.DENSE_REDSTONE_ORE);
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_REDSTONE_ORE);
+        blockModel(OredustryBlocks.DENSE_EMERALD_ORE);
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_EMERALD_ORE);
+        blockModel(OredustryBlocks.DENSE_LAPIS_ORE);
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_LAPIS_ORE);
+        blockModel(OredustryBlocks.DENSE_DIAMOND_ORE);
+        blockModel(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE);
 
-        blockModel(OredustryBlocks.COMPRESSOR.get());
-        blockModel(OredustryBlocks.CRUCIBLE.get());
-        blockModel(OredustryBlocks.PURIFIER.get());
-        blockModel(OredustryBlocks.SEPARATOR.get());
-        blockModel(OredustryBlocks.ENERGY_GENERATOR.get());
-        blockModel(OredustryBlocks.HEAT_GENERATOR.get());
+        blockModel(OredustryBlocks.COMPRESSOR);
+        blockModel(OredustryBlocks.CRUCIBLE);
+        blockModel(OredustryBlocks.PURIFIER);
+        blockModel(OredustryBlocks.SEPARATOR);
+        blockModel(OredustryBlocks.ENERGY_GENERATOR);
+        blockModel(OredustryBlocks.HEAT_GENERATOR);
 
         // ITEMS
-        itemModel(OredustryItems.PURE_COPPER.get(), GENERATED);
-        itemModel(OredustryItems.PURE_GOLD.get(), GENERATED);
-        itemModel(OredustryItems.PURE_IRON.get(), GENERATED);
-        itemModel(OredustryItems.PURE_NETHERITE.get(), GENERATED);
-        itemModel(OredustryItems.ENERGY_CELL.get(), GENERATED);
-        itemModel(OredustryItems.FUEL_CELL.get(), GENERATED);
-        itemModel(OredustryItems.HEAT_CELL.get(), GENERATED);
-        itemModel(OredustryItems.RADIATOR.get(), GENERATED);
+        itemModel(OredustryItems.PURE_COPPER, GENERATED);
+        itemModel(OredustryItems.PURE_GOLD, GENERATED);
+        itemModel(OredustryItems.PURE_IRON, GENERATED);
+        itemModel(OredustryItems.PURE_NETHERITE, GENERATED);
+        itemModel(OredustryItems.ENERGY_CELL, GENERATED);
+        itemModel(OredustryItems.FUEL_CELL, GENERATED);
+        itemModel(OredustryItems.HEAT_CELL, GENERATED);
+        itemModel(OredustryItems.RADIATOR, GENERATED);
     }
 
-    public void blockModel(Block block) {
-        withExistingParent(block.getRegistryName().getPath(), modLoc("block/" + block.getRegistryName().getPath()));
+    public void blockModel(RegistryObject<Block> block) {
+        withExistingParent(block.getId().getPath(), modLoc("block/" + block.getId().getPath()));
     }
 
-    public void itemModel(Item item, ModelFile modelFile) {
-        getBuilder(item.getRegistryName().getPath()).parent(modelFile).texture("layer0", "item/" + item.getRegistryName().getPath());
+    public void itemModel(RegistryObject<Item> item, ModelFile modelFile) {
+        getBuilder(item.getId().getPath()).parent(modelFile).texture("layer0", "item/" + item.getId().getPath());
     }
 }

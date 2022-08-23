@@ -1,16 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " P ",
-    "IRI",
-    " S "
-  ],
   "key": {
-    "P": {
-      "tag": "minecraft:planks"
-    },
     "I": {
       "tag": "forge:ingots/iron"
+    },
+    "P": {
+      "tag": "minecraft:planks"
     },
     "R": {
       "tag": "forge:storage_blocks/redstone"
@@ -19,6 +14,11 @@
       "item": "minecraft:stone"
     }
   },
+  "pattern": [
+    " P ",
+    "IRI",
+    " S "
+  ],
   "result": {
     "item": "oredustry:energy_cell"
   }

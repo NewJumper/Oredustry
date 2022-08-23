@@ -1,16 +1,13 @@
 {
   "variants": {
+    "active=false,facing=east": {
+      "model": "oredustry:block/energy_generator",
+      "y": 90
+    },
     "active=false,facing=north": {
       "model": "oredustry:block/energy_generator"
     },
-    "active=true,facing=north": {
-      "model": "oredustry:block/energy_generator"
-    },
     "active=false,facing=south": {
-      "model": "oredustry:block/energy_generator",
-      "y": 180
-    },
-    "active=true,facing=south": {
       "model": "oredustry:block/energy_generator",
       "y": 180
     },
@@ -18,17 +15,20 @@
       "model": "oredustry:block/energy_generator",
       "y": 270
     },
-    "active=true,facing=west": {
-      "model": "oredustry:block/energy_generator",
-      "y": 270
-    },
-    "active=false,facing=east": {
-      "model": "oredustry:block/energy_generator",
-      "y": 90
-    },
     "active=true,facing=east": {
       "model": "oredustry:block/energy_generator",
       "y": 90
+    },
+    "active=true,facing=north": {
+      "model": "oredustry:block/energy_generator"
+    },
+    "active=true,facing=south": {
+      "model": "oredustry:block/energy_generator",
+      "y": 180
+    },
+    "active=true,facing=west": {
+      "model": "oredustry:block/energy_generator",
+      "y": 270
     }
   }
 }

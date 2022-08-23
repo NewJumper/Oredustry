@@ -1,30 +1,30 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "tag": "forge:storage_blocks/coal"
+    },
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "G": {
+      "tag": "forge:glass"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "R": {
+      "item": "oredustry:radiator"
+    },
+    "S": {
+      "tag": "minecraft:stone_crafting_materials"
+    }
+  },
   "pattern": [
     "CIC",
     "GBG",
     "SRS"
   ],
-  "key": {
-    "C": {
-      "tag": "forge:ingots/copper"
-    },
-    "I": {
-      "tag": "forge:ingots/iron"
-    },
-    "G": {
-      "tag": "forge:glass"
-    },
-    "B": {
-      "tag": "forge:storage_blocks/coal"
-    },
-    "S": {
-      "tag": "minecraft:stone_crafting_materials"
-    },
-    "R": {
-      "item": "oredustry:radiator"
-    }
-  },
   "result": {
     "item": "oredustry:heat_generator"
   }

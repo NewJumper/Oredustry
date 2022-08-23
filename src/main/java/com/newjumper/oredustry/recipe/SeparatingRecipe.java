@@ -116,21 +116,6 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
             pBuffer.writeVarInt(pRecipe.getTime());
         }
 
-        @Override
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
-
-        @Override
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        @Override
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
         @SuppressWarnings("unchecked")
         private static <G> Class<G> castClass(Class<?> cls) {
             return (Class<G>) cls;

@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "side": "oredustry:block/heat_generator",
     "bottom": "oredustry:block/heat_generator_bottom",
+    "side": "oredustry:block/heat_generator",
     "top": "oredustry:block/heat_generator_top"
   }
 }

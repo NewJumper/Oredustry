@@ -1,19 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ICI",
-    "GRG",
-    "SSS"
-  ],
   "key": {
-    "I": {
-      "tag": "forge:ingots/iron"
-    },
     "C": {
       "tag": "forge:ingots/copper"
     },
     "G": {
       "tag": "forge:glass"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
     },
     "R": {
       "tag": "forge:storage_blocks/redstone"
@@ -22,6 +17,11 @@
       "tag": "minecraft:stone_crafting_materials"
     }
   },
+  "pattern": [
+    "ICI",
+    "GRG",
+    "SSS"
+  ],
   "result": {
     "item": "oredustry:energy_generator"
   }

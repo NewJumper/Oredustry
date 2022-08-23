@@ -6,7 +6,6 @@ import com.newjumper.oredustry.Oredustry;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
@@ -32,7 +31,7 @@ public class HeatGeneratorScreen extends AbstractContainerScreen<HeatGeneratorMe
         this.font.draw(pPoseStack, this.title, (this.imageWidth - this.font.width(this.title)) / 2f, 10, 0x404040);
         this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX + 8, this.inventoryLabelY + 14, 0x404040);
 
-        TextComponent heat = new TextComponent(this.menu.getHeat() + "°");
+        Component heat = Component.literal(this.menu.getHeat() + "°");
         this.font.draw(pPoseStack, heat, (this.imageWidth - this.font.width(heat)) / 2f + 1, 66, 0xffffff);
     }
 

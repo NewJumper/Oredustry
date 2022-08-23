@@ -18,11 +18,11 @@ public class OredustryLootTables extends BlockLoot {
     protected void addTables() {
         this.add(OredustryBlocks.DENSE_COAL_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_COAL_ORE.get(), Items.COAL, 2, 4));
         this.add(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE.get(), Items.COAL, 2, 4));
-        this.add(OredustryBlocks.DENSE_IRON_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_IRON_ORE.get(), Items.RAW_IRON, 1, 4));
+        this.add(OredustryBlocks.DENSE_IRON_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_IRON_ORE.get(), Items.RAW_IRON, 2, 4));
         this.add(OredustryBlocks.DENSE_DEEPSLATE_IRON_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_DEEPSLATE_IRON_ORE.get(), Items.RAW_IRON, 2, 4));
-        this.add(OredustryBlocks.DENSE_COPPER_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_COPPER_ORE.get(), Items.RAW_COPPER, 3, 7));
+        this.add(OredustryBlocks.DENSE_COPPER_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_COPPER_ORE.get(), Items.RAW_COPPER, 3, 8));
         this.add(OredustryBlocks.DENSE_DEEPSLATE_COPPER_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_DEEPSLATE_COPPER_ORE.get(), Items.RAW_COPPER, 3, 7));
-        this.add(OredustryBlocks.DENSE_GOLD_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_GOLD_ORE.get(), Items.RAW_GOLD, 1, 4));
+        this.add(OredustryBlocks.DENSE_GOLD_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_GOLD_ORE.get(), Items.RAW_GOLD, 2, 4));
         this.add(OredustryBlocks.DENSE_DEEPSLATE_GOLD_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_DEEPSLATE_GOLD_ORE.get(), Items.RAW_GOLD, 2, 4));
         this.add(OredustryBlocks.DENSE_REDSTONE_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_REDSTONE_ORE.get(), Items.REDSTONE, 5, 8));
         this.add(OredustryBlocks.DENSE_DEEPSLATE_REDSTONE_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_DEEPSLATE_REDSTONE_ORE.get(), Items.REDSTONE, 5, 8));
@@ -41,12 +41,12 @@ public class OredustryLootTables extends BlockLoot {
         this.dropSelf(OredustryBlocks.HEAT_GENERATOR.get());
     }
 
+    private LootTable.Builder createDenseOreDrop(Block pBlock, Item pItem, int pMin, int pMax) {
+        return createSilkTouchDispatchTable(pBlock, applyExplosionDecay(pBlock, LootItem.lootTableItem(pItem).apply(SetItemCountFunction.setCount(UniformGenerator.between(pMin, pMax))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));
+    }
+
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return OredustryBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
-    }
-
-    private LootTable.Builder createDenseOreDrop(Block pBlock, Item pItem, int pMin, int pMax) {
-        return createSilkTouchDispatchTable(pBlock, applyExplosionDecay(pBlock, LootItem.lootTableItem(pItem).apply(SetItemCountFunction.setCount(UniformGenerator.between(pMin, pMax))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));
     }
 }

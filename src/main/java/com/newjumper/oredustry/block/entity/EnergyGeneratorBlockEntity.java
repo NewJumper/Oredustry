@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -21,14 +20,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -85,7 +82,7 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("container.oredustry.energy_generator");
+        return Component.translatable("container.oredustry.energy_generator");
     }
 
     @Nullable
@@ -113,9 +110,9 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return lazyItemHandler.cast();
-        if(cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) return lazyFluidHandler.cast();
-        if(cap == CapabilityEnergy.ENERGY) return lazyEnergyStorage.cast();
+        if(cap == ForgeCapabilities.ITEM_HANDLER) return lazyItemHandler.cast();
+        if(cap == ForgeCapabilities.FLUID_HANDLER) return lazyFluidHandler.cast();
+        if(cap == ForgeCapabilities.ENERGY) return lazyEnergyStorage.cast();
         return super.getCapability(cap, side);
     }
 
@@ -163,7 +160,7 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
                 BlockEntity be = pBlockEntity.level.getBlockEntity(pBlockEntity.worldPosition.relative(direction));
 
                 if(be != null) {
-                    boolean doContinue = be.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).map(energyStorage -> {
+                    boolean doContinue = be.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).map(energyStorage -> {
                         if(energyStorage.canReceive()) {
                             int received = energyStorage.receiveEnergy(Math.min(capacity.get(), ENERGY_OUTPUT), false);
                             capacity.addAndGet(-received);

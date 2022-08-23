@@ -11,9 +11,9 @@ import com.newjumper.oredustry.datagen.tags.OredustryBlockTagsProvider;
 import com.newjumper.oredustry.datagen.tags.OredustryItemTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @Mod.EventBusSubscriber(modid = Oredustry.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
@@ -23,22 +23,22 @@ public class DataGenerators {
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
         // languages
-        generator.addProvider(new ENLanguageProvider(generator));
+        generator.addProvider(event.includeClient(), new ENLanguageProvider(generator));
 
         // loot tables
-        generator.addProvider(new OredustryLootTableProvider(generator));
+        generator.addProvider(event.includeServer(), new OredustryLootTableProvider(generator));
 
         // models
-        generator.addProvider(new OredustryBlockStateProvider(generator, fileHelper));
-        generator.addProvider(new OredustryItemModelProvider(generator, fileHelper));
+        generator.addProvider(event.includeClient(), new OredustryBlockStateProvider(generator, fileHelper));
+        generator.addProvider(event.includeClient(), new OredustryItemModelProvider(generator, fileHelper));
 
         // recipes
-        generator.addProvider(new CraftingRecipesProvider(generator));
-        generator.addProvider(new SmeltingRecipesProvider(generator));
+        generator.addProvider(event.includeServer(), new CraftingRecipesProvider(generator));
+        generator.addProvider(event.includeServer(), new SmeltingRecipesProvider(generator));
 
         // tags
         OredustryBlockTagsProvider blockTags = new OredustryBlockTagsProvider(generator, fileHelper);
-        generator.addProvider(blockTags);
-        generator.addProvider(new OredustryItemTagsProvider(generator, blockTags, fileHelper));
+        generator.addProvider(event.includeServer(), blockTags);
+        generator.addProvider(event.includeServer(), new OredustryItemTagsProvider(generator, blockTags, fileHelper));
     }
 }

@@ -12,7 +12,7 @@ import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class HeatGeneratorMenu extends AbstractContainerMenu {
@@ -32,7 +32,7 @@ public class HeatGeneratorMenu extends AbstractContainerMenu {
         checkContainerSize(pInventory, MENU_SLOTS);
         addInventorySlots(pInventory);
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
             this.fuelSlot = this.addSlot(new SlotItemHandler(itemHandler, 0, 35, 23));
             this.radiatorSlot = this.addSlot(new SlotItemHandler(itemHandler, 1, 26, 41));
             this.upgradeSlot = this.addSlot(new SlotItemHandler(itemHandler, 2, 44, 41));

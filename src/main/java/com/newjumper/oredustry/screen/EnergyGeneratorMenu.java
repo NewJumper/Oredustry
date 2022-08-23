@@ -15,12 +15,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class EnergyGeneratorMenu extends AbstractContainerMenu {
@@ -40,7 +38,7 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
         checkContainerSize(pInventory, SLOTS);
         addInventorySlots(pInventory);
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> {
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
             this.waterSlot = this.addSlot(new SlotItemHandler(itemHandler, 0, 35, 23) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
@@ -63,7 +61,7 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).ifPresent(fluidHandler -> {
+                blockEntity.getCapability(ForgeCapabilities.FLUID_HANDLER).ifPresent(fluidHandler -> {
                     int waterStored = ((FluidTank)fluidHandler).getFluidAmount() & 0xffff0000;
                     fluidHandler.drain(EnergyGeneratorBlockEntity.WATER_CAPACITY, IFluidHandler.FluidAction.EXECUTE);
                     fluidHandler.fill(new FluidStack(Fluids.WATER, waterStored + (pValue & 0xffff)), IFluidHandler.FluidAction.EXECUTE);
@@ -78,7 +76,7 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).ifPresent(fluidHandler -> {
+                blockEntity.getCapability(ForgeCapabilities.FLUID_HANDLER).ifPresent(fluidHandler -> {
                     int waterStored = ((FluidTank)fluidHandler).getFluidAmount() & 0x0000ffff;
                     fluidHandler.drain(EnergyGeneratorBlockEntity.WATER_CAPACITY, IFluidHandler.FluidAction.EXECUTE);
                     fluidHandler.fill(new FluidStack(Fluids.WATER, waterStored | (pValue << 16)), IFluidHandler.FluidAction.EXECUTE);
@@ -94,7 +92,7 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(energyStorage -> {
+                blockEntity.getCapability(ForgeCapabilities.ENERGY).ifPresent(energyStorage -> {
                     int energyStored = energyStorage.getEnergyStored() & 0xffff0000;
                     ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored + (pValue & 0xffff));
                 });
@@ -108,7 +106,7 @@ public class EnergyGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(energyStorage -> {
+                blockEntity.getCapability(ForgeCapabilities.ENERGY).ifPresent(energyStorage -> {
                     int energyStored = energyStorage.getEnergyStored() & 0x0000ffff;
                     ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored | (pValue << 16));
                 });

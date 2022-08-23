@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " I ",
-    "RCR",
-    " I "
-  ],
   "key": {
+    "C": {
+      "tag": "forge:storage_blocks/copper"
+    },
     "I": {
       "tag": "forge:ingots/iron"
     },
     "R": {
       "tag": "forge:dusts/redstone"
-    },
-    "C": {
-      "tag": "forge:storage_blocks/copper"
     }
   },
+  "pattern": [
+    " I ",
+    "RCR",
+    " I "
+  ],
   "result": {
     "item": "oredustry:heat_cell"
   }

@@ -1,10 +1,10 @@
 {
   "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 4.0,
   "group": "emerald",
   "ingredient": {
     "item": "oredustry:dense_deepslate_emerald_ore"
   },
-  "result": "minecraft:emerald",
-  "experience": 4.0,
-  "cookingtime": 200
+  "result": "minecraft:emerald"
 }

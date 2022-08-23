@@ -1,16 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "OAO",
-    "GHG",
-    "BBB"
-  ],
   "key": {
-    "O": {
-      "tag": "forge:obsidian"
-    },
     "A": {
       "item": "minecraft:water_bucket"
+    },
+    "B": {
+      "item": "minecraft:bricks"
     },
     "G": {
       "tag": "forge:glass"
@@ -18,10 +13,15 @@
     "H": {
       "item": "oredustry:heat_cell"
     },
-    "B": {
-      "item": "minecraft:bricks"
+    "O": {
+      "tag": "forge:obsidian"
     }
   },
+  "pattern": [
+    "OAO",
+    "GHG",
+    "BBB"
+  ],
   "result": {
     "item": "oredustry:crucible"
   }

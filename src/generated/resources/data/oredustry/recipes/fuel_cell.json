@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " I ",
-    "BLB",
-    " I "
-  ],
   "key": {
-    "I": {
-      "tag": "forge:ingots/iron"
-    },
     "B": {
       "item": "minecraft:blaze_powder"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
     },
     "L": {
       "item": "minecraft:lava_bucket"
     }
   },
+  "pattern": [
+    " I ",
+    "BLB",
+    " I "
+  ],
   "result": {
     "item": "oredustry:fuel_cell"
   }

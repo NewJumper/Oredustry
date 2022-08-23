@@ -2,7 +2,6 @@ package com.newjumper.oredustry.screen.renderer;
 
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
@@ -16,6 +15,6 @@ public class FluidToolTip extends GuiComponent {
     }
 
     public List<Component> getToolTip() {
-        return List.of(new TextComponent(((FluidTank)fluid).getFluidAmount() + " mb"));
+        return List.of(Component.literal(((FluidTank)fluid).getFluidAmount() + " mb"));
     }
 }

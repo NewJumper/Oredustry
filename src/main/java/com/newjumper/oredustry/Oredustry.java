@@ -11,18 +11,20 @@ import com.newjumper.oredustry.screen.EnergyGeneratorScreen;
 import com.newjumper.oredustry.screen.HeatGeneratorScreen;
 import com.newjumper.oredustry.screen.OredustryMenuTypes;
 import com.newjumper.oredustry.screen.SeparatorScreen;
+import com.newjumper.oredustry.world.OreConfiguredFeatures;
+import com.newjumper.oredustry.world.OrePlacedFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.core.Registry;
-import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
 @Mod("oredustry")
@@ -34,6 +36,8 @@ public class Oredustry {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         OredustryBlocks.BLOCKS.register(eventBus);
+        OreConfiguredFeatures.CONFIGURED_FEATURES.register(eventBus);
+        OrePlacedFeatures.PLACED_FEATURES.register(eventBus);
         OredustryItems.ITEMS.register(eventBus);
         OredustryBlockEntities.BLOCK_ENTITIES.register(eventBus);
         OredustryMenuTypes.MENUS.register(eventBus);
@@ -60,8 +64,10 @@ public class Oredustry {
     @Mod.EventBusSubscriber(modid = Oredustry.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class OredustryEventBus {
         @SubscribeEvent
-        public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
-            Registry.register(Registry.RECIPE_TYPE, "separating", SeparatingRecipe.Type.INSTANCE);
+        public static void registerRecipeTypes(final RegisterEvent event) {
+            event.register(ForgeRegistries.Keys.RECIPE_TYPES, helper -> {
+                helper.register(new ResourceLocation(MOD_ID, "separating"), SeparatingRecipe.Type.INSTANCE);
+            });
         }
     }
 }

@@ -1,26 +1,26 @@
 modLoader="javafml"
-loaderVersion="[40,)"
+loaderVersion="[43,)"
 license="AGPL-3.0"
 
 [[mods]]
     modId="oredustry"
-    version="0.3.0"
+    version="0.4.0"
 
     displayName="Oredustry"
     authors="NewJumper"
     logoFile="oredustry_banner.png"
 #    credits="credits woooo"
 
-    description='''mod'''
-
-[[dependencies.oredustry]]
-    modId="forge"
-    mandatory=true
-    versionRange="[40,)"
-    side="BOTH"
+    description='''A mod that can multiply ores!'''
 
 [[dependencies.oredustry]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.2,1.19)"
+    versionRange="[1.19.2, 1.20)"
+    side="BOTH"
+
+[[dependencies.oredustry]]
+    modId="forge"
+    mandatory=true
+    versionRange="[43,)"
     side="BOTH"

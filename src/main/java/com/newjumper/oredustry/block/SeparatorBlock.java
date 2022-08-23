@@ -4,7 +4,6 @@ import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.block.entity.SeparatorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +19,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 public class SeparatorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -61,7 +59,7 @@ public class SeparatorBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if(blockEntity instanceof SeparatorBlockEntity) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (SeparatorBlockEntity)blockEntity, pPos);
+                pState.getMenuProvider(pLevel, pPos);
             } else {
                 throw new IllegalStateException("Container provider missing");
             }

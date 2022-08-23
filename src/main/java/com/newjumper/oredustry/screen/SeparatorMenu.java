@@ -13,8 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,7 +37,7 @@ public class SeparatorMenu extends AbstractContainerMenu {
         checkContainerSize(pInventory, MENU_SLOTS);
         addInventorySlots(pInventory);
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 30, 63) {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
@@ -69,7 +68,7 @@ public class SeparatorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(energyStorage -> {
+                blockEntity.getCapability(ForgeCapabilities.ENERGY).ifPresent(energyStorage -> {
                     int energyStored = energyStorage.getEnergyStored() & 0xffff0000;
                     ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored + (pValue & 0xffff));
                 });
@@ -83,7 +82,7 @@ public class SeparatorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(energyStorage -> {
+                blockEntity.getCapability(ForgeCapabilities.ENERGY).ifPresent(energyStorage -> {
                     int energyStored = energyStorage.getEnergyStored() & 0x0000ffff;
                     ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored | (pValue << 16));
                 });

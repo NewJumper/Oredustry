@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.Nameable;
@@ -23,10 +22,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -99,7 +97,7 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider, N
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("container.oredustry.separator");
+        return Component.translatable("container.oredustry.separator");
     }
 
     @Override
@@ -132,8 +130,8 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider, N
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
-        if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return lazyItemHandler.cast();
-        if(cap == CapabilityEnergy.ENERGY) return lazyEnergyStorage.cast();
+        if(cap == ForgeCapabilities.ITEM_HANDLER) return lazyItemHandler.cast();
+        if(cap == ForgeCapabilities.ENERGY) return lazyEnergyStorage.cast();
 
         return super.getCapability(cap, side);
     }

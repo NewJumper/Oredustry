@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "oredustry:block/compressor",
-    "end": "oredustry:block/machine_top"
+    "end": "oredustry:block/machine_top",
+    "side": "oredustry:block/compressor"
   }
 }
