@@ -1,9 +1,11 @@
 package com.newjumper.oredustry.block;
 
+import com.newjumper.oredustry.block.entity.EnergyGeneratorBlockEntity;
 import com.newjumper.oredustry.block.entity.HeatGeneratorBlockEntity;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +21,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class HeatGeneratorBlock extends BaseEntityBlock {
@@ -61,9 +64,7 @@ public class HeatGeneratorBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if(blockEntity instanceof HeatGeneratorBlockEntity) {
-                pState.getMenuProvider(pLevel, pPos);
-            } else {
-                throw new IllegalStateException("Container provider missing");
+                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (HeatGeneratorBlockEntity) blockEntity, pPos);
             }
         }
 

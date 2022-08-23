@@ -35,7 +35,7 @@ public class EnergyGeneratorScreen extends AbstractContainerScreen<EnergyGenerat
     @Override
     protected void renderLabels(@NotNull PoseStack pPoseStack, int pMouseX, int pMouseY) {
         this.font.draw(pPoseStack, this.title, (this.imageWidth - this.font.width(this.title)) / 2f, 10, 0x404040);
-        this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX + 8, this.inventoryLabelY + 14, 0x404040);
+        this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY + 14, 0x404040);
 
         if(isHovering(132, 33, 26, 46, pMouseX, pMouseY)) {
             renderTooltip(pPoseStack, waterToolTip.getToolTip(), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);

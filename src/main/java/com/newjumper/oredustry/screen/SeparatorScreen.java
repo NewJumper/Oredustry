@@ -32,8 +32,8 @@ public class SeparatorScreen extends AbstractContainerScreen<SeparatorMenu> {
 
     @Override
     protected void renderLabels(@NotNull PoseStack pPoseStack, int pMouseX, int pMouseY) {
-        this.font.draw(pPoseStack, this.title, (this.imageWidth - this.font.width(this.title)) / 2f, 9, 0x404040);
-        this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX, this.imageHeight - 95, 0x404040);
+        this.font.draw(pPoseStack, this.title, (this.imageWidth - this.font.width(this.title)) / 2f, 10, 0x404040);
+        this.font.draw(pPoseStack, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY + 14, 0x404040);
 
         if(isHovering(164, 21, 12, 58, pMouseX, pMouseY)) {
             renderTooltip(pPoseStack, energyToolTip.getToolTip(), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
