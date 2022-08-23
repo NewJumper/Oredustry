@@ -3,7 +3,7 @@ package com.newjumper.oredustry;
 import com.mojang.logging.LogUtils;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
-import com.newjumper.oredustry.heat.IHeatStorage;
+import com.newjumper.oredustry.capabilities.IHeatStorage;
 import com.newjumper.oredustry.item.OredustryItems;
 import com.newjumper.oredustry.recipe.OredustryRecipes;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;

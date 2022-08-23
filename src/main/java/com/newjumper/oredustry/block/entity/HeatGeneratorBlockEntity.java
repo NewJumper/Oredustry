@@ -1,8 +1,8 @@
 package com.newjumper.oredustry.block.entity;
 
-import com.newjumper.oredustry.heat.CapabilityHeat;
-import com.newjumper.oredustry.heat.HeatStorage;
-import com.newjumper.oredustry.heat.IHeatStorage;
+import com.newjumper.oredustry.capabilities.HeatStorage;
+import com.newjumper.oredustry.capabilities.IHeatStorage;
+import com.newjumper.oredustry.capabilities.OredustryCapabilities;
 import com.newjumper.oredustry.screen.HeatGeneratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -86,7 +86,7 @@ public class HeatGeneratorBlockEntity extends BlockEntity implements MenuProvide
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if(cap == ForgeCapabilities.ITEM_HANDLER) return lazyItemHandler.cast();
-        if(cap == CapabilityHeat.HEAT) return lazyHeatStorage.cast();
+        if(cap == OredustryCapabilities.HEAT) return lazyHeatStorage.cast();
         return super.getCapability(cap, side);
     }
 

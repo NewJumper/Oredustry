@@ -8,6 +8,7 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 public class OredustryItemTagsProvider extends ItemTagsProvider {
     public OredustryItemTagsProvider(DataGenerator pGenerator, BlockTagsProvider pBlockTagsProvider, ExistingFileHelper existingFileHelper) {
@@ -34,5 +35,11 @@ public class OredustryItemTagsProvider extends ItemTagsProvider {
 
         tag(OredustryTags.Items.PURE_MATERIALS).add(OredustryItems.PURE_COPPER.get(), OredustryItems.PURE_GOLD.get(), OredustryItems.PURE_IRON.get(), OredustryItems.PURE_NETHERITE.get());
         tag(OredustryTags.Items.CELLS).add(OredustryItems.ENERGY_CELL.get(), OredustryItems.FUEL_CELL.get(), OredustryItems.HEAT_CELL.get());
+    }
+
+    @NotNull
+    @Override
+    public String getName() {
+        return "Item Tags";
     }
 }

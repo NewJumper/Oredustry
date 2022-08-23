@@ -1,4 +1,4 @@
-package com.newjumper.oredustry.heat;
+package com.newjumper.oredustry.capabilities;
 
 import net.minecraftforge.energy.IEnergyStorage;
 

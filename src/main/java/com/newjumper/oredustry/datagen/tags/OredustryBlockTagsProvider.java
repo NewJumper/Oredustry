@@ -8,6 +8,7 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 public class OredustryBlockTagsProvider extends BlockTagsProvider {
     public OredustryBlockTagsProvider(DataGenerator pGenerator, ExistingFileHelper existingFileHelper) {
@@ -46,5 +47,11 @@ public class OredustryBlockTagsProvider extends BlockTagsProvider {
         tag(OredustryTags.Blocks.MACHINES).add(OredustryBlocks.COMPRESSOR.get(), OredustryBlocks.CRUCIBLE.get(), OredustryBlocks.PURIFIER.get(), OredustryBlocks.SEPARATOR.get(), OredustryBlocks.ENERGY_GENERATOR.get(), OredustryBlocks.HEAT_GENERATOR.get());
         tag(OredustryTags.Blocks.DENSE_ORES).add(OredustryBlocks.DENSE_COAL_ORE.get(), OredustryBlocks.DENSE_IRON_ORE.get(), OredustryBlocks.DENSE_COPPER_ORE.get(), OredustryBlocks.DENSE_GOLD_ORE.get(), OredustryBlocks.DENSE_REDSTONE_ORE.get(), OredustryBlocks.DENSE_EMERALD_ORE.get(), OredustryBlocks.DENSE_LAPIS_ORE.get(), OredustryBlocks.DENSE_DIAMOND_ORE.get());
         tag(OredustryTags.Blocks.DENSE_DEEPSLATE_ORES).add(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE.get(), OredustryBlocks.DENSE_DEEPSLATE_IRON_ORE.get(), OredustryBlocks.DENSE_DEEPSLATE_COPPER_ORE.get(), OredustryBlocks.DENSE_DEEPSLATE_GOLD_ORE.get(), OredustryBlocks.DENSE_DEEPSLATE_REDSTONE_ORE.get(), OredustryBlocks.DENSE_DEEPSLATE_EMERALD_ORE.get(), OredustryBlocks.DENSE_DEEPSLATE_LAPIS_ORE.get(), OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE.get());
+    }
+
+    @NotNull
+    @Override
+    public String getName() {
+        return "Block Tags";
     }
 }

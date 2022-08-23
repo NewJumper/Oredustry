@@ -2,7 +2,7 @@ package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.HeatGeneratorBlockEntity;
-import com.newjumper.oredustry.heat.CapabilityHeat;
+import com.newjumper.oredustry.capabilities.OredustryCapabilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -50,7 +50,7 @@ public class HeatGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityHeat.HEAT).ifPresent(heatStorage -> {
+                blockEntity.getCapability(OredustryCapabilities.HEAT).ifPresent(heatStorage -> {
                     int heatStored = heatStorage.getHeatStored() & 0xffff0000;
                     heatStorage.setHeat(heatStored + (pValue & 0xffff));
                 });
@@ -64,7 +64,7 @@ public class HeatGeneratorMenu extends AbstractContainerMenu {
 
             @Override
             public void set(int pValue) {
-                blockEntity.getCapability(CapabilityHeat.HEAT).ifPresent(heatStorage -> {
+                blockEntity.getCapability(OredustryCapabilities.HEAT).ifPresent(heatStorage -> {
                     int heatStored = heatStorage.getHeatStored() & 0x0000ffff;
                     heatStorage.setHeat(heatStored | (pValue << 16));
                 });

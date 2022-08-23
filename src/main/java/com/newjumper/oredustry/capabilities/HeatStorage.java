@@ -1,4 +1,4 @@
-package com.newjumper.oredustry.heat;
+package com.newjumper.oredustry.capabilities;
 
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.Tag;

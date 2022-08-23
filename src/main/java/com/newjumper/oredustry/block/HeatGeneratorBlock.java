@@ -1,6 +1,5 @@
 package com.newjumper.oredustry.block;
 
-import com.newjumper.oredustry.block.entity.EnergyGeneratorBlockEntity;
 import com.newjumper.oredustry.block.entity.HeatGeneratorBlockEntity;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import net.minecraft.core.BlockPos;

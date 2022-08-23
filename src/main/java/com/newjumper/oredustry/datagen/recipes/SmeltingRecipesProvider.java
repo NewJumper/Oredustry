@@ -8,6 +8,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -44,5 +45,11 @@ public class SmeltingRecipesProvider extends RecipeProvider implements IConditio
         oreBlasting(consumer, DENSE_EMERALD_ORES, Items.EMERALD, 4f, 200, "emerald");
         oreBlasting(consumer, DENSE_LAPIS_ORES, Items.LAPIS_LAZULI, 0.8f, 200, "lapis_lazuli");
         oreBlasting(consumer, DENSE_DIAMOND_ORES, Items.DIAMOND, 4f, 200, "diamond");
+    }
+
+    @NotNull
+    @Override
+    public String getName() {
+        return "Smelting Recipes";
     }
 }

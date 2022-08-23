@@ -11,6 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -135,5 +136,11 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
                 .unlockedBy("has_energy_cell", has(OredustryItems.ENERGY_CELL.get())).save(consumer);
+    }
+
+    @NotNull
+    @Override
+    public String getName() {
+        return "Crafting Recipes";
     }
 }
