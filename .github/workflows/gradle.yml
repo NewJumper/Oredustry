@@ -2,9 +2,9 @@ name: Gradle Build
 
 on:
   push:
-    branches: [ "mc-1.18.x" ]
+    branches: [ "mc-1.19.x" ]
   pull_request:
-    branches: [ "mc-1.18.x" ]
+    branches: [ "mc-1.19.x" ]
 
 permissions:
   contents: read
