@@ -3,19 +3,20 @@ package com.newjumper.oredustry.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.screen.renderer.EnergyToolTip;
+import com.newjumper.oredustry.screen.renderer.ToolTipRenderer;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraftforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
 public class SeparatorScreen extends AbstractContainerScreen<SeparatorMenu> {
     public static final ResourceLocation GUI = new ResourceLocation(Oredustry.MOD_ID, "textures/gui/container/separator.png");
-    private final EnergyToolTip energyToolTip = new EnergyToolTip(this.menu.blockEntity.energyStorage);
+    private final ToolTipRenderer<IEnergyStorage> energyToolTip = new ToolTipRenderer<>(this.menu.blockEntity.energyStorage);
 
     public SeparatorScreen(SeparatorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
