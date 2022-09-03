@@ -1,0 +1,6 @@
+{
+  "parent": "oredustry:block/template_cable_vertical",
+  "textures": {
+    "cable": "oredustry:block/heat_cable"
+  }
+}

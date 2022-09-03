@@ -39,6 +39,8 @@ public class OredustryLootTables extends BlockLoot {
         this.dropSelf(OredustryBlocks.SEPARATOR.get());
         this.dropSelf(OredustryBlocks.ENERGY_GENERATOR.get());
         this.dropSelf(OredustryBlocks.HEAT_GENERATOR.get());
+
+        this.dropSelf(OredustryBlocks.HEAT_CABLE.get());
     }
 
     private LootTable.Builder createDenseOreDrop(Block pBlock, Item pItem, int pMin, int pMax) {

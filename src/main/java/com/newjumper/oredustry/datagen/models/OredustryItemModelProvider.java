@@ -45,6 +45,8 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.ENERGY_GENERATOR);
         blockModel(OredustryBlocks.HEAT_GENERATOR);
 
+        blockModel(OredustryBlocks.HEAT_CABLE);
+
         // ITEMS
         itemModel(OredustryItems.PURE_COPPER, GENERATED);
         itemModel(OredustryItems.PURE_GOLD, GENERATED);
