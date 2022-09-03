@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-03T14:04:04.5628221	Block Tags
+// 1.19.2	2022-09-03T17:59:42.4089528	Block Tags
 bd99bde5e29c1c5c000b4e09b697b2d1ee9a37ba data/forge/tags/blocks/ores.json
 ff33df8686c180b44f722812ee8aeeea0421f1c1 data/forge/tags/blocks/ores/coal.json
 4bb6d1cbe6037013f501dbc12bbcbf708c01dbc6 data/forge/tags/blocks/ores/copper.json
@@ -24,6 +24,6 @@ dbb11264ac29bf5a5f343b300766fb072e2c877d data/minecraft/tags/blocks/needs_stone_
 37cc8e25422105f4de1146c60744c6bc33b3b581 data/minecraft/tags/blocks/redstone_ores.json
 80b5d276aa4b5a97259713a2e189092cc5d5a4ba data/oredustry/tags/blocks/dense_deepslate_ores.json
 d3e187cf6d9afc26435738bcf028e23ee119775a data/oredustry/tags/blocks/dense_ores.json
-4cdf4e83afb840f29a456be240029516b090a788 data/oredustry/tags/blocks/energy_container.json
+ff22f4c3b49669e30f8ee68dcc479471b031e42b data/oredustry/tags/blocks/energy_container.json
 72355253b109edb95ff91ccdb2113b18c789ee5c data/oredustry/tags/blocks/heat_container.json
 06300740aab8d511d560cd41b00f5177570effbc data/oredustry/tags/blocks/machines.json

@@ -44,7 +44,8 @@ public class OredustryBlocks {
     public static final RegistryObject<Block> ENERGY_GENERATOR = register("energy_generator", () -> new EnergyGeneratorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> HEAT_GENERATOR = register("heat_generator", () -> new HeatGeneratorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> HEAT_CABLE = register("heat_cable", () -> new HeatCableBlock(BlockBehaviour.Properties.of(Material.WOOL).strength(1f)));
+    public static final RegistryObject<Block> ENERGY_CABLE = register("energy_cable", () -> new EnergyCableBlock(BlockBehaviour.Properties.of(Material.WOOL).strength(1f).sound(SoundType.WOOL)));
+    public static final RegistryObject<Block> HEAT_CABLE = register("heat_cable", () -> new HeatCableBlock(BlockBehaviour.Properties.of(Material.WOOL).strength(1f).sound(SoundType.WOOL)));
 
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> pBlock) {
         RegistryObject<T> block = BLOCKS.register(name, pBlock);

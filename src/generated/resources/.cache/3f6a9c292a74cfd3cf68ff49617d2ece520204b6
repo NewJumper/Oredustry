@@ -1,4 +1,4 @@
-// 1.19.2	2022-08-24T22:33:54.3427926	Item Models: oredustry
+// 1.19.2	2022-09-03T17:37:43.7684191	Item Models: oredustry
 fa469a2777d2b1b15ed8356fd5862b63e6025088 assets/oredustry/models/item/compressor.json
 2d8a4bd3cefe8a1a780b4d11d579181168799364 assets/oredustry/models/item/crucible.json
 9837fe73b231517498f96cff08d7d55fa940271e assets/oredustry/models/item/dense_coal_ore.json
@@ -17,6 +17,7 @@ b8fe36c5a9f01a13e8060242e1d6714bb1be74a7 assets/oredustry/models/item/dense_deep
 717f48d2349ad5079ae0dcc0ccbd200f362d8530 assets/oredustry/models/item/dense_iron_ore.json
 96fd0452e4eceea41caf10c8b112ae4fe045da3d assets/oredustry/models/item/dense_lapis_ore.json
 10745cff21ae556532b75f6257b6da221c7e96a6 assets/oredustry/models/item/dense_redstone_ore.json
+13c1f63b76b460b511267d2d3efcd2561d66616b assets/oredustry/models/item/energy_cable.json
 db4f6f07e7f9074fb68e6e70e0b73ddbad4cc074 assets/oredustry/models/item/energy_cell.json
 e3ef27ef733f82b3aa6e7369c91e002ebac5d81b assets/oredustry/models/item/energy_generator.json
 ae10aa8b93fc16368fce7eb4837c88907583873d assets/oredustry/models/item/fuel_cell.json

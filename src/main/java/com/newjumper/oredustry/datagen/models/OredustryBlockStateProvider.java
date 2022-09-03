@@ -45,6 +45,7 @@ public class OredustryBlockStateProvider extends BlockStateProvider {
         horizontalBlock(OredustryBlocks.ENERGY_GENERATOR.get(), models().orientableWithBottom("energy_generator", blockLoc(OredustryBlocks.ENERGY_GENERATOR, "side"), blockLoc(OredustryBlocks.ENERGY_GENERATOR, "on"), blockLoc(OredustryBlocks.ENERGY_GENERATOR, "bottom"), blockLoc(OredustryBlocks.ENERGY_GENERATOR, "top")));
         simpleBlock(OredustryBlocks.HEAT_GENERATOR.get(), models().cubeBottomTop("heat_generator", blockLoc(OredustryBlocks.HEAT_GENERATOR), blockLoc(OredustryBlocks.HEAT_GENERATOR, "bottom"), blockLoc(OredustryBlocks.HEAT_GENERATOR, "top")));
 
+        cableBlock(OredustryBlocks.ENERGY_CABLE);
         cableBlock(OredustryBlocks.HEAT_CABLE);
     }
 

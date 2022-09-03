@@ -40,6 +40,7 @@ public class OredustryLootTables extends BlockLoot {
         this.dropSelf(OredustryBlocks.ENERGY_GENERATOR.get());
         this.dropSelf(OredustryBlocks.HEAT_GENERATOR.get());
 
+        this.dropSelf(OredustryBlocks.ENERGY_CABLE.get());
         this.dropSelf(OredustryBlocks.HEAT_CABLE.get());
     }
 

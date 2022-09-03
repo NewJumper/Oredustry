@@ -14,5 +14,6 @@ public class OredustryBlockEntities {
     public static final RegistryObject<BlockEntityType<EnergyGeneratorBlockEntity>> ENERGY_GENERATOR = BLOCK_ENTITIES.register("energy_generator", () -> BlockEntityType.Builder.of(EnergyGeneratorBlockEntity::new, OredustryBlocks.ENERGY_GENERATOR.get()).build(null));
     public static final RegistryObject<BlockEntityType<HeatGeneratorBlockEntity>> HEAT_GENERATOR = BLOCK_ENTITIES.register("heat_generator", () -> BlockEntityType.Builder.of(HeatGeneratorBlockEntity::new, OredustryBlocks.HEAT_GENERATOR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<EnergyCableBlockEntity>> ENERGY_CABLE = BLOCK_ENTITIES.register("energy_cable", () -> BlockEntityType.Builder.of(EnergyCableBlockEntity::new, OredustryBlocks.ENERGY_CABLE.get()).build(null));
     public static final RegistryObject<BlockEntityType<HeatCableBlockEntity>> HEAT_CABLE = BLOCK_ENTITIES.register("heat_cable", () -> BlockEntityType.Builder.of(HeatCableBlockEntity::new, OredustryBlocks.HEAT_CABLE.get()).build(null));
 }

@@ -1,4 +1,4 @@
-// 1.19.2	2022-08-24T22:33:54.3364898	LootTables
+// 1.19.2	2022-09-03T17:37:43.7706624	LootTables
 ff93e694672fce343533d3829268311357b893a6 data/oredustry/loot_tables/blocks/compressor.json
 347c542279271a2d9fd40433174de8b5a7815534 data/oredustry/loot_tables/blocks/crucible.json
 176e871e541f7245c32d56fe7b4693635a17ef35 data/oredustry/loot_tables/blocks/dense_coal_ore.json
@@ -17,6 +17,7 @@ e26f73eebe2e9ed89e3b89b8532e9845c3f0cb4d data/oredustry/loot_tables/blocks/dense
 b602c248d6c7e542117379fdffebc7b531c525ca data/oredustry/loot_tables/blocks/dense_iron_ore.json
 07cadb720f9e34c3889f74bb37e4b34761967136 data/oredustry/loot_tables/blocks/dense_lapis_ore.json
 ea34404257c9403173ad48ae28624165072fd0dd data/oredustry/loot_tables/blocks/dense_redstone_ore.json
+9acf97325d67b737866bf72b4c8812c4379f2e58 data/oredustry/loot_tables/blocks/energy_cable.json
 e39fbe74fda9ee148cf550a8e7fc61bde5e1c376 data/oredustry/loot_tables/blocks/energy_generator.json
 bb1ef94614b6726ac2fe1bb26956ff1c4d80455a data/oredustry/loot_tables/blocks/heat_cable.json
 4bdfcf32a8d54f55e9477ffe4d02ce6ab06d0aba data/oredustry/loot_tables/blocks/heat_generator.json
