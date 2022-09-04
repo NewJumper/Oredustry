@@ -91,12 +91,12 @@ public class SeparatorMenu extends AbstractContainerMenu {
     }
 
     private void addInventorySlots(Inventory pInventory) {
-        for (int i = 0; i < 9; i++) {
+        for(int i = 0; i < 9; i++) {
             this.addSlot(new Slot(pInventory, i, 16 + i * 18, 156));
         }
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) {
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 9; j++) {
                 this.addSlot(new Slot(pInventory, j + i * 9 + 9, 16 + j * 18, 98 + i * 18));
             }
         }

@@ -12,7 +12,7 @@ public class OredustryEnergyStorage extends EnergyStorage {
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
         int fe = super.receiveEnergy(maxReceive, simulate);
-        if (fe > 0 && !simulate) {
+        if(fe > 0 && !simulate) {
             onEnergyChanged();
         }
         return fe;
@@ -21,7 +21,7 @@ public class OredustryEnergyStorage extends EnergyStorage {
     @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
         int fe = super.extractEnergy(maxExtract, simulate);
-        if (fe > 0 && !simulate) {
+        if(fe > 0 && !simulate) {
             onEnergyChanged();
         }
         return fe;
@@ -34,7 +34,7 @@ public class OredustryEnergyStorage extends EnergyStorage {
 
     public void addEnergy(int energy) {
         this.energy += energy;
-        if (this.energy > getMaxEnergyStored()) {
+        if(this.energy > getMaxEnergyStored()) {
             this.energy = getEnergyStored();
         }
         onEnergyChanged();
@@ -42,7 +42,7 @@ public class OredustryEnergyStorage extends EnergyStorage {
 
     public void consumeEnergy(int energy) {
         this.energy -= energy;
-        if (this.energy < 0) {
+        if(this.energy < 0) {
             this.energy = 0;
         }
         onEnergyChanged();

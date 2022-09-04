@@ -145,7 +145,7 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider, N
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
+        for(int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
 
@@ -154,7 +154,7 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider, N
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, SeparatorBlockEntity pBlockEntity) {
         SimpleContainer container = new SimpleContainer(pBlockEntity.itemHandler.getSlots());
-        for (int i = 0; i < pBlockEntity.itemHandler.getSlots(); i++) {
+        for(int i = 0; i < pBlockEntity.itemHandler.getSlots(); i++) {
             container.setItem(i, pBlockEntity.itemHandler.getStackInSlot(i));
         }
 

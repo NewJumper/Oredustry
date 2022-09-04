@@ -54,8 +54,8 @@ public class EnergyGeneratorBlock extends BaseEntityBlock {
 
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-        if (!pLevel.isClientSide) {
-            if (pState.getValue(ACTIVE) != pLevel.hasNeighborSignal(pPos)) {
+        if(!pLevel.isClientSide) {
+            if(pState.getValue(ACTIVE) != pLevel.hasNeighborSignal(pPos)) {
                 pLevel.setBlock(pPos, pState.cycle(ACTIVE), 2);
             }
         }
@@ -93,9 +93,9 @@ public class EnergyGeneratorBlock extends BaseEntityBlock {
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
+        if(pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof EnergyGeneratorBlockEntity) {
+            if(blockEntity instanceof EnergyGeneratorBlockEntity) {
                 ((EnergyGeneratorBlockEntity) blockEntity).drops();
             }
         }

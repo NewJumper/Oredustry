@@ -66,7 +66,7 @@ public class HeatStorage implements IHeatStorage, INBTSerializable<Tag> {
 
     @Override
     public void deserializeNBT(Tag nbt) {
-        if (!(nbt instanceof IntTag intNbt))
+        if(!(nbt instanceof IntTag intNbt))
             throw new IllegalArgumentException("Cannot deserialize to an instance that isn't the default implementation");
         this.heat = intNbt.getAsInt();
     }

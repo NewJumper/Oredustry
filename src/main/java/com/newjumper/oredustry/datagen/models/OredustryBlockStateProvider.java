@@ -56,9 +56,9 @@ public class OredustryBlockStateProvider extends BlockStateProvider {
 
         MultiPartBlockStateBuilder builder = getMultipartBuilder(block.get()).part().modelFile(cable).addModel().end();
         PipeBlock.PROPERTY_BY_DIRECTION.forEach((direction, value) -> {
-            if (direction.getAxis().isHorizontal()) builder.part().modelFile(horizontal).rotationY((((int) direction.toYRot()) + 270) % 360).uvLock(true).addModel().condition(value, true);
-            if (direction == Direction.UP) builder.part().modelFile(vertical).rotationX(0).uvLock(true).addModel().condition(value, true);
-            if (direction == Direction.DOWN) builder.part().modelFile(vertical).rotationX(180).uvLock(true).addModel().condition(value, true);
+            if(direction.getAxis().isHorizontal()) builder.part().modelFile(horizontal).rotationY((((int) direction.toYRot()) + 270) % 360).uvLock(true).addModel().condition(value, true);
+            if(direction == Direction.UP) builder.part().modelFile(vertical).rotationX(0).uvLock(true).addModel().condition(value, true);
+            if(direction == Direction.DOWN) builder.part().modelFile(vertical).rotationX(180).uvLock(true).addModel().condition(value, true);
         });
     }
 
