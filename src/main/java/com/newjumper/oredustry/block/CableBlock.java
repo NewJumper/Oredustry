@@ -100,12 +100,11 @@ public abstract class CableBlock extends BaseEntityBlock {
     }
 
     public int search(ArrayList<BlockPos> cables, Level level, BlockPos pos) {
-        BlockPos[] allPos = { pos.above(), pos.below(), pos.north(), pos.south(), pos.east(), pos.west() };
         int count = 0;
-
         if(cables.contains(pos)) return count;
         else cables.add(pos);
 
+        BlockPos[] allPos = { pos.above(), pos.below(), pos.north(), pos.south(), pos.east(), pos.west() };
         for(BlockPos testPos : allPos) {
             if(canConnectCable(level.getBlockState(testPos), true)) count += search(cables, level, testPos);
         }

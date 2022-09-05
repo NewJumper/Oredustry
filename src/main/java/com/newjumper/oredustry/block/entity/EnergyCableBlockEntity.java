@@ -65,7 +65,6 @@ public class EnergyCableBlockEntity extends BlockEntity {
 
     public static void distribute(Level level, BlockPos pos, EnergyCableBlockEntity blockEntity) {
         BlockPos[] allPos = { pos.above(), pos.below(), pos.north(), pos.south(), pos.east(), pos.west() };
-
         for(BlockPos testPos : allPos) {
             if (level.getBlockState(testPos).is(OredustryBlocks.ENERGY_CABLE.get())) {
                 EnergyCableBlockEntity test = (EnergyCableBlockEntity) level.getBlockEntity(testPos);

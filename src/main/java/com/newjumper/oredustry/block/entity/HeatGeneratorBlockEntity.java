@@ -108,14 +108,15 @@ public class HeatGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, HeatGeneratorBlockEntity pBlockEntity) {
         int burnTime = ForgeHooks.getBurnTime(pBlockEntity.itemHandler.getStackInSlot(0), RecipeType.SMELTING) / 20;
+        int heat = pBlockEntity.heatStorage.getHeatStored();
 
-        if(burnTime > 0 && pBlockEntity.heatStorage.getHeatStored() < HEAT_CAPACITY / 2) {
+        if(burnTime > 0 && heat < HEAT_CAPACITY / 2) {
             if(pBlockEntity.itemHandler.getStackInSlot(0).is(Items.LAVA_BUCKET)) pBlockEntity.itemHandler.setStackInSlot(0, new ItemStack(Items.BUCKET));
             else pBlockEntity.itemHandler.extractItem(0, 1, false);
             pBlockEntity.heatStorage.addHeat(toHeat(burnTime));
         }
 
-        if(pBlockEntity.heatStorage.getHeatStored() > 0 && pLevel.getGameTime() % 20 == 0) {
+        if(heat > 0 && pLevel.getGameTime() % conductivity(heat) == 0) {
             pBlockEntity.heatStorage.extractHeat(1);
         }
 
@@ -124,5 +125,9 @@ public class HeatGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
     public static int toHeat(int x) {
         return (int) (0.00154 * (x * x) + 0.568 * x + 32);
+    }
+
+    public static int conductivity(int heat) {
+        return (int) Math.ceil(heat / 128.0);
     }
 }
