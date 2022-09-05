@@ -22,8 +22,8 @@ public class HeatCableBlock extends CableBlock {
     }
 
     @Override
-    boolean canConnectCable(BlockState pState) {
-        return pState.is(OredustryTags.Blocks.HEAT_CONTAINER);
+    boolean canConnectCable(BlockState state, boolean cable) {
+        return cable ? state.is(OredustryBlocks.HEAT_CABLE.get()) : state.is(OredustryTags.Blocks.HEAT_CONTAINER);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class HeatCableBlock extends CableBlock {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if(blockEntity instanceof HeatCableBlockEntity) {
             ArrayList<BlockPos> positions = new ArrayList<>();
-            int cables = ((HeatCableBlockEntity) blockEntity).search(positions, pLevel, pPos);
+            int cables = search(positions, pLevel, pPos);
 
             if(pLevel.isClientSide) System.out.println(cables);
         }

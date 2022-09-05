@@ -1,6 +1,5 @@
 package com.newjumper.oredustry.block.entity;
 
-import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.capabilities.HeatStorage;
 import com.newjumper.oredustry.capabilities.IHeatStorage;
 import com.newjumper.oredustry.capabilities.OredustryCapabilities;
@@ -14,8 +13,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
 
 public class HeatCableBlockEntity extends BlockEntity {
     public static final int HEAT_CAPACITY = 100;
@@ -63,21 +60,5 @@ public class HeatCableBlockEntity extends BlockEntity {
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, HeatCableBlockEntity pBlockEntity) {
 
-    }
-
-    public int search(ArrayList<BlockPos> cables, Level level, BlockPos pos) {
-        int count = 0;
-
-        if(cables.contains(pos)) return count;
-        else cables.add(pos);
-
-        if(level.getBlockState(pos.above()).is(OredustryBlocks.HEAT_CABLE.get())) count += search(cables, level, pos.above());
-        if(level.getBlockState(pos.below()).is(OredustryBlocks.HEAT_CABLE.get())) count += search(cables, level, pos.below());
-        if(level.getBlockState(pos.north()).is(OredustryBlocks.HEAT_CABLE.get())) count += search(cables, level, pos.north());
-        if(level.getBlockState(pos.east()).is(OredustryBlocks.HEAT_CABLE.get())) count += search(cables, level, pos.east());
-        if(level.getBlockState(pos.south()).is(OredustryBlocks.HEAT_CABLE.get())) count += search(cables, level, pos.south());
-        if(level.getBlockState(pos.west()).is(OredustryBlocks.HEAT_CABLE.get())) count += search(cables, level, pos.west());
-
-        return count + 1;
     }
 }

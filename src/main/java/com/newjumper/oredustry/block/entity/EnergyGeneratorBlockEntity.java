@@ -31,8 +31,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvider {
     public static final int WATER_CAPACITY = 42000;
     public static final int WATER_DRAIN_RATE = 50;

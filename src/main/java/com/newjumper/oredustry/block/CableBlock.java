@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -18,6 +19,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
 
 import static net.minecraft.world.level.block.PipeBlock.PROPERTY_BY_DIRECTION;
 
@@ -64,12 +67,12 @@ public abstract class CableBlock extends BaseEntityBlock {
         BlockState southState = level.getBlockState(pos.south());
         BlockState westState = level.getBlockState(pos.west());
 
-        return super.getStateForPlacement(pContext).setValue(UP, canConnectCable(upState)).setValue(DOWN, canConnectCable(downState)).setValue(NORTH, canConnectCable(northState)).setValue(EAST, canConnectCable(eastState)).setValue(SOUTH, canConnectCable(southState)).setValue(WEST, canConnectCable(westState));
+        return super.getStateForPlacement(pContext).setValue(UP, canConnectCable(upState, false)).setValue(DOWN, canConnectCable(downState, false)).setValue(NORTH, canConnectCable(northState, false)).setValue(EAST, canConnectCable(eastState, false)).setValue(SOUTH, canConnectCable(southState, false)).setValue(WEST, canConnectCable(westState, false));
     }
 
     @Override
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
-        return pState.setValue(PROPERTY_BY_DIRECTION.get(pDirection), canConnectCable(pNeighborState));
+        return pState.setValue(PROPERTY_BY_DIRECTION.get(pDirection), canConnectCable(pNeighborState, false));
     }
 
     @Override
@@ -96,5 +99,19 @@ public abstract class CableBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-    abstract boolean canConnectCable(BlockState pState);
+    public int search(ArrayList<BlockPos> cables, Level level, BlockPos pos) {
+        BlockPos[] allPos = { pos.above(), pos.below(), pos.north(), pos.south(), pos.east(), pos.west() };
+        int count = 0;
+
+        if(cables.contains(pos)) return count;
+        else cables.add(pos);
+
+        for(BlockPos testPos : allPos) {
+            if(canConnectCable(level.getBlockState(testPos), true)) count += search(cables, level, testPos);
+        }
+
+        return count + 1;
+    }
+
+    abstract boolean canConnectCable(BlockState state, boolean cable);
 }

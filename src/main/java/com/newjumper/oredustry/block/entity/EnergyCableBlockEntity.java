@@ -15,8 +15,6 @@ import net.minecraftforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-
 public class EnergyCableBlockEntity extends BlockEntity {
     public static final int ENERGY_CAPACITY = 100;
 
@@ -77,19 +75,5 @@ public class EnergyCableBlockEntity extends BlockEntity {
                 }
             }
         }
-    }
-
-    public int search(ArrayList<BlockPos> cables, Level level, BlockPos pos) {
-        BlockPos[] allPos = { pos.above(), pos.below(), pos.north(), pos.south(), pos.east(), pos.west() };
-        int count = 0;
-
-        if(cables.contains(pos)) return count;
-        else cables.add(pos);
-
-        for(BlockPos testPos : allPos) {
-            if(level.getBlockState(testPos).is(OredustryBlocks.ENERGY_CABLE.get())) count += search(cables, level, testPos);
-        }
-
-        return count + 1;
     }
 }

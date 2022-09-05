@@ -22,8 +22,8 @@ public class EnergyCableBlock extends CableBlock {
     }
 
     @Override
-    boolean canConnectCable(BlockState pState) {
-        return pState.is(OredustryTags.Blocks.ENERGY_CONTAINER);
+    boolean canConnectCable(BlockState state, boolean cable) {
+        return cable ? state.is(OredustryBlocks.ENERGY_CABLE.get()) : state.is(OredustryTags.Blocks.ENERGY_CONTAINER);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class EnergyCableBlock extends CableBlock {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if(blockEntity instanceof EnergyCableBlockEntity) {
             ArrayList<BlockPos> positions = new ArrayList<>();
-            int cables = ((EnergyCableBlockEntity) blockEntity).search(positions, pLevel, pPos);
+            int cables = search(positions, pLevel, pPos);
 
             if(pLevel.isClientSide) System.out.println(cables);
         }
