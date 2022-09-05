@@ -62,21 +62,33 @@ public class EnergyCableBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, EnergyCableBlockEntity pBlockEntity) {
+        distribute(pLevel, pPos, pBlockEntity);
+    }
 
+    public static void distribute(Level level, BlockPos pos, EnergyCableBlockEntity blockEntity) {
+        BlockPos[] allPos = { pos.above(), pos.below(), pos.north(), pos.south(), pos.east(), pos.west() };
+
+        for(BlockPos testPos : allPos) {
+            if (level.getBlockState(testPos).is(OredustryBlocks.ENERGY_CABLE.get())) {
+                EnergyCableBlockEntity test = (EnergyCableBlockEntity) level.getBlockEntity(testPos);
+                if (test.energyStorage.getEnergyStored() < blockEntity.energyStorage.getEnergyStored()) {
+                    blockEntity.energyStorage.consumeEnergy(1);
+                    test.energyStorage.addEnergy(1);
+                }
+            }
+        }
     }
 
     public int search(ArrayList<BlockPos> cables, Level level, BlockPos pos) {
+        BlockPos[] allPos = { pos.above(), pos.below(), pos.north(), pos.south(), pos.east(), pos.west() };
         int count = 0;
 
         if(cables.contains(pos)) return count;
         else cables.add(pos);
 
-        if(level.getBlockState(pos.above()).is(OredustryBlocks.ENERGY_CABLE.get())) count += search(cables, level, pos.above());
-        if(level.getBlockState(pos.below()).is(OredustryBlocks.ENERGY_CABLE.get())) count += search(cables, level, pos.below());
-        if(level.getBlockState(pos.north()).is(OredustryBlocks.ENERGY_CABLE.get())) count += search(cables, level, pos.north());
-        if(level.getBlockState(pos.east()).is(OredustryBlocks.ENERGY_CABLE.get())) count += search(cables, level, pos.east());
-        if(level.getBlockState(pos.south()).is(OredustryBlocks.ENERGY_CABLE.get())) count += search(cables, level, pos.south());
-        if(level.getBlockState(pos.west()).is(OredustryBlocks.ENERGY_CABLE.get())) count += search(cables, level, pos.west());
+        for(BlockPos testPos : allPos) {
+            if(level.getBlockState(testPos).is(OredustryBlocks.ENERGY_CABLE.get())) count += search(cables, level, testPos);
+        }
 
         return count + 1;
     }

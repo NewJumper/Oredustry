@@ -7,8 +7,6 @@ public class OredustryEnergyStorage extends EnergyStorage {
         super(capacity, maxTransfer, 0);
     }
 
-    protected void onEnergyChanged() { }
-
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
         int fe = super.receiveEnergy(maxReceive, simulate);
@@ -47,4 +45,6 @@ public class OredustryEnergyStorage extends EnergyStorage {
         }
         onEnergyChanged();
     }
+
+    protected void onEnergyChanged() { }
 }

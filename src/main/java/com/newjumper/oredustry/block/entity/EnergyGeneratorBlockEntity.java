@@ -146,33 +146,19 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
         if(pBlockEntity.canGenerate()) {
             pBlockEntity.energyStorage.addEnergy(ENERGY_RATE);
             pBlockEntity.fluidTank.drain(WATER_DRAIN_RATE, IFluidHandler.FluidAction.EXECUTE);
-            setChanged(pLevel, pPos, pState);
         }
 
-        sendOutPower(pBlockEntity);
+        sendOutPower(pBlockEntity, pLevel);
+        setChanged(pLevel, pPos, pState);
     }
 
-    private static void sendOutPower(EnergyGeneratorBlockEntity pBlockEntity) {
-        AtomicInteger capacity = new AtomicInteger(pBlockEntity.energyStorage.getEnergyStored());
-
-        if(capacity.get() > 0) {
-            for(Direction direction : Direction.values()) {
-                BlockEntity be = pBlockEntity.level.getBlockEntity(pBlockEntity.worldPosition.relative(direction));
-
-                if(be != null) {
-                    boolean doContinue = be.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).map(energyStorage -> {
-                        if(energyStorage.canReceive()) {
-                            int received = energyStorage.receiveEnergy(Math.min(capacity.get(), ENERGY_OUTPUT), false);
-                            capacity.addAndGet(-received);
-                            pBlockEntity.energyStorage.consumeEnergy(received);
-                            setChanged(pBlockEntity.level, pBlockEntity.getBlockPos(), pBlockEntity.getBlockState());
-                            return capacity.get() > 0;
-                        } else {
-                            return true;
-                        }
-                    }).orElse(true);
-
-                    if(!doContinue) return;
+    private static void sendOutPower(EnergyGeneratorBlockEntity blockEntity, Level level) {
+        if(blockEntity.energyStorage.getEnergyStored() > 1) {
+            BlockEntity test = level.getBlockEntity(blockEntity.getBlockPos().above());
+            if (test instanceof EnergyCableBlockEntity) {
+                if(((EnergyCableBlockEntity) test).energyStorage.getEnergyStored() < EnergyCableBlockEntity.ENERGY_CAPACITY) {
+                    ((EnergyCableBlockEntity) test).energyStorage.addEnergy(1);
+                    blockEntity.energyStorage.consumeEnergy(1);
                 }
             }
         }
