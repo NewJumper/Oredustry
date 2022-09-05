@@ -37,7 +37,6 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
 
     public static final int ENERGY_CAPACITY = 54000;
     public static final int ENERGY_RATE = 50;
-    public static final int ENERGY_OUTPUT = 240;
 
     private final LazyOptional<IItemHandler> lazyItemHandler;
     private final LazyOptional<IFluidHandler> lazyFluidHandler;
