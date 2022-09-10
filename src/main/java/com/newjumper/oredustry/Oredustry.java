@@ -44,11 +44,18 @@ public class Oredustry {
         OredustryRecipes.RECIPE_SERIALIZERS.register(eventBus);
 
         eventBus.addListener(this::registerCapabilities);
+        eventBus.addListener(this::registerRecipeTypes);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     public void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.register(IHeatStorage.class);
+    }
+
+    public void registerRecipeTypes(final RegisterEvent event) {
+        event.register(ForgeRegistries.Keys.RECIPE_TYPES, helper -> {
+            helper.register(new ResourceLocation(MOD_ID, "separating"), SeparatingRecipe.Type.INSTANCE);
+        });
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -58,16 +65,6 @@ public class Oredustry {
             MenuScreens.register(OredustryMenuTypes.SEPARATOR_MENU.get(), SeparatorScreen::new);
             MenuScreens.register(OredustryMenuTypes.ENERGY_GENERATOR_MENU.get(), EnergyGeneratorScreen::new);
             MenuScreens.register(OredustryMenuTypes.HEAT_GENERATOR_MENU.get(), HeatGeneratorScreen::new);
-        }
-    }
-
-    @Mod.EventBusSubscriber(modid = Oredustry.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class OredustryEventBus {
-        @SubscribeEvent
-        public static void registerRecipeTypes(final RegisterEvent event) {
-            event.register(ForgeRegistries.Keys.RECIPE_TYPES, helper -> {
-                helper.register(new ResourceLocation(MOD_ID, "separating"), SeparatingRecipe.Type.INSTANCE);
-            });
         }
     }
 }
