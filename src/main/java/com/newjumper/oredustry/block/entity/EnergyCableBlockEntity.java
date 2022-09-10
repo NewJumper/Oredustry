@@ -1,6 +1,5 @@
 package com.newjumper.oredustry.block.entity;
 
-import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.util.OredustryEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,7 +23,7 @@ public class EnergyCableBlockEntity extends BlockEntity {
     public EnergyCableBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(OredustryBlockEntities.ENERGY_CABLE.get(), pPos, pBlockState);
 
-        this.energyStorage = new OredustryEnergyStorage(ENERGY_CAPACITY, 0) {
+        this.energyStorage = new OredustryEnergyStorage(ENERGY_CAPACITY) {
             @Override
             protected void onEnergyChanged() {
                 setChanged();
@@ -60,19 +59,6 @@ public class EnergyCableBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, EnergyCableBlockEntity pBlockEntity) {
-        distribute(pLevel, pPos, pBlockEntity);
-    }
 
-    public static void distribute(Level level, BlockPos pos, EnergyCableBlockEntity blockEntity) {
-        BlockPos[] allPos = { pos.above(), pos.below(), pos.north(), pos.south(), pos.east(), pos.west() };
-        for(BlockPos testPos : allPos) {
-            if (level.getBlockState(testPos).is(OredustryBlocks.ENERGY_CABLE.get())) {
-                EnergyCableBlockEntity test = (EnergyCableBlockEntity) level.getBlockEntity(testPos);
-                if (test.energyStorage.getEnergyStored() < blockEntity.energyStorage.getEnergyStored()) {
-                    blockEntity.energyStorage.consumeEnergy(1);
-                    test.energyStorage.addEnergy(1);
-                }
-            }
-        }
     }
 }

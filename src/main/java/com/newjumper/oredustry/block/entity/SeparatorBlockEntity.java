@@ -79,7 +79,7 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider, N
                 setChanged();
             }
         };
-        this.energyStorage = new OredustryEnergyStorage(ENERGY_CAPACITY, 0) {
+        this.energyStorage = new OredustryEnergyStorage(ENERGY_CAPACITY) {
             @Override
             protected void onEnergyChanged() {
                 setChanged();

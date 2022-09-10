@@ -32,18 +32,17 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvider {
+    public static final int ENERGY_CAPACITY = 54000;
+    public static final int ENERGY_RATE = 50;
     public static final int WATER_CAPACITY = 42000;
     public static final int WATER_DRAIN_RATE = 50;
 
-    public static final int ENERGY_CAPACITY = 54000;
-    public static final int ENERGY_RATE = 50;
-
     private final LazyOptional<IItemHandler> lazyItemHandler;
-    private final LazyOptional<IFluidHandler> lazyFluidHandler;
     private final LazyOptional<IEnergyStorage> lazyEnergyStorage;
+    private final LazyOptional<IFluidHandler> lazyFluidHandler;
     public final ItemStackHandler itemHandler;
-    public final FluidTank fluidTank;
     public final OredustryEnergyStorage energyStorage;
+    public final FluidTank fluidTank;
 
     public EnergyGeneratorBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.ENERGY_GENERATOR.get(), pWorldPosition, pBlockState);
@@ -51,6 +50,12 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
         this.itemHandler = new ItemStackHandler(3) {
             @Override
             protected void onContentsChanged(int slot) {
+                setChanged();
+            }
+        };
+        this.energyStorage = new OredustryEnergyStorage(ENERGY_CAPACITY) {
+            @Override
+            protected void onEnergyChanged() {
                 setChanged();
             }
         };
@@ -63,12 +68,6 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
             @Override
             public boolean isFluidValid(FluidStack stack) {
                 return stack.getFluid() == Fluids.WATER;
-            }
-        };
-        this.energyStorage = new OredustryEnergyStorage(ENERGY_CAPACITY, 0) {
-            @Override
-            protected void onEnergyChanged() {
-                setChanged();
             }
         };
 
@@ -92,24 +91,24 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     protected void saveAdditional(@NotNull CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("inventory", itemHandler.serializeNBT());
-        pTag = fluidTank.writeToNBT(pTag);
         pTag.put("energy", energyStorage.serializeNBT());
+        fluidTank.writeToNBT(pTag);
     }
 
     @Override
     public void load(@NotNull CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        fluidTank.readFromNBT(pTag);
         energyStorage.deserializeNBT(pTag.get("energy"));
+        fluidTank.readFromNBT(pTag);
     }
 
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if(cap == ForgeCapabilities.ITEM_HANDLER) return lazyItemHandler.cast();
-        if(cap == ForgeCapabilities.FLUID_HANDLER) return lazyFluidHandler.cast();
         if(cap == ForgeCapabilities.ENERGY) return lazyEnergyStorage.cast();
+        if(cap == ForgeCapabilities.FLUID_HANDLER) return lazyFluidHandler.cast();
         return super.getCapability(cap, side);
     }
 
@@ -117,8 +116,8 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
     public void invalidateCaps() {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
-        lazyFluidHandler.invalidate();
         lazyEnergyStorage.invalidate();
+        lazyFluidHandler.invalidate();
     }
 
     public void drops() {
@@ -128,10 +127,6 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
         }
 
         Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
-    public void addWater(int pAmount) {
-        fluidTank.fill(new FluidStack(Fluids.WATER, pAmount), IFluidHandler.FluidAction.EXECUTE);
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, EnergyGeneratorBlockEntity pBlockEntity) {
@@ -145,20 +140,11 @@ public class EnergyGeneratorBlockEntity extends BlockEntity implements MenuProvi
             pBlockEntity.fluidTank.drain(WATER_DRAIN_RATE, IFluidHandler.FluidAction.EXECUTE);
         }
 
-        sendOutPower(pBlockEntity, pLevel);
         setChanged(pLevel, pPos, pState);
     }
 
-    private static void sendOutPower(EnergyGeneratorBlockEntity blockEntity, Level level) {
-        if(blockEntity.energyStorage.getEnergyStored() > 1) {
-            BlockEntity test = level.getBlockEntity(blockEntity.getBlockPos().above());
-            if (test instanceof EnergyCableBlockEntity) {
-                if(((EnergyCableBlockEntity) test).energyStorage.getEnergyStored() < EnergyCableBlockEntity.ENERGY_CAPACITY) {
-                    ((EnergyCableBlockEntity) test).energyStorage.addEnergy(1);
-                    blockEntity.energyStorage.consumeEnergy(1);
-                }
-            }
-        }
+    public void addWater(int pAmount) {
+        fluidTank.fill(new FluidStack(Fluids.WATER, pAmount), IFluidHandler.FluidAction.EXECUTE);
     }
 
     private boolean canGenerate() {

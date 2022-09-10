@@ -109,6 +109,9 @@ dependencies {
 
     compileOnly fg.deobf("mcjty.theoneprobe:theoneprobe:${top_version}:api") { transitive = false }
     runtimeOnly fg.deobf("mcjty.theoneprobe:theoneprobe:${top_version}") { transitive = false }
+
+    compileOnly "mekanism:Mekanism:1.19.2-${mekanism_version}:api"
+    runtimeOnly fg.deobf("mekanism:Mekanism:1.19.2-${mekanism_version}")
 }
 
 jar {
