@@ -1,4 +1,4 @@
-package com.newjumper.oredustry.datagen.models;
+package com.newjumper.oredustry.datagen.assets;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
@@ -14,8 +14,8 @@ import net.minecraftforge.registries.RegistryObject;
 public class OredustryItemModelProvider extends ItemModelProvider {
     private final ModelFile GENERATED = getExistingFile(mcLoc("item/generated"));
 
-    public OredustryItemModelProvider(DataGenerator pGenerator, ExistingFileHelper existingFileHelper) {
-        super(pGenerator, Oredustry.MOD_ID, existingFileHelper);
+    public OredustryItemModelProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
+        super(gen, Oredustry.MOD_ID, exFileHelper);
     }
 
     @Override

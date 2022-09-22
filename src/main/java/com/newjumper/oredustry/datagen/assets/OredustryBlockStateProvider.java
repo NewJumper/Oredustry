@@ -1,4 +1,4 @@
-package com.newjumper.oredustry.datagen.models;
+package com.newjumper.oredustry.datagen.assets;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
@@ -14,8 +14,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
 public class OredustryBlockStateProvider extends BlockStateProvider {
-    public OredustryBlockStateProvider(DataGenerator pGenerator, ExistingFileHelper exFileHelper) {
-        super(pGenerator, Oredustry.MOD_ID, exFileHelper);
+    public OredustryBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
+        super(gen, Oredustry.MOD_ID, exFileHelper);
     }
 
     @Override

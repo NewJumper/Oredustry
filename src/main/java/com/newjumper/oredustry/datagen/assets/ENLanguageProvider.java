@@ -1,4 +1,4 @@
-package com.newjumper.oredustry.datagen.lang;
+package com.newjumper.oredustry.datagen.assets;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
@@ -13,8 +13,8 @@ import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ENLanguageProvider extends LanguageProvider {
-    public ENLanguageProvider(DataGenerator pGenerator) {
-        super(pGenerator, Oredustry.MOD_ID, "en_us");
+    public ENLanguageProvider(DataGenerator gen) {
+        super(gen, Oredustry.MOD_ID, "en_us");
     }
 
     @Override

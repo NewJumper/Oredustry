@@ -1,4 +1,4 @@
-package com.newjumper.oredustry.datagen.recipes;
+package com.newjumper.oredustry.datagen.data.recipes;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.item.OredustryItems;
@@ -16,12 +16,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Consumer;
 
 public class CraftingRecipesProvider extends RecipeProvider implements IConditionBuilder {
-    public CraftingRecipesProvider(DataGenerator pGenerator) {
-        super(pGenerator);
+    public CraftingRecipesProvider(DataGenerator gen) {
+        super(gen);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(OredustryBlocks.COMPRESSOR.get(), 1)
                 .define('C', Tags.Items.INGOTS_COPPER)
                 .define('R', OredustryItems.RADIATOR.get())

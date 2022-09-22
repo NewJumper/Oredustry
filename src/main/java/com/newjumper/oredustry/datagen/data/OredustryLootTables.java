@@ -1,4 +1,4 @@
-package com.newjumper.oredustry.datagen.loot;
+package com.newjumper.oredustry.datagen.data;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import net.minecraft.data.loot.BlockLoot;

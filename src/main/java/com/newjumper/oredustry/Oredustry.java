@@ -1,6 +1,5 @@
 package com.newjumper.oredustry;
 
-import com.mojang.logging.LogUtils;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.capabilities.IHeatStorage;
@@ -25,12 +24,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
-import org.slf4j.Logger;
 
 @Mod("oredustry")
 public class Oredustry {
     public static final String MOD_ID = "oredustry";
-    public static final Logger LOGGER = LogUtils.getLogger();
 
     public Oredustry() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();

@@ -1,4 +1,4 @@
-package com.newjumper.oredustry.datagen.tags;
+package com.newjumper.oredustry.datagen.data.tags;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.item.OredustryItems;
@@ -11,8 +11,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
 public class OredustryItemTagsProvider extends ItemTagsProvider {
-    public OredustryItemTagsProvider(DataGenerator pGenerator, BlockTagsProvider pBlockTagsProvider, ExistingFileHelper existingFileHelper) {
-        super(pGenerator, pBlockTagsProvider, Oredustry.MOD_ID, existingFileHelper);
+    public OredustryItemTagsProvider(DataGenerator gen, BlockTagsProvider blockTags, ExistingFileHelper exFileHelper) {
+        super(gen, blockTags, Oredustry.MOD_ID, exFileHelper);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.newjumper.oredustry.recipe;
 
 import com.google.gson.JsonObject;
-import com.newjumper.oredustry.Oredustry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -82,9 +81,6 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
     }
 
     public static class Serializer implements RecipeSerializer<SeparatingRecipe> {
-        public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(Oredustry.MOD_ID,"separating");
-
         @Override
         public SeparatingRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
             Ingredient ore = Ingredient.fromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "ore"));
@@ -114,11 +110,6 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
             pBuffer.writeItem(pRecipe.getResultBlock());
             pBuffer.writeFloat(pRecipe.getExperience());
             pBuffer.writeVarInt(pRecipe.getTime());
-        }
-
-        @SuppressWarnings("unchecked")
-        private static <G> Class<G> castClass(Class<?> cls) {
-            return (Class<G>) cls;
         }
     }
 }

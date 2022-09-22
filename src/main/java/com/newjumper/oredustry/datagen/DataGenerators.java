@@ -1,14 +1,14 @@
 package com.newjumper.oredustry.datagen;
 
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.datagen.lang.ENLanguageProvider;
-import com.newjumper.oredustry.datagen.loot.OredustryLootTableProvider;
-import com.newjumper.oredustry.datagen.models.OredustryBlockStateProvider;
-import com.newjumper.oredustry.datagen.models.OredustryItemModelProvider;
-import com.newjumper.oredustry.datagen.recipes.CraftingRecipesProvider;
-import com.newjumper.oredustry.datagen.recipes.SmeltingRecipesProvider;
-import com.newjumper.oredustry.datagen.tags.OredustryBlockTagsProvider;
-import com.newjumper.oredustry.datagen.tags.OredustryItemTagsProvider;
+import com.newjumper.oredustry.datagen.assets.ENLanguageProvider;
+import com.newjumper.oredustry.datagen.assets.OredustryBlockStateProvider;
+import com.newjumper.oredustry.datagen.assets.OredustryItemModelProvider;
+import com.newjumper.oredustry.datagen.data.OredustryLootTableProvider;
+import com.newjumper.oredustry.datagen.data.recipes.CraftingRecipesProvider;
+import com.newjumper.oredustry.datagen.data.recipes.SmeltingRecipesProvider;
+import com.newjumper.oredustry.datagen.data.tags.OredustryBlockTagsProvider;
+import com.newjumper.oredustry.datagen.data.tags.OredustryItemTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -22,23 +22,20 @@ public class DataGenerators {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
-        // languages
+        // assets
         generator.addProvider(event.includeClient(), new ENLanguageProvider(generator));
 
-        // loot tables
-        generator.addProvider(event.includeServer(), new OredustryLootTableProvider(generator));
-
-        // models
         generator.addProvider(event.includeClient(), new OredustryBlockStateProvider(generator, fileHelper));
         generator.addProvider(event.includeClient(), new OredustryItemModelProvider(generator, fileHelper));
 
-        // recipes
+        // data
         generator.addProvider(event.includeServer(), new CraftingRecipesProvider(generator));
         generator.addProvider(event.includeServer(), new SmeltingRecipesProvider(generator));
 
-        // tags
         OredustryBlockTagsProvider blockTags = new OredustryBlockTagsProvider(generator, fileHelper);
         generator.addProvider(event.includeServer(), blockTags);
         generator.addProvider(event.includeServer(), new OredustryItemTagsProvider(generator, blockTags, fileHelper));
+
+        generator.addProvider(event.includeServer(), new OredustryLootTableProvider(generator));
     }
 }

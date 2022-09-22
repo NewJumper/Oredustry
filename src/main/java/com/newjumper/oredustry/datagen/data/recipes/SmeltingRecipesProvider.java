@@ -1,4 +1,4 @@
-package com.newjumper.oredustry.datagen.recipes;
+package com.newjumper.oredustry.datagen.data.recipes;
 
 import com.google.common.collect.ImmutableList;
 import com.newjumper.oredustry.block.OredustryBlocks;
@@ -22,12 +22,12 @@ public class SmeltingRecipesProvider extends RecipeProvider implements IConditio
     private static final ImmutableList<ItemLike> DENSE_LAPIS_ORES = ImmutableList.of(OredustryBlocks.DENSE_LAPIS_ORE.get(), OredustryBlocks.DENSE_DEEPSLATE_LAPIS_ORE.get());
     private static final ImmutableList<ItemLike> DENSE_DIAMOND_ORES = ImmutableList.of(OredustryBlocks.DENSE_DIAMOND_ORE.get(), OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE.get());
 
-    public SmeltingRecipesProvider(DataGenerator pGenerator) {
-        super(pGenerator);
+    public SmeltingRecipesProvider(DataGenerator gen) {
+        super(gen);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
         oreSmelting(consumer, DENSE_COAL_ORES, Items.COAL, 0.4f, 200, "coal");
         oreSmelting(consumer, DENSE_IRON_ORES, Items.IRON_INGOT, 2.8f, 200, "iron_ingot");
         oreSmelting(consumer, DENSE_COPPER_ORES, Items.COPPER_INGOT, 2.8f, 200, "copper_ingot");
