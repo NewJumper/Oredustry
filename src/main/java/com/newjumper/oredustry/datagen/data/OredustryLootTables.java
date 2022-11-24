@@ -12,6 +12,7 @@ import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 public class OredustryLootTables extends BlockLoot {
     @Override
@@ -37,17 +38,13 @@ public class OredustryLootTables extends BlockLoot {
         this.dropSelf(OredustryBlocks.CRUCIBLE.get());
         this.dropSelf(OredustryBlocks.PURIFIER.get());
         this.dropSelf(OredustryBlocks.SEPARATOR.get());
-        this.dropSelf(OredustryBlocks.ENERGY_GENERATOR.get());
-        this.dropSelf(OredustryBlocks.HEAT_GENERATOR.get());
-
-        this.dropSelf(OredustryBlocks.ENERGY_CABLE.get());
-        this.dropSelf(OredustryBlocks.HEAT_CABLE.get());
     }
 
     private LootTable.Builder createDenseOreDrop(Block pBlock, Item pItem, int pMin, int pMax) {
         return createSilkTouchDispatchTable(pBlock, applyExplosionDecay(pBlock, LootItem.lootTableItem(pItem).apply(SetItemCountFunction.setCount(UniformGenerator.between(pMin, pMax))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));
     }
 
+    @NotNull
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return OredustryBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;

@@ -1,6 +1,0 @@
-{
-  "parent": "oredustry:block/template_cable",
-  "textures": {
-    "cable": "oredustry:block/energy_cable"
-  }
-}

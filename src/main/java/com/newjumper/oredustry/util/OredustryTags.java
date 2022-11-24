@@ -14,9 +14,6 @@ public class OredustryTags {
         public static final TagKey<Block> DENSE_ORES = modTag("dense_ores");
         public static final TagKey<Block> DENSE_DEEPSLATE_ORES = modTag("dense_deepslate_ores");
 
-        public static final TagKey<Block> ENERGY_CONTAINER = modTag("energy_container");
-        public static final TagKey<Block> HEAT_CONTAINER = modTag("heat_container");
-
         private static TagKey<Block> modTag(String name) {
             return BlockTags.create(new ResourceLocation(Oredustry.MOD_ID, name));
         }

@@ -3,8 +3,6 @@
     "oredustry:compressor",
     "oredustry:crucible",
     "oredustry:purifier",
-    "oredustry:separator",
-    "oredustry:energy_generator",
-    "oredustry:heat_generator"
+    "oredustry:separator"
   ]
 }

@@ -74,32 +74,6 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
                 .unlockedBy("has_energy_cell", has(OredustryItems.ENERGY_CELL.get()))
                 .unlockedBy("has_fuel_cell", has(OredustryItems.FUEL_CELL.get())).save(consumer);
 
-        ShapedRecipeBuilder.shaped(OredustryBlocks.ENERGY_GENERATOR.get(), 1)
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('C', Tags.Items.INGOTS_COPPER)
-                .define('G', Tags.Items.GLASS)
-                .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
-                .define('S', ItemTags.STONE_CRAFTING_MATERIALS)
-                .pattern("ICI")
-                .pattern("GRG")
-                .pattern("SSS")
-                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
-                .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
-                .unlockedBy("has_redstone", has(Tags.Items.STORAGE_BLOCKS_REDSTONE)).save(consumer);
-        ShapedRecipeBuilder.shaped(OredustryBlocks.HEAT_GENERATOR.get(), 1)
-                .define('C', Tags.Items.INGOTS_COPPER)
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('G', Tags.Items.GLASS)
-                .define('B', Tags.Items.STORAGE_BLOCKS_COAL)
-                .define('S', ItemTags.STONE_CRAFTING_MATERIALS)
-                .define('R', OredustryItems.RADIATOR.get())
-                .pattern("CIC")
-                .pattern("GBG")
-                .pattern("SRS")
-                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
-                .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
-                .unlockedBy("has_coal", has(Tags.Items.STORAGE_BLOCKS_COAL)).save(consumer);
-
         ShapedRecipeBuilder.shaped(OredustryItems.ENERGY_CELL.get(), 1)
                 .define('P', ItemTags.PLANKS)
                 .define('I', Tags.Items.INGOTS_IRON)

@@ -42,11 +42,6 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.CRUCIBLE);
         blockModel(OredustryBlocks.PURIFIER);
         blockModel(OredustryBlocks.SEPARATOR);
-        blockModel(OredustryBlocks.ENERGY_GENERATOR);
-        blockModel(OredustryBlocks.HEAT_GENERATOR);
-
-        blockModel(OredustryBlocks.ENERGY_CABLE);
-        blockModel(OredustryBlocks.HEAT_CABLE);
 
         // ITEMS
         itemModel(OredustryItems.PURE_COPPER, GENERATED);

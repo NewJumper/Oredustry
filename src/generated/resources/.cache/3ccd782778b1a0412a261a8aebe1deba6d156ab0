@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-03T17:37:43.7657359	Block States: oredustry
+// 1.19.2	2022-11-23T19:21:21.3211623	Block States: oredustry
 8fdc3dc9259d7acbe25b6815cbb9d0fc484eb871 assets/oredustry/blockstates/compressor.json
 7572a15b5868ee7b673869a5c893324e6b4c6604 assets/oredustry/blockstates/crucible.json
 1eda62b40b1e0c8db9593233f9354c26b79a1707 assets/oredustry/blockstates/dense_coal_ore.json
@@ -17,10 +17,6 @@ d2564e245b72a5454c73cc8ed9a0161d069083cc assets/oredustry/blockstates/dense_deep
 cd67065c8e0da234a01b2dd00562eb4593a2da13 assets/oredustry/blockstates/dense_iron_ore.json
 189165c370c870e7e6e36c4674a4cc407f9a57f3 assets/oredustry/blockstates/dense_lapis_ore.json
 5f2ad5be5562de1bf530532b06fc468325252b4a assets/oredustry/blockstates/dense_redstone_ore.json
-bf355c9716611ff76afbc4bd7a57727f099874d5 assets/oredustry/blockstates/energy_cable.json
-76995a0cf196a9300fc128b081765d2fb7afd14f assets/oredustry/blockstates/energy_generator.json
-156eda3389c6e8d1286495059df39163043fe915 assets/oredustry/blockstates/heat_cable.json
-c4b3996959af2b60ab1afc47ef6dfccbc363072d assets/oredustry/blockstates/heat_generator.json
 c1611329c4219f563eb259cff4f2d0308526b6bc assets/oredustry/blockstates/purifier.json
 3bc90be6cb79853b132a45002674b3e4e51eea8d assets/oredustry/blockstates/separator.json
 01463e366e44f17bae47f08df022463455675e1f assets/oredustry/models/block/compressor.json
@@ -41,13 +37,5 @@ a8aa5a0c67b7708148f9836ce1e5b5fa0949f98c assets/oredustry/models/block/dense_eme
 8a08196d85a27dbb325e6223b28a91d29b889443 assets/oredustry/models/block/dense_iron_ore.json
 f795d0334188833a87f545385520ae1c820e4a85 assets/oredustry/models/block/dense_lapis_ore.json
 4a44d9064908e2ca17ace2c08c4ba1999e702219 assets/oredustry/models/block/dense_redstone_ore.json
-6f526d8ecbcb8b45c00a045b294387e06f622bba assets/oredustry/models/block/energy_cable.json
-73aa4866db7d68e7a30cdeafbd6942d584deda5d assets/oredustry/models/block/energy_cable_horizontal.json
-4a8ce57cc7347c1a28ae08ab786c12c57ab820fd assets/oredustry/models/block/energy_cable_vertical.json
-c5e95b5b4e20bc0fbc71ef5b446a8ecfcedf7505 assets/oredustry/models/block/energy_generator.json
-cbb0a9538b7d610b54ac964e401906e42d17da02 assets/oredustry/models/block/heat_cable.json
-8d00e221f0f02a79264b6fb47f1cd5b8dec253fb assets/oredustry/models/block/heat_cable_horizontal.json
-141471919e7b64fd926e9ed423c155bf3f5d00e4 assets/oredustry/models/block/heat_cable_vertical.json
-b079ceaedc17d6cc9dbd8034903609cffb0e0c36 assets/oredustry/models/block/heat_generator.json
 76f6e5e36e5552fe4ec619ca6c11df065f96b024 assets/oredustry/models/block/purifier.json
 6f401096703df1f7c69c8a2104d054ed367ed7e0 assets/oredustry/models/block/separator.json
