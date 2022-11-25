@@ -3,7 +3,6 @@ package com.newjumper.oredustry.screen;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.SeparatorBlockEntity;
 import com.newjumper.oredustry.screen.slot.ResultSlot;
-import com.newjumper.oredustry.util.OredustryEnergyStorage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -21,128 +20,90 @@ public class SeparatorMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
     private static final int MENU_SLOTS = 4;
     public final SeparatorBlockEntity blockEntity;
-    private final ContainerData containerData;
+    private final ContainerData data;
     private final Level level;
 
-    public SeparatorMenu(int pContainerId, Inventory pInventory, FriendlyByteBuf pBuffer) {
-        this(pContainerId, pInventory, pInventory.player.level.getBlockEntity(pBuffer.readBlockPos()), new SimpleContainerData(4));
+    public SeparatorMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
+        this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
     }
 
     public SeparatorMenu(int pContainerId, Inventory pInventory, BlockEntity pBlockEntity, ContainerData pContainerData) {
         super(OredustryMenuTypes.SEPARATOR_MENU.get(), pContainerId);
         this.blockEntity = (SeparatorBlockEntity) pBlockEntity;
         this.level = pInventory.player.level;
-        this.containerData = pContainerData;
+        this.data = pContainerData;
 
         checkContainerSize(pInventory, MENU_SLOTS);
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 30, 63) {
+            this.addSlot(new SlotItemHandler(handler, 0, 40, 35) {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
                     return ForgeHooks.getBurnTime(stack, null) > 0;
                 }
             });
-//            this.addSlot(new SlotItemHandler(handler, 1, 146, 63));
-            this.addSlot(new SlotItemHandler(handler, 1, 58, 42) {
+            this.addSlot(new SlotItemHandler(handler, 1, 60, 35) {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
                     return stack.is(Tags.Items.ORES);
                 }
             });
-            this.addSlot(new ResultSlot(handler, 2, 114, 29));
-            this.addSlot(new ResultSlot(handler, 3, 114, 55));
+            this.addSlot(new ResultSlot(handler, 2, 116, 22));
+            this.addSlot(new ResultSlot(handler, 3, 116, 48));
         });
 
         addDataSlots(pContainerData);
-        saveData();
     }
 
-    private void saveData() {
-        addDataSlot(new DataSlot() {
-            @Override
-            public int get() {
-                return getEnergy() & 0xffff;
-            }
-
-            @Override
-            public void set(int pValue) {
-                blockEntity.getCapability(ForgeCapabilities.ENERGY).ifPresent(energyStorage -> {
-                    int energyStored = energyStorage.getEnergyStored() & 0xffff0000;
-                    ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored + (pValue & 0xffff));
-                });
-            }
-        });
-        addDataSlot(new DataSlot() {
-            @Override
-            public int get() {
-                return (getEnergy() >> 16) & 0xffff;
-            }
-
-            @Override
-            public void set(int pValue) {
-                blockEntity.getCapability(ForgeCapabilities.ENERGY).ifPresent(energyStorage -> {
-                    int energyStored = energyStorage.getEnergyStored() & 0x0000ffff;
-                    ((OredustryEnergyStorage)energyStorage).setEnergy(energyStored | (pValue << 16));
-                });
-            }
-        });
-    }
-
-    private void addInventorySlots(Inventory pInventory) {
+    private void addInventorySlots(Inventory inventory) {
         for(int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(pInventory, i, 16 + i * 18, 156));
+            this.addSlot(new Slot(inventory, i, 8 + i * 18, 142));
         }
 
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 9; j++) {
-                this.addSlot(new Slot(pInventory, j + i * 9 + 9, 16 + j * 18, 98 + i * 18));
+                this.addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
     }
 
+    @NotNull
     @Override
-    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
+    public ItemStack quickMoveStack(@NotNull Player pPlayer, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
-        if(sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
+        if(!sourceSlot.hasItem()) return ItemStack.EMPTY;
 
-        ItemStack sourceStack = sourceSlot.getItem();
+        ItemStack sourceItem = sourceSlot.getItem();
         if(pIndex < INV_SLOTS) {
-            if(!moveItemStackTo(sourceStack, INV_SLOTS, INV_SLOTS + MENU_SLOTS, false)) return ItemStack.EMPTY;
+            if(!moveItemStackTo(sourceItem, INV_SLOTS, INV_SLOTS + MENU_SLOTS, false)) return ItemStack.EMPTY;
         } else if(pIndex < INV_SLOTS + MENU_SLOTS) {
-            if(!moveItemStackTo(sourceStack, 0, INV_SLOTS, false)) return ItemStack.EMPTY;
+            if(!moveItemStackTo(sourceItem, 0, INV_SLOTS, false)) return ItemStack.EMPTY;
         } else return ItemStack.EMPTY;
 
-        if(sourceStack.getCount() == 0) sourceSlot.set(ItemStack.EMPTY);
+        if(sourceItem.getCount() == 0) sourceSlot.set(ItemStack.EMPTY);
         else sourceSlot.setChanged();
 
-        sourceSlot.onTake(pPlayer, sourceStack);
-        return sourceStack;
+        sourceSlot.onTake(pPlayer, sourceItem);
+        return sourceItem;
     }
 
     @Override
-    public boolean stillValid(Player pPlayer) {
+    public boolean stillValid(@NotNull Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, OredustryBlocks.SEPARATOR.get());
     }
 
-    private int getEnergy() {
-        return blockEntity.energyStorage.getEnergyStored();
+    public int drawFuel() {
+        int fuel = this.data.get(0);
+        int max = this.data.get(1);
+
+        return fuel == 0 ? -1 : Math.max((-14 * (fuel - max)) / max, 0);
     }
 
     public int drawProgress() {
-        double current = this.containerData.get(2);
-        int max = this.containerData.get(3);
+        double progress = this.data.get(2);
+        int max = this.data.get(3);
 
-        return current == 0 ? 0 : (int) (current / max * 24);
-    }
-    public int drawFuel() {
-        int amount = this.containerData.get(0);
-        int max = this.containerData.get(1);
-
-        return amount == 0 ? -1 : Math.max((-54 * (amount - max)) / max, 0);
-    }
-    public int drawEnergy() {
-        return getEnergy() == 0 ? 0 : Math.max((int) (getEnergy() / (double) blockEntity.energyStorage.getMaxEnergyStored() * 54), 1);
+        return progress == 0 ? 0 : (int) (progress / max * 25);
     }
 }

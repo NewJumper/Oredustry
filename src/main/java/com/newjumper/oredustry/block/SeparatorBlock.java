@@ -73,19 +73,19 @@ public class SeparatorBlock extends BaseEntityBlock {
         if(pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if(blockEntity instanceof SeparatorBlockEntity) {
-                ((SeparatorBlockEntity) blockEntity).drops();
+                ((SeparatorBlockEntity) blockEntity).dropContents();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, OredustryBlockEntities.SEPARATOR.get(), SeparatorBlockEntity::tick);
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new SeparatorBlockEntity(pPos, pState);
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new SeparatorBlockEntity(pPos, pState);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return createTickerHelper(pBlockEntityType, OredustryBlockEntities.SEPARATOR.get(), SeparatorBlockEntity::tick);
     }
 }
