@@ -6,9 +6,6 @@ import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.item.OredustryItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -23,7 +20,7 @@ public class ENLanguageProvider extends LanguageProvider {
         OredustryItems.ITEMS.getEntries().stream().filter(item -> !(item.get() instanceof BlockItem)).forEach(item -> add(item, "item"));
         OredustryBlockEntities.BLOCK_ENTITIES.getEntries().forEach(container -> add(container, "container"));
 
-        add("itemGroup." + Oredustry.MOD_ID, "Spacedustry");
+        add("itemGroup." + Oredustry.MOD_ID, "Oredustry");
     }
 
     private void add(RegistryObject<?> entry, String prefix) {
