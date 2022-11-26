@@ -5,6 +5,7 @@ import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.item.OredustryItems;
 import com.newjumper.oredustry.recipe.OredustryRecipes;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
+import com.newjumper.oredustry.screen.CrucibleScreen;
 import com.newjumper.oredustry.screen.OredustryMenuTypes;
 import com.newjumper.oredustry.screen.SeparatorScreen;
 import com.newjumper.oredustry.world.OreConfiguredFeatures;
@@ -51,6 +52,7 @@ public class Oredustry {
         @SubscribeEvent
         public static void clientSetup(final FMLClientSetupEvent event) {
             MenuScreens.register(OredustryMenuTypes.SEPARATOR_MENU.get(), SeparatorScreen::new);
+            MenuScreens.register(OredustryMenuTypes.CRUCIBLE_MENU.get(), CrucibleScreen::new);
         }
     }
 }

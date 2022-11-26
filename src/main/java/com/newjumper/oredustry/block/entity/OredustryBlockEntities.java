@@ -11,4 +11,5 @@ public class OredustryBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Oredustry.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<SeparatorBlockEntity>> SEPARATOR = BLOCK_ENTITIES.register("separator", () -> BlockEntityType.Builder.of(SeparatorBlockEntity::new, OredustryBlocks.SEPARATOR.get()).build(null));
+    public static final RegistryObject<BlockEntityType<CrucibleBlockEntity>> CRUCIBLE = BLOCK_ENTITIES.register("crucible", () -> BlockEntityType.Builder.of(CrucibleBlockEntity::new, OredustryBlocks.CRUCIBLE.get()).build(null));
 }

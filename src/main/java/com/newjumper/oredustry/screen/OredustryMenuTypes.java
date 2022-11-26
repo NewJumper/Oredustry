@@ -11,4 +11,5 @@ public class OredustryMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Oredustry.MOD_ID);
 
     public static final RegistryObject<MenuType<SeparatorMenu>> SEPARATOR_MENU = MENUS.register("separator_menu", () -> IForgeMenuType.create(SeparatorMenu::new));
+    public static final RegistryObject<MenuType<CrucibleMenu>> CRUCIBLE_MENU = MENUS.register("crucible_menu", () -> IForgeMenuType.create(CrucibleMenu::new));
 }
