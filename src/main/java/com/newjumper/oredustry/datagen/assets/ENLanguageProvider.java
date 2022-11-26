@@ -19,26 +19,16 @@ public class ENLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        OredustryBlocks.BLOCKS.getEntries().forEach(this::addBlock);
-        OredustryItems.ITEMS.getEntries().stream().filter(item -> !(item.get() instanceof BlockItem)).forEach(this::addItem);
-        OredustryBlockEntities.BLOCK_ENTITIES.getEntries().forEach(this::addContainer);
+        OredustryBlocks.BLOCKS.getEntries().forEach(block -> add(block, "block"));
+        OredustryItems.ITEMS.getEntries().stream().filter(item -> !(item.get() instanceof BlockItem)).forEach(item -> add(item, "item"));
+        OredustryBlockEntities.BLOCK_ENTITIES.getEntries().forEach(container -> add(container, "container"));
 
-        add("itemGroup.oredustry", "Oredustry");
+        add("itemGroup." + Oredustry.MOD_ID, "Spacedustry");
     }
 
-    private void addBlock(RegistryObject<Block> block) {
-        String key = block.getId().getPath();
-        add("block.oredustry." + key, convertToName(key));
-    }
-
-    private void addItem(RegistryObject<Item> item) {
-        String key = item.getId().getPath();
-        add("item.oredustry." + key, convertToName(key));
-    }
-
-    private void addContainer(RegistryObject<BlockEntityType<?>> blockEntity) {
-        String key = blockEntity.getId().getPath();
-        add("container.oredustry." + key, convertToName(key));
+    private void add(RegistryObject<?> entry, String prefix) {
+        String key = entry.getId().getPath();
+        add(prefix + "." + Oredustry.MOD_ID + "." + key, convertToName(key));
     }
 
     private String convertToName(String key) {
