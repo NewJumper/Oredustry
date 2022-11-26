@@ -37,7 +37,7 @@ public class SeparatorMenu extends AbstractContainerMenu {
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 40, 35) {
+            this.addSlot(new SlotItemHandler(handler, 0, 39, 35) {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
                     return ForgeHooks.getBurnTime(stack, null) > 0;
@@ -49,8 +49,8 @@ public class SeparatorMenu extends AbstractContainerMenu {
                     return stack.is(Tags.Items.ORES);
                 }
             });
-            this.addSlot(new ResultSlot(handler, 2, 116, 22));
-            this.addSlot(new ResultSlot(handler, 3, 116, 48));
+            this.addSlot(new ResultSlot(handler, 2, 116, 21));
+            this.addSlot(new ResultSlot(handler, 3, 116, 49));
         });
 
         addDataSlots(pContainerData);
