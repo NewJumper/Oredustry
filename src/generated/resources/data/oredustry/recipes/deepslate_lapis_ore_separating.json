@@ -1,0 +1,13 @@
+{
+  "type": "oredustry:separating",
+  "ore": {
+    "item": "minecraft:deepslate_lapis_ore"
+  },
+  "resultblock": {
+    "item": "minecraft:deepslate"
+  },
+  "resultitem": {
+    "count": 4,
+    "item": "minecraft:lapis_lazuli"
+  }
+}

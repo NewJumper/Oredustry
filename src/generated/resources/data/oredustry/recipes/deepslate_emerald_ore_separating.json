@@ -1,0 +1,13 @@
+{
+  "type": "oredustry:separating",
+  "ore": {
+    "item": "minecraft:deepslate_emerald_ore"
+  },
+  "resultblock": {
+    "item": "minecraft:deepslate"
+  },
+  "resultitem": {
+    "count": 2,
+    "item": "minecraft:emerald"
+  }
+}

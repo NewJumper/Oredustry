@@ -6,6 +6,7 @@ import com.newjumper.oredustry.datagen.assets.OredustryBlockStateProvider;
 import com.newjumper.oredustry.datagen.assets.OredustryItemModelProvider;
 import com.newjumper.oredustry.datagen.data.OredustryLootTableProvider;
 import com.newjumper.oredustry.datagen.data.recipes.CraftingRecipesProvider;
+import com.newjumper.oredustry.datagen.data.recipes.MachiningRecipesProvider;
 import com.newjumper.oredustry.datagen.data.recipes.SmeltingRecipesProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryBlockTagsProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryItemTagsProvider;
@@ -16,7 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Oredustry.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class DataGenerators {
+public class DataGeneration {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
@@ -31,6 +32,7 @@ public class DataGenerators {
         // data
         generator.addProvider(event.includeServer(), new CraftingRecipesProvider(generator));
         generator.addProvider(event.includeServer(), new SmeltingRecipesProvider(generator));
+        generator.addProvider(event.includeServer(), new MachiningRecipesProvider(generator));
 
         OredustryBlockTagsProvider blockTags = new OredustryBlockTagsProvider(generator, fileHelper);
         generator.addProvider(event.includeServer(), blockTags);

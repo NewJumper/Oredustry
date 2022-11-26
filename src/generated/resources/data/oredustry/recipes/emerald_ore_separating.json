@@ -1,0 +1,14 @@
+{
+  "type": "oredustry:separating",
+  "ore": {
+    "item": "minecraft:emerald_ore"
+  },
+  "resultblock": {
+    "item": "minecraft:stone"
+  },
+  "resultitem": {
+    "count": 2,
+    "item": "minecraft:emerald"
+  },
+  "time": 100
+}

@@ -3,12 +3,11 @@
   "ore": {
     "item": "minecraft:deepslate_diamond_ore"
   },
-  "resultitem": {
-    "item": "minecraft:diamond",
-    "count": 2
-  },
   "resultblock": {
     "item": "minecraft:deepslate"
   },
-  "experience": 0.0
+  "resultitem": {
+    "count": 2,
+    "item": "minecraft:diamond"
+  }
 }

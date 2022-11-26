@@ -1,0 +1,14 @@
+{
+  "type": "oredustry:separating",
+  "ore": {
+    "item": "minecraft:coal_ore"
+  },
+  "resultblock": {
+    "item": "minecraft:stone"
+  },
+  "resultitem": {
+    "count": 3,
+    "item": "minecraft:coal"
+  },
+  "time": 100
+}

@@ -1,0 +1,14 @@
+{
+  "type": "oredustry:separating",
+  "ore": {
+    "item": "minecraft:gold_ore"
+  },
+  "resultblock": {
+    "item": "minecraft:stone"
+  },
+  "resultitem": {
+    "count": 2,
+    "item": "minecraft:raw_gold"
+  },
+  "time": 100
+}

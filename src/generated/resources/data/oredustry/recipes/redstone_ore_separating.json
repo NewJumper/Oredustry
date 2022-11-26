@@ -1,0 +1,14 @@
+{
+  "type": "oredustry:separating",
+  "ore": {
+    "item": "minecraft:redstone_ore"
+  },
+  "resultblock": {
+    "item": "minecraft:stone"
+  },
+  "resultitem": {
+    "count": 4,
+    "item": "minecraft:redstone"
+  },
+  "time": 100
+}
