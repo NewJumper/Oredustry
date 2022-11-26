@@ -94,7 +94,7 @@ public class CrucibleMenu extends AbstractContainerMenu {
         int fuel = this.data.get(0);
         int max = this.data.get(1);
 
-        return fuel == 0 ? -1 : Math.max((-14 * (fuel - max)) / max, 0);
+        return fuel == 0 ? -1 : Math.max(14 * (max - fuel) / max, 0);
     }
 
     public int drawProgress() {
