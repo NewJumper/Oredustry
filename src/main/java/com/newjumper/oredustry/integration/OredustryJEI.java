@@ -1,15 +1,18 @@
 package com.newjumper.oredustry.integration;
 
 import com.newjumper.oredustry.Oredustry;
+import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
@@ -35,5 +38,10 @@ public class OredustryJEI implements IModPlugin {
         List<SeparatingRecipe> separating = recipes.getAllRecipesFor(SeparatingRecipe.Type.INSTANCE);
 
         registration.addRecipes(new RecipeType<>(new ResourceLocation(Oredustry.MOD_ID, "separating"), SeparatingRecipe.class), separating);
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(new ItemStack(OredustryBlocks.SEPARATOR.get()), RecipeType.create(Oredustry.MOD_ID, "separating", SeparatingRecipe.class));
     }
 }
