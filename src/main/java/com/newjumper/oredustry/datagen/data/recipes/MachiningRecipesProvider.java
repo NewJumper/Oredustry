@@ -18,24 +18,24 @@ public class MachiningRecipesProvider extends RecipeProvider implements IConditi
 
     @Override
     protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
-        new SeparatingRecipeBuilder(Blocks.COAL_ORE, Items.COAL, 3, 100).stone()
+        new SeparatingRecipeBuilder(Blocks.COAL_ORE, Items.COAL, 4, 100).stone()
                 .unlockedBy("has_coal_ore", has(Blocks.COAL_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_COAL_ORE, Items.COAL, 3).deepslate()
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_COAL_ORE, Items.COAL, 4).deepslate()
                 .unlockedBy("has_deepslate_coal_ore", has(Blocks.DEEPSLATE_COAL_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.IRON_ORE, Items.RAW_IRON, 2, 100).stone()
+        new SeparatingRecipeBuilder(Blocks.IRON_ORE, Items.RAW_IRON, 3, 100).stone()
                 .unlockedBy("has_iron_ore", has(Blocks.IRON_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_IRON_ORE, Items.RAW_IRON, 2).deepslate()
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_IRON_ORE, Items.RAW_IRON, 3).deepslate()
                 .unlockedBy("has_deepslate_iron_ore", has(Blocks.DEEPSLATE_IRON_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.COPPER_ORE, Items.RAW_COPPER, 2, 100).stone()
+        new SeparatingRecipeBuilder(Blocks.COPPER_ORE, Items.RAW_COPPER, 3, 100).stone()
                 .unlockedBy("has_copper_ore", has(Blocks.COPPER_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER, 2).deepslate()
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER, 3).deepslate()
                 .unlockedBy("has_deepslate_copper_ore", has(Blocks.DEEPSLATE_COPPER_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.GOLD_ORE, Items.RAW_GOLD, 2, 100).stone()
+        new SeparatingRecipeBuilder(Blocks.GOLD_ORE, Items.RAW_GOLD, 3, 100).stone()
                 .unlockedBy("has_gold_ore", has(Blocks.GOLD_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_GOLD_ORE, Items.RAW_GOLD, 2).deepslate()
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_GOLD_ORE, Items.RAW_GOLD, 3).deepslate()
                 .unlockedBy("has_deepslate_gold_ore", has(Blocks.DEEPSLATE_GOLD_ORE)).save(consumer);
 
         new SeparatingRecipeBuilder(Blocks.REDSTONE_ORE, Items.REDSTONE, 4, 100).stone()
