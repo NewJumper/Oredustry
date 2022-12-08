@@ -1,15 +1,20 @@
 package com.newjumper.oredustry.datagen.data.recipes;
 
 import com.google.common.collect.ImmutableList;
+import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class SmeltingRecipesProvider extends RecipeProvider implements IConditionBuilder {
@@ -28,23 +33,31 @@ public class SmeltingRecipesProvider extends RecipeProvider implements IConditio
 
     @Override
     protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
-        oreSmelting(consumer, DENSE_COAL_ORES, Items.COAL, 0.4f, 200, "coal");
-        oreSmelting(consumer, DENSE_IRON_ORES, Items.IRON_INGOT, 2.8f, 200, "iron_ingot");
-        oreSmelting(consumer, DENSE_COPPER_ORES, Items.COPPER_INGOT, 2.8f, 200, "copper_ingot");
-        oreSmelting(consumer, DENSE_GOLD_ORES, Items.GOLD_INGOT, 4f, 200, "gold_ingot");
-        oreSmelting(consumer, DENSE_REDSTONE_ORES, Items.REDSTONE, 2.8f, 200, "redstone");
-        oreSmelting(consumer, DENSE_EMERALD_ORES, Items.EMERALD, 4f, 200, "emerald");
-        oreSmelting(consumer, DENSE_LAPIS_ORES, Items.LAPIS_LAZULI, 0.8f, 200, "lapis_lazuli");
-        oreSmelting(consumer, DENSE_DIAMOND_ORES, Items.DIAMOND, 4f, 200, "diamond");
+        oreSmelting(DENSE_COAL_ORES, Items.COAL, 0.4f, "coal", consumer);
+        oreSmelting(DENSE_IRON_ORES, Items.IRON_INGOT, 2.8f, "iron_ingot", consumer);
+        oreSmelting(DENSE_COPPER_ORES, Items.COPPER_INGOT, 2.8f, "copper_ingot", consumer);
+        oreSmelting(DENSE_GOLD_ORES, Items.GOLD_INGOT, 4f, "gold_ingot", consumer);
+        oreSmelting(DENSE_REDSTONE_ORES, Items.REDSTONE, 2.8f, "redstone", consumer);
+        oreSmelting(DENSE_EMERALD_ORES, Items.EMERALD, 4f, "emerald", consumer);
+        oreSmelting(DENSE_LAPIS_ORES, Items.LAPIS_LAZULI, 0.8f, "lapis_lazuli", consumer);
+        oreSmelting(DENSE_DIAMOND_ORES, Items.DIAMOND, 4f, "diamond", consumer);
 
-        oreBlasting(consumer, DENSE_COAL_ORES, Items.COAL, 0.4f, 200, "coal");
-        oreBlasting(consumer, DENSE_IRON_ORES, Items.IRON_INGOT, 2.8f, 200, "iron_ingot");
-        oreBlasting(consumer, DENSE_COPPER_ORES, Items.COPPER_INGOT, 2.8f, 200, "copper_ingot");
-        oreBlasting(consumer, DENSE_GOLD_ORES, Items.GOLD_INGOT, 4f, 200, "gold_ingot");
-        oreBlasting(consumer, DENSE_REDSTONE_ORES, Items.REDSTONE, 2.8f, 200, "redstone");
-        oreBlasting(consumer, DENSE_EMERALD_ORES, Items.EMERALD, 4f, 200, "emerald");
-        oreBlasting(consumer, DENSE_LAPIS_ORES, Items.LAPIS_LAZULI, 0.8f, 200, "lapis_lazuli");
-        oreBlasting(consumer, DENSE_DIAMOND_ORES, Items.DIAMOND, 4f, 200, "diamond");
+        oreBlasting(DENSE_COAL_ORES, Items.COAL, 0.4f, "coal", consumer);
+        oreBlasting(DENSE_IRON_ORES, Items.IRON_INGOT, 2.8f, "iron_ingot", consumer);
+        oreBlasting(DENSE_COPPER_ORES, Items.COPPER_INGOT, 2.8f, "copper_ingot", consumer);
+        oreBlasting(DENSE_GOLD_ORES, Items.GOLD_INGOT, 4f, "gold_ingot", consumer);
+        oreBlasting(DENSE_REDSTONE_ORES, Items.REDSTONE, 2.8f, "redstone", consumer);
+        oreBlasting(DENSE_EMERALD_ORES, Items.EMERALD, 4f, "emerald", consumer);
+        oreBlasting(DENSE_LAPIS_ORES, Items.LAPIS_LAZULI, 0.8f, "lapis_lazuli", consumer);
+        oreBlasting(DENSE_DIAMOND_ORES, Items.DIAMOND, 4f, "diamond", consumer);
+    }
+
+    private void oreSmelting(List<ItemLike> ingredients, ItemLike result, float experience, String group, Consumer<FinishedRecipe> consumer) {
+        for(ItemLike item : ingredients) SimpleCookingRecipeBuilder.smelting(Ingredient.of(item), result, experience, 200).group(group).unlockedBy(getHasName(item), has(item)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(result) + "_from_smelting_" + getItemName(item)));
+    }
+
+    private void oreBlasting(List<ItemLike> ingredients, ItemLike result, float experience, String group, Consumer<FinishedRecipe> consumer) {
+        for(ItemLike item : ingredients) SimpleCookingRecipeBuilder.blasting(Ingredient.of(item), result, experience, 100).group(group).unlockedBy(getHasName(item), has(item)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(result) + "_from_blasting_" + getItemName(item)));
     }
 
     @NotNull
