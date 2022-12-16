@@ -112,9 +112,8 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
                 .unlockedBy("has_energy_cell", has(OredustryItems.ENERGY_CELL.get())).save(consumer);
     }
 
-    @NotNull
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Crafting Recipes";
     }
 }

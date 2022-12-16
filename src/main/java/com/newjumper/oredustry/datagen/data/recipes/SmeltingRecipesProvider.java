@@ -60,9 +60,8 @@ public class SmeltingRecipesProvider extends RecipeProvider implements IConditio
         for(ItemLike item : ingredients) SimpleCookingRecipeBuilder.blasting(Ingredient.of(item), result, experience, 100).group(group).unlockedBy(getHasName(item), has(item)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(result) + "_from_blasting_" + getItemName(item)));
     }
 
-    @NotNull
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Smelting Recipes";
     }
 }

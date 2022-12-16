@@ -1,0 +1,10 @@
+{
+  "type": "oredustry:melting",
+  "ingredient": {
+    "tag": "forge:ores/redstone"
+  },
+  "result": {
+    "count": 5,
+    "item": "minecraft:redstone"
+  }
+}
