@@ -65,12 +65,12 @@ public class MeltingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public RecipeType<?> getType() {
-        return SeparatingRecipe.Type.INSTANCE;
+        return Type.INSTANCE;
     }
 
     public static class Type implements RecipeType<MeltingRecipe> {
         private Type() {}
-        public static final MeltingRecipe.Type INSTANCE = new MeltingRecipe.Type();
+        public static final Type INSTANCE = new Type();
     }
 
     public static class Serializer implements RecipeSerializer<MeltingRecipe> {
