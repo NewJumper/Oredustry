@@ -17,10 +17,10 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
+@SuppressWarnings("NullableProblems")
 public class SeparatingRecipeBuilder implements RecipeBuilder {
     private final Ingredient ore;
     private final Item resultItem;
@@ -134,13 +134,11 @@ public class SeparatingRecipeBuilder implements RecipeBuilder {
             return OredustryRecipes.SEPARATING.get();
         }
 
-        @Nullable
         @Override
         public JsonObject serializeAdvancement() {
             return this.advancement.serializeToJson();
         }
 
-        @Nullable
         @Override
         public ResourceLocation getAdvancementId() {
             return this.advancementId;

@@ -14,8 +14,8 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("NullableProblems")
 public class SeparatorMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
     private static final int MENU_SLOTS = 4;
@@ -39,13 +39,13 @@ public class SeparatorMenu extends AbstractContainerMenu {
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 39, 35) {
                 @Override
-                public boolean mayPlace(@NotNull ItemStack stack) {
+                public boolean mayPlace(ItemStack stack) {
                     return ForgeHooks.getBurnTime(stack, null) > 0;
                 }
             });
             this.addSlot(new SlotItemHandler(handler, 1, 60, 35) {
                 @Override
-                public boolean mayPlace(@NotNull ItemStack stack) {
+                public boolean mayPlace(ItemStack stack) {
                     return stack.is(Tags.Items.ORES);
                 }
             });
@@ -68,9 +68,8 @@ public class SeparatorMenu extends AbstractContainerMenu {
         }
     }
 
-    @NotNull
     @Override
-    public ItemStack quickMoveStack(@NotNull Player pPlayer, int pIndex) {
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
         if(!sourceSlot.hasItem()) return ItemStack.EMPTY;
 
@@ -89,7 +88,7 @@ public class SeparatorMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public boolean stillValid(@NotNull Player pPlayer) {
+    public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, OredustryBlocks.SEPARATOR.get());
     }
 

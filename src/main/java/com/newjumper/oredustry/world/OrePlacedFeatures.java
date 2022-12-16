@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
+@SuppressWarnings({"unused", "OptionalGetWithoutIsPresent"})
 public class OrePlacedFeatures {
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, Oredustry.MOD_ID);
 

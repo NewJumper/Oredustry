@@ -13,8 +13,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("NullableProblems")
 public class CrucibleMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
     private static final int MENU_SLOTS = 3;
@@ -38,7 +38,7 @@ public class CrucibleMenu extends AbstractContainerMenu {
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 34, 55) {
                 @Override
-                public boolean mayPlace(@NotNull ItemStack stack) {
+                public boolean mayPlace(ItemStack stack) {
                     return ForgeHooks.getBurnTime(stack, null) > 0;
                 }
             });
@@ -65,9 +65,8 @@ public class CrucibleMenu extends AbstractContainerMenu {
         }
     }
 
-    @NotNull
     @Override
-    public ItemStack quickMoveStack(@NotNull Player pPlayer, int pIndex) {
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
         if(!sourceSlot.hasItem()) return ItemStack.EMPTY;
 
@@ -86,7 +85,7 @@ public class CrucibleMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public boolean stillValid(@NotNull Player pPlayer) {
+    public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, OredustryBlocks.CRUCIBLE.get());
     }
 
