@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
+@SuppressWarnings("NullableProblems")
 public class SeparatingRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final Ingredient ore;
@@ -33,7 +34,7 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public ItemStack assemble(SimpleContainer pContainer) {
-        return resultBlock;
+        return resultItem;
     }
 
     @Override
