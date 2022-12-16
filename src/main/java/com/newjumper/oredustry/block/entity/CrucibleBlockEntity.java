@@ -2,6 +2,7 @@ package com.newjumper.oredustry.block.entity;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
+import com.newjumper.oredustry.recipe.MeltingRecipe;
 import com.newjumper.oredustry.screen.CrucibleMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -14,8 +15,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.BlastingRecipe;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -133,19 +132,19 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
             inventory.setItem(i, blockEntity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<BlastingRecipe> recipe = level.getRecipeManager().getRecipeFor(RecipeType.BLASTING, inventory, level);
-        recipe.ifPresent(blastingRecipe -> blockEntity.maxProgress = blastingRecipe.getCookingTime());
+        Optional<MeltingRecipe> recipe = level.getRecipeManager().getRecipeFor(MeltingRecipe.Type.INSTANCE, inventory, level);
+        recipe.ifPresent(meltingRecipe -> blockEntity.maxProgress = meltingRecipe.getTime());
 
         if(blockEntity.isActive()) blockEntity.fuel--;
 
-        if(canSmelt(inventory, recipe) && !blockEntity.isActive()) {
+        if(canMelt(inventory, recipe) && !blockEntity.isActive()) {
             double constant = blockEntity.getFuelCapacity(blockEntity.itemHandler.getStackInSlot(0)) / 200.0;
             blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
             blockEntity.fuel = blockEntity.maxFuel;
             blockEntity.itemHandler.extractItem(0, 1, false);
         }
 
-        if(canSmelt(inventory, recipe) && blockEntity.isActive()) {
+        if(canMelt(inventory, recipe) && blockEntity.isActive()) {
             blockEntity.progress++;
             if(blockEntity.progress == blockEntity.maxProgress) {
                 blockEntity.itemHandler.extractItem(1,1, false);
@@ -159,9 +158,9 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
         setChanged(level, pos, state);
     }
 
-    private static boolean canSmelt(SimpleContainer inventory, Optional<BlastingRecipe> recipe) {
+    private static boolean canMelt(SimpleContainer inventory, Optional<MeltingRecipe> recipe) {
         int output = inventory.getContainerSize() - 1;
-        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem(), output - 1);
+        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem(), output);
     }
 
     private static boolean validOutput(SimpleContainer container, ItemStack stack, int slot) {
