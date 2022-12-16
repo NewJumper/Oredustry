@@ -55,6 +55,7 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
     public ItemStack getResultItem() {
         return resultItem.copy();
     }
+
     public ItemStack getResultBlock() {
         return resultBlock.copy();
     }
@@ -62,6 +63,7 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
     public float getExperience() {
         return experience;
     }
+
     public int getTime() {
         return time;
     }

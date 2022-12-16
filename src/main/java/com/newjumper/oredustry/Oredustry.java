@@ -3,6 +3,7 @@ package com.newjumper.oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.recipe.MeltingRecipe;
 import com.newjumper.oredustry.recipe.OredustryRecipes;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
 import com.newjumper.oredustry.screen.CrucibleScreen;
@@ -44,6 +45,7 @@ public class Oredustry {
     public void registerRecipeTypes(final RegisterEvent event) {
         event.register(ForgeRegistries.Keys.RECIPE_TYPES, helper -> {
             helper.register(new ResourceLocation(MOD_ID, "separating"), SeparatingRecipe.Type.INSTANCE);
+            helper.register(new ResourceLocation(MOD_ID, "melting"), MeltingRecipe.Type.INSTANCE);
         });
     }
 
