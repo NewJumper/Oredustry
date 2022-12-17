@@ -36,18 +36,14 @@ public class CrucibleMenu extends AbstractContainerMenu {
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 34, 55) {
+            this.addSlot(new SlotItemHandler(handler, 0, 39, 35) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return ForgeHooks.getBurnTime(stack, null) > 0;
                 }
             });
-            this.addSlot(new SlotItemHandler(handler, 1, 73, 15));
-            this.addSlot(new ResultSlot(handler, 2, 125, 15));
-            /*this.addSlot(new SlotItemHandler(handler, 3, 73, 35));
-            this.addSlot(new ResultSlot(handler, 4, 125, 35));
-            this.addSlot(new SlotItemHandler(handler, 5, 73, 55));
-            this.addSlot(new ResultSlot(handler, 6, 125, 55));*/
+            this.addSlot(new SlotItemHandler(handler, 1, 60, 35));
+            this.addSlot(new ResultSlot(handler, 2, 116, 21));
         });
 
         addDataSlots(pContainerData);

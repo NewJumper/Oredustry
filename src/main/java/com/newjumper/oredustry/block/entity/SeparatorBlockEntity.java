@@ -138,7 +138,7 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
         if(blockEntity.isActive()) blockEntity.fuel--;
 
         if(canSeparate(inventory, recipe) && !blockEntity.isActive()) {
-            double constant = blockEntity.getFuelCapacity(blockEntity.itemHandler.getStackInSlot(0)) / 200.0;
+            double constant = blockEntity.getFuelTime(blockEntity.itemHandler.getStackInSlot(0)) / 200.0;
             blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
             blockEntity.fuel = blockEntity.maxFuel;
             blockEntity.itemHandler.extractItem(0, 1, false);
@@ -165,14 +165,14 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean validOutput(SimpleContainer container, ItemStack stack, int slot) {
-        return (container.getItem(slot).getItem() == stack.getItem() || container.getItem(slot).isEmpty()) && (container.getItem(slot).getCount() < container.getItem(slot).getMaxStackSize());
+        return (container.getItem(slot).sameItem(stack) || container.getItem(slot).isEmpty()) && container.getItem(slot).getCount() < container.getItem(slot).getMaxStackSize();
     }
 
     private boolean isActive() {
         return this.fuel > 0;
     }
 
-    private int getFuelCapacity(ItemStack stack) {
+    private int getFuelTime(ItemStack stack) {
         return stack.isEmpty() ? 0 : ForgeHooks.getBurnTime(stack, null);
     }
 }

@@ -39,7 +39,7 @@ public class CrucibleScreen extends AbstractContainerScreen<CrucibleMenu> {
         int y = this.topPos;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
-        if(menu.drawFuel() > -1) this.blit(pPoseStack, x + 34, y + 37 + menu.drawFuel(), 176, menu.drawFuel(), 14, 14 - menu.drawFuel());
-        if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 95, y + 17, 176, 14, menu.drawProgress(), 13);
+        if(menu.drawFuel() > -1) this.blit(pPoseStack, x + 39, y + 17 + menu.drawFuel(), 176, menu.drawFuel(), 14, 14 - menu.drawFuel());
+        if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 82, y + 37, 176, 14, menu.drawProgress(), 13);
     }
 }
