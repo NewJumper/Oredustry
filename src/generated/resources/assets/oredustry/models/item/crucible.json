@@ -1,3 +1,6 @@
 {
-  "parent": "oredustry:block/crucible"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "oredustry:item/crucible"
+  }
 }
