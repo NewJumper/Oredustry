@@ -39,7 +39,7 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE);
 
         blockModel(OredustryBlocks.COMPRESSOR);
-        getBuilder(OredustryBlocks.CRUCIBLE.getId().getPath()).parent(GENERATED).texture("layer0", "item/" + OredustryBlocks.CRUCIBLE.getId().getPath());
+        blockModel(OredustryBlocks.CRUCIBLE);
         blockModel(OredustryBlocks.PURIFIER);
         blockModel(OredustryBlocks.SEPARATOR);
 
