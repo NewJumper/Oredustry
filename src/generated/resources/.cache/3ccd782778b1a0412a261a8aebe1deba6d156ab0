@@ -1,6 +1,5 @@
-// 1.19.2	2022-11-23T19:21:21.3211623	Block States: oredustry
+// 1.19.2	2022-12-16T19:54:47.6453733	Block States: oredustry
 8fdc3dc9259d7acbe25b6815cbb9d0fc484eb871 assets/oredustry/blockstates/compressor.json
-7572a15b5868ee7b673869a5c893324e6b4c6604 assets/oredustry/blockstates/crucible.json
 1eda62b40b1e0c8db9593233f9354c26b79a1707 assets/oredustry/blockstates/dense_coal_ore.json
 a93a608d3f67ea132a5f0782b773cd63c2baf272 assets/oredustry/blockstates/dense_copper_ore.json
 8849cfef3f1a56ac1f9bb22a3c4cff12fa368ee3 assets/oredustry/blockstates/dense_deepslate_coal_ore.json
@@ -20,7 +19,6 @@ cd67065c8e0da234a01b2dd00562eb4593a2da13 assets/oredustry/blockstates/dense_iron
 c1611329c4219f563eb259cff4f2d0308526b6bc assets/oredustry/blockstates/purifier.json
 3bc90be6cb79853b132a45002674b3e4e51eea8d assets/oredustry/blockstates/separator.json
 01463e366e44f17bae47f08df022463455675e1f assets/oredustry/models/block/compressor.json
-02c7fe8c12d9fc2ac8d146bdf54f64329ae8a968 assets/oredustry/models/block/crucible.json
 9e5eff08f5932d5e13860745713f57b3a955d992 assets/oredustry/models/block/dense_coal_ore.json
 d833730169374db841e9b3341721b35fdb46a955 assets/oredustry/models/block/dense_copper_ore.json
 224c10e23ab111789e46f6768bed3e2d9ef98dfc assets/oredustry/models/block/dense_deepslate_coal_ore.json

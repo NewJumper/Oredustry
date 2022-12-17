@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "oredustry:block/crucible_bottom",
-    "side": "oredustry:block/crucible",
-    "top": "oredustry:block/crucible_top"
-  }
-}

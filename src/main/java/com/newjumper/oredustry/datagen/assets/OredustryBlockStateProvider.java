@@ -34,7 +34,6 @@ public class OredustryBlockStateProvider extends BlockStateProvider {
         simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE.get());
 
         simpleBlock(OredustryBlocks.COMPRESSOR.get(), models().cubeColumn("compressor", blockLoc(OredustryBlocks.COMPRESSOR), modLoc("block/machine_top")));
-        simpleBlock(OredustryBlocks.CRUCIBLE.get(), models().cubeBottomTop("crucible", blockLoc(OredustryBlocks.CRUCIBLE), blockLoc(OredustryBlocks.CRUCIBLE, "bottom"), blockLoc(OredustryBlocks.CRUCIBLE, "top")));
         simpleBlock(OredustryBlocks.PURIFIER.get(), models().cubeColumn("purifier", blockLoc(OredustryBlocks.PURIFIER), modLoc("block/machine_top")));
         simpleBlock(OredustryBlocks.SEPARATOR.get(), models().cubeColumn("separator", blockLoc(OredustryBlocks.SEPARATOR), modLoc("block/machine_top")));
     }
