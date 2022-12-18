@@ -33,7 +33,7 @@ public class SeparatingCategory implements IRecipeCategory<SeparatingRecipe> {
     private final int time;
 
     public SeparatingCategory(IGuiHelper guiHelper, int time) {
-        this.background = guiHelper.createDrawable(TEXTURE, 37, 3, 102, 80);
+        this.background = guiHelper.createDrawable(TEXTURE, 37, 14, 102, 58);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(OredustryBlocks.SEPARATOR.get()));
 
         this.progress = CacheBuilder.newBuilder().maximumSize(26).build(new CacheLoader<>() {
@@ -67,17 +67,17 @@ public class SeparatingCategory implements IRecipeCategory<SeparatingRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, SeparatingRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 23, 32).addIngredients(recipe.getOre());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 18).addItemStack(recipe.getResultItem());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 46).addItemStack(recipe.getResultBlock());
+        builder.addSlot(RecipeIngredientRole.INPUT, 23, 21).addIngredients(recipe.getOre());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 7).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 35).addItemStack(recipe.getResultBlock());
     }
 
     @Override
     public void draw(SeparatingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        this.progress.getUnchecked(time / 2).draw(stack, 44, 29);
+        this.progress.getUnchecked(time / 2).draw(stack, 44, 18);
 
         Font fontRenderer = Minecraft.getInstance().font;
         int stringWidth = fontRenderer.width(time / 20 + "s");
-        fontRenderer.draw(stack, time / 20 + "s", background.getWidth() - stringWidth, background.getHeight() - 8, 0xff808080);
+        fontRenderer.draw(stack, time / 20 + "s", background.getWidth() - stringWidth - 32, background.getHeight() - 8, 0xff808080);
     }
 }
