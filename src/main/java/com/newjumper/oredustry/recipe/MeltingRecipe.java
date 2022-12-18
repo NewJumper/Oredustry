@@ -45,6 +45,10 @@ public class MeltingRecipe implements Recipe<SimpleContainer> {
         return id;
     }
 
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
     @Override
     public ItemStack getResultItem() {
         return result.copy();

@@ -2,6 +2,7 @@ package com.newjumper.oredustry.integration;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
+import com.newjumper.oredustry.recipe.MeltingRecipe;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -14,6 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +23,7 @@ import java.util.Objects;
 @JeiPlugin
 public class OredustryJEI implements IModPlugin {
     @Override
-    public ResourceLocation getPluginUid() {
+    public @NotNull ResourceLocation getPluginUid() {
         return new ResourceLocation(Oredustry.MOD_ID, "jei_plugin");
     }
 
@@ -29,19 +31,22 @@ public class OredustryJEI implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
 
-        registration.addRecipeCategories(new SeparatingCategory(guiHelper, 200));
+        registration.addRecipeCategories(new SeparatingCategory(guiHelper, 200), new MeltingCategory(guiHelper, 200));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager recipes = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
         List<SeparatingRecipe> separating = recipes.getAllRecipesFor(SeparatingRecipe.Type.INSTANCE);
+        List<MeltingRecipe> melting = recipes.getAllRecipesFor(MeltingRecipe.Type.INSTANCE);
 
         registration.addRecipes(new RecipeType<>(new ResourceLocation(Oredustry.MOD_ID, "separating"), SeparatingRecipe.class), separating);
+        registration.addRecipes(new RecipeType<>(new ResourceLocation(Oredustry.MOD_ID, "melting"), MeltingRecipe.class), melting);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(OredustryBlocks.SEPARATOR.get()), RecipeType.create(Oredustry.MOD_ID, "separating", SeparatingRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(OredustryBlocks.CRUCIBLE.get()), RecipeType.create(Oredustry.MOD_ID, "melting", MeltingRecipe.class));
     }
 }
