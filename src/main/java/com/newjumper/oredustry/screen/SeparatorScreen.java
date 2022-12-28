@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("NullableProblems")
 public class SeparatorScreen extends AbstractContainerScreen<SeparatorMenu> {
     public static final ResourceLocation GUI = new ResourceLocation(Oredustry.MOD_ID, "textures/gui/container/separator.png");
 
@@ -24,14 +24,14 @@ public class SeparatorScreen extends AbstractContainerScreen<SeparatorMenu> {
     }
 
     @Override
-    public void render(@NotNull PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
         renderBackground(pPoseStack);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
         renderTooltip(pPoseStack, pMouseX, pMouseY);
     }
 
     @Override
-    protected void renderBg(@NotNull PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
+    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1, 1, 1, 1);
         RenderSystem.setShaderTexture(0, GUI);
