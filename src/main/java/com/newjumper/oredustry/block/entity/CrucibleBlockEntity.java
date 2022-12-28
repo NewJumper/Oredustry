@@ -194,7 +194,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
 
             if(blockEntity.isActive()) {
                 blockEntity.progress++;
-                if (blockEntity.progress == blockEntity.maxProgress) {
+                if(blockEntity.progress == blockEntity.maxProgress) {
                     blockEntity.itemHandler.extractItem(1, 1, false);
                     blockEntity.liquid = MoltenLiquids.getLiquid(recipe.get().getResultItem());
                     blockEntity.liquidAmount += recipe.get().getResultItem().getCount() * 100;
