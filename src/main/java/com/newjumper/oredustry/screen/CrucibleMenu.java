@@ -13,11 +13,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.SlotItemHandler;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("NullableProblems")
 public class CrucibleMenu extends AbstractContainerMenu {
@@ -47,7 +49,12 @@ public class CrucibleMenu extends AbstractContainerMenu {
                     return ForgeHooks.getBurnTime(stack, null) > 0;
                 }
             });
-            this.addSlot(new SlotItemHandler(handler, 1, 43, 54));
+            this.addSlot(new SlotItemHandler(handler, 1, 43, 54) {
+                @Override
+                public boolean mayPlace(@NotNull ItemStack stack) {
+                    return stack.is(Tags.Items.ORES) || stack.is(Tags.Items.RAW_MATERIALS);
+                }
+            });
             this.addSlot(new SlotItemHandler(handler, 2, 86, 54) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {

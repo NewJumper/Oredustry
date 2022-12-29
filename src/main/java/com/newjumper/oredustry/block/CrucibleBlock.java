@@ -51,9 +51,7 @@ public class CrucibleBlock extends BaseEntityBlock {
                 if(!pPlayer.isCreative()) pPlayer.setItemInHand(pHand, new ItemStack(Items.BUCKET));
                 if(!pLevel.isClientSide()) pLevel.playSound(null, pPos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1, 1);
                 ((CrucibleBlockEntity) blockEntity).addWater(1000);
-            }
-
-            if(!pLevel.isClientSide() && !pPlayer.getMainHandItem().is(Items.WATER_BUCKET)) {
+            } else if(!pLevel.isClientSide() && !pPlayer.getMainHandItem().is(Items.WATER_BUCKET)) {
                 NetworkHooks.openScreen(((ServerPlayer) pPlayer), (CrucibleBlockEntity) blockEntity, pPos);
             }
         }

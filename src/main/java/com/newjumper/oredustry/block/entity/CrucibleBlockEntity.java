@@ -186,7 +186,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
 
         if(canMelt(inventory, recipe) && blockEntity.liquidAmount + recipe.get().getResultItem().getCount() * 100 <= LIQUID_CAPACITY) {
             if(!blockEntity.isActive()) {
-                double constant = blockEntity.getFuelTime(blockEntity.itemHandler.getStackInSlot(0)) / 200.0;
+                double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
                 blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
                 blockEntity.fuel = blockEntity.maxFuel;
                 blockEntity.itemHandler.extractItem(0, 1, false);
@@ -204,19 +204,22 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
             }
         }
 
-        boolean bucket = blockEntity.itemHandler.getStackInSlot(2).is(Items.WATER_BUCKET);
-        if(bucket && blockEntity.fluidTank.getFluidAmount() + 1000 < WATER_CAPACITY) {
+        if(blockEntity.itemHandler.getStackInSlot(2).is(Items.WATER_BUCKET) && blockEntity.fluidTank.getFluidAmount() + 1000 < WATER_CAPACITY) {
             blockEntity.itemHandler.setStackInSlot(2, new ItemStack(Items.BUCKET));
             blockEntity.fluidTank.fill(new FluidStack(Fluids.WATER, 1000), IFluidHandler.FluidAction.EXECUTE);
         }
 
-        if(blockEntity.liquidAmount > 0 && !bucket) {
+        if(blockEntity.liquidAmount > 0 && blockEntity.fluidTank.getFluidAmount() < 2) {
             blockEntity.liquidAmount--;
             blockEntity.coolingProgress++;
         } else if(blockEntity.liquidAmount > 1) {
             blockEntity.liquidAmount -= 2;
             blockEntity.fluidTank.drain(2, IFluidHandler.FluidAction.EXECUTE);
             blockEntity.coolingProgress += 2;
+        } else if(blockEntity.liquidAmount == 1 && blockEntity.fluidTank.getFluidAmount() >= 2) {
+            blockEntity.liquidAmount--;
+            blockEntity.fluidTank.drain(1, IFluidHandler.FluidAction.EXECUTE);
+            blockEntity.coolingProgress++;
         }
 
         if(blockEntity.coolingProgress == 100) {
@@ -239,10 +242,6 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
 
     private boolean isActive() {
         return this.fuel > 0;
-    }
-
-    private int getFuelTime(ItemStack stack) {
-        return stack.isEmpty() ? 0 : ForgeHooks.getBurnTime(stack, null);
     }
 
     public void addWater(int amount) {
