@@ -31,7 +31,7 @@ public class OredustryJEI implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
 
-        registration.addRecipeCategories(new SeparatingCategory(guiHelper, 200), new MeltingCategory(guiHelper, 200));
+        registration.addRecipeCategories(new SeparatingCategory(guiHelper, 200), new MeltingCategory(guiHelper, 150));
     }
 
     @Override
@@ -40,8 +40,8 @@ public class OredustryJEI implements IModPlugin {
         List<SeparatingRecipe> separating = recipes.getAllRecipesFor(SeparatingRecipe.Type.INSTANCE);
         List<MeltingRecipe> melting = recipes.getAllRecipesFor(MeltingRecipe.Type.INSTANCE);
 
-        registration.addRecipes(new RecipeType<>(new ResourceLocation(Oredustry.MOD_ID, "separating"), SeparatingRecipe.class), separating);
-        registration.addRecipes(new RecipeType<>(new ResourceLocation(Oredustry.MOD_ID, "melting"), MeltingRecipe.class), melting);
+        registration.addRecipes(RecipeType.create(Oredustry.MOD_ID, "separating", SeparatingRecipe.class), separating);
+        registration.addRecipes(RecipeType.create(Oredustry.MOD_ID, "melting", MeltingRecipe.class), melting);
     }
 
     @Override

@@ -22,6 +22,8 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 @SuppressWarnings("NullableProblems")
 public class MeltingCategory implements IRecipeCategory<MeltingRecipe> {
@@ -29,17 +31,24 @@ public class MeltingCategory implements IRecipeCategory<MeltingRecipe> {
 
     private final IDrawable background;
     private final IDrawable icon;
-    private final LoadingCache<Integer, IDrawableAnimated> progress;
+    private final LoadingCache<Integer, IDrawableAnimated> meltingProgress;
+    private final LoadingCache<Integer, IDrawableAnimated> coolingProgress;
     private final int time;
 
     public MeltingCategory(IGuiHelper guiHelper, int time) {
-        this.background = guiHelper.createDrawable(TEXTURE, 37, 14, 102, 58);
+        this.background = guiHelper.createDrawable(TEXTURE, 20, 15, 136, 58);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(OredustryBlocks.CRUCIBLE.get()));
 
-        this.progress = CacheBuilder.newBuilder().maximumSize(23).build(new CacheLoader<>() {
+        this.meltingProgress = CacheBuilder.newBuilder().maximumSize(15).build(new CacheLoader<>() {
             @Override
             public IDrawableAnimated load(Integer time) {
-                return guiHelper.drawableBuilder(TEXTURE, 176, 14, 22, 13).buildAnimated(time, IDrawableAnimated.StartDirection.LEFT, false);
+                return guiHelper.drawableBuilder(TEXTURE, 176, 14, 14, 14).buildAnimated(time, IDrawableAnimated.StartDirection.BOTTOM, false);
+            }
+        });
+        this.coolingProgress = CacheBuilder.newBuilder().maximumSize(38).build(new CacheLoader<>() {
+            @Override
+            public IDrawableAnimated load(Integer time) {
+                return guiHelper.drawableBuilder(TEXTURE, 176, 28, 37, 13).buildAnimated(time, IDrawableAnimated.StartDirection.LEFT, false);
             }
         });
         this.time = time;
@@ -67,16 +76,18 @@ public class MeltingCategory implements IRecipeCategory<MeltingRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, MeltingRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 23, 21).addIngredients(recipe.getIngredient());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 7).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.INPUT, 23, 39).addIngredients(recipe.getIngredient());
+        builder.addSlot(RecipeIngredientRole.INPUT, 66, 39).addIngredients(Ingredient.of(Items.WATER_BUCKET));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 7).addItemStack(recipe.getResultItem());
     }
 
     @Override
     public void draw(MeltingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        this.progress.getUnchecked(time / 2).draw(stack, 45, 23);
+        this.meltingProgress.getUnchecked(time / 3).draw(stack, 24, 23);
+        this.coolingProgress.getUnchecked(time / 2).draw(stack, 65, 8);
 
         Font fontRenderer = Minecraft.getInstance().font;
-        int stringWidth = fontRenderer.width(time / 20 + "s");
-        fontRenderer.draw(stack, time / 20 + "s", background.getWidth() - stringWidth - 32, background.getHeight() - 8, 0xff808080);
+        int stringWidth = fontRenderer.width(time / 20.0 + "s");
+        fontRenderer.draw(stack, time / 20.0 + "s", background.getWidth() - stringWidth - 4, background.getHeight() - 12, 0xffffffff);
     }
 }

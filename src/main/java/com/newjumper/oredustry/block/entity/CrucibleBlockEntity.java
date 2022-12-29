@@ -165,14 +165,6 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    /** TODO: FUTURE FUNCTIONALITY OF THE CRUCIBLE
-     * <p>
-     * When given raw materials (iron, copper, or gold) or an ore block (all the other types),
-     * turn that into a molten version of itself (not actually obtainable, but for visual purposed).
-     * Raw materials result in more molten liquid vs ore blocks (ratio of 4:3), ie. raw materials give 400 while ores give 300; exception for lapis and redstone.
-     * The molten metals slowly cool (maybe use a formula or something) and turn into ingots or the actual material.
-     * The molten metals can cool quicker if supplied with water.
-     */
     public static void tick(Level level, BlockPos pos, BlockState state, CrucibleBlockEntity blockEntity) {
         SimpleContainer inventory = new SimpleContainer(blockEntity.itemHandler.getSlots());
         for(int i = 0; i < blockEntity.itemHandler.getSlots(); i++) {
