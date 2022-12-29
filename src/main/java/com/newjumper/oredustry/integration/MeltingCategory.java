@@ -36,7 +36,7 @@ public class MeltingCategory implements IRecipeCategory<MeltingRecipe> {
     private final int time;
 
     public MeltingCategory(IGuiHelper guiHelper, int time) {
-        this.background = guiHelper.createDrawable(TEXTURE, 20, 15, 136, 58);
+        this.background = guiHelper.createDrawable(TEXTURE, 20, 18, 136, 50);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(OredustryBlocks.CRUCIBLE.get()));
 
         this.meltingProgress = CacheBuilder.newBuilder().maximumSize(15).build(new CacheLoader<>() {
@@ -76,18 +76,18 @@ public class MeltingCategory implements IRecipeCategory<MeltingRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, MeltingRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 23, 39).addIngredients(recipe.getIngredient());
-        builder.addSlot(RecipeIngredientRole.INPUT, 66, 39).addIngredients(Ingredient.of(Items.WATER_BUCKET));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 7).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.INPUT, 23, 32).addIngredients(recipe.getIngredient());
+        builder.addSlot(RecipeIngredientRole.INPUT, 66, 32).addIngredients(Ingredient.of(Items.WATER_BUCKET));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 17).addItemStack(recipe.getResultItem());
     }
 
     @Override
     public void draw(MeltingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        this.meltingProgress.getUnchecked(time / 3).draw(stack, 24, 23);
-        this.coolingProgress.getUnchecked(time / 2).draw(stack, 65, 8);
+        this.meltingProgress.getUnchecked(time / 3).draw(stack, 24, 16);
+        this.coolingProgress.getUnchecked(time / 2).draw(stack, 65, 15);
 
         Font fontRenderer = Minecraft.getInstance().font;
         int stringWidth = fontRenderer.width(time / 20.0 + "s");
-        fontRenderer.draw(stack, time / 20.0 + "s", background.getWidth() - stringWidth - 4, background.getHeight() - 12, 0xffffffff);
+        fontRenderer.draw(stack, time / 20.0 + "s", background.getWidth() - stringWidth, background.getHeight() - 9, 0xff808080);
     }
 }

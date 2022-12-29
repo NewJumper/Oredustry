@@ -50,10 +50,10 @@ public class CrucibleScreen extends AbstractContainerScreen<CrucibleMenu> {
         int y = this.topPos;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
-        if(menu.drawFuel() > -1) this.blit(pPoseStack, x + 22, y + 36 + menu.drawFuel(), 176, menu.drawFuel(), 14, 14 - menu.drawFuel());
-        if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 44, y + 51 - menu.drawProgress(), 176, 27 - menu.drawProgress(), 14, menu.drawProgress() + 1);
-        if(menu.drawCoolingProgress() > 0) this.blit(pPoseStack, x + 85, y + 23, 176, 28, menu.drawCoolingProgress(), 13);
-        if(menu.drawLiquid() > 0) this.blit(pPoseStack, x + 66, y + 70 - menu.drawLiquid(), 176, 93 - menu.drawLiquid(), 12, menu.drawLiquid());
-        if(menu.drawWater() > 0) this.blit(pPoseStack, x + 111, y + 70 - menu.drawWater(), 188, 57 - menu.drawWater(), 8, menu.drawWater());
+        if(menu.drawFuel() > -1) this.blit(pPoseStack, x + 22, y + 32 + menu.drawFuel(), 176, menu.drawFuel(), 14, 14 - menu.drawFuel());
+        if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 44, y + 47 - menu.drawProgress(), 176, 27 - menu.drawProgress(), 14, menu.drawProgress() + 1);
+        if(menu.drawCoolingProgress() > 0) this.blit(pPoseStack, x + 85, y + 33, 176, 28, menu.drawCoolingProgress(), 13);
+        if(menu.drawLiquid() > 0) this.blit(pPoseStack, x + 66, y + 65 - menu.drawLiquid(), 176, 85 - menu.drawLiquid(), 12, menu.drawLiquid());
+        if(menu.drawWater() > 0) this.blit(pPoseStack, x + 111, y + 66 - menu.drawWater(), 188, 57 - menu.drawWater(), 8, menu.drawWater());
     }
 }

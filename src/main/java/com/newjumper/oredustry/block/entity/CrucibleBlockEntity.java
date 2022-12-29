@@ -214,7 +214,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
             blockEntity.coolingProgress++;
         }
 
-        if(blockEntity.coolingProgress == 100) {
+        if(blockEntity.coolingProgress >= 100) {
             blockEntity.itemHandler.setStackInSlot(3, blockEntity.liquid.getSolidItem(blockEntity.itemHandler.getStackInSlot(3).getCount() + 1));
             blockEntity.coolingProgress = 0;
         }

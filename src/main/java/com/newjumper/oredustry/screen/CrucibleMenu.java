@@ -43,25 +43,25 @@ public class CrucibleMenu extends AbstractContainerMenu {
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 22, 54) {
+            this.addSlot(new SlotItemHandler(handler, 0, 22, 50) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return ForgeHooks.getBurnTime(stack, null) > 0;
                 }
             });
-            this.addSlot(new SlotItemHandler(handler, 1, 43, 54) {
+            this.addSlot(new SlotItemHandler(handler, 1, 43, 50) {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
                     return stack.is(Tags.Items.ORES) || stack.is(Tags.Items.RAW_MATERIALS);
                 }
             });
-            this.addSlot(new SlotItemHandler(handler, 2, 86, 54) {
+            this.addSlot(new SlotItemHandler(handler, 2, 86, 50) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return stack.is(Items.WATER_BUCKET);
                 }
             });
-            this.addSlot(new ResultSlot(handler, 3, 133, 22));
+            this.addSlot(new ResultSlot(handler, 3, 133, 35));
         });
 
         addDataSlots(pContainerData);
@@ -168,7 +168,7 @@ public class CrucibleMenu extends AbstractContainerMenu {
         double liquid = this.data.get(5);
         int max = CrucibleBlockEntity.LIQUID_CAPACITY;
 
-        return liquid == 0 ? 0 : Math.max((int) (liquid / max * 52), 1);
+        return liquid == 0 ? 0 : Math.max((int) (liquid / max * 44), 1);
     }
 
     public int drawWater() {
