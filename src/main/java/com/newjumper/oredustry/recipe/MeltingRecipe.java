@@ -83,7 +83,7 @@ public class MeltingRecipe implements Recipe<SimpleContainer> {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "ingredient"));
             ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "result"));
             float experience = GsonHelper.getAsFloat(pSerializedRecipe, "experience", 0);
-            int time = GsonHelper.getAsInt(pSerializedRecipe, "time", 200);
+            int time = GsonHelper.getAsInt(pSerializedRecipe, "time", 150);
 
             return new MeltingRecipe(pRecipeId, ingredient, result, experience, time);
         }
