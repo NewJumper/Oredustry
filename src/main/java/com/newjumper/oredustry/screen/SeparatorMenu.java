@@ -103,6 +103,6 @@ public class SeparatorMenu extends AbstractContainerMenu {
         double progress = this.data.get(2);
         int max = this.data.get(3);
 
-        return progress == 0 ? 0 : (int) (progress / max * 25);
+        return progress == 0 ? 0 : (int) (progress / max * 22);
     }
 }

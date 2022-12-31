@@ -36,10 +36,10 @@ public class SeparatingCategory implements IRecipeCategory<SeparatingRecipe> {
         this.background = guiHelper.createDrawable(TEXTURE, 37, 14, 102, 58);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(OredustryBlocks.SEPARATOR.get()));
 
-        this.progress = CacheBuilder.newBuilder().maximumSize(26).build(new CacheLoader<>() {
+        this.progress = CacheBuilder.newBuilder().maximumSize(23).build(new CacheLoader<>() {
             @Override
             public IDrawableAnimated load(Integer time) {
-                return guiHelper.drawableBuilder(TEXTURE, 176, 14, 25, 23).buildAnimated(time, IDrawableAnimated.StartDirection.LEFT, false);
+                return guiHelper.drawableBuilder(TEXTURE, 176, 14, 22, 21).buildAnimated(time, IDrawableAnimated.StartDirection.LEFT, false);
             }
         });
         this.time = time;
@@ -74,7 +74,7 @@ public class SeparatingCategory implements IRecipeCategory<SeparatingRecipe> {
 
     @Override
     public void draw(SeparatingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        this.progress.getUnchecked(time / 2).draw(stack, 44, 18);
+        this.progress.getUnchecked(time / 2).draw(stack, 45, 19);
 
         Font fontRenderer = Minecraft.getInstance().font;
         int stringWidth = fontRenderer.width(time / 20 + "s");
