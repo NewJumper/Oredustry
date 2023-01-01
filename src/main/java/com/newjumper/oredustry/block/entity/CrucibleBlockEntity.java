@@ -181,7 +181,8 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
                 double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
                 blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
                 blockEntity.fuel = blockEntity.maxFuel;
-                blockEntity.itemHandler.extractItem(0, 1, false);
+                ItemStack fuelRemainder = blockEntity.itemHandler.extractItem(0, 1, false).getCraftingRemainingItem();
+                if(!fuelRemainder.isEmpty()) blockEntity.itemHandler.setStackInSlot(0, fuelRemainder);
             }
 
             if(blockEntity.isActive()) {
