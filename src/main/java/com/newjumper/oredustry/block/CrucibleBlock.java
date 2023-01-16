@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -40,7 +39,7 @@ public class CrucibleBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return Shapes.join(Block.box(0, 0, 0, 16, 12, 16), Block.box(3, 13, 3, 13, 14, 13), BooleanOp.OR);
+        return Shapes.or(Block.box(0, 0, 0, 16, 12, 16), Block.box(3, 13, 3, 13, 14, 13));
     }
 
     @Override
