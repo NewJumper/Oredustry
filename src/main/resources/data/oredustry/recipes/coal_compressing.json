@@ -1,0 +1,10 @@
+{
+  "type": "oredustry:compressing",
+  "material": {
+    "item": "minecraft:coal_ore"
+  },
+  "result": {
+    "count": 3,
+    "item": "minecraft:coal"
+  }
+}

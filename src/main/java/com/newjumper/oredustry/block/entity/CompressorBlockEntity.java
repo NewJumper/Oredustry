@@ -2,8 +2,8 @@ package com.newjumper.oredustry.block.entity;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
-import com.newjumper.oredustry.recipe.SeparatingRecipe;
-import com.newjumper.oredustry.screen.SeparatorMenu;
+import com.newjumper.oredustry.recipe.CompressingRecipe;
+import com.newjumper.oredustry.screen.CompressorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -28,24 +28,24 @@ import net.minecraftforge.items.ItemStackHandler;
 import java.util.Optional;
 
 @SuppressWarnings("NullableProblems")
-public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
+public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
     protected final ContainerData data = new ContainerData() {
         public int get(int index) {
             return switch (index) {
-                case 0 -> SeparatorBlockEntity.this.fuel;
-                case 1 -> SeparatorBlockEntity.this.maxFuel;
-                case 2 -> SeparatorBlockEntity.this.progress;
-                case 3 -> SeparatorBlockEntity.this.maxProgress;
+                case 0 -> CompressorBlockEntity.this.fuel;
+                case 1 -> CompressorBlockEntity.this.maxFuel;
+                case 2 -> CompressorBlockEntity.this.progress;
+                case 3 -> CompressorBlockEntity.this.maxProgress;
                 default -> 0;
             };
         }
 
         public void set(int index, int value) {
             switch (index) {
-                case 0 -> SeparatorBlockEntity.this.fuel = value;
-                case 1 -> SeparatorBlockEntity.this.maxFuel = value;
-                case 2 -> SeparatorBlockEntity.this.progress = value;
-                case 3 -> SeparatorBlockEntity.this.maxProgress = value;
+                case 0 -> CompressorBlockEntity.this.fuel = value;
+                case 1 -> CompressorBlockEntity.this.maxFuel = value;
+                case 2 -> CompressorBlockEntity.this.progress = value;
+                case 3 -> CompressorBlockEntity.this.maxProgress = value;
             }
         }
 
@@ -60,10 +60,10 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
     private int progress;
     private int maxProgress;
 
-    public SeparatorBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(OredustryBlockEntities.SEPARATOR.get(), pWorldPosition, pBlockState);
+    public CompressorBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(OredustryBlockEntities.COMPRESSOR.get(), pWorldPosition, pBlockState);
 
-        this.itemHandler = new ItemStackHandler(4) {
+        this.itemHandler = new ItemStackHandler(3) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
@@ -75,12 +75,12 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("container." + Oredustry.MOD_ID + "." + OredustryBlocks.SEPARATOR.getId().getPath());
+        return Component.translatable("container." + Oredustry.MOD_ID + "." + OredustryBlocks.COMPRESSOR.getId().getPath());
     }
 
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new SeparatorMenu(pContainerId, pPlayerInventory, this, this.data);
+        return new CompressorMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 
     @Override
@@ -126,18 +126,18 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, SeparatorBlockEntity blockEntity) {
+    public static void tick(Level level, BlockPos pos, BlockState state, CompressorBlockEntity blockEntity) {
         SimpleContainer inventory = new SimpleContainer(blockEntity.itemHandler.getSlots());
         for(int i = 0; i < blockEntity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, blockEntity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<SeparatingRecipe> recipe = level.getRecipeManager().getRecipeFor(SeparatingRecipe.Type.INSTANCE, inventory, level);
-        recipe.ifPresent(separatingRecipe -> blockEntity.maxProgress = separatingRecipe.getTime());
+        Optional<CompressingRecipe> recipe = level.getRecipeManager().getRecipeFor(CompressingRecipe.Type.INSTANCE, inventory, level);
+        recipe.ifPresent(compressingRecipe -> blockEntity.maxProgress = compressingRecipe.getTime());
 
         if(blockEntity.isActive()) blockEntity.fuel--;
 
-        if(canSeparate(inventory, recipe) && !blockEntity.isActive()) {
+        if(canCompress(inventory, recipe) && !blockEntity.isActive()) {
             double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
             blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
             blockEntity.fuel = blockEntity.maxFuel;
@@ -145,12 +145,11 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
             if(!fuelRemainder.isEmpty()) blockEntity.itemHandler.setStackInSlot(0, fuelRemainder);
         }
 
-        if(canSeparate(inventory, recipe) && blockEntity.isActive()) {
+        if(canCompress(inventory, recipe) && blockEntity.isActive()) {
             blockEntity.progress++;
             if(blockEntity.progress == blockEntity.maxProgress) {
                 blockEntity.itemHandler.extractItem(1, 1, false);
                 blockEntity.itemHandler.setStackInSlot(2, new ItemStack(recipe.get().getResultItem().getItem(), blockEntity.itemHandler.getStackInSlot(2).getCount() + recipe.get().getResultItem().getCount()));
-                blockEntity.itemHandler.setStackInSlot(3, new ItemStack(recipe.get().getResultBlock().getItem(), blockEntity.itemHandler.getStackInSlot(3).getCount() + recipe.get().getResultBlock().getCount()));
 
                 blockEntity.progress = 0;
             }
@@ -160,9 +159,8 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
         setChanged(level, pos, state);
     }
 
-    private static boolean canSeparate(SimpleContainer inventory, Optional<SeparatingRecipe> recipe) {
-        int output = inventory.getContainerSize() - 1;
-        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem(), output - 1) && validOutput(inventory, recipe.get().getResultBlock(), output);
+    private static boolean canCompress(SimpleContainer inventory, Optional<CompressingRecipe> recipe) {
+        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem(), inventory.getContainerSize() - 1);
     }
 
     private static boolean validOutput(SimpleContainer container, ItemStack stack, int slot) {

@@ -12,9 +12,11 @@ import com.newjumper.oredustry.datagen.data.recipes.SmeltingRecipesProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryBlockTagsProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryItemTagsProvider;
 import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.recipe.CompressingRecipe;
 import com.newjumper.oredustry.recipe.MeltingRecipe;
 import com.newjumper.oredustry.recipe.OredustryRecipes;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
+import com.newjumper.oredustry.screen.CompressorScreen;
 import com.newjumper.oredustry.screen.CrucibleScreen;
 import com.newjumper.oredustry.screen.OredustryMenuTypes;
 import com.newjumper.oredustry.screen.SeparatorScreen;
@@ -57,8 +59,9 @@ public class Oredustry {
 
     public void registerRecipeTypes(final RegisterEvent event) {
         event.register(ForgeRegistries.Keys.RECIPE_TYPES, helper -> {
-            helper.register(new ResourceLocation(MOD_ID, "separating"), SeparatingRecipe.Type.INSTANCE);
+            helper.register(new ResourceLocation(MOD_ID, "compressing"), CompressingRecipe.Type.INSTANCE);
             helper.register(new ResourceLocation(MOD_ID, "melting"), MeltingRecipe.Type.INSTANCE);
+            helper.register(new ResourceLocation(MOD_ID, "separating"), SeparatingRecipe.Type.INSTANCE);
         });
     }
 
@@ -88,8 +91,9 @@ public class Oredustry {
     public static class OredustryClient {
         @SubscribeEvent
         public static void clientSetup(final FMLClientSetupEvent event) {
-            MenuScreens.register(OredustryMenuTypes.SEPARATOR_MENU.get(), SeparatorScreen::new);
+            MenuScreens.register(OredustryMenuTypes.COMPRESSOR_MENU.get(), CompressorScreen::new);
             MenuScreens.register(OredustryMenuTypes.CRUCIBLE_MENU.get(), CrucibleScreen::new);
+            MenuScreens.register(OredustryMenuTypes.SEPARATOR_MENU.get(), SeparatorScreen::new);
         }
     }
 }
