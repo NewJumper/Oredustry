@@ -20,7 +20,6 @@ public class OredustryItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        // BLOCKS
         blockModel(OredustryBlocks.DENSE_COAL_ORE);
         blockModel(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE);
         blockModel(OredustryBlocks.DENSE_IRON_ORE);
@@ -43,11 +42,15 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.PURIFIER);
         blockModel(OredustryBlocks.SEPARATOR);
 
-        // ITEMS
-        itemModel(OredustryItems.PURE_COPPER, GENERATED);
-        itemModel(OredustryItems.PURE_GOLD, GENERATED);
-        itemModel(OredustryItems.PURE_IRON, GENERATED);
-        itemModel(OredustryItems.PURE_NETHERITE, GENERATED);
+        itemModel(OredustryItems.DENSE_COAL, GENERATED);
+        itemModel(OredustryItems.DENSE_RAW_COPPER, GENERATED);
+        itemModel(OredustryItems.DENSE_RAW_GOLD, GENERATED);
+        itemModel(OredustryItems.DENSE_RAW_IRON, GENERATED);
+        itemModel(OredustryItems.DENSE_REDSTONE, GENERATED);
+        itemModel(OredustryItems.DENSE_EMERALD, GENERATED);
+        itemModel(OredustryItems.DENSE_LAPIS, GENERATED);
+        itemModel(OredustryItems.DENSE_DIAMOND, GENERATED);
+
         itemModel(OredustryItems.ENERGY_CELL, GENERATED);
         itemModel(OredustryItems.FUEL_CELL, GENERATED);
         itemModel(OredustryItems.HEAT_CELL, GENERATED);

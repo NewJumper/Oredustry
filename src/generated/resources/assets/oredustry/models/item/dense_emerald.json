@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "oredustry:item/pure_iron"
+    "layer0": "oredustry:item/dense_emerald"
   }
 }

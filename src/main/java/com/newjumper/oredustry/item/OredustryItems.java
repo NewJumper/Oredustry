@@ -10,10 +10,14 @@ import net.minecraftforge.registries.RegistryObject;
 public class OredustryItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Oredustry.MOD_ID);
 
-    public static final RegistryObject<Item> PURE_IRON = ITEMS.register("pure_iron", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
-    public static final RegistryObject<Item> PURE_COPPER = ITEMS.register("pure_copper", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
-    public static final RegistryObject<Item> PURE_GOLD = ITEMS.register("pure_gold", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
-    public static final RegistryObject<Item> PURE_NETHERITE = ITEMS.register("pure_netherite", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> DENSE_COAL = ITEMS.register("dense_coal", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> DENSE_RAW_IRON = ITEMS.register("dense_raw_iron", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> DENSE_RAW_COPPER = ITEMS.register("dense_raw_copper", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> DENSE_RAW_GOLD = ITEMS.register("dense_raw_gold", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> DENSE_REDSTONE = ITEMS.register("dense_redstone", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> DENSE_EMERALD = ITEMS.register("dense_emerald", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> DENSE_LAPIS = ITEMS.register("dense_lapis", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> DENSE_DIAMOND = ITEMS.register("dense_diamond", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
 
     public static final RegistryObject<Item> ENERGY_CELL = ITEMS.register("energy_cell", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> FUEL_CELL = ITEMS.register("fuel_cell", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));

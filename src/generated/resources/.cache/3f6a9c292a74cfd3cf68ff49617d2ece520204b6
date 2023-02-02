@@ -1,6 +1,7 @@
-// 1.19.2	2022-12-17T12:53:04.4833195	Item Models: oredustry
+// 1.19.2	2023-02-01T18:53:36.7231567	Item Models: oredustry
 fa469a2777d2b1b15ed8356fd5862b63e6025088 assets/oredustry/models/item/compressor.json
 2d8a4bd3cefe8a1a780b4d11d579181168799364 assets/oredustry/models/item/crucible.json
+6a71d52e4e2c998a93bfbc3608817e04a696b231 assets/oredustry/models/item/dense_coal.json
 9837fe73b231517498f96cff08d7d55fa940271e assets/oredustry/models/item/dense_coal_ore.json
 93cc94b2c328c5a3348437b3fca9ee7fa329cf2a assets/oredustry/models/item/dense_copper_ore.json
 e126148713cc461fbbbe57486dac9e452ce7c3b4 assets/oredustry/models/item/dense_deepslate_coal_ore.json
@@ -11,19 +12,22 @@ f1c40e5e1fedfddfcb7525b4efec0319c8ab8a89 assets/oredustry/models/item/dense_deep
 899a96f2d00a93eb55a8847abca496974b951f8d assets/oredustry/models/item/dense_deepslate_iron_ore.json
 af5a8330b87d6fb288b98e92c98251a86a9ab63b assets/oredustry/models/item/dense_deepslate_lapis_ore.json
 b8fe36c5a9f01a13e8060242e1d6714bb1be74a7 assets/oredustry/models/item/dense_deepslate_redstone_ore.json
+6eb05ef5ccfcda6a48bc0c8294afde0f9d01fce4 assets/oredustry/models/item/dense_diamond.json
 60a03513ea9751faa3264b16fed6bf033bd1ea2d assets/oredustry/models/item/dense_diamond_ore.json
+3d7eb679e983fca92f421fb72c6300abcfb8bb9e assets/oredustry/models/item/dense_emerald.json
 92b0d9850a80ac58fcd258d44aa9fe9aa6c01957 assets/oredustry/models/item/dense_emerald_ore.json
 69d469f06319b650a60fdea857193c6e5951b588 assets/oredustry/models/item/dense_gold_ore.json
 717f48d2349ad5079ae0dcc0ccbd200f362d8530 assets/oredustry/models/item/dense_iron_ore.json
+21fca4388dc7f42f09101a16a7714e3d19205a35 assets/oredustry/models/item/dense_lapis.json
 96fd0452e4eceea41caf10c8b112ae4fe045da3d assets/oredustry/models/item/dense_lapis_ore.json
+a92f7e5c5af486f23c4f44f6f670be5c93f5099e assets/oredustry/models/item/dense_raw_copper.json
+f30367113cd8c586f345de21a7cbf9a8ccec264e assets/oredustry/models/item/dense_raw_gold.json
+6fac5e61e6c49d3b520fd7a15ff75dd3a7ecc99f assets/oredustry/models/item/dense_raw_iron.json
+2b05a1b59e02e5fe7b06f16d95dd220f35cafffe assets/oredustry/models/item/dense_redstone.json
 10745cff21ae556532b75f6257b6da221c7e96a6 assets/oredustry/models/item/dense_redstone_ore.json
 db4f6f07e7f9074fb68e6e70e0b73ddbad4cc074 assets/oredustry/models/item/energy_cell.json
 ae10aa8b93fc16368fce7eb4837c88907583873d assets/oredustry/models/item/fuel_cell.json
 237035e46d562b509b3736dcef53bb17e6de04b7 assets/oredustry/models/item/heat_cell.json
-378f2d7e451d140e069671223a9c3aa66e1e3c70 assets/oredustry/models/item/pure_copper.json
-acd22d91ddf23f7d3fb6dd5fd4cb6ac39c93aff9 assets/oredustry/models/item/pure_gold.json
-5831d3781bf85f848a5b63e2c1f08b951fde0c8c assets/oredustry/models/item/pure_iron.json
-035d7bda14b07903cc962fc5fbfd9870c53e1e11 assets/oredustry/models/item/pure_netherite.json
 2b75cb5f2aaac9bb08261444bf1680d9f2ea7b15 assets/oredustry/models/item/purifier.json
 2ce84084c39ebdca253b5c0c4a08aef462487732 assets/oredustry/models/item/radiator.json
 4ee69277f0282e3c891aca5899398d20124fab43 assets/oredustry/models/item/separator.json

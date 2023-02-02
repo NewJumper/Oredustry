@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "oredustry:item/pure_copper"
+    "layer0": "oredustry:item/dense_redstone"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "oredustry:item/pure_netherite"
+    "layer0": "oredustry:item/dense_raw_copper"
   }
 }

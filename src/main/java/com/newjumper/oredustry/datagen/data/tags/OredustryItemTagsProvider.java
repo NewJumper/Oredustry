@@ -33,7 +33,7 @@ public class OredustryItemTagsProvider extends ItemTagsProvider {
         copy(OredustryTags.Blocks.DENSE_ORES, OredustryTags.Items.DENSE_ORES);
         copy(OredustryTags.Blocks.DENSE_DEEPSLATE_ORES, OredustryTags.Items.DENSE_DEEPSLATE_ORES);
 
-        tag(OredustryTags.Items.PURE_MATERIALS).add(OredustryItems.PURE_COPPER.get(), OredustryItems.PURE_GOLD.get(), OredustryItems.PURE_IRON.get(), OredustryItems.PURE_NETHERITE.get());
+        tag(OredustryTags.Items.DENSE_MATERIALS).add(OredustryItems.DENSE_COAL.get(), OredustryItems.DENSE_RAW_COPPER.get(), OredustryItems.DENSE_RAW_GOLD.get(), OredustryItems.DENSE_RAW_IRON.get(), OredustryItems.DENSE_REDSTONE.get(), OredustryItems.DENSE_EMERALD.get(), OredustryItems.DENSE_LAPIS.get(), OredustryItems.DENSE_DIAMOND.get());
         tag(OredustryTags.Items.CELLS).add(OredustryItems.ENERGY_CELL.get(), OredustryItems.FUEL_CELL.get(), OredustryItems.HEAT_CELL.get());
     }
 
