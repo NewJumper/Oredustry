@@ -18,13 +18,13 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
     private final float experience;
     private final int time;
 
-    public SeparatingRecipe(ResourceLocation pId, Ingredient pOre, ItemStack pResultItem, ItemStack pResultOre, float pExperience, int pTime) {
-        this.id = pId;
-        this.ore = pOre;
-        this.resultItem = pResultItem;
-        this.resultBlock = pResultOre;
-        this.experience = pExperience;
-        this.time = pTime;
+    public SeparatingRecipe(ResourceLocation id, Ingredient ore, ItemStack resultItem, ItemStack resultOre, float experience, int time) {
+        this.id = id;
+        this.ore = ore;
+        this.resultItem = resultItem;
+        this.resultBlock = resultOre;
+        this.experience = experience;
+        this.time = time;
     }
 
     @Override

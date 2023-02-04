@@ -20,7 +20,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Consumer;
 
 @SuppressWarnings("NullableProblems")
-public class MeltingRecipeBuilder implements RecipeBuilder {
+public class CompressingRecipeBuilder implements RecipeBuilder {
     private final Ingredient ingredient;
     private final Item result;
     private final int count;
@@ -28,15 +28,15 @@ public class MeltingRecipeBuilder implements RecipeBuilder {
     private final int time;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public MeltingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count) {
-        this(ingredient, result, count, 200);
+    public CompressingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count) {
+        this(ingredient, result, count, 0);
     }
 
-    public MeltingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count, int time) {
-        this(ingredient, result, count, time, 0);
+    public CompressingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count, float experience) {
+        this(ingredient, result, count, experience, 200);
     }
 
-    public MeltingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count, int time, float experience) {
+    public CompressingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count, float experience, int time) {
         this.ingredient = Ingredient.of(ingredient);
         this.result = result.asItem();
         this.count = count;
@@ -63,7 +63,7 @@ public class MeltingRecipeBuilder implements RecipeBuilder {
     @Override
     public void save(Consumer<FinishedRecipe> consumer, ResourceLocation recipeId) {
         this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeId)).rewards(AdvancementRewards.Builder.recipe(recipeId)).requirements(RequirementsStrategy.OR);
-        consumer.accept(new MeltingRecipeBuilder.Result(recipeId, this.ingredient, this.result, this.count, this.experience, this.time, this.advancement, new ResourceLocation(recipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + recipeId.getPath())));
+        consumer.accept(new CompressingRecipeBuilder.Result(recipeId, this.ingredient, this.result, this.count, this.experience, this.time, this.advancement, new ResourceLocation(recipeId.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + recipeId.getPath())));
     }
 
     public static class Result implements FinishedRecipe {
@@ -107,7 +107,7 @@ public class MeltingRecipeBuilder implements RecipeBuilder {
 
         @Override
         public RecipeSerializer<?> getType() {
-            return OredustryRecipes.MELTING.get();
+            return OredustryRecipes.COMPRESSING.get();
         }
 
         @Override

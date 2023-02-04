@@ -12,22 +12,22 @@ import net.minecraft.world.level.Level;
 @SuppressWarnings("NullableProblems")
 public class CompressingRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
-    private final Ingredient material;
+    private final Ingredient ingredient;
     private final ItemStack result;
     private final float experience;
     private final int time;
 
-    public CompressingRecipe(ResourceLocation pId, Ingredient pMaterial, ItemStack pResult, float pExperience, int pTime) {
-        this.id = pId;
-        this.material = pMaterial;
-        this.result = pResult;
-        this.experience = pExperience;
-        this.time = pTime;
+    public CompressingRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result, float experience, int time) {
+        this.id = id;
+        this.ingredient = ingredient;
+        this.result = result;
+        this.experience = experience;
+        this.time = time;
     }
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        return material.test(pContainer.getItem(1));
+        return ingredient.test(pContainer.getItem(1));
     }
 
     @Override
@@ -45,8 +45,8 @@ public class CompressingRecipe implements Recipe<SimpleContainer> {
         return id;
     }
 
-    public Ingredient getMaterial() {
-        return material;
+    public Ingredient getIngredient() {
+        return ingredient;
     }
 
     @Override
@@ -80,27 +80,27 @@ public class CompressingRecipe implements Recipe<SimpleContainer> {
     public static class Serializer implements RecipeSerializer<CompressingRecipe> {
         @Override
         public CompressingRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-            Ingredient material = Ingredient.fromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "material"));
+            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "ingredient"));
             ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "result"));
             float experience = GsonHelper.getAsFloat(pSerializedRecipe, "experience", 0);
             int time = GsonHelper.getAsInt(pSerializedRecipe, "time", 200);
 
-            return new CompressingRecipe(pRecipeId, material, result, experience, time);
+            return new CompressingRecipe(pRecipeId, ingredient, result, experience, time);
         }
 
         @Override
         public CompressingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
-            Ingredient material = Ingredient.fromNetwork(pBuffer);
+            Ingredient ingredient = Ingredient.fromNetwork(pBuffer);
             ItemStack result = pBuffer.readItem();
             float experience = pBuffer.readFloat();
             int time = pBuffer.readVarInt();
 
-            return new CompressingRecipe(pRecipeId, material, result, experience, time);
+            return new CompressingRecipe(pRecipeId, ingredient, result, experience, time);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, CompressingRecipe pRecipe) {
-            pRecipe.material.toNetwork(pBuffer);
+            pRecipe.ingredient.toNetwork(pBuffer);
             pBuffer.writeItem(pRecipe.getResultItem());
             pBuffer.writeFloat(pRecipe.getExperience());
             pBuffer.writeVarInt(pRecipe.getTime());

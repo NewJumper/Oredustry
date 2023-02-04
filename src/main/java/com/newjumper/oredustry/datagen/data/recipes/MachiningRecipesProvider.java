@@ -1,8 +1,10 @@
 package com.newjumper.oredustry.datagen.data.recipes;
 
 import com.newjumper.oredustry.Oredustry;
+import com.newjumper.oredustry.datagen.data.recipes.builders.CompressingRecipeBuilder;
 import com.newjumper.oredustry.datagen.data.recipes.builders.MeltingRecipeBuilder;
 import com.newjumper.oredustry.datagen.data.recipes.builders.SeparatingRecipeBuilder;
+import com.newjumper.oredustry.item.OredustryItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -22,6 +24,15 @@ public class MachiningRecipesProvider extends RecipeProvider implements IConditi
 
     @Override
     protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
+        new CompressingRecipeBuilder(Tags.Items.ORES_COAL, OredustryItems.DENSE_COAL.get(), 2).unlockedBy("has_coal_ore", has(Tags.Items.ORES_COAL)).save(consumer);
+        new CompressingRecipeBuilder(Tags.Items.ORES_IRON, OredustryItems.DENSE_RAW_IRON.get(), 2).unlockedBy("has_iron_ore", has(Tags.Items.ORES_IRON)).save(consumer);
+        new CompressingRecipeBuilder(Tags.Items.ORES_COPPER, OredustryItems.DENSE_RAW_COPPER.get(), 2).unlockedBy("has_copper_ore", has(Tags.Items.ORES_COPPER)).save(consumer);
+        new CompressingRecipeBuilder(Tags.Items.ORES_GOLD, OredustryItems.DENSE_RAW_GOLD.get(), 2).unlockedBy("has_gold_ore", has(Tags.Items.ORES_GOLD)).save(consumer);
+        new CompressingRecipeBuilder(Tags.Items.ORES_REDSTONE, OredustryItems.DENSE_REDSTONE.get(), 2).unlockedBy("has_redstone_ore", has(Tags.Items.ORES_REDSTONE)).save(consumer);
+        new CompressingRecipeBuilder(Tags.Items.ORES_EMERALD, OredustryItems.DENSE_EMERALD.get(), 2).unlockedBy("has_emerald_ore", has(Tags.Items.ORES_EMERALD)).save(consumer);
+        new CompressingRecipeBuilder(Tags.Items.ORES_LAPIS, OredustryItems.DENSE_LAPIS.get(), 2).unlockedBy("has_lapis_ore", has(Tags.Items.ORES_LAPIS)).save(consumer);
+        new CompressingRecipeBuilder(Tags.Items.ORES_DIAMOND, OredustryItems.DENSE_DIAMOND.get(), 2).unlockedBy("has_diamond_ore", has(Tags.Items.ORES_DIAMOND)).save(consumer);
+
         new MeltingRecipeBuilder(Tags.Items.ORES_COAL, Items.COAL, 5)
                 .unlockedBy("has_coal_ore", has(Tags.Items.ORES_COAL)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.COAL) + "_from_melting_coal_ore"));
 
@@ -52,45 +63,29 @@ public class MachiningRecipesProvider extends RecipeProvider implements IConditi
         new MeltingRecipeBuilder(Tags.Items.ORES_DIAMOND, Items.DIAMOND, 3)
                 .unlockedBy("has_diamond_ore", has(Tags.Items.ORES_DIAMOND)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.DIAMOND) + "_from_melting_diamond_ore"));
 
-        new SeparatingRecipeBuilder(Blocks.COAL_ORE, Items.COAL, 4, 100).stone()
-                .unlockedBy("has_coal_ore", has(Blocks.COAL_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_COAL_ORE, Items.COAL, 4).deepslate()
-                .unlockedBy("has_deepslate_coal_ore", has(Blocks.DEEPSLATE_COAL_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.COAL_ORE, Items.COAL, 4, 100).stone().unlockedBy("has_coal_ore", has(Blocks.COAL_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_COAL_ORE, Items.COAL, 4).deepslate().unlockedBy("has_deepslate_coal_ore", has(Blocks.DEEPSLATE_COAL_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.IRON_ORE, Items.RAW_IRON, 3, 100).stone()
-                .unlockedBy("has_iron_ore", has(Blocks.IRON_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_IRON_ORE, Items.RAW_IRON, 3).deepslate()
-                .unlockedBy("has_deepslate_iron_ore", has(Blocks.DEEPSLATE_IRON_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.IRON_ORE, Items.RAW_IRON, 3, 100).stone().unlockedBy("has_iron_ore", has(Blocks.IRON_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_IRON_ORE, Items.RAW_IRON, 3).deepslate().unlockedBy("has_deepslate_iron_ore", has(Blocks.DEEPSLATE_IRON_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.COPPER_ORE, Items.RAW_COPPER, 3, 100).stone()
-                .unlockedBy("has_copper_ore", has(Blocks.COPPER_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER, 3).deepslate()
-                .unlockedBy("has_deepslate_copper_ore", has(Blocks.DEEPSLATE_COPPER_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.COPPER_ORE, Items.RAW_COPPER, 3, 100).stone().unlockedBy("has_copper_ore", has(Blocks.COPPER_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER, 3).deepslate().unlockedBy("has_deepslate_copper_ore", has(Blocks.DEEPSLATE_COPPER_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.GOLD_ORE, Items.RAW_GOLD, 3, 100).stone()
-                .unlockedBy("has_gold_ore", has(Blocks.GOLD_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_GOLD_ORE, Items.RAW_GOLD, 3).deepslate()
-                .unlockedBy("has_deepslate_gold_ore", has(Blocks.DEEPSLATE_GOLD_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.GOLD_ORE, Items.RAW_GOLD, 3, 100).stone().unlockedBy("has_gold_ore", has(Blocks.GOLD_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_GOLD_ORE, Items.RAW_GOLD, 3).deepslate().unlockedBy("has_deepslate_gold_ore", has(Blocks.DEEPSLATE_GOLD_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.REDSTONE_ORE, Items.REDSTONE, 4, 100).stone()
-                .unlockedBy("has_redstone_ore", has(Blocks.REDSTONE_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_REDSTONE_ORE, Items.REDSTONE, 4).deepslate()
-                .unlockedBy("has_deepslate_redstone_ore", has(Blocks.DEEPSLATE_REDSTONE_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.REDSTONE_ORE, Items.REDSTONE, 4, 100).stone().unlockedBy("has_redstone_ore", has(Blocks.REDSTONE_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_REDSTONE_ORE, Items.REDSTONE, 4).deepslate().unlockedBy("has_deepslate_redstone_ore", has(Blocks.DEEPSLATE_REDSTONE_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.EMERALD_ORE, Items.EMERALD, 2, 100).stone()
-                .unlockedBy("has_emerald_ore", has(Blocks.EMERALD_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_EMERALD_ORE, Items.EMERALD, 2).deepslate()
-                .unlockedBy("has_deepslate_emerald_ore", has(Blocks.DEEPSLATE_EMERALD_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.EMERALD_ORE, Items.EMERALD, 2, 100).stone().unlockedBy("has_emerald_ore", has(Blocks.EMERALD_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_EMERALD_ORE, Items.EMERALD, 2).deepslate().unlockedBy("has_deepslate_emerald_ore", has(Blocks.DEEPSLATE_EMERALD_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.LAPIS_ORE, Items.LAPIS_LAZULI, 4, 100).stone()
-                .unlockedBy("has_lapis_ore", has(Blocks.LAPIS_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_LAPIS_ORE, Items.LAPIS_LAZULI, 4).deepslate()
-                .unlockedBy("has_deepslate_lapis_ore", has(Blocks.DEEPSLATE_LAPIS_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.LAPIS_ORE, Items.LAPIS_LAZULI, 4, 100).stone().unlockedBy("has_lapis_ore", has(Blocks.LAPIS_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_LAPIS_ORE, Items.LAPIS_LAZULI, 4).deepslate().unlockedBy("has_deepslate_lapis_ore", has(Blocks.DEEPSLATE_LAPIS_ORE)).save(consumer);
 
-        new SeparatingRecipeBuilder(Blocks.DIAMOND_ORE, Items.DIAMOND, 2, 100).stone()
-                .unlockedBy("has_diamond_ore", has(Blocks.DIAMOND_ORE)).save(consumer);
-        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_DIAMOND_ORE, Items.DIAMOND, 2).deepslate()
-                .unlockedBy("has_deepslate_diamond_ore", has(Blocks.DEEPSLATE_DIAMOND_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.DIAMOND_ORE, Items.DIAMOND, 2, 100).stone().unlockedBy("has_diamond_ore", has(Blocks.DIAMOND_ORE)).save(consumer);
+        new SeparatingRecipeBuilder(Blocks.DEEPSLATE_DIAMOND_ORE, Items.DIAMOND, 2).deepslate().unlockedBy("has_deepslate_diamond_ore", has(Blocks.DEEPSLATE_DIAMOND_ORE)).save(consumer);
     }
 
     @Override

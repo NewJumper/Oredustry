@@ -1,0 +1,10 @@
+{
+  "type": "oredustry:compressing",
+  "ingredient": {
+    "tag": "forge:ores/iron"
+  },
+  "result": {
+    "count": 2,
+    "item": "oredustry:dense_raw_iron"
+  }
+}
