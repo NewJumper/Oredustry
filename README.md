@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/NewJumper/Oredustry/blob/master/src/main/resources/logo.png" alt="Logo" width="1024"></p>
+<p align="center"><img src="https://github.com/NewJumper/Oredustry/blob/master/src/main/resources/banner.png" alt="Logo" width="1024"></p>
 <h1 align="center">
   <a><img src="https://img.shields.io/badge/Mod Version-0.5.0-54c3d6"></a>
   <a><img src="https://img.shields.io/badge/Minecraft-1.19.2-71c46e"></a>

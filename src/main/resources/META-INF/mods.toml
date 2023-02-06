@@ -8,7 +8,7 @@ license="AGPL-3.0"
 
     displayName="Oredustry"
     authors="NewJumper"
-    logoFile="logo.png"
+    logoFile="banner.png"
 #    credits="credits woooo"
 
     description='''A mod that can multiply ores!'''
