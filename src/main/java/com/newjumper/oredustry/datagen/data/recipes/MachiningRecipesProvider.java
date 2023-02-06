@@ -35,33 +35,49 @@ public class MachiningRecipesProvider extends RecipeProvider implements IConditi
 
         new MeltingRecipeBuilder(Tags.Items.ORES_COAL, Items.COAL, 5)
                 .unlockedBy("has_coal_ore", has(Tags.Items.ORES_COAL)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.COAL) + "_from_melting_coal_ore"));
+        new MeltingRecipeBuilder(OredustryItems.DENSE_COAL.get(), Items.COAL, 5)
+                .unlockedBy("has_dense_coal", has(OredustryItems.DENSE_COAL.get())).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.COAL) + "_from_melting_" + getItemName(OredustryItems.DENSE_COAL.get())));
 
         new MeltingRecipeBuilder(Tags.Items.ORES_IRON, Items.IRON_INGOT, 3)
                 .unlockedBy("has_iron_ore", has(Tags.Items.ORES_IRON)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.IRON_INGOT) + "_from_melting_iron_ore"));
         new MeltingRecipeBuilder(Tags.Items.RAW_MATERIALS_IRON, Items.IRON_INGOT, 4)
                 .unlockedBy("has_raw_iron", has(Tags.Items.RAW_MATERIALS_IRON)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.IRON_INGOT) + "_from_melting_raw_iron"));
+        new MeltingRecipeBuilder(OredustryItems.DENSE_RAW_IRON.get(), Items.IRON_INGOT, 4)
+                .unlockedBy("has_dense_raw_iron", has(OredustryItems.DENSE_RAW_IRON.get())).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.IRON_INGOT) + "_from_melting_" + getItemName(OredustryItems.DENSE_RAW_IRON.get())));
 
         new MeltingRecipeBuilder(Tags.Items.ORES_COPPER, Items.COPPER_INGOT, 3)
                 .unlockedBy("has_copper_ore", has(Tags.Items.ORES_COPPER)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.COPPER_INGOT) + "_from_melting_copper_ore"));
         new MeltingRecipeBuilder(Tags.Items.RAW_MATERIALS_COPPER, Items.COPPER_INGOT, 4)
                 .unlockedBy("has_raw_copper", has(Tags.Items.RAW_MATERIALS_COPPER)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.COPPER_INGOT) + "_from_melting_raw_copper"));
+        new MeltingRecipeBuilder(OredustryItems.DENSE_RAW_COPPER.get(), Items.COPPER_INGOT, 4)
+                .unlockedBy("has_dense_raw_copper", has(OredustryItems.DENSE_RAW_COPPER.get())).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.COPPER_INGOT) + "_from_melting_" + getItemName(OredustryItems.DENSE_RAW_COPPER.get())));
 
         new MeltingRecipeBuilder(Tags.Items.ORES_GOLD, Items.GOLD_INGOT, 3)
                 .unlockedBy("has_gold_ore", has(Tags.Items.ORES_GOLD)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.GOLD_INGOT) + "_from_melting_gold_ore"));
         new MeltingRecipeBuilder(Tags.Items.RAW_MATERIALS_GOLD, Items.GOLD_INGOT, 4)
                 .unlockedBy("has_raw_gold", has(Tags.Items.RAW_MATERIALS_GOLD)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.GOLD_INGOT) + "_from_melting_raw_gold"));
+        new MeltingRecipeBuilder(OredustryItems.DENSE_RAW_GOLD.get(), Items.GOLD_INGOT, 4)
+                .unlockedBy("has_dense_raw_gold", has(OredustryItems.DENSE_RAW_GOLD.get())).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.GOLD_INGOT) + "_from_melting_" + getItemName(OredustryItems.DENSE_RAW_GOLD.get())));
 
         new MeltingRecipeBuilder(Tags.Items.ORES_REDSTONE, Items.REDSTONE, 5)
                 .unlockedBy("has_redstone_ore", has(Tags.Items.ORES_REDSTONE)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.REDSTONE) + "_from_melting_redstone_ore"));
+        new MeltingRecipeBuilder(OredustryItems.DENSE_REDSTONE.get(), Items.REDSTONE, 5)
+                .unlockedBy("has_dense_redstone", has(OredustryItems.DENSE_REDSTONE.get())).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.REDSTONE) + "_from_melting_" + getItemName(OredustryItems.DENSE_REDSTONE.get())));
 
         new MeltingRecipeBuilder(Tags.Items.ORES_EMERALD, Items.EMERALD, 3)
                 .unlockedBy("has_emerald_ore", has(Tags.Items.ORES_EMERALD)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.EMERALD) + "_from_melting_emerald_ore"));
+        new MeltingRecipeBuilder(OredustryItems.DENSE_EMERALD.get(), Items.EMERALD, 3)
+                .unlockedBy("has_dense_emerald", has(OredustryItems.DENSE_EMERALD.get())).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.EMERALD) + "_from_melting_" + getItemName(OredustryItems.DENSE_EMERALD.get())));
 
         new MeltingRecipeBuilder(Tags.Items.ORES_LAPIS, Items.LAPIS_LAZULI, 5)
                 .unlockedBy("has_lapis_ore", has(Tags.Items.ORES_LAPIS)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.LAPIS_LAZULI) + "_from_melting_lapis_ore"));
+        new MeltingRecipeBuilder(OredustryItems.DENSE_LAPIS.get(), Items.LAPIS_LAZULI, 5)
+                .unlockedBy("has_dense_lapis", has(OredustryItems.DENSE_LAPIS.get())).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.LAPIS_LAZULI) + "_from_melting_" + getItemName(OredustryItems.DENSE_LAPIS.get())));
 
         new MeltingRecipeBuilder(Tags.Items.ORES_DIAMOND, Items.DIAMOND, 3)
                 .unlockedBy("has_diamond_ore", has(Tags.Items.ORES_DIAMOND)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.DIAMOND) + "_from_melting_diamond_ore"));
+        new MeltingRecipeBuilder(OredustryItems.DENSE_DIAMOND.get(), Items.DIAMOND, 3)
+                .unlockedBy("has_dense_diamond", has(OredustryItems.DENSE_DIAMOND.get())).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.DIAMOND) + "_from_melting_" + getItemName(OredustryItems.DENSE_DIAMOND.get())));
 
         new SeparatingRecipeBuilder(Blocks.COAL_ORE, Items.COAL, 4, 100).stone().unlockedBy("has_coal_ore", has(Blocks.COAL_ORE)).save(consumer);
         new SeparatingRecipeBuilder(Blocks.DEEPSLATE_COAL_ORE, Items.COAL, 4).deepslate().unlockedBy("has_deepslate_coal_ore", has(Blocks.DEEPSLATE_COAL_ORE)).save(consumer);

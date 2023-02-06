@@ -1,0 +1,10 @@
+{
+  "type": "oredustry:melting",
+  "ingredient": {
+    "item": "oredustry:dense_raw_iron"
+  },
+  "result": {
+    "count": 4,
+    "item": "minecraft:iron_ingot"
+  }
+}
