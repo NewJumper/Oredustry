@@ -13,17 +13,17 @@
     "H": {
       "item": "oredustry:heat_cell"
     },
+    "O": {
+      "tag": "forge:obsidian"
+    },
     "R": {
       "item": "oredustry:radiator"
-    },
-    "S": {
-      "tag": "minecraft:stone_crafting_materials"
     }
   },
   "pattern": [
     "CRC",
     "EFH",
-    "SSS"
+    "OOO"
   ],
   "result": {
     "item": "oredustry:compressor"

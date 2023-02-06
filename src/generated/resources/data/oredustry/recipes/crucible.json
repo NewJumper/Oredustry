@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "A": {
-      "item": "minecraft:water_bucket"
-    },
     "B": {
       "item": "minecraft:bricks"
+    },
+    "D": {
+      "tag": "forge:gems/diamond"
     },
     "G": {
       "tag": "forge:glass"
@@ -18,9 +18,9 @@
     }
   },
   "pattern": [
-    "OAO",
     "GHG",
-    "BBB"
+    "DOD",
+    "BOB"
   ],
   "result": {
     "item": "oredustry:crucible"
