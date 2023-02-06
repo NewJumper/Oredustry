@@ -23,6 +23,10 @@ import java.util.Objects;
 
 @JeiPlugin
 public class OredustryJEI implements IModPlugin {
+    private final RecipeType<CompressingRecipe> COMPRESSING = RecipeType.create(Oredustry.MOD_ID, "compressing", CompressingRecipe.class);
+    private final RecipeType<MeltingRecipe> MELTING = RecipeType.create(Oredustry.MOD_ID, "melting", MeltingRecipe.class);
+    private final RecipeType<SeparatingRecipe> SEPARATING = RecipeType.create(Oredustry.MOD_ID, "separating", SeparatingRecipe.class);
+
     @Override
     public @NotNull ResourceLocation getPluginUid() {
         return new ResourceLocation(Oredustry.MOD_ID, "jei_plugin");
@@ -38,19 +42,19 @@ public class OredustryJEI implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager recipes = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-        List<CompressingRecipe> compressing = recipes.getAllRecipesFor(CompressingRecipe.Type.INSTANCE);
-        List<MeltingRecipe> melting = recipes.getAllRecipesFor(MeltingRecipe.Type.INSTANCE);
-        List<SeparatingRecipe> separating = recipes.getAllRecipesFor(SeparatingRecipe.Type.INSTANCE);
+        List<CompressingRecipe> compressingRecipes = recipes.getAllRecipesFor(CompressingRecipe.Type.INSTANCE);
+        List<MeltingRecipe> meltingRecipes = recipes.getAllRecipesFor(MeltingRecipe.Type.INSTANCE);
+        List<SeparatingRecipe> separatingRecipes = recipes.getAllRecipesFor(SeparatingRecipe.Type.INSTANCE);
 
-        registration.addRecipes(RecipeType.create(Oredustry.MOD_ID, "compressing", CompressingRecipe.class), compressing);
-        registration.addRecipes(RecipeType.create(Oredustry.MOD_ID, "melting", MeltingRecipe.class), melting);
-        registration.addRecipes(RecipeType.create(Oredustry.MOD_ID, "separating", SeparatingRecipe.class), separating);
+        registration.addRecipes(COMPRESSING, compressingRecipes);
+        registration.addRecipes(MELTING, meltingRecipes);
+        registration.addRecipes(SEPARATING, separatingRecipes);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(OredustryBlocks.COMPRESSOR.get()), RecipeType.create(Oredustry.MOD_ID, "compressing", CompressingRecipe.class));
-        registration.addRecipeCatalyst(new ItemStack(OredustryBlocks.CRUCIBLE.get()), RecipeType.create(Oredustry.MOD_ID, "melting", MeltingRecipe.class));
-        registration.addRecipeCatalyst(new ItemStack(OredustryBlocks.SEPARATOR.get()), RecipeType.create(Oredustry.MOD_ID, "separating", SeparatingRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(OredustryBlocks.COMPRESSOR.get()), COMPRESSING);
+        registration.addRecipeCatalyst(new ItemStack(OredustryBlocks.CRUCIBLE.get()), MELTING);
+        registration.addRecipeCatalyst(new ItemStack(OredustryBlocks.SEPARATOR.get()), SEPARATING);
     }
 }
