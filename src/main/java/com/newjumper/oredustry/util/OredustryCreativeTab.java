@@ -9,7 +9,7 @@ public class OredustryCreativeTab {
     public static final CreativeModeTab OREDUSTRY = new CreativeModeTab("oredustry") {
         @Override
         public @NotNull ItemStack makeIcon() {
-            return new ItemStack(OredustryBlocks.DENSE_LAPIS_ORE.get());
+            return new ItemStack(OredustryBlocks.CRUCIBLE.get());
         }
     };
 }
