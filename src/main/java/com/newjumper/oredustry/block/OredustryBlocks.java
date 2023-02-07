@@ -36,7 +36,7 @@ public class OredustryBlocks {
     public static final RegistryObject<Block> DENSE_DIAMOND_ORE = register("dense_diamond_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).strength(3.0f).requiresCorrectToolForDrops(), UniformInt.of(4, 8)));
     public static final RegistryObject<Block> DENSE_DEEPSLATE_DIAMOND_ORE = register("dense_deepslate_diamond_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).strength(4.5f, 3.0f).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops(), UniformInt.of(4, 8)));
 
-    public static final RegistryObject<Block> MACHINE_FRAME = register("machine_frame", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(4.5f, 6f).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> MACHINE_FRAME = register("machine_frame", () -> new MachineFrameBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(4.5f, 6f).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> COMPRESSOR = register("compressor", () -> new CompressorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CRUCIBLE = register("crucible", () -> new CrucibleBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> PURIFIER = register("purifier", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
