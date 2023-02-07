@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "D": {
+      "tag": "forge:gems/diamond"
+    },
+    "I": {
+      "item": "oredustry:induction_cell"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CDC",
+    " I "
+  ],
+  "result": {
+    "item": "oredustry:conduction_cell"
+  }
+}

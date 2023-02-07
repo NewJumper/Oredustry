@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "oredustry:item/heat_cell"
+    "layer0": "oredustry:item/conduction_cell"
   }
 }

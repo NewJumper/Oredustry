@@ -23,6 +23,7 @@
   "container.oredustry.compressor": "Compressor",
   "container.oredustry.crucible": "Crucible",
   "container.oredustry.separator": "Separator",
+  "item.oredustry.conduction_cell": "Conduction Cell",
   "item.oredustry.dense_coal": "Dense Coal",
   "item.oredustry.dense_diamond": "Dense Diamond",
   "item.oredustry.dense_emerald": "Dense Emerald",
@@ -31,9 +32,6 @@
   "item.oredustry.dense_raw_gold": "Dense Raw Gold",
   "item.oredustry.dense_raw_iron": "Dense Raw Iron",
   "item.oredustry.dense_redstone": "Dense Redstone",
-  "item.oredustry.energy_cell": "Energy Cell",
-  "item.oredustry.fuel_cell": "Fuel Cell",
-  "item.oredustry.heat_cell": "Heat Cell",
-  "item.oredustry.radiator": "Radiator",
+  "item.oredustry.induction_cell": "Induction Cell",
   "itemGroup.oredustry": "Oredustry"
 }

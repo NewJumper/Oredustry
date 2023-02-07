@@ -43,6 +43,9 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.PURIFIER);
         blockModel(OredustryBlocks.SEPARATOR);
 
+        itemModel(OredustryItems.CONDUCTION_CELL, GENERATED);
+        itemModel(OredustryItems.INDUCTION_CELL, GENERATED);
+
         itemModel(OredustryItems.DENSE_COAL, GENERATED);
         itemModel(OredustryItems.DENSE_RAW_COPPER, GENERATED);
         itemModel(OredustryItems.DENSE_RAW_GOLD, GENERATED);
@@ -51,11 +54,6 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         itemModel(OredustryItems.DENSE_EMERALD, GENERATED);
         itemModel(OredustryItems.DENSE_LAPIS, GENERATED);
         itemModel(OredustryItems.DENSE_DIAMOND, GENERATED);
-
-        itemModel(OredustryItems.ENERGY_CELL, GENERATED);
-        itemModel(OredustryItems.FUEL_CELL, GENERATED);
-        itemModel(OredustryItems.HEAT_CELL, GENERATED);
-        itemModel(OredustryItems.RADIATOR, GENERATED);
     }
 
     public void blockModel(RegistryObject<Block> block) {

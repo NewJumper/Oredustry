@@ -1,7 +1,6 @@
 {
   "values": [
-    "oredustry:energy_cell",
-    "oredustry:fuel_cell",
-    "oredustry:heat_cell"
+    "oredustry:conduction_cell",
+    "oredustry:induction_cell"
   ]
 }

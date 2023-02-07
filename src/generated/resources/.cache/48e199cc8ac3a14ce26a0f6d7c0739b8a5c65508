@@ -1,4 +1,4 @@
-// 1.19.2	2023-02-01T18:53:36.7331769	Item Tags
+// 1.19.2	2023-02-06T21:19:23.1604513	Item Tags
 bd99bde5e29c1c5c000b4e09b697b2d1ee9a37ba data/forge/tags/items/ores.json
 ff33df8686c180b44f722812ee8aeeea0421f1c1 data/forge/tags/items/ores/coal.json
 4bb6d1cbe6037013f501dbc12bbcbf708c01dbc6 data/forge/tags/items/ores/copper.json
@@ -11,7 +11,7 @@ d1f3c1b99e14e941270b3992f2dccd8722225d45 data/forge/tags/items/ores/gold.json
 5753922c3ed72d03686dabae203293573f6e110b data/forge/tags/items/ores_in_ground/deepslate.json
 adc0cd433ce3f8546129b243e6d89105af009bf7 data/forge/tags/items/ores_in_ground/stone.json
 bd99bde5e29c1c5c000b4e09b697b2d1ee9a37ba data/forge/tags/items/ore_rates/dense.json
-12f2c8b43f634cdc868438183c548f4d6f36126d data/oredustry/tags/items/cells.json
+8c5649d6761a9621217b4aa57bd7b81b8716e3ac data/oredustry/tags/items/cells.json
 80b5d276aa4b5a97259713a2e189092cc5d5a4ba data/oredustry/tags/items/dense_deepslate_ores.json
 45c044bb3e60a3d671f54abd3d900b5b6ce98089 data/oredustry/tags/items/dense_materials.json
 d3e187cf6d9afc26435738bcf028e23ee119775a data/oredustry/tags/items/dense_ores.json

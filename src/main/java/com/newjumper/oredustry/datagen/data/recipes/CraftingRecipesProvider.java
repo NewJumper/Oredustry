@@ -1,14 +1,10 @@
 package com.newjumper.oredustry.datagen.data.recipes;
 
-import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.item.OredustryItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +18,7 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
 
     @Override
     protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(OredustryBlocks.COMPRESSOR.get(), 1)
+        /*ShapedRecipeBuilder.shaped(OredustryBlocks.COMPRESSOR.get(), 1)
                 .define('C', Tags.Items.INGOTS_COPPER)
                 .define('R', OredustryItems.RADIATOR.get())
                 .define('E', OredustryItems.ENERGY_CELL.get())
@@ -59,44 +55,24 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
                 .pattern("SSS")
                 .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
                 .unlockedBy("has_energy_cell", has(OredustryItems.ENERGY_CELL.get()))
-                .unlockedBy("has_fuel_cell", has(OredustryItems.FUEL_CELL.get())).save(consumer);
+                .unlockedBy("has_fuel_cell", has(OredustryItems.FUEL_CELL.get())).save(consumer);*/
 
-        ShapedRecipeBuilder.shaped(OredustryItems.ENERGY_CELL.get(), 1)
-                .define('P', ItemTags.PLANKS)
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
-                .define('S', Blocks.STONE)
-                .pattern(" P ")
-                .pattern("IRI")
-                .pattern(" S ")
-                .unlockedBy("has_redstone", has(Tags.Items.STORAGE_BLOCKS_REDSTONE)).save(consumer);
-        ShapedRecipeBuilder.shaped(OredustryItems.FUEL_CELL.get(), 1)
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('B', Items.BLAZE_POWDER)
-                .define('L', Items.LAVA_BUCKET)
-                .pattern(" I ")
-                .pattern("BLB")
-                .pattern(" I ")
-                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER)).save(consumer);
-        ShapedRecipeBuilder.shaped(OredustryItems.HEAT_CELL.get(), 1)
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('R', Tags.Items.DUSTS_REDSTONE)
-                .define('C', Tags.Items.STORAGE_BLOCKS_COPPER)
-                .pattern(" I ")
-                .pattern("RCR")
-                .pattern(" I ")
-                .unlockedBy("has_copper", has(Tags.Items.STORAGE_BLOCKS_COPPER)).save(consumer);
-        ShapedRecipeBuilder.shaped(OredustryItems.RADIATOR.get(), 1)
-                .define('G', Tags.Items.GLASS)
-                .define('I', Tags.Items.INGOTS_IRON)
+        ShapedRecipeBuilder.shaped(OredustryItems.CONDUCTION_CELL.get(), 1)
                 .define('C', Tags.Items.INGOTS_COPPER)
-                .define('E', OredustryItems.ENERGY_CELL.get())
-                .pattern("GIG")
-                .pattern("CEC")
-                .pattern("GIG")
-                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
-                .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
-                .unlockedBy("has_energy_cell", has(OredustryItems.ENERGY_CELL.get())).save(consumer);
+                .define('D', Tags.Items.GEMS_DIAMOND)
+                .define('I', OredustryItems.INDUCTION_CELL.get())
+                .pattern(" C ")
+                .pattern("CDC")
+                .pattern(" I ")
+                .unlockedBy("has_induction_cell", has(OredustryItems.INDUCTION_CELL.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(OredustryItems.INDUCTION_CELL.get(), 1)
+                .define('R', Tags.Items.DUSTS_REDSTONE)
+                .define('D', Tags.Items.GEMS_DIAMOND)
+                .pattern(" R ")
+                .pattern("RDR")
+                .pattern(" R ")
+                .unlockedBy("has_redstone", has(Tags.Items.DUSTS_REDSTONE))
+                .unlockedBy("has_diamond", has(Tags.Items.GEMS_DIAMOND)).save(consumer);
     }
 
     @Override

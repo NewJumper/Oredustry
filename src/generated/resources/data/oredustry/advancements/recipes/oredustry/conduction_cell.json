@@ -1,11 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_redstone": {
+    "has_induction_cell": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:storage_blocks/redstone"
+            "items": [
+              "oredustry:induction_cell"
+            ]
           }
         ]
       },
@@ -13,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredustry:energy_cell"
+        "recipe": "oredustry:conduction_cell"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_redstone",
+      "has_induction_cell",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredustry:energy_cell"
+      "oredustry:conduction_cell"
     ]
   }
 }
