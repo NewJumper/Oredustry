@@ -22,6 +22,15 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
 
     @Override
     protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(OredustryBlocks.MACHINE_FRAME.get(), 1)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('G', Tags.Items.GLASS)
+                .define('O', Tags.Items.OBSIDIAN)
+                .pattern("IGI")
+                .pattern("GOG")
+                .pattern("IGI")
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+                .unlockedBy("has_obsidian", has(Tags.Items.OBSIDIAN)).save(consumer);
         ShapedRecipeBuilder.shaped(OredustryBlocks.COMPRESSOR.get(), 1)
                 .define('I', OredustryItems.INDUCTION_CELL.get())
                 .define('A', Blocks.ANVIL)
