@@ -37,6 +37,7 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.DENSE_DIAMOND_ORE);
         blockModel(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE);
 
+        blockModel(OredustryBlocks.MACHINE_FRAME);
         blockModel(OredustryBlocks.COMPRESSOR);
         blockModel(OredustryBlocks.CRUCIBLE);
         blockModel(OredustryBlocks.PURIFIER);

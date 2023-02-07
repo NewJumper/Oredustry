@@ -1,4 +1,4 @@
-// 1.19.2	2023-02-01T18:53:36.7231567	Item Models: oredustry
+// 1.19.2	2023-02-06T18:14:06.0558456	Item Models: oredustry
 fa469a2777d2b1b15ed8356fd5862b63e6025088 assets/oredustry/models/item/compressor.json
 2d8a4bd3cefe8a1a780b4d11d579181168799364 assets/oredustry/models/item/crucible.json
 6a71d52e4e2c998a93bfbc3608817e04a696b231 assets/oredustry/models/item/dense_coal.json
@@ -28,6 +28,7 @@ f30367113cd8c586f345de21a7cbf9a8ccec264e assets/oredustry/models/item/dense_raw_
 db4f6f07e7f9074fb68e6e70e0b73ddbad4cc074 assets/oredustry/models/item/energy_cell.json
 ae10aa8b93fc16368fce7eb4837c88907583873d assets/oredustry/models/item/fuel_cell.json
 237035e46d562b509b3736dcef53bb17e6de04b7 assets/oredustry/models/item/heat_cell.json
+38e662a0b9ecd54bf2019a919c27bbdeada9b875 assets/oredustry/models/item/machine_frame.json
 2b75cb5f2aaac9bb08261444bf1680d9f2ea7b15 assets/oredustry/models/item/purifier.json
 2ce84084c39ebdca253b5c0c4a08aef462487732 assets/oredustry/models/item/radiator.json
 4ee69277f0282e3c891aca5899398d20124fab43 assets/oredustry/models/item/separator.json

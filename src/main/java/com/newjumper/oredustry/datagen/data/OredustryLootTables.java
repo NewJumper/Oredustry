@@ -34,6 +34,7 @@ public class OredustryLootTables extends BlockLoot {
         this.add(OredustryBlocks.DENSE_DIAMOND_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_DIAMOND_ORE.get(), Items.DIAMOND, 2, 3));
         this.add(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE.get(), createDenseOreDrop(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE.get(), Items.DIAMOND, 2, 3));
 
+        this.dropSelf(OredustryBlocks.MACHINE_FRAME.get());
         this.dropSelf(OredustryBlocks.COMPRESSOR.get());
         this.dropSelf(OredustryBlocks.CRUCIBLE.get());
         this.dropSelf(OredustryBlocks.PURIFIER.get());
