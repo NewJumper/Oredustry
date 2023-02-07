@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_lapis_ore": {
+    "has_gold_ore": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:ores/lapis"
+            "tag": "forge:ores/gold"
           }
         ]
       },
@@ -13,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredustry:dense_lapis"
+        "recipe": "oredustry:dense_raw_gold_from_compressing_gold_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_lapis_ore",
+      "has_gold_ore",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredustry:dense_lapis"
+      "oredustry:dense_raw_gold_from_compressing_gold_ore"
     ]
   }
 }

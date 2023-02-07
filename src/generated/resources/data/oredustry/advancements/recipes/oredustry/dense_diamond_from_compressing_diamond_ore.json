@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_emerald_ore": {
+    "has_diamond_ore": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:ores/emerald"
+            "tag": "forge:ores/diamond"
           }
         ]
       },
@@ -13,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredustry:dense_emerald"
+        "recipe": "oredustry:dense_diamond_from_compressing_diamond_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_emerald_ore",
+      "has_diamond_ore",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredustry:dense_emerald"
+      "oredustry:dense_diamond_from_compressing_diamond_ore"
     ]
   }
 }

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_ore": {
+    "has_copper_ore": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:ores/iron"
+            "tag": "forge:ores/copper"
           }
         ]
       },
@@ -13,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredustry:dense_raw_iron"
+        "recipe": "oredustry:dense_raw_copper_from_compressing_copper_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_iron_ore",
+      "has_copper_ore",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredustry:dense_raw_iron"
+      "oredustry:dense_raw_copper_from_compressing_copper_ore"
     ]
   }
 }

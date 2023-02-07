@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_diamond_ore": {
+    "has_lapis_ore": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:ores/diamond"
+            "tag": "forge:ores/lapis"
           }
         ]
       },
@@ -13,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredustry:dense_diamond"
+        "recipe": "oredustry:dense_lapis_from_compressing_lapis_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_diamond_ore",
+      "has_lapis_ore",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredustry:dense_diamond"
+      "oredustry:dense_lapis_from_compressing_lapis_ore"
     ]
   }
 }

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_copper_ore": {
+    "has_coal_ore": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:ores/copper"
+            "tag": "forge:ores/coal"
           }
         ]
       },
@@ -13,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredustry:dense_raw_copper"
+        "recipe": "oredustry:dense_coal_from_compressing_coal_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_copper_ore",
+      "has_coal_ore",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredustry:dense_raw_copper"
+      "oredustry:dense_coal_from_compressing_coal_ore"
     ]
   }
 }

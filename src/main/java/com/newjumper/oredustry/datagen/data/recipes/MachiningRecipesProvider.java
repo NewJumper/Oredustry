@@ -24,14 +24,22 @@ public class MachiningRecipesProvider extends RecipeProvider implements IConditi
 
     @Override
     protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
-        new CompressingRecipeBuilder(Tags.Items.ORES_COAL, OredustryItems.DENSE_COAL.get(), 2).unlockedBy("has_coal_ore", has(Tags.Items.ORES_COAL)).save(consumer);
-        new CompressingRecipeBuilder(Tags.Items.ORES_IRON, OredustryItems.DENSE_RAW_IRON.get(), 2).unlockedBy("has_iron_ore", has(Tags.Items.ORES_IRON)).save(consumer);
-        new CompressingRecipeBuilder(Tags.Items.ORES_COPPER, OredustryItems.DENSE_RAW_COPPER.get(), 2).unlockedBy("has_copper_ore", has(Tags.Items.ORES_COPPER)).save(consumer);
-        new CompressingRecipeBuilder(Tags.Items.ORES_GOLD, OredustryItems.DENSE_RAW_GOLD.get(), 2).unlockedBy("has_gold_ore", has(Tags.Items.ORES_GOLD)).save(consumer);
-        new CompressingRecipeBuilder(Tags.Items.ORES_REDSTONE, OredustryItems.DENSE_REDSTONE.get(), 2).unlockedBy("has_redstone_ore", has(Tags.Items.ORES_REDSTONE)).save(consumer);
-        new CompressingRecipeBuilder(Tags.Items.ORES_EMERALD, OredustryItems.DENSE_EMERALD.get(), 2).unlockedBy("has_emerald_ore", has(Tags.Items.ORES_EMERALD)).save(consumer);
-        new CompressingRecipeBuilder(Tags.Items.ORES_LAPIS, OredustryItems.DENSE_LAPIS.get(), 2).unlockedBy("has_lapis_ore", has(Tags.Items.ORES_LAPIS)).save(consumer);
-        new CompressingRecipeBuilder(Tags.Items.ORES_DIAMOND, OredustryItems.DENSE_DIAMOND.get(), 2).unlockedBy("has_diamond_ore", has(Tags.Items.ORES_DIAMOND)).save(consumer);
+        new CompressingRecipeBuilder(Tags.Items.ORES_COAL, OredustryItems.DENSE_COAL.get(), 2).unlockedBy("has_coal_ore", has(Tags.Items.ORES_COAL))
+                .save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(OredustryItems.DENSE_COAL.get()) + "_from_compressing_coal_ore"));
+        new CompressingRecipeBuilder(Tags.Items.ORES_IRON, OredustryItems.DENSE_RAW_IRON.get(), 2).unlockedBy("has_iron_ore", has(Tags.Items.ORES_IRON))
+                .save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(OredustryItems.DENSE_RAW_IRON.get()) + "_from_compressing_iron_ore"));
+        new CompressingRecipeBuilder(Tags.Items.ORES_COPPER, OredustryItems.DENSE_RAW_COPPER.get(), 2).unlockedBy("has_copper_ore", has(Tags.Items.ORES_COPPER))
+                .save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(OredustryItems.DENSE_RAW_COPPER.get()) + "_from_compressing_copper_ore"));
+        new CompressingRecipeBuilder(Tags.Items.ORES_GOLD, OredustryItems.DENSE_RAW_GOLD.get(), 2).unlockedBy("has_gold_ore", has(Tags.Items.ORES_GOLD))
+                .save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(OredustryItems.DENSE_RAW_GOLD.get()) + "_from_compressing_gold_ore"));
+        new CompressingRecipeBuilder(Tags.Items.ORES_REDSTONE, OredustryItems.DENSE_REDSTONE.get(), 2).unlockedBy("has_redstone_ore", has(Tags.Items.ORES_REDSTONE))
+                .save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(OredustryItems.DENSE_REDSTONE.get()) + "_from_compressing_redstone_ore"));
+        new CompressingRecipeBuilder(Tags.Items.ORES_EMERALD, OredustryItems.DENSE_EMERALD.get(), 2).unlockedBy("has_emerald_ore", has(Tags.Items.ORES_EMERALD))
+                .save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(OredustryItems.DENSE_EMERALD.get()) + "_from_compressing_emerald_ore"));
+        new CompressingRecipeBuilder(Tags.Items.ORES_LAPIS, OredustryItems.DENSE_LAPIS.get(), 2).unlockedBy("has_lapis_ore", has(Tags.Items.ORES_LAPIS))
+                .save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(OredustryItems.DENSE_LAPIS.get()) + "_from_compressing_lapis_ore"));
+        new CompressingRecipeBuilder(Tags.Items.ORES_DIAMOND, OredustryItems.DENSE_DIAMOND.get(), 2).unlockedBy("has_diamond_ore", has(Tags.Items.ORES_DIAMOND))
+                .save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(OredustryItems.DENSE_DIAMOND.get()) + "_from_compressing_diamond_ore"));
 
         new MeltingRecipeBuilder(Tags.Items.ORES_COAL, Items.COAL, 5)
                 .unlockedBy("has_coal_ore", has(Tags.Items.ORES_COAL)).save(consumer, new ResourceLocation(Oredustry.MOD_ID, getItemName(Items.COAL) + "_from_melting_coal_ore"));

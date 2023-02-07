@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_redstone_ore": {
+    "has_iron_ore": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:ores/redstone"
+            "tag": "forge:ores/iron"
           }
         ]
       },
@@ -13,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredustry:dense_redstone"
+        "recipe": "oredustry:dense_raw_iron_from_compressing_iron_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_redstone_ore",
+      "has_iron_ore",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredustry:dense_redstone"
+      "oredustry:dense_raw_iron_from_compressing_iron_ore"
     ]
   }
 }

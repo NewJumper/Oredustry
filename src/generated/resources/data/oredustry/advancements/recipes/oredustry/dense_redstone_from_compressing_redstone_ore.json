@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_coal_ore": {
+    "has_redstone_ore": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:ores/coal"
+            "tag": "forge:ores/redstone"
           }
         ]
       },
@@ -13,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredustry:dense_coal"
+        "recipe": "oredustry:dense_redstone_from_compressing_redstone_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_coal_ore",
+      "has_redstone_ore",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredustry:dense_coal"
+      "oredustry:dense_redstone_from_compressing_redstone_ore"
     ]
   }
 }

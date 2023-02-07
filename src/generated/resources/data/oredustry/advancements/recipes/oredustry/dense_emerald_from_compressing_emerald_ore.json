@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_gold_ore": {
+    "has_emerald_ore": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:ores/gold"
+            "tag": "forge:ores/emerald"
           }
         ]
       },
@@ -13,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredustry:dense_raw_gold"
+        "recipe": "oredustry:dense_emerald_from_compressing_emerald_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_gold_ore",
+      "has_emerald_ore",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredustry:dense_raw_gold"
+      "oredustry:dense_emerald_from_compressing_emerald_ore"
     ]
   }
 }
