@@ -1,10 +1,14 @@
 package com.newjumper.oredustry.datagen.data.recipes;
 
+import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.item.OredustryItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -18,44 +22,39 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
 
     @Override
     protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
-        /*ShapedRecipeBuilder.shaped(OredustryBlocks.COMPRESSOR.get(), 1)
-                .define('C', Tags.Items.INGOTS_COPPER)
-                .define('R', OredustryItems.RADIATOR.get())
-                .define('E', OredustryItems.ENERGY_CELL.get())
-                .define('F', OredustryItems.FUEL_CELL.get())
-                .define('H', OredustryItems.HEAT_CELL.get())
+        ShapedRecipeBuilder.shaped(OredustryBlocks.COMPRESSOR.get(), 1)
+                .define('I', OredustryItems.INDUCTION_CELL.get())
+                .define('A', Blocks.ANVIL)
+                .define('C', OredustryItems.CONDUCTION_CELL.get())
+                .define('F', OredustryBlocks.MACHINE_FRAME.get())
                 .define('O', Tags.Items.OBSIDIAN)
-                .pattern("CRC")
-                .pattern("EFH")
+                .pattern("IAI")
+                .pattern("CFC")
                 .pattern("OOO")
-                .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
-                .unlockedBy("has_energy_cell", has(OredustryItems.ENERGY_CELL.get()))
-                .unlockedBy("has_fuel_cell", has(OredustryItems.FUEL_CELL.get()))
-                .unlockedBy("has_heat_cell", has(OredustryItems.HEAT_CELL.get())).save(consumer);
+                .unlockedBy("has_induction_cell", has(OredustryItems.INDUCTION_CELL.get()))
+                .unlockedBy("has_conduction_cell", has(OredustryItems.CONDUCTION_CELL.get()))
+                .unlockedBy("has_machine_frame", has(OredustryBlocks.MACHINE_FRAME.get())).save(consumer);
         ShapedRecipeBuilder.shaped(OredustryBlocks.CRUCIBLE.get(), 1)
-                .define('G', Tags.Items.GLASS)
-                .define('H', OredustryItems.HEAT_CELL.get())
-                .define('D', Tags.Items.GEMS_DIAMOND)
-                .define('O', Tags.Items.OBSIDIAN)
+                .define('L', Items.LAVA_BUCKET)
+                .define('C', OredustryItems.CONDUCTION_CELL.get())
+                .define('F', OredustryBlocks.MACHINE_FRAME.get())
                 .define('B', Blocks.BRICKS)
-                .pattern("GHG")
-                .pattern("DOD")
-                .pattern("BOB")
-                .unlockedBy("has_obsidian", has(Tags.Items.OBSIDIAN))
-                .unlockedBy("has_heat_cell", has(OredustryItems.HEAT_CELL.get())).save(consumer);
+                .pattern(" L ")
+                .pattern("CFC")
+                .pattern("BBB")
+                .unlockedBy("has_conduction_cell", has(OredustryItems.CONDUCTION_CELL.get()))
+                .unlockedBy("has_machine_frame", has(OredustryBlocks.MACHINE_FRAME.get())).save(consumer);
         ShapedRecipeBuilder.shaped(OredustryBlocks.SEPARATOR.get(), 1)
-                .define('C', Tags.Items.INGOTS_COPPER)
-                .define('I', Items.IRON_PICKAXE)
-                .define('E', OredustryItems.ENERGY_CELL.get())
-                .define('G', Tags.Items.GLASS)
-                .define('F', OredustryItems.FUEL_CELL.get())
+                .define('R', Tags.Items.DUSTS_REDSTONE)
+                .define('P', Items.IRON_PICKAXE)
+                .define('I', OredustryItems.INDUCTION_CELL.get())
+                .define('F', OredustryBlocks.MACHINE_FRAME.get())
                 .define('S', ItemTags.STONE_CRAFTING_MATERIALS)
-                .pattern("CIC")
-                .pattern("EGF")
+                .pattern("RPR")
+                .pattern("IFI")
                 .pattern("SSS")
-                .unlockedBy("has_copper", has(Tags.Items.INGOTS_COPPER))
-                .unlockedBy("has_energy_cell", has(OredustryItems.ENERGY_CELL.get()))
-                .unlockedBy("has_fuel_cell", has(OredustryItems.FUEL_CELL.get())).save(consumer);*/
+                .unlockedBy("has_induction_cell", has(OredustryItems.INDUCTION_CELL.get()))
+                .unlockedBy("has_machine_frame", has(OredustryBlocks.MACHINE_FRAME.get())).save(consumer);
 
         ShapedRecipeBuilder.shaped(OredustryItems.CONDUCTION_CELL.get(), 1)
                 .define('C', Tags.Items.INGOTS_COPPER)

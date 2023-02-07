@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:bricks"
+    },
+    "C": {
+      "item": "oredustry:conduction_cell"
+    },
+    "F": {
+      "item": "oredustry:machine_frame"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "pattern": [
+    " L ",
+    "CFC",
+    "BBB"
+  ],
+  "result": {
+    "item": "oredustry:crucible"
+  }
+}

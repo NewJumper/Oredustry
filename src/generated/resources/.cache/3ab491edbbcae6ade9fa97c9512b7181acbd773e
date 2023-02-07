@@ -1,5 +1,11 @@
-// 1.19.2	2023-02-06T21:19:23.1624527	Crafting Recipes
+// 1.19.2	2023-02-06T21:28:39.9963293	Crafting Recipes
+a5618652f6ff1c5cf5d2748d57efa70455506494 data/oredustry/advancements/recipes/oredustry/compressor.json
 1ce78beb261b0dda4ede7bb96afe186f707c1cb8 data/oredustry/advancements/recipes/oredustry/conduction_cell.json
+ec8615c1524ae8d033e7c778d9da8c4c19a815ce data/oredustry/advancements/recipes/oredustry/crucible.json
 b85c821da39d6c98fe484f8d8193c0c58f373c73 data/oredustry/advancements/recipes/oredustry/induction_cell.json
+ab4e51207f3199d74c2130b4e55b5305f13376dd data/oredustry/advancements/recipes/oredustry/separator.json
+29435acfbb32b666affb26cec330434e58d9a724 data/oredustry/recipes/compressor.json
 d14f91066b9e0d34e5f45af2cb07bd60e3223250 data/oredustry/recipes/conduction_cell.json
+c887ea1b32d0fc0c3ff9a46886edf8fa8fb014be data/oredustry/recipes/crucible.json
 6811ec5197f9ac694a63cfeaa8caa87721f35103 data/oredustry/recipes/induction_cell.json
+7a8f571f571229a521eaaa4e2e0c595e52462521 data/oredustry/recipes/separator.json

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:anvil"
+    },
+    "C": {
+      "item": "oredustry:conduction_cell"
+    },
+    "F": {
+      "item": "oredustry:machine_frame"
+    },
+    "I": {
+      "item": "oredustry:induction_cell"
+    },
+    "O": {
+      "tag": "forge:obsidian"
+    }
+  },
+  "pattern": [
+    "IAI",
+    "CFC",
+    "OOO"
+  ],
+  "result": {
+    "item": "oredustry:compressor"
+  }
+}
