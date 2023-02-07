@@ -37,6 +37,6 @@ public class ENLanguageProvider extends LanguageProvider {
             }
         }
 
-        return builder.toString();
+        return builder.toString().replace("Lapis", "Lapis Lazuli");
     }
 }
