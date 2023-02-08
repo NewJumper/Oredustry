@@ -20,23 +20,6 @@ public class OredustryItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        blockModel(OredustryBlocks.DENSE_COAL_ORE);
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE);
-        blockModel(OredustryBlocks.DENSE_IRON_ORE);
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_IRON_ORE);
-        blockModel(OredustryBlocks.DENSE_COPPER_ORE);
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_COPPER_ORE);
-        blockModel(OredustryBlocks.DENSE_GOLD_ORE);
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_GOLD_ORE);
-        blockModel(OredustryBlocks.DENSE_REDSTONE_ORE);
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_REDSTONE_ORE);
-        blockModel(OredustryBlocks.DENSE_EMERALD_ORE);
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_EMERALD_ORE);
-        blockModel(OredustryBlocks.DENSE_LAPIS_ORE);
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_LAPIS_ORE);
-        blockModel(OredustryBlocks.DENSE_DIAMOND_ORE);
-        blockModel(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE);
-
         blockModel(OredustryBlocks.MACHINE_FRAME);
         blockModel(OredustryBlocks.COMPRESSOR);
         blockModel(OredustryBlocks.CRUCIBLE);

@@ -1,8 +1,6 @@
 {
   "values": [
     "oredustry:machine_frame",
-    "#oredustry:machines",
-    "#oredustry:dense_ores",
-    "#oredustry:dense_deepslate_ores"
+    "#oredustry:machines"
   ]
 }

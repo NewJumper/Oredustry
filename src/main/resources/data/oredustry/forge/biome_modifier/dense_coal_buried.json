@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": "oredustry:dense_coal_buried",
-  "step": "underground_ores"
-}

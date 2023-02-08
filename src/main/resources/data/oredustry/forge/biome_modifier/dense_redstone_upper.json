@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": "oredustry:dense_redstone_upper",
-  "step": "underground_ores"
-}

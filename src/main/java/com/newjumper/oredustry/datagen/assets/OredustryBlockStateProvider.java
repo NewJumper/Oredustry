@@ -16,23 +16,6 @@ public class OredustryBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlock(OredustryBlocks.DENSE_COAL_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_COAL_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_IRON_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_IRON_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_COPPER_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_COPPER_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_GOLD_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_GOLD_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_REDSTONE_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_REDSTONE_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_EMERALD_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_EMERALD_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_LAPIS_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_LAPIS_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_DIAMOND_ORE.get());
-        simpleBlock(OredustryBlocks.DENSE_DEEPSLATE_DIAMOND_ORE.get());
-
         simpleBlock(OredustryBlocks.COMPRESSOR.get(), models().cubeColumn("compressor", blockLoc(OredustryBlocks.COMPRESSOR), modLoc("block/machine_top")));
         simpleBlock(OredustryBlocks.PURIFIER.get(), models().cubeColumn("purifier", blockLoc(OredustryBlocks.PURIFIER), modLoc("block/machine_top")));
         simpleBlock(OredustryBlocks.SEPARATOR.get(), models().cubeColumn("separator", blockLoc(OredustryBlocks.SEPARATOR), modLoc("block/machine_top")));
@@ -40,9 +23,5 @@ public class OredustryBlockStateProvider extends BlockStateProvider {
 
     public ResourceLocation blockLoc(RegistryObject<? extends Block> block) {
         return modLoc("block/" + block.getId().getPath());
-    }
-
-    public ResourceLocation blockLoc(RegistryObject<? extends Block> block, String suffix) {
-        return modLoc("block/" + block.getId().getPath() + "_" + suffix);
     }
 }

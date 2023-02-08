@@ -1,27 +1,3 @@
-// 1.19.2	2023-02-06T18:14:06.0548513	Block Tags
-bd99bde5e29c1c5c000b4e09b697b2d1ee9a37ba data/forge/tags/blocks/ores.json
-ff33df8686c180b44f722812ee8aeeea0421f1c1 data/forge/tags/blocks/ores/coal.json
-4bb6d1cbe6037013f501dbc12bbcbf708c01dbc6 data/forge/tags/blocks/ores/copper.json
-41ac0b2f2ab2ec5ab384bd132eacdcf15cf0cc9d data/forge/tags/blocks/ores/diamond.json
-d76de8fe44a4b03bb95a823dc4c6ac933518268d data/forge/tags/blocks/ores/emerald.json
-d1f3c1b99e14e941270b3992f2dccd8722225d45 data/forge/tags/blocks/ores/gold.json
-0d01fb03f27917602f730ca205c96aa1c2ea75a0 data/forge/tags/blocks/ores/iron.json
-1416ee0b8a4b750801c6d6ad70dd7c54d9eb1f37 data/forge/tags/blocks/ores/lapis.json
-37cc8e25422105f4de1146c60744c6bc33b3b581 data/forge/tags/blocks/ores/redstone.json
-5753922c3ed72d03686dabae203293573f6e110b data/forge/tags/blocks/ores_in_ground/deepslate.json
-adc0cd433ce3f8546129b243e6d89105af009bf7 data/forge/tags/blocks/ores_in_ground/stone.json
-bd99bde5e29c1c5c000b4e09b697b2d1ee9a37ba data/forge/tags/blocks/ore_rates/dense.json
-ff33df8686c180b44f722812ee8aeeea0421f1c1 data/minecraft/tags/blocks/coal_ores.json
-4bb6d1cbe6037013f501dbc12bbcbf708c01dbc6 data/minecraft/tags/blocks/copper_ores.json
-41ac0b2f2ab2ec5ab384bd132eacdcf15cf0cc9d data/minecraft/tags/blocks/diamond_ores.json
-d76de8fe44a4b03bb95a823dc4c6ac933518268d data/minecraft/tags/blocks/emerald_ores.json
-d1f3c1b99e14e941270b3992f2dccd8722225d45 data/minecraft/tags/blocks/gold_ores.json
-0d01fb03f27917602f730ca205c96aa1c2ea75a0 data/minecraft/tags/blocks/iron_ores.json
-1416ee0b8a4b750801c6d6ad70dd7c54d9eb1f37 data/minecraft/tags/blocks/lapis_ores.json
-3eb1f049452aca2dea1b072818d4dc28ed1cc772 data/minecraft/tags/blocks/mineable/pickaxe.json
-c7e6c3f79309fc2a4e0fe14560f25f339de9ad7f data/minecraft/tags/blocks/needs_iron_tool.json
-dbb11264ac29bf5a5f343b300766fb072e2c877d data/minecraft/tags/blocks/needs_stone_tool.json
-37cc8e25422105f4de1146c60744c6bc33b3b581 data/minecraft/tags/blocks/redstone_ores.json
-80b5d276aa4b5a97259713a2e189092cc5d5a4ba data/oredustry/tags/blocks/dense_deepslate_ores.json
-d3e187cf6d9afc26435738bcf028e23ee119775a data/oredustry/tags/blocks/dense_ores.json
+// 1.19.2	2023-02-07T20:30:25.2107192	Block Tags
+bb7b6834b3c081914cb7cd5af401ad421dd7f6c3 data/minecraft/tags/blocks/mineable/pickaxe.json
 2f92cf9e4ca501dd6e9445ec8ecd414c7ef8fa46 data/oredustry/tags/blocks/machines.json

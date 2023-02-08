@@ -8,7 +8,6 @@ import com.newjumper.oredustry.datagen.assets.OredustryItemModelProvider;
 import com.newjumper.oredustry.datagen.data.OredustryLootTableProvider;
 import com.newjumper.oredustry.datagen.data.recipes.CraftingRecipesProvider;
 import com.newjumper.oredustry.datagen.data.recipes.MachiningRecipesProvider;
-import com.newjumper.oredustry.datagen.data.recipes.SmeltingRecipesProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryBlockTagsProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryItemTagsProvider;
 import com.newjumper.oredustry.item.OredustryItems;
@@ -20,8 +19,6 @@ import com.newjumper.oredustry.screen.CompressorScreen;
 import com.newjumper.oredustry.screen.CrucibleScreen;
 import com.newjumper.oredustry.screen.OredustryMenuTypes;
 import com.newjumper.oredustry.screen.SeparatorScreen;
-import com.newjumper.oredustry.world.OreConfiguredFeatures;
-import com.newjumper.oredustry.world.OrePlacedFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -45,8 +42,6 @@ public class Oredustry {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         OredustryBlocks.BLOCKS.register(eventBus);
-        OreConfiguredFeatures.CONFIGURED_FEATURES.register(eventBus);
-        OrePlacedFeatures.PLACED_FEATURES.register(eventBus);
         OredustryItems.ITEMS.register(eventBus);
         OredustryBlockEntities.BLOCK_ENTITIES.register(eventBus);
         OredustryMenuTypes.MENUS.register(eventBus);
@@ -77,7 +72,6 @@ public class Oredustry {
 
         // data
         generator.addProvider(event.includeServer(), new CraftingRecipesProvider(generator));
-        generator.addProvider(event.includeServer(), new SmeltingRecipesProvider(generator));
         generator.addProvider(event.includeServer(), new MachiningRecipesProvider(generator));
 
         OredustryBlockTagsProvider blockTags = new OredustryBlockTagsProvider(generator, fileHelper);

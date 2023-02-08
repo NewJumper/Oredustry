@@ -10,21 +10,12 @@ import net.minecraft.world.level.block.Block;
 
 public class OredustryTags {
     public static class Blocks {
-        public static final TagKey<Block> MACHINES = modTag("machines");
-        public static final TagKey<Block> DENSE_ORES = modTag("dense_ores");
-        public static final TagKey<Block> DENSE_DEEPSLATE_ORES = modTag("dense_deepslate_ores");
-
-        private static TagKey<Block> modTag(String name) {
-            return BlockTags.create(new ResourceLocation(Oredustry.MOD_ID, name));
-        }
+        public static final TagKey<Block> MACHINES = BlockTags.create(new ResourceLocation(Oredustry.MOD_ID, "machines"));
     }
 
     public static class Items {
         public static final TagKey<Item> DENSE_MATERIALS = modTag("dense_materials");
         public static final TagKey<Item> CELLS = modTag("cells");
-
-        public static final TagKey<Item> DENSE_ORES = modTag("dense_ores");
-        public static final TagKey<Item> DENSE_DEEPSLATE_ORES = modTag("dense_deepslate_ores");
 
         private static TagKey<Item> modTag(String name) {
             return ItemTags.create(new ResourceLocation(Oredustry.MOD_ID, name));
