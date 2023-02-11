@@ -92,15 +92,15 @@ public class CompressorMenu extends AbstractContainerMenu {
         return fuel == 0 ? -1 : Math.max(14 * (max - fuel) / max, 0);
     }
 
-    public int drawPress() {
-        int progress = this.data.get(2);
-        return progress == 0 ? 0 : (progress % 20 + 1) * 11 / 20;
-    }
-
     public int drawProgress() {
-        double progress = this.data.get(2);
+        int progress = this.data.get(2);
         int max = this.data.get(3);
 
-        return progress == 0 ? 0 : (int) (progress / max * 20);
+        return progress == 0 ? 0 : 20 * progress / max;
+    }
+
+    public int drawPress() {
+        int progress = this.data.get(2);
+        return progress == 0 ? 0 : 11 * (progress % 20 + 1) / 20;
     }
 }

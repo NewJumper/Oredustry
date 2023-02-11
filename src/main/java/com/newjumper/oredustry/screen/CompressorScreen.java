@@ -40,10 +40,10 @@ public class CompressorScreen extends AbstractContainerScreen<CompressorMenu> {
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
         if(menu.drawFuel() > -1) this.blit(pPoseStack, x + 37, y + 17 + menu.drawFuel(), 176, menu.drawFuel(), 14, 14 - menu.drawFuel());
+        if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 86, y + 37, 176, 36, menu.drawProgress(), 13);
         if(menu.drawPress() > 0) {
             this.blit(pPoseStack, x + 58, y + 21, 176, 14, 28, menu.drawPress());
             this.blit(pPoseStack, x + 58, y + 64 - menu.drawPress(), 176, 36 - menu.drawPress(), 28, menu.drawPress());
         }
-        if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 86, y + 37, 176, 36, menu.drawProgress(), 13);
     }
 }

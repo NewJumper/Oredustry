@@ -153,25 +153,22 @@ public class CrucibleMenu extends AbstractContainerMenu {
     }
 
     public int drawProgress() {
-        double progress = this.data.get(2);
+        int progress = this.data.get(2);
         int max = this.data.get(3);
 
-        return progress == 0 ? 0 : (int) (progress / max * 39) % 13 + 1;
+        return progress == 0 ? 0 : 39 * progress / max % 13 + 1;
     }
 
     public int drawCoolingProgress() {
-        double progress = this.data.get(4);
+        int progress = this.data.get(4);
         return progress == 0 ? 0 : (int) (progress * 0.37);
     }
 
     public int drawLiquid() {
-        double liquid = this.data.get(5);
-        int max = CrucibleBlockEntity.LIQUID_CAPACITY;
-
-        return liquid == 0 ? 0 : Math.max((int) (liquid / max * 44), 1);
+        return getLiquid() == 0 ? 0 : Math.max(44 * getLiquid() / CrucibleBlockEntity.LIQUID_CAPACITY, 1);
     }
 
     public int drawWater() {
-        return getWater() == 0 ? 0 : Math.max((int) (getWater() / (double) blockEntity.fluidTank.getCapacity() * 16), 1);
+        return getWater() == 0 ? 0 : Math.max(16 * getWater() / blockEntity.fluidTank.getCapacity(), 1);
     }
 }
