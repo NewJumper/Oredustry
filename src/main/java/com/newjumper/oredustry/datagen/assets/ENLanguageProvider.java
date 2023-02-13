@@ -4,10 +4,13 @@ import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.util.MoltenLiquids;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.BlockItem;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.Arrays;
 
 public class ENLanguageProvider extends LanguageProvider {
     public ENLanguageProvider(DataGenerator gen) {
@@ -21,6 +24,7 @@ public class ENLanguageProvider extends LanguageProvider {
         OredustryBlockEntities.BLOCK_ENTITIES.getEntries().forEach(container -> add(container, "container"));
 
         add("itemGroup." + Oredustry.MOD_ID, "Oredustry");
+        Arrays.stream(MoltenLiquids.values()).map(MoltenLiquids::getName).forEach(name -> add("liquid." + Oredustry.MOD_ID + "." + name, convertToName(name)));
     }
 
     private void add(RegistryObject<?> entry, String prefix) {

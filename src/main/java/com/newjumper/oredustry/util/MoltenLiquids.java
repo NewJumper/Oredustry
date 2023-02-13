@@ -5,21 +5,27 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public enum MoltenLiquids {
-    COAL(Items.COAL, 70),
-    IRON(Items.IRON_INGOT, 120),
-    COPPER(Items.COPPER_INGOT, 120),
-    GOLD(Items.GOLD_INGOT, 120),
-    REDSTONE(Items.REDSTONE, 90),
-    EMERALD(Items.EMERALD, 90),
-    LAPIS(Items.LAPIS_LAZULI, 90),
-    DIAMOND(Items.DIAMOND, 150);
+    COAL("molten_coal", Items.COAL, 70),
+    IRON("molten_iron", Items.IRON_INGOT, 120),
+    COPPER("molten_copper", Items.COPPER_INGOT, 120),
+    GOLD("molten_gold", Items.GOLD_INGOT, 120),
+    REDSTONE("molten_redstone", Items.REDSTONE, 90),
+    EMERALD("molten_emerald", Items.EMERALD, 90),
+    LAPIS("molten_lapis", Items.LAPIS_LAZULI, 90),
+    DIAMOND("molten_diamond", Items.DIAMOND, 150);
 
+    private final String name;
     private final Item solidItem;
     private final int coolRate;
 
-    MoltenLiquids(Item solidItem, int coolRate) {
+    MoltenLiquids(String name, Item solidItem, int coolRate) {
+        this.name = name;
         this.solidItem = solidItem;
         this.coolRate = coolRate;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public ItemStack getSolidItem(int count) {

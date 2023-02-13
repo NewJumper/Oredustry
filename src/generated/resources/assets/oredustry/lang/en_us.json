@@ -17,5 +17,13 @@
   "item.oredustry.dense_raw_iron": "Dense Raw Iron",
   "item.oredustry.dense_redstone": "Dense Redstone",
   "item.oredustry.induction_cell": "Induction Cell",
-  "itemGroup.oredustry": "Oredustry"
+  "itemGroup.oredustry": "Oredustry",
+  "liquid.oredustry.molten_coal": "Molten Coal",
+  "liquid.oredustry.molten_copper": "Molten Copper",
+  "liquid.oredustry.molten_diamond": "Molten Diamond",
+  "liquid.oredustry.molten_emerald": "Molten Emerald",
+  "liquid.oredustry.molten_gold": "Molten Gold",
+  "liquid.oredustry.molten_iron": "Molten Iron",
+  "liquid.oredustry.molten_lapis": "Molten Lapis Lazuli",
+  "liquid.oredustry.molten_redstone": "Molten Redstone"
 }
