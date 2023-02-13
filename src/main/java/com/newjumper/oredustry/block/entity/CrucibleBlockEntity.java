@@ -176,7 +176,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
 
         if(blockEntity.isActive()) blockEntity.fuel--;
 
-        if(canMelt(inventory, recipe) && blockEntity.liquidAmount + recipe.get().getResultItem().getCount() * 100 <= LIQUID_CAPACITY) {
+        if(canMelt(inventory, recipe) && blockEntity.liquidAmount + recipe.get().getResultItem().getCount() * 150 <= LIQUID_CAPACITY) {
             if(!blockEntity.isActive()) {
                 double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
                 blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
@@ -190,7 +190,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
                 if(blockEntity.progress == blockEntity.maxProgress) {
                     blockEntity.itemHandler.extractItem(1, 1, false);
                     blockEntity.liquid = MoltenLiquids.getLiquid(recipe.get().getResultItem());
-                    blockEntity.liquidAmount += recipe.get().getResultItem().getCount() * 100;
+                    blockEntity.liquidAmount += recipe.get().getResultItem().getCount() * blockEntity.liquid.getCapacity();
 
                     blockEntity.progress = 0;
                 }
@@ -215,7 +215,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
             blockEntity.coolingProgress++;
         }
 
-        if(blockEntity.coolingProgress >= 100) {
+        if(blockEntity.liquid != null && blockEntity.coolingProgress >= blockEntity.liquid.getCapacity()) {
             blockEntity.itemHandler.setStackInSlot(3, blockEntity.liquid.getSolidItem(blockEntity.itemHandler.getStackInSlot(3).getCount() + 1));
             blockEntity.coolingProgress = 0;
         }

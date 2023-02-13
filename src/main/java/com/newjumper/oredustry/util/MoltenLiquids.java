@@ -16,12 +16,12 @@ public enum MoltenLiquids {
 
     private final String name;
     private final Item solidItem;
-    private final int coolRate;
+    private final int capacity;
 
-    MoltenLiquids(String name, Item solidItem, int coolRate) {
+    MoltenLiquids(String name, Item solidItem, int capacity) {
         this.name = name;
         this.solidItem = solidItem;
-        this.coolRate = coolRate;
+        this.capacity = capacity;
     }
 
     public String getName() {
@@ -32,8 +32,8 @@ public enum MoltenLiquids {
         return new ItemStack(solidItem, count);
     }
 
-    public int getCoolRate() {
-        return coolRate;
+    public int getCapacity() {
+        return capacity;
     }
 
     public static MoltenLiquids getLiquid(ItemStack stack) {
