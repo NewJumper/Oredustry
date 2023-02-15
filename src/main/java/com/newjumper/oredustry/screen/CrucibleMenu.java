@@ -3,6 +3,7 @@ package com.newjumper.oredustry.screen;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.CrucibleBlockEntity;
 import com.newjumper.oredustry.screen.slot.ResultSlot;
+import com.newjumper.oredustry.util.OredustryTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -30,7 +31,7 @@ public class CrucibleMenu extends AbstractContainerMenu {
     private final Level level;
 
     public CrucibleMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
-        this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(6));
+        this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(7));
     }
 
     public CrucibleMenu(int pContainerId, Inventory pInventory, BlockEntity pBlockEntity, ContainerData pContainerData) {
@@ -52,7 +53,7 @@ public class CrucibleMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 1, 43, 50) {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    return stack.is(Tags.Items.ORES) || stack.is(Tags.Items.RAW_MATERIALS);
+                    return stack.is(Tags.Items.ORES) || stack.is(Tags.Items.RAW_MATERIALS) || stack.is(OredustryTags.Items.DENSE_MATERIALS);
                 }
             });
             this.addSlot(new SlotItemHandler(handler, 2, 86, 50) {
@@ -138,7 +139,7 @@ public class CrucibleMenu extends AbstractContainerMenu {
     }
 
     public int getLiquid() {
-        return this.data.get(5);
+        return this.data.get(6);
     }
 
     public int getWater() {
@@ -161,7 +162,9 @@ public class CrucibleMenu extends AbstractContainerMenu {
 
     public int drawCoolingProgress() {
         int progress = this.data.get(4);
-        return progress == 0 ? 0 : (int) (progress * 0.37);
+        int max = this.data.get(5);
+
+        return progress == 0 ? 0 : 37 * progress / max;
     }
 
     public int drawLiquid() {

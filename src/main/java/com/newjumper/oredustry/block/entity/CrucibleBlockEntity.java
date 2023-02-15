@@ -46,7 +46,8 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
                 case 2 -> CrucibleBlockEntity.this.progress;
                 case 3 -> CrucibleBlockEntity.this.maxProgress;
                 case 4 -> CrucibleBlockEntity.this.coolingProgress;
-                case 5 -> CrucibleBlockEntity.this.liquidAmount;
+                case 5 -> CrucibleBlockEntity.this.maxCooling;
+                case 6 -> CrucibleBlockEntity.this.liquidAmount;
                 default -> 0;
             };
         }
@@ -58,12 +59,13 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
                 case 2 -> CrucibleBlockEntity.this.progress = value;
                 case 3 -> CrucibleBlockEntity.this.maxProgress = value;
                 case 4 -> CrucibleBlockEntity.this.coolingProgress = value;
-                case 5 -> CrucibleBlockEntity.this.liquidAmount = value;
+                case 5 -> CrucibleBlockEntity.this.maxCooling = value;
+                case 6 -> CrucibleBlockEntity.this.liquidAmount = value;
             }
         }
 
         public int getCount() {
-            return 6;
+            return 7;
         }
     };
     private final LazyOptional<IItemHandler> lazyItemHandler;
@@ -75,6 +77,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
     private int progress;
     private int maxProgress;
     private int coolingProgress;
+    private int maxCooling;
     private int liquidAmount;
     private MoltenLiquids liquid;
 
@@ -190,7 +193,8 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
                 if(blockEntity.progress == blockEntity.maxProgress) {
                     blockEntity.itemHandler.extractItem(1, 1, false);
                     blockEntity.liquid = MoltenLiquids.getLiquid(recipe.get().getResultItem());
-                    blockEntity.liquidAmount += recipe.get().getResultItem().getCount() * blockEntity.liquid.getCapacity();
+                    blockEntity.maxCooling = blockEntity.liquid.getCapacity();
+                    blockEntity.liquidAmount += recipe.get().getResultItem().getCount() * blockEntity.maxCooling;
 
                     blockEntity.progress = 0;
                 }
