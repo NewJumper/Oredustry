@@ -164,7 +164,7 @@ public class CrucibleMenu extends AbstractContainerMenu {
         int progress = this.data.get(4);
         int max = this.data.get(5);
 
-        return progress == 0 ? 0 : 37 * progress / max;
+        return progress == 0 || max == 0 ? 0 : 37 * progress / max;
     }
 
     public int drawLiquid() {

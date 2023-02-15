@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,8 +38,15 @@ public class CrucibleScreen extends AbstractContainerScreen<CrucibleMenu> {
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         super.renderLabels(pPoseStack, pMouseX, pMouseY);
 
-        if(isHovering(66, 18, 12, 52, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal(menu.getLiquid() + " mB")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
-        if(isHovering(111, 54, 8, 16, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal(menu.getWater() + " mB")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
+        if(isHovering(66, 18, 12, 52, pMouseX, pMouseY)) {
+            List<Component> tooltip = new ArrayList<>();
+            if(menu.blockEntity.liquid != null) tooltip.add(Component.translatable("liquid." + Oredustry.MOD_ID + "." + menu.blockEntity.liquid.getName()));
+            tooltip.add(Component.literal(menu.getLiquid() + " mB"));
+
+            renderTooltip(pPoseStack, tooltip, Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
+        }
+
+        if(isHovering(111, 54, 8, 16, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal("Water"), Component.literal(menu.getWater() + " mB")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
     }
 
     @Override

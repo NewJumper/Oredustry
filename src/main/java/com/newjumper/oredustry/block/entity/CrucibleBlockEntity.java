@@ -79,7 +79,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
     private int coolingProgress;
     private int maxCooling;
     private int liquidAmount;
-    private MoltenLiquids liquid;
+    public MoltenLiquids liquid;
 
     public CrucibleBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.CRUCIBLE.get(), pWorldPosition, pBlockState);
