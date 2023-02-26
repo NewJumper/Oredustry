@@ -1,4 +1,4 @@
-// 1.19.2	2023-02-07T20:30:25.2097186	Item Models: oredustry
+// 1.19.2	2023-02-25T19:37:10.8811535	Item Models: oredustry
 fa469a2777d2b1b15ed8356fd5862b63e6025088 assets/oredustry/models/item/compressor.json
 2ef43be68fc694b2d45c61e4efa78160d1992cb0 assets/oredustry/models/item/conduction_cell.json
 2d8a4bd3cefe8a1a780b4d11d579181168799364 assets/oredustry/models/item/crucible.json
@@ -12,5 +12,4 @@ f30367113cd8c586f345de21a7cbf9a8ccec264e assets/oredustry/models/item/dense_raw_
 2b05a1b59e02e5fe7b06f16d95dd220f35cafffe assets/oredustry/models/item/dense_redstone.json
 f86897d7705565a6896891d971915dcdfec44072 assets/oredustry/models/item/induction_cell.json
 38e662a0b9ecd54bf2019a919c27bbdeada9b875 assets/oredustry/models/item/machine_frame.json
-2b75cb5f2aaac9bb08261444bf1680d9f2ea7b15 assets/oredustry/models/item/purifier.json
 4ee69277f0282e3c891aca5899398d20124fab43 assets/oredustry/models/item/separator.json

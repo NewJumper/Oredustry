@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "oredustry:block/machine_top",
-    "side": "oredustry:block/purifier"
-  }
-}

@@ -12,7 +12,6 @@ public class OredustryLootTables extends BlockLoot {
         this.dropSelf(OredustryBlocks.MACHINE_FRAME.get());
         this.dropSelf(OredustryBlocks.COMPRESSOR.get());
         this.dropSelf(OredustryBlocks.CRUCIBLE.get());
-        this.dropSelf(OredustryBlocks.PURIFIER.get());
         this.dropSelf(OredustryBlocks.SEPARATOR.get());
     }
 

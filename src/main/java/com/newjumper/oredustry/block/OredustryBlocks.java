@@ -20,7 +20,6 @@ public class OredustryBlocks {
     public static final RegistryObject<Block> MACHINE_FRAME = register("machine_frame", () -> new MachineFrameBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(4.5f, 6f).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> COMPRESSOR = register("compressor", () -> new CompressorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CRUCIBLE = register("crucible", () -> new CrucibleBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> PURIFIER = register("purifier", () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> SEPARATOR = register("separator", () -> new SeparatorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
 
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> pBlock) {

@@ -18,7 +18,7 @@ public class OredustryBlockTagsProvider extends BlockTagsProvider {
     protected void addTags() {
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(OredustryBlocks.MACHINE_FRAME.get()).addTag(OredustryTags.Blocks.MACHINES);
 
-        tag(OredustryTags.Blocks.MACHINES).add(OredustryBlocks.COMPRESSOR.get(), OredustryBlocks.CRUCIBLE.get(), OredustryBlocks.PURIFIER.get(), OredustryBlocks.SEPARATOR.get());
+        tag(OredustryTags.Blocks.MACHINES).add(OredustryBlocks.COMPRESSOR.get(), OredustryBlocks.CRUCIBLE.get(), OredustryBlocks.SEPARATOR.get());
     }
 
     @NotNull

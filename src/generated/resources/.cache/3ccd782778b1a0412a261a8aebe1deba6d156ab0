@@ -1,7 +1,5 @@
-// 1.19.2	2023-02-07T20:30:25.2157199	Block States: oredustry
+// 1.19.2	2023-02-25T19:37:10.8831539	Block States: oredustry
 8fdc3dc9259d7acbe25b6815cbb9d0fc484eb871 assets/oredustry/blockstates/compressor.json
-c1611329c4219f563eb259cff4f2d0308526b6bc assets/oredustry/blockstates/purifier.json
 3bc90be6cb79853b132a45002674b3e4e51eea8d assets/oredustry/blockstates/separator.json
 01463e366e44f17bae47f08df022463455675e1f assets/oredustry/models/block/compressor.json
-76f6e5e36e5552fe4ec619ca6c11df065f96b024 assets/oredustry/models/block/purifier.json
 6f401096703df1f7c69c8a2104d054ed367ed7e0 assets/oredustry/models/block/separator.json

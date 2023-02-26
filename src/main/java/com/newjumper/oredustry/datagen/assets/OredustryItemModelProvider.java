@@ -23,7 +23,6 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.MACHINE_FRAME);
         blockModel(OredustryBlocks.COMPRESSOR);
         blockModel(OredustryBlocks.CRUCIBLE);
-        blockModel(OredustryBlocks.PURIFIER);
         blockModel(OredustryBlocks.SEPARATOR);
 
         itemModel(OredustryItems.CONDUCTION_CELL, GENERATED);
