@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:anvil"
+    },
+    "C": {
+      "item": "oredustry:conduction_cell"
+    },
+    "I": {
+      "item": "oredustry:induction_cell"
+    },
+    "O": {
+      "tag": "forge:obsidian"
+    }
+  },
+  "pattern": [
+    "IAI",
+    "C C",
+    "OOO"
+  ],
+  "result": {
+    "item": "oredustry:compressor_upgrade"
+  }
+}

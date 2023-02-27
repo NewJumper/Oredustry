@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "oredustry:induction_cell"
+    },
+    "P": {
+      "item": "minecraft:iron_pickaxe"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "S": {
+      "tag": "minecraft:stone_crafting_materials"
+    }
+  },
+  "pattern": [
+    "RPR",
+    "I I",
+    "SSS"
+  ],
+  "result": {
+    "item": "oredustry:separator_upgrade"
+  }
+}

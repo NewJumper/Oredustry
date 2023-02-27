@@ -81,6 +81,34 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
                 .pattern(" R ")
                 .unlockedBy("has_redstone", has(Tags.Items.DUSTS_REDSTONE))
                 .unlockedBy("has_diamond", has(Tags.Items.GEMS_DIAMOND)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(OredustryItems.COMPRESSOR_UPGRADE.get(), 1)
+                .define('I', OredustryItems.INDUCTION_CELL.get())
+                .define('A', Blocks.ANVIL)
+                .define('C', OredustryItems.CONDUCTION_CELL.get())
+                .define('O', Tags.Items.OBSIDIAN)
+                .pattern("IAI")
+                .pattern("C C")
+                .pattern("OOO")
+                .unlockedBy("has_induction_cell", has(OredustryItems.INDUCTION_CELL.get()))
+                .unlockedBy("has_conduction_cell", has(OredustryItems.CONDUCTION_CELL.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(OredustryItems.CRUCIBLE_UPGRADE.get(), 1)
+                .define('L', Items.LAVA_BUCKET)
+                .define('C', OredustryItems.CONDUCTION_CELL.get())
+                .define('B', Blocks.BRICKS)
+                .pattern(" L ")
+                .pattern("C C")
+                .pattern("BBB")
+                .unlockedBy("has_conduction_cell", has(OredustryItems.CONDUCTION_CELL.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(OredustryItems.SEPARATOR_UPGRADE.get(), 1)
+                .define('R', Tags.Items.DUSTS_REDSTONE)
+                .define('P', Items.IRON_PICKAXE)
+                .define('I', OredustryItems.INDUCTION_CELL.get())
+                .define('S', ItemTags.STONE_CRAFTING_MATERIALS)
+                .pattern("RPR")
+                .pattern("I I")
+                .pattern("SSS")
+                .unlockedBy("has_induction_cell", has(OredustryItems.INDUCTION_CELL.get())).save(consumer);
     }
 
     @Override
