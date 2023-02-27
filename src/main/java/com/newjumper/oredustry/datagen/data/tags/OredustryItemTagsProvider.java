@@ -18,6 +18,7 @@ public class OredustryItemTagsProvider extends ItemTagsProvider {
     protected void addTags() {
         tag(OredustryTags.Items.DENSE_MATERIALS).add(OredustryItems.DENSE_COAL.get(), OredustryItems.DENSE_RAW_COPPER.get(), OredustryItems.DENSE_RAW_GOLD.get(), OredustryItems.DENSE_RAW_IRON.get(), OredustryItems.DENSE_REDSTONE.get(), OredustryItems.DENSE_EMERALD.get(), OredustryItems.DENSE_LAPIS.get(), OredustryItems.DENSE_DIAMOND.get());
         tag(OredustryTags.Items.CELLS).add(OredustryItems.CONDUCTION_CELL.get(), OredustryItems.INDUCTION_CELL.get());
+        tag(OredustryTags.Items.FRAME_UPGRADES).add(OredustryItems.COMPRESSOR_UPGRADE.get(), OredustryItems.CRUCIBLE_UPGRADE.get(), OredustryItems.SEPARATOR_UPGRADE.get());
     }
 
     @NotNull
