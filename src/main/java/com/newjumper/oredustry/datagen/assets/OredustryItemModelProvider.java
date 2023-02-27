@@ -25,9 +25,6 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.CRUCIBLE);
         blockModel(OredustryBlocks.SEPARATOR);
 
-        itemModel(OredustryItems.CONDUCTION_CELL, GENERATED);
-        itemModel(OredustryItems.INDUCTION_CELL, GENERATED);
-
         itemModel(OredustryItems.DENSE_COAL, GENERATED);
         itemModel(OredustryItems.DENSE_RAW_COPPER, GENERATED);
         itemModel(OredustryItems.DENSE_RAW_GOLD, GENERATED);
@@ -36,6 +33,13 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         itemModel(OredustryItems.DENSE_EMERALD, GENERATED);
         itemModel(OredustryItems.DENSE_LAPIS, GENERATED);
         itemModel(OredustryItems.DENSE_DIAMOND, GENERATED);
+
+        itemModel(OredustryItems.CONDUCTION_CELL, GENERATED);
+        itemModel(OredustryItems.INDUCTION_CELL, GENERATED);
+
+        itemModel(OredustryItems.COMPRESSOR_UPGRADE, GENERATED);
+        itemModel(OredustryItems.CRUCIBLE_UPGRADE, GENERATED);
+        itemModel(OredustryItems.SEPARATOR_UPGRADE, GENERATED);
     }
 
     public void blockModel(RegistryObject<Block> block) {

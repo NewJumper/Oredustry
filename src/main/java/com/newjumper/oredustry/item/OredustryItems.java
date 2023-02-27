@@ -21,4 +21,8 @@ public class OredustryItems {
 
     public static final RegistryObject<Item> CONDUCTION_CELL = ITEMS.register("conduction_cell", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> INDUCTION_CELL = ITEMS.register("induction_cell", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+
+    public static final RegistryObject<Item> COMPRESSOR_UPGRADE = ITEMS.register("compressor_upgrade", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> CRUCIBLE_UPGRADE = ITEMS.register("crucible_upgrade", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> SEPARATOR_UPGRADE = ITEMS.register("separator_upgrade", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
 }

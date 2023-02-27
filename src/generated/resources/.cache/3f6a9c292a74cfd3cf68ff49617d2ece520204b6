@@ -1,7 +1,9 @@
-// 1.19.2	2023-02-25T19:37:10.8811535	Item Models: oredustry
+// 1.19.2	2023-02-26T21:38:47.1629047	Item Models: oredustry
 fa469a2777d2b1b15ed8356fd5862b63e6025088 assets/oredustry/models/item/compressor.json
+3b909e72a002112f1ef60dd83de37130a5803a70 assets/oredustry/models/item/compressor_upgrade.json
 2ef43be68fc694b2d45c61e4efa78160d1992cb0 assets/oredustry/models/item/conduction_cell.json
 2d8a4bd3cefe8a1a780b4d11d579181168799364 assets/oredustry/models/item/crucible.json
+06891128e195cd2ad12c7ced8d12d428bf1990cc assets/oredustry/models/item/crucible_upgrade.json
 6a71d52e4e2c998a93bfbc3608817e04a696b231 assets/oredustry/models/item/dense_coal.json
 6eb05ef5ccfcda6a48bc0c8294afde0f9d01fce4 assets/oredustry/models/item/dense_diamond.json
 3d7eb679e983fca92f421fb72c6300abcfb8bb9e assets/oredustry/models/item/dense_emerald.json
@@ -13,3 +15,4 @@ f30367113cd8c586f345de21a7cbf9a8ccec264e assets/oredustry/models/item/dense_raw_
 f86897d7705565a6896891d971915dcdfec44072 assets/oredustry/models/item/induction_cell.json
 38e662a0b9ecd54bf2019a919c27bbdeada9b875 assets/oredustry/models/item/machine_frame.json
 4ee69277f0282e3c891aca5899398d20124fab43 assets/oredustry/models/item/separator.json
+54fdd06f026ddd46676da473e8a0f1bb34bccd04 assets/oredustry/models/item/separator_upgrade.json
