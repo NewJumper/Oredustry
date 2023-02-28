@@ -2,6 +2,7 @@ package com.newjumper.oredustry.block.entity;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
+import com.newjumper.oredustry.block.SeparatorBlock;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
 import com.newjumper.oredustry.screen.SeparatorMenu;
 import net.minecraft.core.BlockPos;
@@ -135,7 +136,18 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
         Optional<SeparatingRecipe> recipe = level.getRecipeManager().getRecipeFor(SeparatingRecipe.Type.INSTANCE, inventory, level);
         recipe.ifPresent(separatingRecipe -> blockEntity.maxProgress = separatingRecipe.getTime());
 
-        if(blockEntity.isActive()) blockEntity.fuel--;
+        if(blockEntity.isActive()) {
+            if(!blockEntity.getBlockState().getValue(SeparatorBlock.ACTIVE)) {
+                state = state.setValue(SeparatorBlock.ACTIVE, true);
+                level.setBlock(pos, state, 3);
+            }
+            blockEntity.fuel--;
+        } else {
+            if(blockEntity.getBlockState().getValue(SeparatorBlock.ACTIVE)) {
+                state = state.setValue(SeparatorBlock.ACTIVE, false);
+                level.setBlock(pos, state, 3);
+            }
+        }
 
         if(canSeparate(inventory, recipe) && !blockEntity.isActive()) {
             double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;

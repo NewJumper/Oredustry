@@ -4,7 +4,11 @@ import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.block.entity.SeparatorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +29,7 @@ import net.minecraftforge.network.NetworkHooks;
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public class SeparatorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty ACTIVE = CustomBlockStateProperties.ACTIVE;
+    public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
     public SeparatorBlock(Properties pProperties) {
         super(pProperties);
@@ -55,6 +59,27 @@ public class SeparatorBlock extends BaseEntityBlock {
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
+    }
+
+    @Override
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+        if(pState.getValue(ACTIVE)) {
+            double d0 = pPos.getX() + 0.5;
+            double d1 = pPos.getY();
+            double d2 = pPos.getZ() + 0.5;
+            if(pRandom.nextDouble() < 0.1) {
+                pLevel.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1, 1, false);
+            }
+
+            Direction direction = pState.getValue(FACING);
+            Direction.Axis axis = direction.getAxis();
+            double d3 = pRandom.nextDouble() * 0.6 - 0.3;
+            double d4 = axis == Direction.Axis.X ? direction.getStepX() * 0.52 : d3;
+            double d5 = pRandom.nextDouble() * 6.0 / 16.0;
+            double d6 = axis == Direction.Axis.Z ? direction.getStepZ() * 0.52 : d3;
+            pLevel.addParticle(ParticleTypes.SMOKE, d0 + d4, d1 + d5, d2 + d6, 0, 0, 0);
+            pLevel.addParticle(ParticleTypes.FLAME, d0 + d4, d1 + d5, d2 + d6, 0, 0, 0);
+        }
     }
 
     @Override
