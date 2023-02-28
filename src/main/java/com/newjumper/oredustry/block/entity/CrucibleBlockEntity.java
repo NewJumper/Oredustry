@@ -1,6 +1,7 @@
 package com.newjumper.oredustry.block.entity;
 
 import com.newjumper.oredustry.Oredustry;
+import com.newjumper.oredustry.block.CrucibleBlock;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.recipe.MeltingRecipe;
 import com.newjumper.oredustry.screen.CrucibleMenu;
@@ -178,6 +179,10 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
         recipe.ifPresent(meltingRecipe -> blockEntity.maxProgress = meltingRecipe.getTime());
 
         if(blockEntity.isActive()) blockEntity.fuel--;
+        if(!blockEntity.getBlockState().getValue(CrucibleBlock.WARM) == blockEntity.liquidAmount > 0) {
+            state = state.setValue(CrucibleBlock.WARM, blockEntity.liquidAmount > 0);
+            level.setBlock(pos, state, 3);
+        }
 
         if(canMelt(inventory, recipe) && blockEntity.liquidAmount + recipe.get().getResultItem().getCount() * 150 <= LIQUID_CAPACITY) {
             if(!blockEntity.isActive()) {

@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "warm=false": {
+      "model": "oredustry:block/crucible"
+    },
+    "warm=true": {
       "model": "oredustry:block/crucible"
     }
   }

@@ -3,14 +3,17 @@ package com.newjumper.oredustry.block;
 import com.newjumper.oredustry.block.entity.CrucibleBlockEntity;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -20,6 +23,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -28,13 +33,38 @@ import net.minecraftforge.network.NetworkHooks;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public class CrucibleBlock extends BaseEntityBlock {
+    public static final BooleanProperty WARM = BooleanProperty.create("warm");
+
     public CrucibleBlock(Properties pProperties) {
         super(pProperties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(WARM, Boolean.FALSE));
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        return this.defaultBlockState().setValue(WARM, Boolean.FALSE);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(WARM);
     }
 
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
+    }
+
+    @Override
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+        if(pState.getValue(WARM)) {
+            if(pRandom.nextDouble() < 0.1) {
+                pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.LAVA_POP, SoundSource.BLOCKS, 1, 1, false);
+            }
+
+            double d = pRandom.nextDouble() * 6 / 16.0 + 0.4;
+            pLevel.addParticle(ParticleTypes.LARGE_SMOKE, pPos.getX() + 0.52, pPos.getY() + d, pPos.getZ() + 0.52, 0, 0, 0);
+        }
     }
 
     @Override
