@@ -29,18 +29,18 @@ public class MeltingRecipeBuilder implements RecipeBuilder {
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public MeltingRecipeBuilder(ItemLike ingredient, ItemLike result, int count) {
-        this(Ingredient.of(ingredient), result, count, 200);
+        this(Ingredient.of(ingredient), result, count, 0);
     }
 
     public MeltingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count) {
-        this(Ingredient.of(ingredient), result, count, 200);
+        this(Ingredient.of(ingredient), result, count, 0);
     }
 
-    public MeltingRecipeBuilder(Ingredient ingredient, ItemLike result, int count, int time) {
-        this(ingredient, result, count, time, 0);
+    public MeltingRecipeBuilder(Ingredient ingredient, ItemLike result, int count, float experience) {
+        this(ingredient, result, count, experience, 150);
     }
 
-    public MeltingRecipeBuilder(Ingredient ingredient, ItemLike result, int count, int time, float experience) {
+    public MeltingRecipeBuilder(Ingredient ingredient, ItemLike result, int count, float experience, int time) {
         this.ingredient = ingredient;
         this.result = result.asItem();
         this.count = count;
@@ -101,7 +101,7 @@ public class MeltingRecipeBuilder implements RecipeBuilder {
             itemJson.addProperty("count", count);
 
             if(experience != 0) pJson.addProperty("experience", experience);
-            if(time != 200) pJson.addProperty("time", time);
+            if(time != 150) pJson.addProperty("time", time);
         }
 
         @Override
