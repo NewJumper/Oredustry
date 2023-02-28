@@ -26,14 +26,24 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
+import java.util.stream.Stream;
+
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public class CrucibleBlock extends BaseEntityBlock {
     public static final BooleanProperty WARM = BooleanProperty.create("warm");
+    private final VoxelShape CUTOUT = Block.box(4, 7, 4, 12, 14, 12);
+    private final VoxelShape MAIN = Shapes.join(Block.box(0, 0, 0, 16, 13, 16), CUTOUT, BooleanOp.ONLY_FIRST);
+    private final VoxelShape CORNER_1 = Block.box(0, 12, 0, 3, 13, 3);
+    private final VoxelShape CORNER_2 = Block.box(0, 12, 13, 3, 13, 16);
+    private final VoxelShape CORNER_3 = Block.box(13, 12, 13, 16, 13, 16);
+    private final VoxelShape CORNER_4 = Block.box(13, 12, 0, 16, 13, 3);
+    private final VoxelShape CENTER = Shapes.join(Block.box(3, 0, 3, 13, 14, 13), CUTOUT, BooleanOp.ONLY_FIRST);
 
     public CrucibleBlock(Properties pProperties) {
         super(pProperties);
@@ -69,7 +79,7 @@ public class CrucibleBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return Shapes.or(Block.box(0, 0, 0, 16, 12, 16), Block.box(3, 13, 3, 13, 14, 13));
+        return Shapes.or(Stream.of(MAIN, CORNER_1, CORNER_2, CORNER_3, CORNER_4).reduce((s1, s2) -> Shapes.join(s1, s2, BooleanOp.ONLY_FIRST)).get(), CENTER);
     }
 
     @Override

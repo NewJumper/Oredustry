@@ -28,7 +28,6 @@ import java.util.stream.Stream;
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public class MachineFrameBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    private final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
     private final VoxelShape CUTOUT_1 = Block.box(0, 2, 2, 16, 14, 14);
     private final VoxelShape CUTOUT_2 = Block.box(2, 0, 2, 14, 16, 14);
     private final VoxelShape CUTOUT_3 = Block.box(2, 2, 0, 14, 14, 16);
@@ -80,6 +79,6 @@ public class MachineFrameBlock extends Block {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return Stream.of(SHAPE, CUTOUT_1, CUTOUT_2, CUTOUT_3).reduce((s1, s2) -> Shapes.join(s1, s2, BooleanOp.ONLY_FIRST)).get();
+        return Stream.of(Shapes.block(), CUTOUT_1, CUTOUT_2, CUTOUT_3).reduce((s1, s2) -> Shapes.join(s1, s2, BooleanOp.ONLY_FIRST)).get();
     }
 }
