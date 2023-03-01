@@ -1,7 +1,7 @@
 package com.newjumper.oredustry.block.entity;
 
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.block.CompressorBlock;
+import com.newjumper.oredustry.block.MachineBlock;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.recipe.CompressingRecipe;
 import com.newjumper.oredustry.screen.CompressorMenu;
@@ -137,14 +137,14 @@ public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
         recipe.ifPresent(compressingRecipe -> blockEntity.maxProgress = compressingRecipe.getTime());
 
         if(blockEntity.isActive()) {
-            if(!blockEntity.getBlockState().getValue(CompressorBlock.ACTIVE)) {
-                state = state.setValue(CompressorBlock.ACTIVE, true);
+            if(!blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
+                state = state.setValue(MachineBlock.ACTIVE, true);
                 level.setBlock(pos, state, 3);
             }
             blockEntity.fuel--;
         } else {
-            if(blockEntity.getBlockState().getValue(CompressorBlock.ACTIVE)) {
-                state = state.setValue(CompressorBlock.ACTIVE, false);
+            if(blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
+                state = state.setValue(MachineBlock.ACTIVE, false);
                 level.setBlock(pos, state, 3);
             }
         }

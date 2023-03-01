@@ -1,8 +1,8 @@
 package com.newjumper.oredustry.block.entity;
 
 import com.newjumper.oredustry.Oredustry;
+import com.newjumper.oredustry.block.MachineBlock;
 import com.newjumper.oredustry.block.OredustryBlocks;
-import com.newjumper.oredustry.block.SeparatorBlock;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
 import com.newjumper.oredustry.screen.SeparatorMenu;
 import net.minecraft.core.BlockPos;
@@ -137,14 +137,14 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
         recipe.ifPresent(separatingRecipe -> blockEntity.maxProgress = separatingRecipe.getTime());
 
         if(blockEntity.isActive()) {
-            if(!blockEntity.getBlockState().getValue(SeparatorBlock.ACTIVE)) {
-                state = state.setValue(SeparatorBlock.ACTIVE, true);
+            if(!blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
+                state = state.setValue(MachineBlock.ACTIVE, true);
                 level.setBlock(pos, state, 3);
             }
             blockEntity.fuel--;
         } else {
-            if(blockEntity.getBlockState().getValue(SeparatorBlock.ACTIVE)) {
-                state = state.setValue(SeparatorBlock.ACTIVE, false);
+            if(blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
+                state = state.setValue(MachineBlock.ACTIVE, false);
                 level.setBlock(pos, state, 3);
             }
         }
