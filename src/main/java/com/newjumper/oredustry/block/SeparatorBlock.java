@@ -75,7 +75,7 @@ public class SeparatorBlock extends BaseEntityBlock {
             Direction.Axis axis = direction.getAxis();
             double d3 = pRandom.nextDouble() * 0.6 - 0.3;
             double d4 = axis == Direction.Axis.X ? direction.getStepX() * 0.52 : d3;
-            double d5 = pRandom.nextDouble() * 6.0 / 16.0;
+            double d5 = pRandom.nextDouble() * 6 / 16.0;
             double d6 = axis == Direction.Axis.Z ? direction.getStepZ() * 0.52 : d3;
             pLevel.addParticle(ParticleTypes.SMOKE, d0 + d4, d1 + d5, d2 + d6, 0, 0, 0);
             pLevel.addParticle(ParticleTypes.FLAME, d0 + d4, d1 + d5, d2 + d6, 0, 0, 0);

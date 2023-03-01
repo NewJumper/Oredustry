@@ -73,7 +73,7 @@ public class CompressorBlock extends BaseEntityBlock {
 
             Direction direction = pState.getValue(FACING);
             Direction.Axis axis = direction.getAxis();
-            double d3 = pRandom.nextDouble() * 0.4 - 0.3;
+            double d3 = pRandom.nextDouble() * 0.4 - 0.2;
             double d4 = axis == Direction.Axis.X ? direction.getStepX() * 0.52 : d3;
             double d5 = pRandom.nextDouble() * 6 / 16.0;
             double d6 = axis == Direction.Axis.Z ? direction.getStepZ() * 0.52 : d3;
