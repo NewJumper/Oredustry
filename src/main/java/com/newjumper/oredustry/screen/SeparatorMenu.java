@@ -3,6 +3,7 @@ package com.newjumper.oredustry.screen;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.SeparatorBlockEntity;
 import com.newjumper.oredustry.screen.slot.ResultSlot;
+import com.newjumper.oredustry.screen.slot.SeparatorResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -22,6 +23,7 @@ public class SeparatorMenu extends AbstractContainerMenu {
     public final SeparatorBlockEntity blockEntity;
     private final ContainerData data;
     private final Level level;
+    private final Player player;
 
     public SeparatorMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
         this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
@@ -31,6 +33,7 @@ public class SeparatorMenu extends AbstractContainerMenu {
         super(OredustryMenuTypes.SEPARATOR_MENU.get(), pContainerId);
         this.blockEntity = (SeparatorBlockEntity) pBlockEntity;
         this.level = pInventory.player.level;
+        this.player = pInventory.player;
         this.data = pContainerData;
 
         checkContainerSize(pInventory, MENU_SLOTS);
@@ -49,7 +52,7 @@ public class SeparatorMenu extends AbstractContainerMenu {
                     return stack.is(Tags.Items.ORES);
                 }
             });
-            this.addSlot(new ResultSlot(handler, 2, 116, 21));
+            this.addSlot(new SeparatorResultSlot(blockEntity, player, handler, 2, 116, 21));
             this.addSlot(new ResultSlot(handler, 3, 116, 49));
         });
 
