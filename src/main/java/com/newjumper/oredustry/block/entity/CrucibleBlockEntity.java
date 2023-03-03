@@ -6,22 +6,31 @@ import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.recipe.MeltingRecipe;
 import com.newjumper.oredustry.screen.CrucibleMenu;
 import com.newjumper.oredustry.util.MoltenLiquids;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -32,6 +41,8 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("NullableProblems")
@@ -80,6 +91,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
     private int coolingProgress;
     private int maxCooling;
     private int liquidAmount;
+    private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
     public MoltenLiquids liquid;
 
     public CrucibleBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
@@ -202,6 +214,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
                     blockEntity.liquidAmount += recipe.get().getResultItem().getCount() * blockEntity.maxCooling;
 
                     blockEntity.progress = 0;
+                    blockEntity.recipesUsed.addTo(recipe.get().getId(), 1);
                 }
             }
         }
@@ -252,5 +265,31 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
 
     public int getWater() {
         return fluidTank.getFluidAmount();
+    }
+
+    public List<Recipe<?>> getRecipesToAwardAndPopExperience(ServerLevel level, Vec3 vec) {
+        List<Recipe<?>> list = new ArrayList<>();
+        for(Object2IntMap.Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
+            level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
+                list.add(recipe);
+                createExperience(level, vec, entry.getIntValue(), ((MeltingRecipe)recipe).getExperience());
+            });
+        }
+
+        return list;
+    }
+
+    public void awardUsedRecipesAndPopExperience(ServerPlayer player) {
+        List<Recipe<?>> list = this.getRecipesToAwardAndPopExperience(player.getLevel(), player.position());
+        player.awardRecipes(list);
+        this.recipesUsed.clear();
+    }
+
+    private static void createExperience(ServerLevel level, Vec3 vec, int index, float experience) {
+        int i = Mth.floor(index * experience);
+        float f = Mth.frac(index * experience);
+        if(f != 0 && Math.random() < f) i++;
+
+        ExperienceOrb.award(level, vec, i);
     }
 }

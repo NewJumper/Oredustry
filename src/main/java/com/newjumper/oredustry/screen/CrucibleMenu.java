@@ -2,7 +2,7 @@ package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.CrucibleBlockEntity;
-import com.newjumper.oredustry.screen.slot.ResultSlot;
+import com.newjumper.oredustry.screen.slot.CrucibleResultSlot;
 import com.newjumper.oredustry.util.OredustryTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -62,7 +62,7 @@ public class CrucibleMenu extends AbstractContainerMenu {
                     return stack.is(Items.WATER_BUCKET);
                 }
             });
-            this.addSlot(new ResultSlot(handler, 3, 133, 35));
+            this.addSlot(new CrucibleResultSlot(blockEntity, pInventory.player, handler, 3, 133, 35));
         });
 
         addDataSlots(pContainerData);
