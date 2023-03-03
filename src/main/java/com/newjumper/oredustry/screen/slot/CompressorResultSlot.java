@@ -5,10 +5,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
 
 @SuppressWarnings("NullableProblems")
-public class CompressorResultSlot extends SlotItemHandler {
+public class CompressorResultSlot extends ResultSlot {
     private final CompressorBlockEntity blockEntity;
     private final Player player;
     private int removeCount;
@@ -17,11 +16,6 @@ public class CompressorResultSlot extends SlotItemHandler {
         super(itemHandler, index, xPosition, yPosition);
         this.blockEntity = blockEntity;
         this.player = player;
-    }
-
-    @Override
-    public boolean mayPlace(ItemStack stack) {
-        return false;
     }
 
     @Override

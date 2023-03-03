@@ -28,10 +28,6 @@ public class CompressingRecipeBuilder implements RecipeBuilder {
     private final int time;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public CompressingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count) {
-        this(ingredient, result, count, 0);
-    }
-
     public CompressingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count, float experience) {
         this(ingredient, result, count, experience, 200);
     }
