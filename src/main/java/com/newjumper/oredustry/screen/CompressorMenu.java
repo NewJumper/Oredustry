@@ -2,7 +2,7 @@ package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.CompressorBlockEntity;
-import com.newjumper.oredustry.screen.slot.ResultSlot;
+import com.newjumper.oredustry.screen.slot.CompressorResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +21,7 @@ public class CompressorMenu extends AbstractContainerMenu {
     public final CompressorBlockEntity blockEntity;
     private final ContainerData data;
     private final Level level;
+    private final Player player;
 
     public CompressorMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
         this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
@@ -30,6 +31,7 @@ public class CompressorMenu extends AbstractContainerMenu {
         super(OredustryMenuTypes.COMPRESSOR_MENU.get(), pContainerId);
         this.blockEntity = (CompressorBlockEntity) pBlockEntity;
         this.level = pInventory.player.level;
+        this.player = pInventory.player;
         this.data = pContainerData;
 
         checkContainerSize(pInventory, MENU_SLOTS);
@@ -43,7 +45,7 @@ public class CompressorMenu extends AbstractContainerMenu {
                 }
             });
             this.addSlot(new SlotItemHandler(handler, 1, 64, 35));
-            this.addSlot(new ResultSlot(handler, 2, 118, 35));
+            this.addSlot(new CompressorResultSlot(blockEntity, player, handler, 2, 118, 35));
         });
 
         addDataSlots(pContainerData);

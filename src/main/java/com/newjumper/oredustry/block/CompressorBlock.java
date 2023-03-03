@@ -5,6 +5,7 @@ import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
@@ -65,6 +67,7 @@ public class CompressorBlock extends MachineBlock {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if(blockEntity instanceof CompressorBlockEntity) {
                 ((CompressorBlockEntity) blockEntity).dropContents();
+                ((CompressorBlockEntity) blockEntity).getRecipesToAwardAndPopExperience((ServerLevel) pLevel, Vec3.atCenterOf(pPos));
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
