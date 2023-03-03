@@ -1,5 +1,6 @@
 {
   "type": "oredustry:compressing",
+  "experience": 0.2,
   "ingredient": {
     "tag": "forge:ores/coal"
   },

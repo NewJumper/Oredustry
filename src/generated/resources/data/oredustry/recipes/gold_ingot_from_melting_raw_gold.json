@@ -1,5 +1,6 @@
 {
   "type": "oredustry:melting",
+  "experience": 5.0,
   "ingredient": {
     "tag": "forge:raw_materials/gold"
   },

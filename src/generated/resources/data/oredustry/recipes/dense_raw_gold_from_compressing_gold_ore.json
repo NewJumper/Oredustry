@@ -1,5 +1,6 @@
 {
   "type": "oredustry:compressing",
+  "experience": 2.0,
   "ingredient": {
     "tag": "forge:ores/gold"
   },

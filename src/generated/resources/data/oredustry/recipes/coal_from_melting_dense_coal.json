@@ -1,5 +1,6 @@
 {
   "type": "oredustry:melting",
+  "experience": 0.6,
   "ingredient": {
     "item": "oredustry:dense_coal"
   },

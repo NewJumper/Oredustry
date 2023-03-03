@@ -1,5 +1,6 @@
 {
   "type": "oredustry:melting",
+  "experience": 5.3,
   "ingredient": {
     "item": "oredustry:dense_raw_gold"
   },

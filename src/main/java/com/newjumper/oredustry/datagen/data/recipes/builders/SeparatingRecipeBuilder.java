@@ -30,15 +30,11 @@ public class SeparatingRecipeBuilder implements RecipeBuilder {
     private final int time;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public SeparatingRecipeBuilder(ItemLike ore, ItemLike resultItem, int count) {
-        this(ore, resultItem, count, 200);
+    public SeparatingRecipeBuilder(ItemLike ore, ItemLike resultItem, int count, float experience) {
+        this(ore, resultItem, count, experience, 200);
     }
 
-    public SeparatingRecipeBuilder(ItemLike ore, ItemLike resultItem, int count, int time) {
-        this(ore, resultItem, count, time, 0);
-    }
-
-    public SeparatingRecipeBuilder(ItemLike ore, ItemLike resultItem, int count, int time, float experience) {
+    public SeparatingRecipeBuilder(ItemLike ore, ItemLike resultItem, int count, float experience, int time) {
         this.ore = Ingredient.of(ore);
         this.resultItem = resultItem.asItem();
         this.count = count;

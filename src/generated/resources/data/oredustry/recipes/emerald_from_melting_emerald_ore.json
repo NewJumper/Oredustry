@@ -1,5 +1,6 @@
 {
   "type": "oredustry:melting",
+  "experience": 6.8,
   "ingredient": {
     "tag": "forge:ores/emerald"
   },

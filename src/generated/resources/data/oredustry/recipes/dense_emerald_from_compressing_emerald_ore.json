@@ -1,5 +1,6 @@
 {
   "type": "oredustry:compressing",
+  "experience": 2.7,
   "ingredient": {
     "tag": "forge:ores/emerald"
   },

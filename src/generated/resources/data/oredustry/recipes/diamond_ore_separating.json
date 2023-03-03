@@ -1,5 +1,6 @@
 {
   "type": "oredustry:separating",
+  "experience": 5.0,
   "ore": {
     "item": "minecraft:diamond_ore"
   },

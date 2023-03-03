@@ -1,5 +1,6 @@
 {
   "type": "oredustry:melting",
+  "experience": 2.6,
   "ingredient": {
     "item": "oredustry:dense_redstone"
   },

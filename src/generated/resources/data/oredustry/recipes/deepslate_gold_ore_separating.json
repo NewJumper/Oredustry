@@ -1,5 +1,6 @@
 {
   "type": "oredustry:separating",
+  "experience": 3.6,
   "ore": {
     "item": "minecraft:deepslate_gold_ore"
   },

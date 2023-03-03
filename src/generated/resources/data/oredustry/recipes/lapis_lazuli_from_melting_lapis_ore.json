@@ -1,5 +1,6 @@
 {
   "type": "oredustry:melting",
+  "experience": 2.5,
   "ingredient": {
     "tag": "forge:ores/lapis"
   },

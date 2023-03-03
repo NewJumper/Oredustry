@@ -1,5 +1,6 @@
 {
   "type": "oredustry:separating",
+  "experience": 2.0,
   "ore": {
     "item": "minecraft:lapis_ore"
   },

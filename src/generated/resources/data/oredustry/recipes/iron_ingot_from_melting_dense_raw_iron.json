@@ -1,5 +1,6 @@
 {
   "type": "oredustry:melting",
+  "experience": 3.7,
   "ingredient": {
     "item": "oredustry:dense_raw_iron"
   },

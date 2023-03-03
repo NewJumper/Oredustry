@@ -1,5 +1,6 @@
 {
   "type": "oredustry:compressing",
+  "experience": 1.0,
   "ingredient": {
     "tag": "forge:ores/redstone"
   },

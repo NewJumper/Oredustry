@@ -1,5 +1,6 @@
 {
   "type": "oredustry:melting",
+  "experience": 7.1,
   "ingredient": {
     "item": "oredustry:dense_diamond"
   },

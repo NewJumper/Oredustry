@@ -1,5 +1,6 @@
 {
   "type": "oredustry:separating",
+  "experience": 1.0,
   "ore": {
     "item": "minecraft:coal_ore"
   },

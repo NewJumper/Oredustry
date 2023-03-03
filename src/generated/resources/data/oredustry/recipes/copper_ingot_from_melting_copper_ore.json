@@ -1,5 +1,6 @@
 {
   "type": "oredustry:melting",
+  "experience": 3.5,
   "ingredient": {
     "tag": "forge:ores/copper"
   },

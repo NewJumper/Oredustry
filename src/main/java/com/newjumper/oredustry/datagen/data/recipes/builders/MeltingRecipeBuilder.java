@@ -28,16 +28,12 @@ public class MeltingRecipeBuilder implements RecipeBuilder {
     private final int time;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public MeltingRecipeBuilder(ItemLike ingredient, ItemLike result, int count) {
-        this(Ingredient.of(ingredient), result, count, 0);
+    public MeltingRecipeBuilder(ItemLike ingredient, ItemLike result, int count, float experience) {
+        this(Ingredient.of(ingredient), result, count, experience, 150);
     }
 
-    public MeltingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count) {
-        this(Ingredient.of(ingredient), result, count, 0);
-    }
-
-    public MeltingRecipeBuilder(Ingredient ingredient, ItemLike result, int count, float experience) {
-        this(ingredient, result, count, experience, 150);
+    public MeltingRecipeBuilder(TagKey<Item> ingredient, ItemLike result, int count, float experience) {
+        this(Ingredient.of(ingredient), result, count, experience, 150);
     }
 
     public MeltingRecipeBuilder(Ingredient ingredient, ItemLike result, int count, float experience, int time) {
