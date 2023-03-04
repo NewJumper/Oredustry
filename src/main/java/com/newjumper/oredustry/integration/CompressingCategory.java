@@ -33,7 +33,7 @@ public class CompressingCategory implements IRecipeCategory<CompressingRecipe> {
     private final int time;
 
     public CompressingCategory(IGuiHelper guiHelper, int time) {
-        this.background = guiHelper.createDrawable(TEXTURE, 35, 18, 106, 50);
+        this.background = guiHelper.createDrawable(TEXTURE, 59, 18, 82, 50);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(OredustryBlocks.COMPRESSOR.get()));
 
         this.progress = CacheBuilder.newBuilder().maximumSize(21).build(new CacheLoader<>() {
@@ -67,13 +67,13 @@ public class CompressingCategory implements IRecipeCategory<CompressingRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, CompressingRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 29, 17).addIngredients(recipe.getIngredient());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 83, 17).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.INPUT, 5, 17).addIngredients(recipe.getIngredient());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 17).addItemStack(recipe.getResultItem());
     }
 
     @Override
     public void draw(CompressingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        this.progress.getUnchecked(time / 2).draw(stack, 51, 19);
+        this.progress.getUnchecked(time / 2).draw(stack, 28, 19);
 
         Font fontRenderer = Minecraft.getInstance().font;
         int stringWidth = fontRenderer.width(time / 20 + "s");

@@ -33,7 +33,7 @@ public class SeparatingCategory implements IRecipeCategory<SeparatingRecipe> {
     private final int time;
 
     public SeparatingCategory(IGuiHelper guiHelper, int time) {
-        this.background = guiHelper.createDrawable(TEXTURE, 37, 14, 102, 58);
+        this.background = guiHelper.createDrawable(TEXTURE, 59, 14, 80, 58);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(OredustryBlocks.SEPARATOR.get()));
 
         this.progress = CacheBuilder.newBuilder().maximumSize(23).build(new CacheLoader<>() {
@@ -67,14 +67,14 @@ public class SeparatingCategory implements IRecipeCategory<SeparatingRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, SeparatingRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 23, 21).addIngredients(recipe.getOre());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 7).addItemStack(recipe.getResultItem());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 35).addItemStack(recipe.getResultBlock());
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 21).addIngredients(recipe.getOre());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 57, 7).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 57, 35).addItemStack(recipe.getResultBlock());
     }
 
     @Override
     public void draw(SeparatingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        this.progress.getUnchecked(time / 2).draw(stack, 45, 19);
+        this.progress.getUnchecked(time / 2).draw(stack, 23, 19);
 
         Font fontRenderer = Minecraft.getInstance().font;
         int stringWidth = fontRenderer.width(time / 20 + "s");
