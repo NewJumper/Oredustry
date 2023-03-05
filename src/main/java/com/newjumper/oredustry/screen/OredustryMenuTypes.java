@@ -13,4 +13,5 @@ public class OredustryMenuTypes {
     public static final RegistryObject<MenuType<CompressorMenu>> COMPRESSOR_MENU = MENUS.register("compressor_menu", () -> IForgeMenuType.create(CompressorMenu::new));
     public static final RegistryObject<MenuType<CrucibleMenu>> CRUCIBLE_MENU = MENUS.register("crucible_menu", () -> IForgeMenuType.create(CrucibleMenu::new));
     public static final RegistryObject<MenuType<SeparatorMenu>> SEPARATOR_MENU = MENUS.register("separator_menu", () -> IForgeMenuType.create(SeparatorMenu::new));
+    public static final RegistryObject<MenuType<MinerMenu>> MINER_MENU = MENUS.register("miner_menu", () -> IForgeMenuType.create(MinerMenu::new));
 }

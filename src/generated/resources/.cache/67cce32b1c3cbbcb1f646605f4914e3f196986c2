@@ -1,5 +1,6 @@
-// 1.19.2	2023-02-25T19:37:10.8843678	LootTables
+// 1.19.2	2023-03-04T21:36:03.5516145	LootTables
 ff93e694672fce343533d3829268311357b893a6 data/oredustry/loot_tables/blocks/compressor.json
 347c542279271a2d9fd40433174de8b5a7815534 data/oredustry/loot_tables/blocks/crucible.json
 1741001ef05f31b5cdcb451fa133f5be658ac6e3 data/oredustry/loot_tables/blocks/machine_frame.json
+6e1a74c4b8588356ce6359e1d5677ee6bc0a0f14 data/oredustry/loot_tables/blocks/miner.json
 31d4cb7d59d4a455ed74f01cac801137ba0262e8 data/oredustry/loot_tables/blocks/separator.json

@@ -15,10 +15,7 @@ import com.newjumper.oredustry.recipe.CompressingRecipe;
 import com.newjumper.oredustry.recipe.MeltingRecipe;
 import com.newjumper.oredustry.recipe.OredustryRecipes;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
-import com.newjumper.oredustry.screen.CompressorScreen;
-import com.newjumper.oredustry.screen.CrucibleScreen;
-import com.newjumper.oredustry.screen.OredustryMenuTypes;
-import com.newjumper.oredustry.screen.SeparatorScreen;
+import com.newjumper.oredustry.screen.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -88,6 +85,7 @@ public class Oredustry {
             MenuScreens.register(OredustryMenuTypes.COMPRESSOR_MENU.get(), CompressorScreen::new);
             MenuScreens.register(OredustryMenuTypes.CRUCIBLE_MENU.get(), CrucibleScreen::new);
             MenuScreens.register(OredustryMenuTypes.SEPARATOR_MENU.get(), SeparatorScreen::new);
+            MenuScreens.register(OredustryMenuTypes.MINER_MENU.get(), MinerScreen::new);
         }
     }
 }

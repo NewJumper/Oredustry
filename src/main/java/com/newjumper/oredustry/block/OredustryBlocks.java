@@ -22,6 +22,8 @@ public class OredustryBlocks {
     public static final RegistryObject<Block> CRUCIBLE = register("crucible", () -> new CrucibleBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> SEPARATOR = register("separator", () -> new SeparatorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(3.5f, 4f).requiresCorrectToolForDrops()));
 
+    public static final RegistryObject<Block> MINER = register("miner", () -> new MinerBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).strength(5f, 12f).requiresCorrectToolForDrops()));
+
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> pBlock) {
         RegistryObject<T> block = BLOCKS.register(name, pBlock);
         OredustryItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));

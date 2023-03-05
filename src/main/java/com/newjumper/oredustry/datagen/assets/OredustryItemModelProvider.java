@@ -24,6 +24,7 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.COMPRESSOR);
         blockModel(OredustryBlocks.CRUCIBLE);
         blockModel(OredustryBlocks.SEPARATOR);
+        blockModel(OredustryBlocks.MINER);
 
         itemModel(OredustryItems.DENSE_COAL, GENERATED);
         itemModel(OredustryItems.DENSE_RAW_COPPER, GENERATED);

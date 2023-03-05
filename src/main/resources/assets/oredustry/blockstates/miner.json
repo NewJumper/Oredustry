@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "active=false,facing=east": {
+      "model": "oredustry:block/miner",
+      "y": 90
+    },
+    "active=false,facing=north": {
+      "model": "oredustry:block/miner"
+    },
+    "active=false,facing=south": {
+      "model": "oredustry:block/miner",
+      "y": 180
+    },
+    "active=false,facing=west": {
+      "model": "oredustry:block/miner",
+      "y": 270
+    },
+    "active=true,facing=east": {
+      "model": "oredustry:block/miner",
+      "y": 90
+    },
+    "active=true,facing=north": {
+      "model": "oredustry:block/miner"
+    },
+    "active=true,facing=south": {
+      "model": "oredustry:block/miner",
+      "y": 180
+    },
+    "active=true,facing=west": {
+      "model": "oredustry:block/miner",
+      "y": 270
+    }
+  }
+}
