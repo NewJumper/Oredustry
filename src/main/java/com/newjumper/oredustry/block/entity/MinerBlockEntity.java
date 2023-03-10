@@ -1,13 +1,12 @@
 package com.newjumper.oredustry.block.entity;
 
 import com.newjumper.oredustry.Oredustry;
+import com.newjumper.oredustry.block.MachineBlock;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.screen.MinerMenu;
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -15,7 +14,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -26,37 +28,24 @@ import net.minecraftforge.items.ItemStackHandler;
 
 @SuppressWarnings("NullableProblems")
 public class MinerBlockEntity extends BlockEntity implements MenuProvider {
+    public static final int RANGE = 5;
+
     protected final ContainerData data = new ContainerData() {
         public int get(int index) {
-            return switch (index) {
-                case 0 -> MinerBlockEntity.this.fuel;
-                case 1 -> MinerBlockEntity.this.maxFuel;
-                case 2 -> MinerBlockEntity.this.progress;
-                case 3 -> MinerBlockEntity.this.maxProgress;
-                default -> 0;
-            };
+            return MinerBlockEntity.this.state;
         }
 
         public void set(int index, int value) {
-            switch (index) {
-                case 0 -> MinerBlockEntity.this.fuel = value;
-                case 1 -> MinerBlockEntity.this.maxFuel = value;
-                case 2 -> MinerBlockEntity.this.progress = value;
-                case 3 -> MinerBlockEntity.this.maxProgress = value;
-            }
+            MinerBlockEntity.this.state = Math.max(0, Math.min(value, 3));
         }
 
         public int getCount() {
-            return 4;
+            return 1;
         }
     };
     private final LazyOptional<IItemHandler> lazyItemHandler;
     public final ItemStackHandler itemHandler;
-    private int fuel;
-    private int maxFuel;
-    private int progress;
-    private int maxProgress;
-    private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
+    private int state;
 
     public MinerBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.MINER.get(), pWorldPosition, pBlockState);
@@ -85,20 +74,14 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("fuel", this.fuel);
-        pTag.putInt("maxFuel", this.maxFuel);
-        pTag.putInt("progress", this.progress);
-        pTag.putInt("maxProgress", this.maxProgress);
+        pTag.putInt("state", this.state);
     }
 
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        this.fuel = pTag.getInt("fuel");
-        this.maxFuel = pTag.getInt("maxFuel");
-        this.progress = pTag.getInt("progress");
-        this.maxProgress = pTag.getInt("maxProgress");
+        this.state = pTag.getInt("state");
     }
 
     @Override
@@ -125,6 +108,39 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, MinerBlockEntity blockEntity) {
+        SimpleContainer inventory = new SimpleContainer(blockEntity.itemHandler.getSlots());
+        for(int i = 0; i < blockEntity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, blockEntity.itemHandler.getStackInSlot(i));
+        }
 
+        if((blockEntity.state == 0 || blockEntity.state == 2) && !state.getValue(MachineBlock.ACTIVE)) {
+            state = state.setValue(MachineBlock.ACTIVE, true);
+            level.setBlock(pos, state, 3);
+        } else if((blockEntity.state == 1 || blockEntity.state == 3) && state.getValue(MachineBlock.ACTIVE)) {
+            state = state.setValue(MachineBlock.ACTIVE, false);
+            level.setBlock(pos, state, 3);
+        }
+
+        if(!level.isClientSide() && blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
+            Block block = level.getBlockState(pos.north(RANGE).west(RANGE).below()).getBlock();
+            if (block != Blocks.AIR && blockEntity.fillIfEmpty(inventory, new ItemStack(block))) {
+                level.setBlock(pos.north(RANGE).west(RANGE).below(), Blocks.AIR.defaultBlockState(), 3);
+            }
+        }
+    }
+
+    private boolean fillIfEmpty(SimpleContainer container, ItemStack stack) {
+        for(int i = 0; i < container.getContainerSize(); i++) {
+            if(container.getItem(i).isEmpty()) {
+                this.itemHandler.setStackInSlot(i, stack);
+            } else if(container.getItem(i).sameItem(stack) && container.getItem(i).getCount() < container.getItem(i).getMaxStackSize()) {
+                stack.setCount(this.itemHandler.getStackInSlot(i).getCount() + 1);
+                this.itemHandler.setStackInSlot(i, stack);
+            } else continue;
+
+            return true;
+        }
+
+        return false;
     }
 }
