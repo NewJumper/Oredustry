@@ -23,6 +23,7 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
     protected void init() {
         super.init();
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
+        this.inventoryLabelX = 22;
         this.inventoryLabelY = 152;
     }
 
@@ -42,5 +43,22 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
         int y = this.topPos;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+
+        if(isHovering(183, 24, 8, 10, pMouseX, pMouseY)) {
+            this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.getState(), 10, 8, 10);
+        } else {
+            this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.getState(), 0, 8, 10);
+        }
+    }
+
+    @Override
+    public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
+        int state = menu.getState();
+        if(isHovering(183, 24, 8, 10, pMouseX, pMouseY)) {
+            if(state == 0 || state == 3) menu.setState(2);
+            else if(state == 2) menu.setState(3);
+        }
+
+        return super.mouseClicked(pMouseX, pMouseY, pButton);
     }
 }

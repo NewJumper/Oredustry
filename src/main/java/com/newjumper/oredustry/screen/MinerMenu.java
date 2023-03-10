@@ -79,4 +79,12 @@ public class MinerMenu extends AbstractContainerMenu {
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, OredustryBlocks.MINER.get());
     }
+
+    public int getState() {
+        return this.data.get(0);
+    }
+
+    public void setState(int value) {
+        this.data.set(0, value);
+    }
 }
