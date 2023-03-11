@@ -29,23 +29,32 @@ import net.minecraftforge.items.ItemStackHandler;
 @SuppressWarnings("NullableProblems")
 public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     public static final int RANGE = 5;
+    public static final int LIMIT = 40;
 
     protected final ContainerData data = new ContainerData() {
         public int get(int index) {
-            return MinerBlockEntity.this.state;
+            return switch (index) {
+                case 0 -> MinerBlockEntity.this.state;
+                case 1 -> MinerBlockEntity.this.progress;
+                default -> 0;
+            };
         }
 
         public void set(int index, int value) {
-            MinerBlockEntity.this.state = Math.max(0, Math.min(value, 3));
+            switch (index) {
+                case 0 -> MinerBlockEntity.this.state = Math.max(0, Math.min(value, 3));
+                case 1 -> MinerBlockEntity.this.progress = value;
+            }
         }
 
         public int getCount() {
-            return 1;
+            return 2;
         }
     };
     private final LazyOptional<IItemHandler> lazyItemHandler;
     public final ItemStackHandler itemHandler;
     private int state;
+    private int progress;
 
     public MinerBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.MINER.get(), pWorldPosition, pBlockState);
@@ -121,11 +130,15 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
             level.setBlock(pos, state, 3);
         }
 
-        if(!level.isClientSide() && blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
-            Block block = level.getBlockState(pos.north(RANGE).west(RANGE).below()).getBlock();
+        Block block = level.getBlockState(pos.north(RANGE).west(RANGE).below()).getBlock();
+        if(blockEntity.progress < LIMIT && block != Blocks.AIR) blockEntity.progress++;
+
+        if(!level.isClientSide() && blockEntity.getBlockState().getValue(MachineBlock.ACTIVE) && blockEntity.progress == LIMIT) {
             if (block != Blocks.AIR && blockEntity.fillIfEmpty(inventory, new ItemStack(block))) {
                 level.setBlock(pos.north(RANGE).west(RANGE).below(), Blocks.AIR.defaultBlockState(), 3);
             }
+
+            blockEntity.progress = 0;
         }
     }
 

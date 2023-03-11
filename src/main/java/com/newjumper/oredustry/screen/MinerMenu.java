@@ -87,4 +87,11 @@ public class MinerMenu extends AbstractContainerMenu {
     public void setState(int value) {
         this.data.set(0, value);
     }
+
+    public int drawProgress() {
+        int progress = this.data.get(1);
+        int bar = 93 * progress / MinerBlockEntity.LIMIT;
+
+        return progress == 0 ? 0 : bar;
+    }
 }
