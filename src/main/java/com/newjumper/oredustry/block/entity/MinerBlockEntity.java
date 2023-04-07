@@ -29,7 +29,7 @@ import net.minecraftforge.items.ItemStackHandler;
 @SuppressWarnings("NullableProblems")
 public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     public static final int RANGE = 5;
-    public static final int LIMIT = 40;
+    public static final int LIMIT = 2; // default 40
 
     protected final ContainerData data = new ContainerData() {
         public int get(int index) {
@@ -55,6 +55,9 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler itemHandler;
     private int state;
     private int progress;
+    private int xDir;
+    private int yDir;
+    private int zDir;
 
     public MinerBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.MINER.get(), pWorldPosition, pBlockState);
@@ -130,12 +133,41 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
             level.setBlock(pos, state, 3);
         }
 
-        Block block = level.getBlockState(pos.north(RANGE).west(RANGE).below()).getBlock();
-        if(blockEntity.progress < LIMIT && block != Blocks.AIR) blockEntity.progress++;
+        if(!blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) return;
 
-        if(!level.isClientSide() && blockEntity.getBlockState().getValue(MachineBlock.ACTIVE) && blockEntity.progress == LIMIT) {
-            if (block != Blocks.AIR && blockEntity.fillIfEmpty(inventory, new ItemStack(block))) {
-                level.setBlock(pos.north(RANGE).west(RANGE).below(), Blocks.AIR.defaultBlockState(), 3);
+        BlockPos blockPos = pos.north(RANGE - blockEntity.zDir).west(RANGE - blockEntity.xDir).below(1 + blockEntity.yDir);
+        Block block = level.getBlockState(blockPos).getBlock();
+        while(block == Blocks.AIR || block == Blocks.BEDROCK) {
+            blockEntity.xDir++;
+            if(blockEntity.xDir > 2 * RANGE) {
+                if(blockEntity.zDir <= 2 * RANGE - 1) {
+                    blockEntity.xDir = 0;
+                    blockEntity.zDir++;
+                } else {
+                    blockEntity.xDir = 0;
+                    blockEntity.yDir++;
+                    blockEntity.zDir = 0;
+                }
+
+                if(pos.below(1 + blockEntity.yDir).getY() == -64) {
+                    blockEntity.xDir = 0;
+                    blockEntity.yDir = 0;
+                    blockEntity.zDir = 0;
+                    blockEntity.state = 1;
+                    state = state.setValue(MachineBlock.ACTIVE, false);
+                    level.setBlock(pos, state, 3);
+                    return;
+                }
+            }
+
+            blockPos = pos.north(RANGE - blockEntity.zDir).west(RANGE - blockEntity.xDir).below(1 + blockEntity.yDir);
+            block = level.getBlockState(blockPos).getBlock();
+        }
+
+        if(blockEntity.progress < LIMIT) blockEntity.progress++;
+        if(!level.isClientSide() && blockEntity.progress == LIMIT) {
+            if(blockEntity.fillIfEmpty(inventory, new ItemStack(block))) {
+                level.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 3);
             }
 
             blockEntity.progress = 0;
