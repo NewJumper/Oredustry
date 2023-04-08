@@ -3,7 +3,6 @@ package com.newjumper.oredustry.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.block.entity.MinerBlockEntity;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -43,7 +42,10 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
         super.renderLabels(pPoseStack, pMouseX, pMouseY);
 
         if(isHovering(14, 79, 91, 8, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal((int) (menu.drawProgress() / 0.93) + "%")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
-        if(isHovering(111, 79, 79, 8, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal(20.0 / MinerBlockEntity.LIMIT + " blocks/s")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
+        if(isHovering(111, 79, 79, 8, pMouseX, pMouseY)) {
+            int time = Math.max(menu.data.get(3) / 20, 1);
+            renderTooltip(pPoseStack, List.of(Component.literal(time + " second" + (time != 1 ? "s" : ""))), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
+        }
     }
 
     @Override
@@ -55,17 +57,19 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
         int y = this.topPos;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
-        if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 15, y + 80, 0, 246, menu.drawProgress(), 6);
         if(isHovering(183, 24, 8, 10, pMouseX, pMouseY)) {
-            this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.getState(), 10, 8, 10);
+            this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.data.get(0), 10, 8, 10);
         } else {
-            this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.getState(), 0, 8, 10);
+            this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.data.get(0), 0, 8, 10);
         }
+        if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 15, y + 80, 0, 246, menu.drawProgress(), 6);
+        this.blit(pPoseStack, x + 112, y + 80, 204, 20 + menu.data.get(2) * 12, 52, 6);
+        this.blit(pPoseStack, x + 164, y + 80, 204, 26 + menu.data.get(2) * 12, 25, 6);
     }
 
     @Override
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-        int state = menu.getState();
+        int state = menu.data.get(0);
         if(isHovering(183, 24, 8, 10, pMouseX, pMouseY)) {
             if(state == 0 || state == 3) menu.setState(2);
             else if(state == 2) menu.setState(3);

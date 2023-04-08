@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -15,9 +16,9 @@ import net.minecraftforge.items.SlotItemHandler;
 @SuppressWarnings("NullableProblems")
 public class MinerMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
-    private static final int MENU_SLOTS = 27;
+    private static final int MENU_SLOTS = 29;
     public final MinerBlockEntity blockEntity;
-    private final ContainerData data;
+    public final ContainerData data;
     private final Level level;
 
     public MinerMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
@@ -34,9 +35,14 @@ public class MinerMenu extends AbstractContainerMenu {
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+            this.addSlot(new SlotItemHandler(handler, 0, 152, 57));
+            this.addSlot(new SlotItemHandler(handler, 1, 174, 57) {
+                @Override
+                public boolean mayPlace(ItemStack stack) { return stack.is(Items.DIAMOND); }
+            });
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < MENU_SLOTS / 3; j++) {
-                    this.addSlot(new SlotItemHandler(handler, i * 9 + j, 22 + j * 18, 96 + i * 18));
+                    this.addSlot(new SlotItemHandler(handler, i * 9 + j + 2, 22 + j * 18, 96 + i * 18));
                 }
             }
         });
@@ -80,17 +86,13 @@ public class MinerMenu extends AbstractContainerMenu {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, OredustryBlocks.MINER.get());
     }
 
-    public int getState() {
-        return this.data.get(0);
-    }
-
     public void setState(int value) {
         this.data.set(0, value);
     }
 
     public int drawProgress() {
         int progress = this.data.get(1);
-        int bar = 93 * progress / MinerBlockEntity.LIMIT;
+        int bar = 93 * progress / this.data.get(3);
 
         return progress == 0 ? 0 : bar;
     }

@@ -29,13 +29,14 @@ import net.minecraftforge.items.ItemStackHandler;
 @SuppressWarnings("NullableProblems")
 public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     public static final int RANGE = 5;
-    public static final int LIMIT = 2; // default 40
 
     protected final ContainerData data = new ContainerData() {
         public int get(int index) {
             return switch (index) {
                 case 0 -> MinerBlockEntity.this.state;
                 case 1 -> MinerBlockEntity.this.progress;
+                case 2 -> MinerBlockEntity.this.speed;
+                case 3 -> MinerBlockEntity.this.limit;
                 default -> 0;
             };
         }
@@ -44,17 +45,21 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
             switch (index) {
                 case 0 -> MinerBlockEntity.this.state = Math.max(0, Math.min(value, 3));
                 case 1 -> MinerBlockEntity.this.progress = value;
+                case 2 -> MinerBlockEntity.this.speed = Math.max(0, Math.min(value, 8));
+                case 3 -> MinerBlockEntity.this.limit = value;
             }
         }
 
         public int getCount() {
-            return 2;
+            return 4;
         }
     };
     private final LazyOptional<IItemHandler> lazyItemHandler;
     public final ItemStackHandler itemHandler;
     private int state;
     private int progress;
+    private int speed;
+    private int limit = 400;
     private int xDir;
     private int yDir;
     private int zDir;
@@ -62,7 +67,7 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     public MinerBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.MINER.get(), pWorldPosition, pBlockState);
 
-        this.itemHandler = new ItemStackHandler(27) {
+        this.itemHandler = new ItemStackHandler(29) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
@@ -133,6 +138,9 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
             level.setBlock(pos, state, 3);
         }
 
+        blockEntity.data.set(2, blockEntity.itemHandler.getStackInSlot(1).getCount());
+        blockEntity.limit = (int) Math.round(-48.6 * blockEntity.speed + 400);
+
         if(!blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) return;
 
         BlockPos blockPos = pos.north(RANGE - blockEntity.zDir).west(RANGE - blockEntity.xDir).below(1 + blockEntity.yDir);
@@ -164,9 +172,9 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
             block = level.getBlockState(blockPos).getBlock();
         }
 
-        if(blockEntity.progress < LIMIT) blockEntity.progress++;
-        if(!level.isClientSide() && blockEntity.progress == LIMIT) {
-            if(blockEntity.fillIfEmpty(inventory, new ItemStack(block))) {
+        if(blockEntity.progress < blockEntity.limit && blockEntity.fillIfEmpty(inventory, new ItemStack(block), false)) blockEntity.progress++;
+        if(!level.isClientSide() && blockEntity.progress == blockEntity.limit) {
+            if(blockEntity.fillIfEmpty(inventory, new ItemStack(block), true)) {
                 level.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 3);
             }
 
@@ -174,13 +182,13 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
-    private boolean fillIfEmpty(SimpleContainer container, ItemStack stack) {
-        for(int i = 0; i < container.getContainerSize(); i++) {
+    private boolean fillIfEmpty(SimpleContainer container, ItemStack stack, boolean simulate) {
+        for(int i = 2; i < container.getContainerSize(); i++) {
             if(container.getItem(i).isEmpty()) {
-                this.itemHandler.setStackInSlot(i, stack);
+                if(simulate) this.itemHandler.setStackInSlot(i, stack);
             } else if(container.getItem(i).sameItem(stack) && container.getItem(i).getCount() < container.getItem(i).getMaxStackSize()) {
                 stack.setCount(this.itemHandler.getStackInSlot(i).getCount() + 1);
-                this.itemHandler.setStackInSlot(i, stack);
+                if(simulate) this.itemHandler.setStackInSlot(i, stack);
             } else continue;
 
             return true;
