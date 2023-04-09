@@ -38,11 +38,11 @@ public class MinerMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 0, 130, 57));
             this.addSlot(new SlotItemHandler(handler, 1, 152, 57) {
                 @Override
-                public boolean mayPlace(ItemStack stack) { return stack.is(Items.EMERALD); }
+                public boolean mayPlace(ItemStack stack) { return stack.is(Items.DIAMOND); }
             });
             this.addSlot(new SlotItemHandler(handler, 2, 174, 57) {
                 @Override
-                public boolean mayPlace(ItemStack stack) { return stack.is(Items.DIAMOND); }
+                public boolean mayPlace(ItemStack stack) { return stack.is(Items.EMERALD); }
             });
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < (MENU_SLOTS - 3) / 3; j++) {

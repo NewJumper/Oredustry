@@ -140,13 +140,13 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
         }
 
         int updateSpeed = blockEntity.speed;
-        blockEntity.data.set(2, blockEntity.itemHandler.getStackInSlot(2).getCount());
+        blockEntity.data.set(2, blockEntity.itemHandler.getStackInSlot(1).getCount());
         blockEntity.limit = (int) Math.round(-2.43 * blockEntity.speed + 20) * 20;
         if(blockEntity.speed != updateSpeed) blockEntity.progress = 0;
 
         int updateRange = blockEntity.range;
-        if(1 + blockEntity.itemHandler.getStackInSlot(1).getCount() != updateRange) {
-            blockEntity.range = 1 + blockEntity.itemHandler.getStackInSlot(1).getCount();
+        if(1 + blockEntity.itemHandler.getStackInSlot(2).getCount() != updateRange) {
+            blockEntity.range = 1 + blockEntity.itemHandler.getStackInSlot(2).getCount();
             blockEntity.xDir = 0;
             blockEntity.yDir = 0;
             blockEntity.zDir = 0;

@@ -41,6 +41,9 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         super.renderLabels(pPoseStack, pMouseX, pMouseY);
 
+        // the tooltips overlap with the items' names; fix that
+//        if(isHovering(152, 57, 16, 16, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal("Speed")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
+//        if(isHovering(174, 57, 16, 16, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal("Range")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
         if(isHovering(14, 79, 91, 8, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal((int) (menu.drawProgress() / 0.93) + "%")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
         if(isHovering(111, 79, 79, 8, pMouseX, pMouseY)) {
             int time = menu.data.get(3) / 20;
