@@ -28,8 +28,6 @@ import net.minecraftforge.items.ItemStackHandler;
 
 @SuppressWarnings("NullableProblems")
 public class MinerBlockEntity extends BlockEntity implements MenuProvider {
-    public static final int RANGE = 5;
-
     protected final ContainerData data = new ContainerData() {
         public int get(int index) {
             return switch (index) {
@@ -37,6 +35,7 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
                 case 1 -> MinerBlockEntity.this.progress;
                 case 2 -> MinerBlockEntity.this.speed;
                 case 3 -> MinerBlockEntity.this.limit;
+                case 4 -> MinerBlockEntity.this.range;
                 default -> 0;
             };
         }
@@ -47,11 +46,12 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
                 case 1 -> MinerBlockEntity.this.progress = value;
                 case 2 -> MinerBlockEntity.this.speed = Math.max(0, Math.min(value, 8));
                 case 3 -> MinerBlockEntity.this.limit = value;
+                case 4 -> MinerBlockEntity.this.range = value;
             }
         }
 
         public int getCount() {
-            return 4;
+            return 5;
         }
     };
     private final LazyOptional<IItemHandler> lazyItemHandler;
@@ -60,6 +60,7 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     private int progress;
     private int speed;
     private int limit = 400;
+    private int range = 1;
     private int xDir;
     private int yDir;
     private int zDir;
@@ -67,7 +68,7 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     public MinerBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.MINER.get(), pWorldPosition, pBlockState);
 
-        this.itemHandler = new ItemStackHandler(29) {
+        this.itemHandler = new ItemStackHandler(30) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
@@ -138,17 +139,25 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
             level.setBlock(pos, state, 3);
         }
 
-        blockEntity.data.set(2, blockEntity.itemHandler.getStackInSlot(1).getCount());
-        blockEntity.limit = (int) Math.round(-48.6 * blockEntity.speed + 400);
+        blockEntity.data.set(2, blockEntity.itemHandler.getStackInSlot(2).getCount());
+        blockEntity.limit = (int) Math.round(-2.43 * blockEntity.speed + 20) * 20;
+
+        int updateRange = blockEntity.range;
+        if(1 + blockEntity.itemHandler.getStackInSlot(1).getCount() != updateRange) {
+            blockEntity.range = 1 + blockEntity.itemHandler.getStackInSlot(1).getCount();
+            blockEntity.xDir = 0;
+            blockEntity.yDir = 0;
+            blockEntity.zDir = 0;
+        }
 
         if(!blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) return;
 
-        BlockPos blockPos = pos.north(RANGE - blockEntity.zDir).west(RANGE - blockEntity.xDir).below(1 + blockEntity.yDir);
+        BlockPos blockPos = pos.north(blockEntity.range - blockEntity.zDir).west(blockEntity.range - blockEntity.xDir).below(1 + blockEntity.yDir);
         Block block = level.getBlockState(blockPos).getBlock();
         while(block == Blocks.AIR || block == Blocks.BEDROCK) {
             blockEntity.xDir++;
-            if(blockEntity.xDir > 2 * RANGE) {
-                if(blockEntity.zDir <= 2 * RANGE - 1) {
+            if(blockEntity.xDir > 2 * blockEntity.range) {
+                if(blockEntity.zDir <= 2 * blockEntity.range - 1) {
                     blockEntity.xDir = 0;
                     blockEntity.zDir++;
                 } else {
@@ -168,7 +177,7 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
                 }
             }
 
-            blockPos = pos.north(RANGE - blockEntity.zDir).west(RANGE - blockEntity.xDir).below(1 + blockEntity.yDir);
+            blockPos = pos.north(blockEntity.range - blockEntity.zDir).west(blockEntity.range - blockEntity.xDir).below(1 + blockEntity.yDir);
             block = level.getBlockState(blockPos).getBlock();
         }
 
@@ -183,7 +192,7 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private boolean fillIfEmpty(SimpleContainer container, ItemStack stack, boolean simulate) {
-        for(int i = 2; i < container.getContainerSize(); i++) {
+        for(int i = 3; i < container.getContainerSize(); i++) {
             if(container.getItem(i).isEmpty()) {
                 if(simulate) this.itemHandler.setStackInSlot(i, stack);
             } else if(container.getItem(i).sameItem(stack) && container.getItem(i).getCount() < container.getItem(i).getMaxStackSize()) {

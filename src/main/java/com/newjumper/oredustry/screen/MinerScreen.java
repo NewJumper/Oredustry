@@ -43,8 +43,8 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
 
         if(isHovering(14, 79, 91, 8, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal((int) (menu.drawProgress() / 0.93) + "%")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
         if(isHovering(111, 79, 79, 8, pMouseX, pMouseY)) {
-            int time = Math.max(menu.data.get(3) / 20, 1);
-            renderTooltip(pPoseStack, List.of(Component.literal(time + " second" + (time != 1 ? "s" : ""))), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
+            int time = menu.data.get(3) / 20;
+            renderTooltip(pPoseStack, List.of(Component.literal(time + (time != 1 ? " seconds" : " second"))), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
         }
     }
 

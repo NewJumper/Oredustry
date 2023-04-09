@@ -16,13 +16,13 @@ import net.minecraftforge.items.SlotItemHandler;
 @SuppressWarnings("NullableProblems")
 public class MinerMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
-    private static final int MENU_SLOTS = 29;
+    private static final int MENU_SLOTS = 30;
     public final MinerBlockEntity blockEntity;
     public final ContainerData data;
     private final Level level;
 
     public MinerMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
-        this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
+        this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(5));
     }
 
     public MinerMenu(int pContainerId, Inventory pInventory, BlockEntity pBlockEntity, ContainerData pContainerData) {
@@ -35,14 +35,18 @@ public class MinerMenu extends AbstractContainerMenu {
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 152, 57));
-            this.addSlot(new SlotItemHandler(handler, 1, 174, 57) {
+            this.addSlot(new SlotItemHandler(handler, 0, 130, 57));
+            this.addSlot(new SlotItemHandler(handler, 1, 152, 57) {
+                @Override
+                public boolean mayPlace(ItemStack stack) { return stack.is(Items.EMERALD); }
+            });
+            this.addSlot(new SlotItemHandler(handler, 2, 174, 57) {
                 @Override
                 public boolean mayPlace(ItemStack stack) { return stack.is(Items.DIAMOND); }
             });
             for(int i = 0; i < 3; i++) {
-                for(int j = 0; j < MENU_SLOTS / 3; j++) {
-                    this.addSlot(new SlotItemHandler(handler, i * 9 + j + 2, 22 + j * 18, 96 + i * 18));
+                for(int j = 0; j < (MENU_SLOTS - 3) / 3; j++) {
+                    this.addSlot(new SlotItemHandler(handler, i * 9 + j + 3, 22 + j * 18, 96 + i * 18));
                 }
             }
         });
@@ -92,7 +96,7 @@ public class MinerMenu extends AbstractContainerMenu {
 
     public int drawProgress() {
         int progress = this.data.get(1);
-        int bar = 93 * progress / this.data.get(3);
+        int bar = 90 * progress / this.data.get(3);
 
         return progress == 0 ? 0 : bar;
     }
