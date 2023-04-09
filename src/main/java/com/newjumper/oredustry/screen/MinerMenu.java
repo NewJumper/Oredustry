@@ -2,12 +2,12 @@ package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.MinerBlockEntity;
+import com.newjumper.oredustry.item.OredustryItems;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -40,11 +40,11 @@ public class MinerMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 0, 130, 57));
             this.speedSlot = this.addSlot(new SlotItemHandler(handler, 1, 152, 57) {
                 @Override
-                public boolean mayPlace(ItemStack stack) { return stack.is(Items.DIAMOND); }
+                public boolean mayPlace(ItemStack stack) { return stack.is(OredustryItems.SPEED_UPGRADE.get()); }
             });
             this.rangeSlot = this.addSlot(new SlotItemHandler(handler, 2, 174, 57) {
                 @Override
-                public boolean mayPlace(ItemStack stack) { return stack.is(Items.EMERALD); }
+                public boolean mayPlace(ItemStack stack) { return stack.is(OredustryItems.RANGE_UPGRADE.get()); }
             });
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < (MENU_SLOTS - 3) / 3; j++) {

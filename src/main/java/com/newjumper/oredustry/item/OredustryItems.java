@@ -3,6 +3,7 @@ package com.newjumper.oredustry.item;
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.util.OredustryCreativeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -25,4 +26,7 @@ public class OredustryItems {
     public static final RegistryObject<Item> COMPRESSOR_UPGRADE = ITEMS.register("compressor_upgrade", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> CRUCIBLE_UPGRADE = ITEMS.register("crucible_upgrade", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> SEPARATOR_UPGRADE = ITEMS.register("separator_upgrade", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
+
+    public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> RANGE_UPGRADE = ITEMS.register("range_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
 }
