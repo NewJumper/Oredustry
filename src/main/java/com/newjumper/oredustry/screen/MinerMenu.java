@@ -20,6 +20,8 @@ public class MinerMenu extends AbstractContainerMenu {
     public final MinerBlockEntity blockEntity;
     public final ContainerData data;
     private final Level level;
+    private Slot speedSlot;
+    private Slot rangeSlot;
 
     public MinerMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
         this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(5));
@@ -36,11 +38,11 @@ public class MinerMenu extends AbstractContainerMenu {
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 130, 57));
-            this.addSlot(new SlotItemHandler(handler, 1, 152, 57) {
+            this.speedSlot = this.addSlot(new SlotItemHandler(handler, 1, 152, 57) {
                 @Override
                 public boolean mayPlace(ItemStack stack) { return stack.is(Items.DIAMOND); }
             });
-            this.addSlot(new SlotItemHandler(handler, 2, 174, 57) {
+            this.rangeSlot = this.addSlot(new SlotItemHandler(handler, 2, 174, 57) {
                 @Override
                 public boolean mayPlace(ItemStack stack) { return stack.is(Items.EMERALD); }
             });
@@ -99,5 +101,13 @@ public class MinerMenu extends AbstractContainerMenu {
         int bar = 90 * progress / this.data.get(3);
 
         return progress == 0 ? 0 : bar;
+    }
+
+    public Slot getSlotAt(int index) {
+        return switch(index) {
+            case 1 -> speedSlot;
+            case 2 -> rangeSlot;
+            default -> throw new IllegalStateException("Unexpected index at slot " + index);
+        };
     }
 }
