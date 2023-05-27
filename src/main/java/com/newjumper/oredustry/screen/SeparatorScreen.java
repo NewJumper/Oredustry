@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 @SuppressWarnings("NullableProblems")
 public class SeparatorScreen extends AbstractContainerScreen<SeparatorMenu> {
     public static final ResourceLocation GUI = new ResourceLocation(Oredustry.MOD_ID, "textures/gui/container/separator.png");
+    public static final ResourceLocation UPGRADES = new ResourceLocation(Oredustry.MOD_ID, "textures/gui/upgrades.png");
 
     public SeparatorScreen(SeparatorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -41,5 +42,8 @@ public class SeparatorScreen extends AbstractContainerScreen<SeparatorMenu> {
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
         if(menu.drawFuel() > -1) this.blit(pPoseStack, x + 39, y + 17 + menu.drawFuel(), 176, menu.drawFuel(), 14, 14 - menu.drawFuel());
         if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 82, y + 33, 176, 14, menu.drawProgress(), 21);
+
+        RenderSystem.setShaderTexture(0, UPGRADES);
+        this.blit(pPoseStack, x + imageWidth - 3, y + imageHeight - 32, 86, 0, 23, 26);
     }
 }
