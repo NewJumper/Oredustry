@@ -11,6 +11,7 @@ import com.newjumper.oredustry.datagen.data.recipes.MachiningRecipesProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryBlockTagsProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryItemTagsProvider;
 import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.network.Messages;
 import com.newjumper.oredustry.recipe.CompressingRecipe;
 import com.newjumper.oredustry.recipe.MeltingRecipe;
 import com.newjumper.oredustry.recipe.OredustryRecipes;
@@ -37,6 +38,7 @@ public class Oredustry {
 
     public Oredustry() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        Messages.registerMessages(MOD_ID + "_network");
 
         OredustryBlocks.BLOCKS.register(eventBus);
         OredustryItems.ITEMS.register(eventBus);

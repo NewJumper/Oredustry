@@ -16,6 +16,8 @@ import java.util.Optional;
 public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
     public static final ResourceLocation GUI = new ResourceLocation(Oredustry.MOD_ID, "textures/gui/container/miner.png");
 
+    private MachineButton powerButton;
+
     public MinerScreen(MinerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
         this.imageWidth = 204;
@@ -28,6 +30,7 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
         this.inventoryLabelX = 22;
         this.inventoryLabelY = 152;
+        this.powerButton = new MachineButton(leftPos + 183, topPos + 24, 8, 10);
     }
 
     @Override
@@ -59,11 +62,8 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
         int y = this.topPos;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
-        if(isHovering(183, 24, 8, 10, pMouseX, pMouseY)) {
-            this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.data.get(0), 10, 8, 10);
-        } else {
-            this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.data.get(0), 0, 8, 10);
-        }
+        if(isHovering(183, 24, 8, 10, pMouseX, pMouseY)) this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.data.get(0), 10, 8, 10);
+        else this.blit(pPoseStack, x + 183, y + 24, 204 + 8 * menu.data.get(0), 0, 8, 10);
         if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 15, y + 80, 0, 246, menu.drawProgress(), 6);
         this.blit(pPoseStack, x + 112, y + 80, 204, 20 + menu.data.get(2) * 12, 52, 6);
         this.blit(pPoseStack, x + 164, y + 80, 204, 26 + menu.data.get(2) * 12, 25, 6);
@@ -72,10 +72,9 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
     @Override
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
         int state = menu.data.get(0);
-        if(isHovering(183, 24, 8, 10, pMouseX, pMouseY)) {
-            if(state == 0 || state == 3) menu.setState(2);
-            else if(state == 2) menu.setState(3);
-        }
+        if(state == 1 || state == 3) state = 2;
+        else if(state == 2) state = 3;
+        powerButton.onClick(pMouseX, pMouseY, menu.blockEntity.getBlockPos(), 0, state);
 
         return super.mouseClicked(pMouseX, pMouseY, pButton);
     }

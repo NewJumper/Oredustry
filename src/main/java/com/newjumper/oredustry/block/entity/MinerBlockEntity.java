@@ -28,7 +28,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 @SuppressWarnings("NullableProblems")
 public class MinerBlockEntity extends BlockEntity implements MenuProvider {
-    protected final ContainerData data = new ContainerData() {
+    public final ContainerData data = new ContainerData() {
         public int get(int index) {
             return switch (index) {
                 case 0 -> MinerBlockEntity.this.state;
@@ -56,7 +56,7 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
     };
     private final LazyOptional<IItemHandler> lazyItemHandler;
     public final ItemStackHandler itemHandler;
-    private int state;
+    private int state = 1;
     private int progress;
     private int speed;
     private int limit = 400;
@@ -131,13 +131,8 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
             inventory.setItem(i, blockEntity.itemHandler.getStackInSlot(i));
         }
 
-        if((blockEntity.state == 0 || blockEntity.state == 2) && !state.getValue(MachineBlock.ACTIVE)) {
-            state = state.setValue(MachineBlock.ACTIVE, true);
-            level.setBlock(pos, state, 3);
-        } else if((blockEntity.state == 1 || blockEntity.state == 3) && state.getValue(MachineBlock.ACTIVE)) {
-            state = state.setValue(MachineBlock.ACTIVE, false);
-            level.setBlock(pos, state, 3);
-        }
+        if(blockEntity.state == 2 && !state.getValue(MachineBlock.ACTIVE)) level.setBlock(pos, state.setValue(MachineBlock.ACTIVE, true), 3);
+        if(blockEntity.state == 3 && state.getValue(MachineBlock.ACTIVE)) level.setBlock(pos, state.setValue(MachineBlock.ACTIVE, false), 3);
 
         int updateSpeed = blockEntity.speed;
         blockEntity.data.set(2, blockEntity.itemHandler.getStackInSlot(1).getCount());
@@ -172,7 +167,7 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
                     blockEntity.xDir = 0;
                     blockEntity.yDir = 0;
                     blockEntity.zDir = 0;
-                    blockEntity.state = 1;
+                    blockEntity.state = 3;
                     state = state.setValue(MachineBlock.ACTIVE, false);
                     level.setBlock(pos, state, 3);
                     return;
