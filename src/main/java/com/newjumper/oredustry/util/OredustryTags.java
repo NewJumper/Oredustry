@@ -14,9 +14,10 @@ public class OredustryTags {
     }
 
     public static class Items {
-        public static final TagKey<Item> DENSE_MATERIALS = modTag("dense_materials");
         public static final TagKey<Item> CELLS = modTag("cells");
+        public static final TagKey<Item> DENSE_MATERIALS = modTag("dense_materials");
         public static final TagKey<Item> FRAME_UPGRADES = modTag("frame_upgrades");
+        public static final TagKey<Item> UPGRADES = modTag("upgrades");
 
         private static TagKey<Item> modTag(String name) {
             return ItemTags.create(new ResourceLocation(Oredustry.MOD_ID, name));
