@@ -1,4 +1,4 @@
-// 1.19.2	2023-04-09T18:40:09.0718877	Item Models: oredustry
+// 1.19.2	2023-05-29T23:53:22.1165639	Item Models: oredustry
 fa469a2777d2b1b15ed8356fd5862b63e6025088 assets/oredustry/models/item/compressor.json
 3b909e72a002112f1ef60dd83de37130a5803a70 assets/oredustry/models/item/compressor_upgrade.json
 2ef43be68fc694b2d45c61e4efa78160d1992cb0 assets/oredustry/models/item/conduction_cell.json
@@ -12,6 +12,7 @@ a92f7e5c5af486f23c4f44f6f670be5c93f5099e assets/oredustry/models/item/dense_raw_
 f30367113cd8c586f345de21a7cbf9a8ccec264e assets/oredustry/models/item/dense_raw_gold.json
 6fac5e61e6c49d3b520fd7a15ff75dd3a7ecc99f assets/oredustry/models/item/dense_raw_iron.json
 2b05a1b59e02e5fe7b06f16d95dd220f35cafffe assets/oredustry/models/item/dense_redstone.json
+8e7e99ee06d5adc054a0940d0c41ee5eacc7165b assets/oredustry/models/item/fuel_upgrade.json
 f86897d7705565a6896891d971915dcdfec44072 assets/oredustry/models/item/induction_cell.json
 38e662a0b9ecd54bf2019a919c27bbdeada9b875 assets/oredustry/models/item/machine_frame.json
 84d1e47c8f35bb4c34a264b1d9993f0ad773f40b assets/oredustry/models/item/miner.json
@@ -19,3 +20,4 @@ f86897d7705565a6896891d971915dcdfec44072 assets/oredustry/models/item/induction_
 4ee69277f0282e3c891aca5899398d20124fab43 assets/oredustry/models/item/separator.json
 54fdd06f026ddd46676da473e8a0f1bb34bccd04 assets/oredustry/models/item/separator_upgrade.json
 cc242e9b32966e27b740b46e9ac301d97cb47d0e assets/oredustry/models/item/speed_upgrade.json
+d3e4c4c1c534c60fefd877b733db7ce9d78f29e1 assets/oredustry/models/item/storage_upgrade.json

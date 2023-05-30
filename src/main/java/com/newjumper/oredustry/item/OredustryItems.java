@@ -27,6 +27,8 @@ public class OredustryItems {
     public static final RegistryObject<Item> CRUCIBLE_UPGRADE = ITEMS.register("crucible_upgrade", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> SEPARATOR_UPGRADE = ITEMS.register("separator_upgrade", () -> new Item(new Item.Properties().tab(OredustryCreativeTab.OREDUSTRY)));
 
-    public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> FUEL_UPGRADE = ITEMS.register("fuel_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> RANGE_UPGRADE = ITEMS.register("range_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> STORAGE_UPGRADE = ITEMS.register("storage_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
 }

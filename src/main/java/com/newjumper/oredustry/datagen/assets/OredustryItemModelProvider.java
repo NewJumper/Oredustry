@@ -42,8 +42,10 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         itemModel(OredustryItems.CRUCIBLE_UPGRADE, GENERATED);
         itemModel(OredustryItems.SEPARATOR_UPGRADE, GENERATED);
 
-        itemModel(OredustryItems.SPEED_UPGRADE, GENERATED);
+        itemModel(OredustryItems.FUEL_UPGRADE, GENERATED);
         itemModel(OredustryItems.RANGE_UPGRADE, GENERATED);
+        itemModel(OredustryItems.SPEED_UPGRADE, GENERATED);
+        itemModel(OredustryItems.STORAGE_UPGRADE, GENERATED);
     }
 
     public void blockModel(RegistryObject<Block> block) {
