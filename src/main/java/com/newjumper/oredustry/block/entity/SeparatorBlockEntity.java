@@ -76,7 +76,7 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
     public SeparatorBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.SEPARATOR.get(), pWorldPosition, pBlockState);
 
-        this.itemHandler = new ItemStackHandler(4) {
+        this.itemHandler = new ItemStackHandler(6) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
@@ -186,8 +186,7 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean canSeparate(SimpleContainer inventory, Optional<SeparatingRecipe> recipe) {
-        int output = inventory.getContainerSize() - 1;
-        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem(), output - 1) && validOutput(inventory, recipe.get().getResultBlock(), output);
+        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem(), 2) && validOutput(inventory, recipe.get().getResultBlock(), 3);
     }
 
     private static boolean validOutput(SimpleContainer container, ItemStack stack, int slot) {

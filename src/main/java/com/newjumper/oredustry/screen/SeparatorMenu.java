@@ -2,8 +2,10 @@ package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.SeparatorBlockEntity;
+import com.newjumper.oredustry.item.OredustryItems;
 import com.newjumper.oredustry.screen.slot.ResultSlot;
 import com.newjumper.oredustry.screen.slot.SeparatorResultSlot;
+import com.newjumper.oredustry.screen.slot.UpgradeSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -16,13 +18,17 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SuppressWarnings("NullableProblems")
 public class SeparatorMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
-    private static final int MENU_SLOTS = 4;
+    public static final int MENU_SLOTS = 6;
     public final SeparatorBlockEntity blockEntity;
     private final ContainerData data;
     private final Level level;
+    public List<Slot> upgradeSlots = new ArrayList<>();
 
     public SeparatorMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
         this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
@@ -52,6 +58,8 @@ public class SeparatorMenu extends AbstractContainerMenu {
             });
             this.addSlot(new SeparatorResultSlot(blockEntity, pInventory.player, handler, 2, 116, 21));
             this.addSlot(new ResultSlot(handler, 3, 116, 49));
+            upgradeSlots.add(this.addSlot(new UpgradeSlot(handler, 4, 176, 25, OredustryItems.FUEL_UPGRADE.get())));
+            upgradeSlots.add(this.addSlot(new UpgradeSlot(handler, 5, 176, 43, OredustryItems.SPEED_UPGRADE.get())));
         });
 
         addDataSlots(pContainerData);

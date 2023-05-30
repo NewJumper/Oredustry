@@ -3,6 +3,7 @@ package com.newjumper.oredustry.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.newjumper.oredustry.Oredustry;
+import com.newjumper.oredustry.screen.slot.UpgradeSlot;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -11,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.Slot;
 
 @SuppressWarnings("NullableProblems")
 public class SeparatorScreen extends AbstractContainerScreen<SeparatorMenu> {
@@ -49,8 +51,12 @@ public class SeparatorScreen extends AbstractContainerScreen<SeparatorMenu> {
         if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 82, y + 33, 176, 14, menu.drawProgress(), 21);
 
         RenderSystem.setShaderTexture(0, UPGRADES);
-        if(upgradesGUI) this.blit(pPoseStack, x + imageWidth - 3, y, 0, 0, 64, 86);
+        if(upgradesGUI) {
+            this.blit(pPoseStack, x + imageWidth - 3, y, 0, 0, 64, 42);
+            for(int i = 0; i < SeparatorMenu.MENU_SLOTS - 5; i++) this.blit(pPoseStack, x + imageWidth - 3, y + 42, 0, 24, 64, 26);
+        }
         else this.blit(pPoseStack, x + imageWidth - 3, y, 64, 0, 23, 26);
+        for(Slot slot : menu.upgradeSlots) ((UpgradeSlot) slot).setActive(upgradesGUI);
     }
 
     @Override
