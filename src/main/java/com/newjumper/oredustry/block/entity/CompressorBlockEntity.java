@@ -146,7 +146,7 @@ public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
         }
 
         Optional<CompressingRecipe> recipe = level.getRecipeManager().getRecipeFor(CompressingRecipe.Type.INSTANCE, inventory, level);
-        recipe.ifPresent(compressingRecipe -> blockEntity.maxProgress = compressingRecipe.getTime());
+        recipe.ifPresent(compressingRecipe -> blockEntity.maxProgress = (20 - compressingRecipe.getTime()) / 8 * blockEntity.itemHandler.getStackInSlot(4).getCount() + compressingRecipe.getTime());
 
         if(blockEntity.isActive()) {
             if(!blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
@@ -163,6 +163,7 @@ public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
 
         if(canCompress(inventory, recipe) && !blockEntity.isActive()) {
             double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
+            constant += blockEntity.itemHandler.getStackInSlot(3).getCount() * constant / 8;
             blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
             blockEntity.fuel = blockEntity.maxFuel;
             ItemStack fuelRemainder = blockEntity.itemHandler.extractItem(0, 1, false).getCraftingRemainingItem();
@@ -171,7 +172,7 @@ public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
 
         if(canCompress(inventory, recipe) && blockEntity.isActive()) {
             blockEntity.progress++;
-            if(blockEntity.progress == blockEntity.maxProgress) {
+            if(blockEntity.progress >= blockEntity.maxProgress) {
                 blockEntity.itemHandler.extractItem(1, 1, false);
                 blockEntity.itemHandler.setStackInSlot(2, new ItemStack(recipe.get().getResultItem().getItem(), blockEntity.itemHandler.getStackInSlot(2).getCount() + recipe.get().getResultItem().getCount()));
 
