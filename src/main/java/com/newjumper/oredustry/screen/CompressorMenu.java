@@ -2,7 +2,9 @@ package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.CompressorBlockEntity;
+import com.newjumper.oredustry.item.OredustryItems;
 import com.newjumper.oredustry.screen.slot.CompressorResultSlot;
+import com.newjumper.oredustry.screen.slot.UpgradeSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -11,16 +13,22 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("NullableProblems")
 public class CompressorMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
-    private static final int MENU_SLOTS = 3;
+    public static final int MENU_SLOTS = 5;
     public final CompressorBlockEntity blockEntity;
     private final ContainerData data;
     private final Level level;
+    public List<Slot> upgradeSlots = new ArrayList<>();
 
     public CompressorMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
         this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
@@ -42,8 +50,15 @@ public class CompressorMenu extends AbstractContainerMenu {
                     return ForgeHooks.getBurnTime(stack, null) > 0;
                 }
             });
-            this.addSlot(new SlotItemHandler(handler, 1, 64, 35));
+            this.addSlot(new SlotItemHandler(handler, 1, 64, 35) {
+                @Override
+                public boolean mayPlace(@NotNull ItemStack stack) {
+                    return stack.is(Tags.Items.ORES);
+                }
+            });
             this.addSlot(new CompressorResultSlot(blockEntity, pInventory.player, handler, 2, 118, 35));
+            upgradeSlots.add(this.addSlot(new UpgradeSlot(handler, 3, 176, 25, OredustryItems.FUEL_UPGRADE.get())));
+            upgradeSlots.add(this.addSlot(new UpgradeSlot(handler, 4, 176, 43, OredustryItems.SPEED_UPGRADE.get())));
         });
 
         addDataSlots(pContainerData);

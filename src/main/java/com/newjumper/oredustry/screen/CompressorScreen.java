@@ -3,15 +3,23 @@ package com.newjumper.oredustry.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.newjumper.oredustry.Oredustry;
+import com.newjumper.oredustry.screen.slot.UpgradeSlot;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.Slot;
 
 @SuppressWarnings("NullableProblems")
 public class CompressorScreen extends AbstractContainerScreen<CompressorMenu> {
     public static final ResourceLocation GUI = new ResourceLocation(Oredustry.MOD_ID, "textures/gui/container/compressor.png");
+    public static final ResourceLocation UPGRADES = new ResourceLocation(Oredustry.MOD_ID, "textures/gui/upgrades.png");
+
+    private boolean upgradesGUI;
 
     public CompressorScreen(CompressorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -45,5 +53,23 @@ public class CompressorScreen extends AbstractContainerScreen<CompressorMenu> {
             this.blit(pPoseStack, x + 58, y + 21, 176, 14, 28, menu.drawPress());
             this.blit(pPoseStack, x + 58, y + 64 - menu.drawPress(), 176, 36 - menu.drawPress(), 28, menu.drawPress());
         }
+
+        RenderSystem.setShaderTexture(0, UPGRADES);
+        if(upgradesGUI) {
+            this.blit(pPoseStack, x + imageWidth - 3, y, 0, 0, 64, 42);
+            for(int i = 0; i < CompressorMenu.MENU_SLOTS - 4; i++) this.blit(pPoseStack, x + imageWidth - 3, y + 42, 0, 24, 64, 26);
+        }
+        else this.blit(pPoseStack, x + imageWidth - 3, y, 64, 0, 23, 26);
+        for(Slot slot : menu.upgradeSlots) ((UpgradeSlot) slot).setActive(upgradesGUI);
+    }
+
+    @Override
+    public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
+        if(isHovering(imageWidth - 1, 5, 16, 16, pMouseX, pMouseY)) {
+            Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 0.6f, 0.3f));
+            upgradesGUI = !upgradesGUI;
+        }
+
+        return super.mouseClicked(pMouseX, pMouseY, pButton);
     }
 }

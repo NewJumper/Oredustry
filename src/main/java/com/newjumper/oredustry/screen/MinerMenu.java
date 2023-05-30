@@ -3,6 +3,7 @@ package com.newjumper.oredustry.screen;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.MinerBlockEntity;
 import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.screen.slot.UpgradeSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -13,15 +14,17 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SuppressWarnings("NullableProblems")
 public class MinerMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
-    private static final int MENU_SLOTS = 30;
+    public static final int MENU_SLOTS = 30;
     public final MinerBlockEntity blockEntity;
     public final ContainerData data;
     private final Level level;
-    private Slot speedSlot;
-    private Slot rangeSlot;
+    public List<Slot> upgradeSlots = new ArrayList<>();
 
     public MinerMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
         this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(5));
@@ -37,15 +40,9 @@ public class MinerMenu extends AbstractContainerMenu {
         addInventorySlots(pInventory);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 130, 57));
-            this.speedSlot = this.addSlot(new SlotItemHandler(handler, 1, 152, 57) {
-                @Override
-                public boolean mayPlace(ItemStack stack) { return stack.is(OredustryItems.SPEED_UPGRADE.get()); }
-            });
-            this.rangeSlot = this.addSlot(new SlotItemHandler(handler, 2, 174, 57) {
-                @Override
-                public boolean mayPlace(ItemStack stack) { return stack.is(OredustryItems.RANGE_UPGRADE.get()); }
-            });
+            upgradeSlots.add(this.addSlot(new UpgradeSlot(handler, 0, 204, 25, OredustryItems.RANGE_UPGRADE.get())));
+            upgradeSlots.add(this.addSlot(new UpgradeSlot(handler, 1, 204, 43, OredustryItems.SPEED_UPGRADE.get())));
+            upgradeSlots.add(this.addSlot(new UpgradeSlot(handler, 2, 204, 61, OredustryItems.STORAGE_UPGRADE.get())));
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < (MENU_SLOTS - 3) / 3; j++) {
                     this.addSlot(new SlotItemHandler(handler, i * 9 + j + 3, 22 + j * 18, 96 + i * 18));
@@ -101,13 +98,5 @@ public class MinerMenu extends AbstractContainerMenu {
         int bar = 90 * progress / this.data.get(3);
 
         return progress == 0 ? 0 : bar;
-    }
-
-    public Slot getSlotAt(int index) {
-        return switch(index) {
-            case 1 -> speedSlot;
-            case 2 -> rangeSlot;
-            default -> throw new IllegalStateException("Unexpected index at slot " + index);
-        };
     }
 }

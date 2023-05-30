@@ -2,7 +2,9 @@ package com.newjumper.oredustry.screen;
 
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.CrucibleBlockEntity;
+import com.newjumper.oredustry.item.OredustryItems;
 import com.newjumper.oredustry.screen.slot.CrucibleResultSlot;
+import com.newjumper.oredustry.screen.slot.UpgradeSlot;
 import com.newjumper.oredustry.util.OredustryTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -22,13 +24,17 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SuppressWarnings("NullableProblems")
 public class CrucibleMenu extends AbstractContainerMenu {
     private static final int INV_SLOTS = 36;
-    private static final int MENU_SLOTS = 4;
+    public static final int MENU_SLOTS = 6;
     public final CrucibleBlockEntity blockEntity;
     private final ContainerData data;
     private final Level level;
+    public List<Slot> upgradeSlots = new ArrayList<>();
 
     public CrucibleMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
         this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(7));
@@ -63,6 +69,8 @@ public class CrucibleMenu extends AbstractContainerMenu {
                 }
             });
             this.addSlot(new CrucibleResultSlot(blockEntity, pInventory.player, handler, 3, 133, 35));
+            upgradeSlots.add(this.addSlot(new UpgradeSlot(handler, 4, 176, 25, OredustryItems.FUEL_UPGRADE.get())));
+            upgradeSlots.add(this.addSlot(new UpgradeSlot(handler, 5, 176, 43, OredustryItems.SPEED_UPGRADE.get())));
         });
 
         addDataSlots(pContainerData);

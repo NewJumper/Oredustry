@@ -76,7 +76,7 @@ public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
     public CompressorBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.COMPRESSOR.get(), pWorldPosition, pBlockState);
 
-        this.itemHandler = new ItemStackHandler(3) {
+        this.itemHandler = new ItemStackHandler(5) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
@@ -185,11 +185,11 @@ public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean canCompress(SimpleContainer inventory, Optional<CompressingRecipe> recipe) {
-        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem(), inventory.getContainerSize() - 1);
+        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem());
     }
 
-    private static boolean validOutput(SimpleContainer container, ItemStack stack, int slot) {
-        return (container.getItem(slot).sameItem(stack) || container.getItem(slot).isEmpty()) && container.getItem(slot).getCount() < container.getItem(slot).getMaxStackSize();
+    private static boolean validOutput(SimpleContainer container, ItemStack stack) {
+        return (container.getItem(2).sameItem(stack) || container.getItem(2).isEmpty()) && container.getItem(2).getCount() < container.getItem(2).getMaxStackSize();
     }
 
     private boolean isActive() {

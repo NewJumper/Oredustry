@@ -3,11 +3,16 @@ package com.newjumper.oredustry.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.newjumper.oredustry.Oredustry;
+import com.newjumper.oredustry.screen.slot.UpgradeSlot;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.Slot;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +20,9 @@ import java.util.Optional;
 @SuppressWarnings("NullableProblems")
 public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
     public static final ResourceLocation GUI = new ResourceLocation(Oredustry.MOD_ID, "textures/gui/container/miner.png");
+    public static final ResourceLocation UPGRADES = new ResourceLocation(Oredustry.MOD_ID, "textures/gui/upgrades.png");
 
+    private boolean upgradesGUI;
     private MachineButton powerButton;
 
     public MinerScreen(MinerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
@@ -44,8 +51,6 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         super.renderLabels(pPoseStack, pMouseX, pMouseY);
 
-        if(isHovering(152, 57, 16, 16, pMouseX, pMouseY) && !menu.getSlotAt(1).hasItem()) renderTooltip(pPoseStack, List.of(Component.literal("Speed")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
-        if(isHovering(174, 57, 16, 16, pMouseX, pMouseY) && !menu.getSlotAt(2).hasItem()) renderTooltip(pPoseStack, List.of(Component.literal("Range")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
         if(isHovering(14, 79, 91, 8, pMouseX, pMouseY)) renderTooltip(pPoseStack, List.of(Component.literal((int) (menu.drawProgress() / 0.93) + "%")), Optional.empty(), pMouseX - this.leftPos, pMouseY - this.topPos);
         if(isHovering(111, 79, 79, 8, pMouseX, pMouseY)) {
             int time = menu.data.get(3) / 20;
@@ -67,6 +72,14 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
         if(menu.drawProgress() > 0) this.blit(pPoseStack, x + 15, y + 80, 0, 246, menu.drawProgress(), 6);
         this.blit(pPoseStack, x + 112, y + 80, 204, 20 + menu.data.get(2) * 12, 52, 6);
         this.blit(pPoseStack, x + 164, y + 80, 204, 26 + menu.data.get(2) * 12, 25, 6);
+
+        RenderSystem.setShaderTexture(0, UPGRADES);
+        if(upgradesGUI) {
+            this.blit(pPoseStack, x + imageWidth - 3, y, 0, 0, 64, 42);
+            for(int i = 0; i < 2; i++) this.blit(pPoseStack, x + imageWidth - 3, y + 42 + i * 18, 0, 24, 64, 26);
+        }
+        else this.blit(pPoseStack, x + imageWidth - 3, y, 64, 0, 23, 26);
+        for(Slot slot : menu.upgradeSlots) ((UpgradeSlot) slot).setActive(upgradesGUI);
     }
 
     @Override
@@ -75,6 +88,11 @@ public class MinerScreen extends AbstractContainerScreen<MinerMenu> {
         if(state == 1 || state == 3) state = 2;
         else if(state == 2) state = 3;
         powerButton.onClick(pMouseX, pMouseY, menu.blockEntity.getBlockPos(), 0, state);
+
+        if(isHovering(imageWidth - 1, 5, 16, 16, pMouseX, pMouseY)) {
+            Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 0.6f, 0.3f));
+            upgradesGUI = !upgradesGUI;
+        }
 
         return super.mouseClicked(pMouseX, pMouseY, pButton);
     }

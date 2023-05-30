@@ -97,7 +97,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
     public CrucibleBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(OredustryBlockEntities.CRUCIBLE.get(), pWorldPosition, pBlockState);
 
-        this.itemHandler = new ItemStackHandler(4) {
+        this.itemHandler = new ItemStackHandler(6) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
@@ -247,12 +247,11 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean canMelt(SimpleContainer inventory, Optional<MeltingRecipe> recipe) {
-        int output = inventory.getContainerSize() - 1;
-        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem(), output);
+        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem());
     }
 
-    private static boolean validOutput(SimpleContainer container, ItemStack stack, int slot) {
-        return (container.getItem(slot).sameItem(stack) || container.getItem(slot).isEmpty()) && container.getItem(slot).getCount() < container.getItem(slot).getMaxStackSize();
+    private static boolean validOutput(SimpleContainer container, ItemStack stack) {
+        return (container.getItem(3).sameItem(stack) || container.getItem(3).isEmpty()) && container.getItem(3).getCount() < container.getItem(3).getMaxStackSize();
     }
 
     private boolean isActive() {
