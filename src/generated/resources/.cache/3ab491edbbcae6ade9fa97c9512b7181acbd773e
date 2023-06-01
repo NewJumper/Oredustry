@@ -1,4 +1,4 @@
-// 1.19.2	2023-06-01T14:12:05.7146437	Crafting Recipes
+// 1.19.2	2023-06-01T14:24:56.5853277	Crafting Recipes
 a5618652f6ff1c5cf5d2748d57efa70455506494 data/oredustry/advancements/recipes/oredustry/compressor.json
 82a31fd80fd6a7429a7af9ff364861d8b6af2b91 data/oredustry/advancements/recipes/oredustry/compressor_upgrade.json
 1ce78beb261b0dda4ede7bb96afe186f707c1cb8 data/oredustry/advancements/recipes/oredustry/conduction_cell.json
@@ -9,6 +9,7 @@ b85c821da39d6c98fe484f8d8193c0c58f373c73 data/oredustry/advancements/recipes/ore
 dc43bde443094443636e00393168c11f1d6e9068 data/oredustry/advancements/recipes/oredustry/miner.json
 ab4e51207f3199d74c2130b4e55b5305f13376dd data/oredustry/advancements/recipes/oredustry/separator.json
 af7178dade9da161f430e0fa2855c93fcdb7aa69 data/oredustry/advancements/recipes/oredustry/separator_upgrade.json
+09aed06f459ec7f0103e1d4a041e9eae60ec5bf3 data/oredustry/advancements/recipes/oredustry/upgrade_base.json
 29435acfbb32b666affb26cec330434e58d9a724 data/oredustry/recipes/compressor.json
 3a8718217bdda0b449d71147505c01df54ada879 data/oredustry/recipes/compressor_upgrade.json
 d14f91066b9e0d34e5f45af2cb07bd60e3223250 data/oredustry/recipes/conduction_cell.json
@@ -19,3 +20,4 @@ cf55a99d8c8f7085219bb7243d49f143c26ac7bb data/oredustry/recipes/crucible_upgrade
 91fc95ce6efc9cb39b8aadab19a920b27c6655fb data/oredustry/recipes/miner.json
 7a8f571f571229a521eaaa4e2e0c595e52462521 data/oredustry/recipes/separator.json
 f4c30f1f32136ebef623853a9c879158686845a4 data/oredustry/recipes/separator_upgrade.json
+20f755122e8e5fa6e14d5338d11e2b7aeb9da1bd data/oredustry/recipes/upgrade_base.json

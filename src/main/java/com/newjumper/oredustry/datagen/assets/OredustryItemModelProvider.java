@@ -46,6 +46,7 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         itemModel(OredustryItems.RANGE_UPGRADE, GENERATED);
         itemModel(OredustryItems.SPEED_UPGRADE, GENERATED);
         itemModel(OredustryItems.STORAGE_UPGRADE, GENERATED);
+        itemModel(OredustryItems.UPGRADE_BASE, GENERATED);
 
         getBuilder("oredustry_guide").parent(GENERATED).texture("layer0", "item/oredustry_guide");
     }

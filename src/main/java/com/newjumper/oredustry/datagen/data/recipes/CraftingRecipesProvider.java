@@ -6,8 +6,10 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -120,6 +122,11 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
                 .pattern("I I")
                 .pattern("SSS")
                 .unlockedBy("has_induction_cell", has(OredustryItems.INDUCTION_CELL.get())).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(OredustryItems.UPGRADE_BASE.get(), 1)
+                .requires(OredustryBlocks.MACHINE_FRAME.get(), 1)
+                .requires(Ingredient.of(Tags.Items.GEMS_DIAMOND), 4)
+                .unlockedBy("has_machine_frame", has(OredustryBlocks.MACHINE_FRAME.get())).save(consumer);
     }
 
     @Override

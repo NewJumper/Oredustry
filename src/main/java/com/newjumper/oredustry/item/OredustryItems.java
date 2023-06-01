@@ -31,4 +31,5 @@ public class OredustryItems {
     public static final RegistryObject<Item> RANGE_UPGRADE = ITEMS.register("range_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
     public static final RegistryObject<Item> STORAGE_UPGRADE = ITEMS.register("storage_upgrade", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON).tab(OredustryCreativeTab.OREDUSTRY)));
+    public static final RegistryObject<Item> UPGRADE_BASE = ITEMS.register("upgrade_base", () -> new Item(new Item.Properties().stacksTo(64).tab(OredustryCreativeTab.OREDUSTRY)));
 }

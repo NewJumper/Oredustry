@@ -1,4 +1,4 @@
-// 1.19.2	2023-05-31T19:02:50.4616138	Item Models: oredustry
+// 1.19.2	2023-06-01T14:24:56.5918403	Item Models: oredustry
 fa469a2777d2b1b15ed8356fd5862b63e6025088 assets/oredustry/models/item/compressor.json
 3b909e72a002112f1ef60dd83de37130a5803a70 assets/oredustry/models/item/compressor_upgrade.json
 2ef43be68fc694b2d45c61e4efa78160d1992cb0 assets/oredustry/models/item/conduction_cell.json
@@ -22,3 +22,4 @@ f86897d7705565a6896891d971915dcdfec44072 assets/oredustry/models/item/induction_
 54fdd06f026ddd46676da473e8a0f1bb34bccd04 assets/oredustry/models/item/separator_upgrade.json
 cc242e9b32966e27b740b46e9ac301d97cb47d0e assets/oredustry/models/item/speed_upgrade.json
 d3e4c4c1c534c60fefd877b733db7ce9d78f29e1 assets/oredustry/models/item/storage_upgrade.json
+7d12aab0d2d5af5ff9184cf6449daded5b7fdb3b assets/oredustry/models/item/upgrade_base.json
