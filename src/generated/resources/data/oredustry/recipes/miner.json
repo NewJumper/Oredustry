@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "tag": "forge:storage_blocks/diamond"
+    },
+    "F": {
+      "item": "oredustry:machine_frame"
+    },
+    "N": {
+      "tag": "forge:ingots/netherite"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "S": {
+      "item": "oredustry:separator"
+    }
+  },
+  "pattern": [
+    "RDR",
+    "NSN",
+    "OFO"
+  ],
+  "result": {
+    "item": "oredustry:miner"
+  }
+}

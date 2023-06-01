@@ -53,6 +53,17 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
                 .pattern("BBB")
                 .unlockedBy("has_conduction_cell", has(OredustryItems.CONDUCTION_CELL.get()))
                 .unlockedBy("has_machine_frame", has(OredustryBlocks.MACHINE_FRAME.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(OredustryBlocks.MINER.get(), 1)
+                .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+                .define('D', Tags.Items.STORAGE_BLOCKS_DIAMOND)
+                .define('N', Tags.Items.INGOTS_NETHERITE)
+                .define('S', OredustryBlocks.SEPARATOR.get())
+                .define('O', Blocks.OBSIDIAN)
+                .define('F', OredustryBlocks.MACHINE_FRAME.get())
+                .pattern("RDR")
+                .pattern("NSN")
+                .pattern("OFO")
+                .unlockedBy("has_machine_frame", has(OredustryBlocks.MACHINE_FRAME.get())).save(consumer);
         ShapedRecipeBuilder.shaped(OredustryBlocks.SEPARATOR.get(), 1)
                 .define('R', Tags.Items.DUSTS_REDSTONE)
                 .define('P', Items.IRON_PICKAXE)
