@@ -1,0 +1,5 @@
+{
+  "name": "Machines",
+  "description": "Oredustry introduces four machines: Compressors, Crucibles, Miners, and Separators. Each machine has its own functionality and upgrades to help your ore factory grow and become more efficient.",
+  "icon": "oredustry:machine_frame"
+}

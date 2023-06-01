@@ -1,0 +1,11 @@
+{
+  "name": "Miner",
+  "icon": "oredustry:miner",
+  "category": "oredustry:machines",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Miner text"
+    }
+  ]
+}

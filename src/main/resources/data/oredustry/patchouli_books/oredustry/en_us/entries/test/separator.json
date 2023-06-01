@@ -1,0 +1,11 @@
+{
+  "name": "Separator",
+  "icon": "oredustry:separator",
+  "category": "oredustry:machines",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Separator text"
+    }
+  ]
+}

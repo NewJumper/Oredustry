@@ -1,0 +1,8 @@
+{
+  "name": "Oredustry Guide",
+  "landing_text": "Collect and multiply more ores!$(br)Oredustry will help you gather ores automatically and quicker than traditional mining while also giving you the machinery to process the ores into their refined forms and multiply the results!",
+  "creative_tab": "oredustry",
+  "model": "oredustry:oredustry_guide",
+  "show_progress": false,
+  "version": 1
+}

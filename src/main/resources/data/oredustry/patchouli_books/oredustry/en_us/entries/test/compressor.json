@@ -1,0 +1,11 @@
+{
+  "name": "Compressor",
+  "icon": "oredustry:compressor",
+  "category": "oredustry:machines",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Compressor text"
+    }
+  ]
+}
