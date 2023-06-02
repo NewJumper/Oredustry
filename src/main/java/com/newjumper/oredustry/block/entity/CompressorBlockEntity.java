@@ -148,20 +148,21 @@ public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
         Optional<CompressingRecipe> recipe = level.getRecipeManager().getRecipeFor(CompressingRecipe.Type.INSTANCE, inventory, level);
         recipe.ifPresent(compressingRecipe -> blockEntity.maxProgress = (20 - compressingRecipe.getTime()) / 8 * blockEntity.itemHandler.getStackInSlot(4).getCount() + compressingRecipe.getTime());
 
-        if(blockEntity.isActive()) {
-            if(!blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
+        boolean isActive = blockEntity.isActive();
+        boolean isBlockStateActive = blockEntity.getBlockState().getValue(MachineBlock.ACTIVE);
+
+        if(isActive) {
+            blockEntity.fuel--;
+            if(!isBlockStateActive) {
                 state = state.setValue(MachineBlock.ACTIVE, true);
                 level.setBlock(pos, state, 3);
             }
-            blockEntity.fuel--;
-        } else {
-            if(blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
-                state = state.setValue(MachineBlock.ACTIVE, false);
-                level.setBlock(pos, state, 3);
-            }
+        } else if(isBlockStateActive) {
+            state = state.setValue(MachineBlock.ACTIVE, false);
+            level.setBlock(pos, state, 3);
         }
 
-        if(canCompress(inventory, recipe) && !blockEntity.isActive()) {
+        if(canCompress(inventory, recipe) && !isActive) {
             double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
             constant += blockEntity.itemHandler.getStackInSlot(3).getCount() * constant / 8;
             blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
@@ -170,12 +171,11 @@ public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
             if(!fuelRemainder.isEmpty()) blockEntity.itemHandler.setStackInSlot(0, fuelRemainder);
         }
 
-        if(canCompress(inventory, recipe) && blockEntity.isActive()) {
+        if(canCompress(inventory, recipe) && isActive) {
             blockEntity.progress++;
             if(blockEntity.progress >= blockEntity.maxProgress) {
                 blockEntity.itemHandler.extractItem(1, 1, false);
                 blockEntity.itemHandler.setStackInSlot(2, new ItemStack(recipe.get().getResultItem().getItem(), blockEntity.itemHandler.getStackInSlot(2).getCount() + recipe.get().getResultItem().getCount()));
-
                 blockEntity.progress = 0;
                 blockEntity.recipesUsed.addTo(recipe.get().getId(), 1);
             }
@@ -186,11 +186,7 @@ public class CompressorBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean canCompress(SimpleContainer inventory, Optional<CompressingRecipe> recipe) {
-        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem());
-    }
-
-    private static boolean validOutput(SimpleContainer container, ItemStack stack) {
-        return (container.getItem(2).sameItem(stack) || container.getItem(2).isEmpty()) && container.getItem(2).getCount() < container.getItem(2).getMaxStackSize();
+        return recipe.isPresent() && (inventory.getItem(2).sameItem(recipe.get().getResultItem()) || inventory.getItem(2).isEmpty()) && inventory.getItem(2).getCount() < inventory.getItem(2).getMaxStackSize();
     }
 
     private boolean isActive() {

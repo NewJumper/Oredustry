@@ -17,8 +17,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
-public class MachiningRecipesProvider extends RecipeProvider implements IConditionBuilder {
-    public MachiningRecipesProvider(DataGenerator gen) {
+public class MachineRecipesProvider extends RecipeProvider implements IConditionBuilder {
+    public MachineRecipesProvider(DataGenerator gen) {
         super(gen);
     }
 

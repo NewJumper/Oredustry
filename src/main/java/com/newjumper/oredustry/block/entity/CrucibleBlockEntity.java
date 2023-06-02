@@ -190,14 +190,16 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
         Optional<MeltingRecipe> recipe = level.getRecipeManager().getRecipeFor(MeltingRecipe.Type.INSTANCE, inventory, level);
         recipe.ifPresent(meltingRecipe -> blockEntity.maxProgress = (20 - meltingRecipe.getTime()) / 8 * blockEntity.itemHandler.getStackInSlot(5).getCount() + meltingRecipe.getTime());
 
-        if(blockEntity.isActive()) blockEntity.fuel--;
+        boolean isActive = blockEntity.isActive();
+
+        if(isActive) blockEntity.fuel--;
         if(!blockEntity.getBlockState().getValue(CrucibleBlock.WARM) == blockEntity.liquidAmount > 0) {
             state = state.setValue(CrucibleBlock.WARM, blockEntity.liquidAmount > 0);
             level.setBlock(pos, state, 3);
         }
 
         if(canMelt(inventory, recipe) && blockEntity.liquidAmount + recipe.get().getResultItem().getCount() * 150 <= LIQUID_CAPACITY) {
-            if(!blockEntity.isActive()) {
+            if(!isActive) {
                 double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
                 constant += blockEntity.itemHandler.getStackInSlot(4).getCount() * constant / 8;
                 blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
@@ -206,7 +208,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
                 if(!fuelRemainder.isEmpty()) blockEntity.itemHandler.setStackInSlot(0, fuelRemainder);
             }
 
-            if(blockEntity.isActive()) {
+            if(isActive) {
                 blockEntity.progress++;
                 if(blockEntity.progress >= blockEntity.maxProgress) {
                     blockEntity.itemHandler.extractItem(1, 1, false);
@@ -248,11 +250,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean canMelt(SimpleContainer inventory, Optional<MeltingRecipe> recipe) {
-        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem());
-    }
-
-    private static boolean validOutput(SimpleContainer container, ItemStack stack) {
-        return (container.getItem(3).sameItem(stack) || container.getItem(3).isEmpty()) && container.getItem(3).getCount() < container.getItem(3).getMaxStackSize();
+        return recipe.isPresent() && (inventory.getItem(3).sameItem(recipe.get().getResultItem()) || inventory.getItem(3).isEmpty()) && inventory.getItem(3).getCount() < inventory.getItem(3).getMaxStackSize();
     }
 
     private boolean isActive() {

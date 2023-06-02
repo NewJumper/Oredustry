@@ -148,20 +148,21 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
         Optional<SeparatingRecipe> recipe = level.getRecipeManager().getRecipeFor(SeparatingRecipe.Type.INSTANCE, inventory, level);
         recipe.ifPresent(separatingRecipe -> blockEntity.maxProgress = (20 - separatingRecipe.getTime()) / 8 * blockEntity.itemHandler.getStackInSlot(5).getCount() + separatingRecipe.getTime());
 
-        if(blockEntity.isActive()) {
-            if(!blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
+        boolean isActive = blockEntity.isActive();
+        boolean isBlockStateActive = blockEntity.getBlockState().getValue(MachineBlock.ACTIVE);
+
+        if(isActive) {
+            blockEntity.fuel--;
+            if(!isBlockStateActive) {
                 state = state.setValue(MachineBlock.ACTIVE, true);
                 level.setBlock(pos, state, 3);
             }
-            blockEntity.fuel--;
-        } else {
-            if(blockEntity.getBlockState().getValue(MachineBlock.ACTIVE)) {
-                state = state.setValue(MachineBlock.ACTIVE, false);
-                level.setBlock(pos, state, 3);
-            }
+        } else if(isBlockStateActive) {
+            state = state.setValue(MachineBlock.ACTIVE, false);
+            level.setBlock(pos, state, 3);
         }
 
-        if(canSeparate(inventory, recipe) && !blockEntity.isActive()) {
+        if(canSeparate(inventory, recipe) && !isActive) {
             double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
             constant += blockEntity.itemHandler.getStackInSlot(4).getCount() * constant / 8;
             blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
@@ -170,13 +171,12 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
             if(!fuelRemainder.isEmpty()) blockEntity.itemHandler.setStackInSlot(0, fuelRemainder);
         }
 
-        if(canSeparate(inventory, recipe) && blockEntity.isActive()) {
+        if(canSeparate(inventory, recipe) && isActive) {
             blockEntity.progress++;
             if(blockEntity.progress >= blockEntity.maxProgress) {
                 blockEntity.itemHandler.extractItem(1, 1, false);
                 blockEntity.itemHandler.setStackInSlot(2, new ItemStack(recipe.get().getResultItem().getItem(), blockEntity.itemHandler.getStackInSlot(2).getCount() + recipe.get().getResultItem().getCount()));
                 blockEntity.itemHandler.setStackInSlot(3, new ItemStack(recipe.get().getResultBlock().getItem(), blockEntity.itemHandler.getStackInSlot(3).getCount() + recipe.get().getResultBlock().getCount()));
-
                 blockEntity.progress = 0;
                 blockEntity.recipesUsed.addTo(recipe.get().getId(), 1);
             }
@@ -187,11 +187,8 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean canSeparate(SimpleContainer inventory, Optional<SeparatingRecipe> recipe) {
-        return recipe.isPresent() && validOutput(inventory, recipe.get().getResultItem(), 2) && validOutput(inventory, recipe.get().getResultBlock(), 3);
-    }
-
-    private static boolean validOutput(SimpleContainer container, ItemStack stack, int slot) {
-        return (container.getItem(slot).sameItem(stack) || container.getItem(slot).isEmpty()) && container.getItem(slot).getCount() < container.getItem(slot).getMaxStackSize();
+        return recipe.isPresent() && (inventory.getItem(2).sameItem(recipe.get().getResultItem()) || inventory.getItem(2).isEmpty()) && inventory.getItem(2).getCount() < inventory.getItem(2).getMaxStackSize() &&
+                (inventory.getItem(3).sameItem(recipe.get().getResultBlock()) || inventory.getItem(3).isEmpty()) && inventory.getItem(3).getCount() < inventory.getItem(3).getMaxStackSize();
     }
 
     private boolean isActive() {

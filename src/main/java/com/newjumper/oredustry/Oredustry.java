@@ -7,7 +7,7 @@ import com.newjumper.oredustry.datagen.assets.OredustryBlockStateProvider;
 import com.newjumper.oredustry.datagen.assets.OredustryItemModelProvider;
 import com.newjumper.oredustry.datagen.data.OredustryLootTableProvider;
 import com.newjumper.oredustry.datagen.data.recipes.CraftingRecipesProvider;
-import com.newjumper.oredustry.datagen.data.recipes.MachiningRecipesProvider;
+import com.newjumper.oredustry.datagen.data.recipes.MachineRecipesProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryBlockTagsProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryItemTagsProvider;
 import com.newjumper.oredustry.item.OredustryItems;
@@ -71,7 +71,7 @@ public class Oredustry {
 
         // data
         generator.addProvider(event.includeServer(), new CraftingRecipesProvider(generator));
-        generator.addProvider(event.includeServer(), new MachiningRecipesProvider(generator));
+        generator.addProvider(event.includeServer(), new MachineRecipesProvider(generator));
 
         OredustryBlockTagsProvider blockTags = new OredustryBlockTagsProvider(generator, fileHelper);
         generator.addProvider(event.includeServer(), blockTags);
