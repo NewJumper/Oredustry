@@ -127,6 +127,30 @@ public class CraftingRecipesProvider extends RecipeProvider implements IConditio
                 .requires(OredustryBlocks.MACHINE_FRAME.get(), 1)
                 .requires(Ingredient.of(Tags.Items.GEMS_DIAMOND), 4)
                 .unlockedBy("has_machine_frame", has(OredustryBlocks.MACHINE_FRAME.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(OredustryItems.FUEL_UPGRADE.get(), 1)
+                .requires(OredustryItems.UPGRADE_BASE.get(), 1)
+                .requires(Ingredient.of(Tags.Items.DUSTS_REDSTONE), 1)
+                .requires(Ingredient.of(Tags.Items.STORAGE_BLOCKS_COAL), 1)
+                .requires(Items.LAVA_BUCKET, 1)
+                .unlockedBy("has_upgrade_base", has(OredustryItems.UPGRADE_BASE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(OredustryItems.RANGE_UPGRADE.get(), 1)
+                .requires(OredustryItems.UPGRADE_BASE.get(), 1)
+                .requires(Ingredient.of(Tags.Items.DUSTS_REDSTONE), 1)
+                .requires(Ingredient.of(Tags.Items.STORAGE_BLOCKS_EMERALD), 1)
+                .requires(Items.ECHO_SHARD, 1)
+                .unlockedBy("has_upgrade_base", has(OredustryItems.UPGRADE_BASE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(OredustryItems.SPEED_UPGRADE.get(), 1)
+                .requires(OredustryItems.UPGRADE_BASE.get(), 1)
+                .requires(Ingredient.of(Tags.Items.DUSTS_REDSTONE), 1)
+                .requires(Ingredient.of(Tags.Items.STORAGE_BLOCKS_DIAMOND), 1)
+                .requires(Items.SUGAR, 1)
+                .unlockedBy("has_upgrade_base", has(OredustryItems.UPGRADE_BASE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(OredustryItems.STORAGE_UPGRADE.get(), 1)
+                .requires(OredustryItems.UPGRADE_BASE.get(), 1)
+                .requires(Ingredient.of(Tags.Items.DUSTS_REDSTONE), 1)
+                .requires(Ingredient.of(Tags.Items.STORAGE_BLOCKS_IRON), 1)
+                .requires(Blocks.CHEST, 1)
+                .unlockedBy("has_upgrade_base", has(OredustryItems.UPGRADE_BASE.get())).save(consumer);
     }
 
     @Override
