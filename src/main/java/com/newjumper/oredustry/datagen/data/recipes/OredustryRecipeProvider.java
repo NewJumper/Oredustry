@@ -1,11 +1,8 @@
 package com.newjumper.oredustry.datagen.data.recipes;
 
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.block.OredustryBlocks;
-import com.newjumper.oredustry.datagen.data.recipes.builders.CompressingRecipeBuilder;
-import com.newjumper.oredustry.datagen.data.recipes.builders.MeltingRecipeBuilder;
-import com.newjumper.oredustry.datagen.data.recipes.builders.SeparatingRecipeBuilder;
-import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.content.OredustryBlocks;
+import com.newjumper.oredustry.content.OredustryItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;

@@ -1,6 +1,6 @@
 package com.newjumper.oredustry.network;
 
-import com.newjumper.oredustry.block.entity.MinerBlockEntity;
+import com.newjumper.oredustry.content.blocks.entity.MinerBlockEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;

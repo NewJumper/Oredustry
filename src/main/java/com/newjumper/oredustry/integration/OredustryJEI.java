@@ -1,10 +1,10 @@
 package com.newjumper.oredustry.integration;
 
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.block.OredustryBlocks;
-import com.newjumper.oredustry.recipe.CompressingRecipe;
-import com.newjumper.oredustry.recipe.MeltingRecipe;
-import com.newjumper.oredustry.recipe.SeparatingRecipe;
+import com.newjumper.oredustry.content.OredustryBlocks;
+import com.newjumper.oredustry.content.recipes.CompressingRecipe;
+import com.newjumper.oredustry.content.recipes.MeltingRecipe;
+import com.newjumper.oredustry.content.recipes.SeparatingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;

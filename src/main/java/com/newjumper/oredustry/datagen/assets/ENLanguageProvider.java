@@ -1,9 +1,9 @@
 package com.newjumper.oredustry.datagen.assets;
 
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.block.OredustryBlocks;
-import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
-import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.content.OredustryBlocks;
+import com.newjumper.oredustry.content.OredustryItems;
+import com.newjumper.oredustry.content.blocks.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.util.MoltenLiquids;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.BlockItem;

@@ -1,6 +1,6 @@
 package com.newjumper.oredustry.datagen.data;
 
-import com.newjumper.oredustry.block.OredustryBlocks;
+import com.newjumper.oredustry.content.OredustryBlocks;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;

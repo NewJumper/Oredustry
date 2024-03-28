@@ -1,8 +1,8 @@
 package com.newjumper.oredustry.util;
 
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.block.OredustryBlocks;
-import com.newjumper.oredustry.item.OredustryItems;
+import com.newjumper.oredustry.content.OredustryBlocks;
+import com.newjumper.oredustry.content.OredustryItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;

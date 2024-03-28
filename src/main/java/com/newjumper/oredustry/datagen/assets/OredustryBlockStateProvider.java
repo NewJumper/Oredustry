@@ -1,7 +1,7 @@
 package com.newjumper.oredustry.datagen.assets;
 
 import com.newjumper.oredustry.Oredustry;
-import com.newjumper.oredustry.block.OredustryBlocks;
+import com.newjumper.oredustry.content.OredustryBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
