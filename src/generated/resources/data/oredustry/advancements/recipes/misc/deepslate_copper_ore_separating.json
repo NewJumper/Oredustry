@@ -30,5 +30,6 @@
     "recipes": [
       "oredustry:deepslate_copper_ore_separating"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

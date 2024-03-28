@@ -3,7 +3,6 @@ package com.newjumper.oredustry.integration;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
@@ -19,6 +18,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -68,16 +68,16 @@ public class SeparatingCategory implements IRecipeCategory<SeparatingRecipe> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, SeparatingRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 21).addIngredients(recipe.getOre());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 57, 7).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 57, 7).addItemStack(RecipeUtil.getResultItem(recipe));
         builder.addSlot(RecipeIngredientRole.OUTPUT, 57, 35).addItemStack(recipe.getResultBlock());
     }
 
     @Override
-    public void draw(SeparatingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        this.progress.getUnchecked(time / 2).draw(stack, 23, 19);
+    public void draw(SeparatingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        this.progress.getUnchecked(time / 2).draw(guiGraphics, 23, 19);
 
-        Font fontRenderer = Minecraft.getInstance().font;
-        int stringWidth = fontRenderer.width(time / 20 + "s");
-        fontRenderer.draw(stack, time / 20 + "s", background.getWidth() - stringWidth - 32, background.getHeight() - 8, 0xff808080);
+        Font font = Minecraft.getInstance().font;
+        int stringWidth = font.width(time / 20 + "s");
+        guiGraphics.drawString(font, time / 20 + "s", background.getWidth() - stringWidth - 32, background.getHeight() - 8, 0xff808080);
     }
 }

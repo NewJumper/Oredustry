@@ -30,5 +30,6 @@
     "recipes": [
       "oredustry:lapis_lazuli_from_melting_dense_lapis"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

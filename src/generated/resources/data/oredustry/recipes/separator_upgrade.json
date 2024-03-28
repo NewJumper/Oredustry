@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "I": {
       "item": "oredustry:induction_cell"
@@ -21,5 +22,6 @@
   ],
   "result": {
     "item": "oredustry:separator_upgrade"
-  }
+  },
+  "show_notification": true
 }

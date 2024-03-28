@@ -37,13 +37,13 @@ public class CrucibleMenu extends AbstractContainerMenu {
     public List<Slot> upgradeSlots = new ArrayList<>();
 
     public CrucibleMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
-        this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(7));
+        this(containerId, inventory, inventory.player.level().getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(7));
     }
 
     public CrucibleMenu(int pContainerId, Inventory pInventory, BlockEntity pBlockEntity, ContainerData pContainerData) {
         super(OredustryMenuTypes.CRUCIBLE_MENU.get(), pContainerId);
         this.blockEntity = (CrucibleBlockEntity) pBlockEntity;
-        this.level = pInventory.player.level;
+        this.level = pInventory.player.level();
         this.data = pContainerData;
 
         checkContainerSize(pInventory, MENU_SLOTS);

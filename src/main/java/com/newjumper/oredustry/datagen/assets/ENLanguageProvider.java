@@ -5,7 +5,7 @@ import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.item.OredustryItems;
 import com.newjumper.oredustry.util.MoltenLiquids;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.BlockItem;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
@@ -13,8 +13,8 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Arrays;
 
 public class ENLanguageProvider extends LanguageProvider {
-    public ENLanguageProvider(DataGenerator gen) {
-        super(gen, Oredustry.MOD_ID, "en_us");
+    public ENLanguageProvider(PackOutput output) {
+        super(output, Oredustry.MOD_ID, "en_us");
     }
 
     @Override

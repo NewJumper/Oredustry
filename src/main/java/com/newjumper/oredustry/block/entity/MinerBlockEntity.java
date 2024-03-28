@@ -192,7 +192,7 @@ public class MinerBlockEntity extends BlockEntity implements MenuProvider {
         for(int i = 3; i < container.getContainerSize(); i++) {
             if(container.getItem(i).isEmpty()) {
                 if(simulate) this.itemHandler.setStackInSlot(i, stack);
-            } else if(container.getItem(i).sameItem(stack) && container.getItem(i).getCount() < container.getItem(i).getMaxStackSize()) {
+            } else if(container.getItem(i).is(stack.getItem()) && container.getItem(i).getCount() < container.getItem(i).getMaxStackSize()) {
                 stack.setCount(this.itemHandler.getStackInSlot(i).getCount() + 1);
                 if(simulate) this.itemHandler.setStackInSlot(i, stack);
             } else continue;

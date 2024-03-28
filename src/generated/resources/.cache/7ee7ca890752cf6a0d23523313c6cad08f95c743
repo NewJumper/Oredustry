@@ -1,0 +1,5 @@
+// 1.20.1	2024-03-28T16:04:16.7798289	Tags for minecraft:item mod id oredustry
+8c5649d6761a9621217b4aa57bd7b81b8716e3ac data/oredustry/tags/items/cells.json
+45c044bb3e60a3d671f54abd3d900b5b6ce98089 data/oredustry/tags/items/dense_materials.json
+38a1a263e6b1f82e1c887cf7d137bd6fa0d87499 data/oredustry/tags/items/frame_upgrades.json
+497b764c0b97a3d33af9259eb0817161f94dd8bb data/oredustry/tags/items/upgrades.json

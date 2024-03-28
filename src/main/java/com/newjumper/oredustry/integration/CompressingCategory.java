@@ -3,7 +3,6 @@ package com.newjumper.oredustry.integration;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.recipe.CompressingRecipe;
@@ -19,6 +18,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -68,15 +68,14 @@ public class CompressingCategory implements IRecipeCategory<CompressingRecipe> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, CompressingRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 5, 17).addIngredients(recipe.getIngredient());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 17).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 17).addItemStack(RecipeUtil.getResultItem(recipe));
     }
 
     @Override
-    public void draw(CompressingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        this.progress.getUnchecked(time / 2).draw(stack, 28, 19);
-
-        Font fontRenderer = Minecraft.getInstance().font;
-        int stringWidth = fontRenderer.width(time / 20 + "s");
-        fontRenderer.draw(stack, time / 20 + "s", background.getWidth() - stringWidth, background.getHeight() - 7, 0xff808080);
+    public void draw(CompressingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        this.progress.getUnchecked(time / 2).draw(guiGraphics, 28, 19);
+        Font font = Minecraft.getInstance().font;
+        int stringWidth = font.width(time / 20 + "s");
+        guiGraphics.drawString(font, time / 20 + "s", background.getWidth() - stringWidth, background.getHeight() - 7, 0xff808080);
     }
 }

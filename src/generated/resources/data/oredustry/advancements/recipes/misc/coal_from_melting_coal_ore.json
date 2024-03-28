@@ -28,5 +28,6 @@
     "recipes": [
       "oredustry:coal_from_melting_coal_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -23,7 +23,7 @@ public class MachineButton {
     public void onClick(double mouseX, double mouseY, BlockPos blockPos, int index, int value) {
         if(mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height) {
             Messages.INSTANCE.sendToServer(new PacketMachineButton(blockPos, index, value));
-            Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 0.6f, 0.3f));
+            Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK.get(), 0.6f, 0.3f));
         }
     }
 }

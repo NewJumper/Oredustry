@@ -30,5 +30,6 @@
     "recipes": [
       "oredustry:iron_ingot_from_melting_dense_raw_iron"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

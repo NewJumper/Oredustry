@@ -3,7 +3,8 @@ package com.newjumper.oredustry.network;
 import com.newjumper.oredustry.block.entity.MinerBlockEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -39,17 +40,17 @@ public class PacketMachineButton {
         buf.writeInt(value);
     }
 
-    public void handle(Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            ServerPlayer player = ctx.get().getSender();
+    public void handle(Supplier<NetworkEvent.Context> context) {
+        context.get().enqueueWork(() -> {
+            Level level = context.get().getSender().level();
             BlockPos pos = new BlockPos(x, y, z);
-            MinerBlockEntity blockEntity = (MinerBlockEntity) player.getLevel().getBlockEntity(pos);
-            if(player.level.isLoaded(pos)) {
-                blockEntity.data.set(index, value);
-                blockEntity.getLevel().markAndNotifyBlock(pos, player.getLevel().getChunkAt(pos), blockEntity.getLevel().getBlockState(pos).getBlock().defaultBlockState(), blockEntity.getLevel().getBlockState(pos), 2, 0);
-                blockEntity.setChanged();
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if(level.isLoaded(pos) && blockEntity instanceof MinerBlockEntity miner) {
+                miner.data.set(index, value);
+                miner.getLevel().markAndNotifyBlock(pos, level.getChunkAt(pos), blockEntity.getLevel().getBlockState(pos).getBlock().defaultBlockState(), blockEntity.getLevel().getBlockState(pos), 2, 0);
+                miner.setChanged();
             }
         });
-        ctx.get().setPacketHandled(true);
+        context.get().setPacketHandled(true);
     }
 }

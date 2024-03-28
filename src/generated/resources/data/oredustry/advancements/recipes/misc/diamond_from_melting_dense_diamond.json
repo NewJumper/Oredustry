@@ -30,5 +30,6 @@
     "recipes": [
       "oredustry:diamond_from_melting_dense_diamond"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

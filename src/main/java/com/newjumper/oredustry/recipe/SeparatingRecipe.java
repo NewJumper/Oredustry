@@ -1,6 +1,7 @@
 package com.newjumper.oredustry.recipe;
 
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -33,8 +34,8 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
-        return resultItem;
+    public ItemStack assemble(SimpleContainer pContainer, RegistryAccess pRegistryAccess) {
+        return resultItem.copy();
     }
 
     @Override
@@ -52,8 +53,8 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack getResultItem() {
-        return resultItem.copy();
+    public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
+        return resultItem;
     }
 
     public ItemStack getResultBlock() {
@@ -109,10 +110,10 @@ public class SeparatingRecipe implements Recipe<SimpleContainer> {
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, SeparatingRecipe pRecipe) {
             pRecipe.ore.toNetwork(pBuffer);
-            pBuffer.writeItem(pRecipe.getResultItem());
-            pBuffer.writeItem(pRecipe.getResultBlock());
-            pBuffer.writeFloat(pRecipe.getExperience());
-            pBuffer.writeVarInt(pRecipe.getTime());
+            pBuffer.writeItem(pRecipe.resultItem);
+            pBuffer.writeItem(pRecipe.resultBlock);
+            pBuffer.writeFloat(pRecipe.experience);
+            pBuffer.writeVarInt(pRecipe.time);
         }
     }
 }

@@ -28,5 +28,6 @@
     "recipes": [
       "oredustry:copper_ingot_from_melting_copper_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

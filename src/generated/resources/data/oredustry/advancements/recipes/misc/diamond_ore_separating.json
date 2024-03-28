@@ -30,5 +30,6 @@
     "recipes": [
       "oredustry:diamond_ore_separating"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

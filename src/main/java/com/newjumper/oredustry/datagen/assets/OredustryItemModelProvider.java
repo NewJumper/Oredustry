@@ -3,7 +3,7 @@ package com.newjumper.oredustry.datagen.assets;
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.item.OredustryItems;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -14,8 +14,8 @@ import net.minecraftforge.registries.RegistryObject;
 public class OredustryItemModelProvider extends ItemModelProvider {
     private final ModelFile GENERATED = getExistingFile(mcLoc("item/generated"));
 
-    public OredustryItemModelProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, Oredustry.MOD_ID, exFileHelper);
+    public OredustryItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, Oredustry.MOD_ID, existingFileHelper);
     }
 
     @Override
@@ -26,27 +26,27 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.SEPARATOR);
         blockModel(OredustryBlocks.MINER);
 
-        itemModel(OredustryItems.DENSE_COAL, GENERATED);
-        itemModel(OredustryItems.DENSE_RAW_COPPER, GENERATED);
-        itemModel(OredustryItems.DENSE_RAW_GOLD, GENERATED);
-        itemModel(OredustryItems.DENSE_RAW_IRON, GENERATED);
-        itemModel(OredustryItems.DENSE_REDSTONE, GENERATED);
-        itemModel(OredustryItems.DENSE_EMERALD, GENERATED);
-        itemModel(OredustryItems.DENSE_LAPIS, GENERATED);
-        itemModel(OredustryItems.DENSE_DIAMOND, GENERATED);
+        itemModel(OredustryItems.DENSE_COAL);
+        itemModel(OredustryItems.DENSE_RAW_COPPER);
+        itemModel(OredustryItems.DENSE_RAW_GOLD);
+        itemModel(OredustryItems.DENSE_RAW_IRON);
+        itemModel(OredustryItems.DENSE_REDSTONE);
+        itemModel(OredustryItems.DENSE_EMERALD);
+        itemModel(OredustryItems.DENSE_LAPIS);
+        itemModel(OredustryItems.DENSE_DIAMOND);
 
-        itemModel(OredustryItems.CONDUCTION_CELL, GENERATED);
-        itemModel(OredustryItems.INDUCTION_CELL, GENERATED);
+        itemModel(OredustryItems.CONDUCTION_CELL);
+        itemModel(OredustryItems.INDUCTION_CELL);
 
-        itemModel(OredustryItems.COMPRESSOR_UPGRADE, GENERATED);
-        itemModel(OredustryItems.CRUCIBLE_UPGRADE, GENERATED);
-        itemModel(OredustryItems.SEPARATOR_UPGRADE, GENERATED);
+        itemModel(OredustryItems.COMPRESSOR_UPGRADE);
+        itemModel(OredustryItems.CRUCIBLE_UPGRADE);
+        itemModel(OredustryItems.SEPARATOR_UPGRADE);
 
-        itemModel(OredustryItems.FUEL_UPGRADE, GENERATED);
-        itemModel(OredustryItems.RANGE_UPGRADE, GENERATED);
-        itemModel(OredustryItems.SPEED_UPGRADE, GENERATED);
-        itemModel(OredustryItems.STORAGE_UPGRADE, GENERATED);
-        itemModel(OredustryItems.UPGRADE_BASE, GENERATED);
+        itemModel(OredustryItems.FUEL_UPGRADE);
+        itemModel(OredustryItems.RANGE_UPGRADE);
+        itemModel(OredustryItems.SPEED_UPGRADE);
+        itemModel(OredustryItems.STORAGE_UPGRADE);
+        itemModel(OredustryItems.UPGRADE_BASE);
 
         getBuilder("oredustry_guide").parent(GENERATED).texture("layer0", "item/oredustry_guide");
     }
@@ -55,7 +55,7 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         withExistingParent(block.getId().getPath(), modLoc("block/" + block.getId().getPath()));
     }
 
-    public void itemModel(RegistryObject<Item> item, ModelFile modelFile) {
-        getBuilder(item.getId().getPath()).parent(modelFile).texture("layer0", "item/" + item.getId().getPath());
+    public void itemModel(RegistryObject<Item> item) {
+        getBuilder(item.getId().getPath()).parent(GENERATED).texture("layer0", "item/" + item.getId().getPath());
     }
 }

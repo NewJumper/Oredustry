@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "D": {
       "tag": "forge:storage_blocks/diamond"
@@ -27,5 +28,6 @@
   ],
   "result": {
     "item": "oredustry:miner"
-  }
+  },
+  "show_notification": true
 }

@@ -31,13 +31,13 @@ public class SeparatorMenu extends AbstractContainerMenu {
     public List<Slot> upgradeSlots = new ArrayList<>();
 
     public SeparatorMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
-        this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
+        this(containerId, inventory, inventory.player.level().getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(4));
     }
 
     public SeparatorMenu(int pContainerId, Inventory pInventory, BlockEntity pBlockEntity, ContainerData pContainerData) {
         super(OredustryMenuTypes.SEPARATOR_MENU.get(), pContainerId);
         this.blockEntity = (SeparatorBlockEntity) pBlockEntity;
-        this.level = pInventory.player.level;
+        this.level = pInventory.player.level();
         this.data = pContainerData;
 
         checkContainerSize(pInventory, MENU_SLOTS);

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "D": {
       "tag": "forge:gems/diamond"
@@ -15,5 +16,6 @@
   ],
   "result": {
     "item": "oredustry:induction_cell"
-  }
+  },
+  "show_notification": true
 }

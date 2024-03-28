@@ -28,5 +28,6 @@
     "recipes": [
       "oredustry:iron_ingot_from_melting_iron_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

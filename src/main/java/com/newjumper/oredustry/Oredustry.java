@@ -5,9 +5,8 @@ import com.newjumper.oredustry.block.entity.OredustryBlockEntities;
 import com.newjumper.oredustry.datagen.assets.ENLanguageProvider;
 import com.newjumper.oredustry.datagen.assets.OredustryBlockStateProvider;
 import com.newjumper.oredustry.datagen.assets.OredustryItemModelProvider;
-import com.newjumper.oredustry.datagen.data.OredustryLootTableProvider;
-import com.newjumper.oredustry.datagen.data.recipes.CraftingRecipesProvider;
-import com.newjumper.oredustry.datagen.data.recipes.MachineRecipesProvider;
+import com.newjumper.oredustry.datagen.data.OredustryLootTables;
+import com.newjumper.oredustry.datagen.data.recipes.OredustryRecipeProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryBlockTagsProvider;
 import com.newjumper.oredustry.datagen.data.tags.OredustryItemTagsProvider;
 import com.newjumper.oredustry.item.OredustryItems;
@@ -17,8 +16,10 @@ import com.newjumper.oredustry.recipe.MeltingRecipe;
 import com.newjumper.oredustry.recipe.OredustryRecipes;
 import com.newjumper.oredustry.recipe.SeparatingRecipe;
 import com.newjumper.oredustry.screen.*;
+import com.newjumper.oredustry.util.OredustryCreativeTab;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,15 +41,17 @@ public class Oredustry {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         Messages.registerMessages(MOD_ID + "_network");
 
+        OredustryCreativeTab.CREATIVE_MODE_TABS.register(eventBus);
         OredustryBlocks.BLOCKS.register(eventBus);
         OredustryItems.ITEMS.register(eventBus);
         OredustryBlockEntities.BLOCK_ENTITIES.register(eventBus);
         OredustryMenuTypes.MENUS.register(eventBus);
         OredustryRecipes.RECIPE_SERIALIZERS.register(eventBus);
 
+        MinecraftForge.EVENT_BUS.register(this);
+        eventBus.addListener(OredustryCreativeTab::buildCreativeTab);
         eventBus.addListener(this::registerRecipeTypes);
         eventBus.addListener(this::generateData);
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     public void registerRecipeTypes(final RegisterEvent event) {
@@ -61,23 +64,21 @@ public class Oredustry {
 
     public void generateData(final GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
+        PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
         // assets
-        generator.addProvider(event.includeClient(), new ENLanguageProvider(generator));
-
-        generator.addProvider(event.includeClient(), new OredustryBlockStateProvider(generator, fileHelper));
-        generator.addProvider(event.includeClient(), new OredustryItemModelProvider(generator, fileHelper));
+        generator.addProvider(event.includeClient(), new ENLanguageProvider(packOutput));
+        generator.addProvider(event.includeClient(), new OredustryBlockStateProvider(packOutput, fileHelper));
+        generator.addProvider(event.includeClient(), new OredustryItemModelProvider(packOutput, fileHelper));
 
         // data
-        generator.addProvider(event.includeServer(), new CraftingRecipesProvider(generator));
-        generator.addProvider(event.includeServer(), new MachineRecipesProvider(generator));
-
-        OredustryBlockTagsProvider blockTags = new OredustryBlockTagsProvider(generator, fileHelper);
+        OredustryBlockTagsProvider blockTags = new OredustryBlockTagsProvider(packOutput, event.getLookupProvider(), fileHelper);
         generator.addProvider(event.includeServer(), blockTags);
-        generator.addProvider(event.includeServer(), new OredustryItemTagsProvider(generator, blockTags, fileHelper));
+        generator.addProvider(event.includeServer(), new OredustryItemTagsProvider(packOutput, event.getLookupProvider(), blockTags, fileHelper));
 
-        generator.addProvider(event.includeServer(), new OredustryLootTableProvider(generator));
+        generator.addProvider(event.includeServer(), new OredustryLootTables(packOutput));
+        generator.addProvider(event.includeServer(), new OredustryRecipeProvider(packOutput));
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

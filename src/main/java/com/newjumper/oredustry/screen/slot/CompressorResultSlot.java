@@ -26,7 +26,7 @@ public class CompressorResultSlot extends ResultSlot {
 
     @Override
     protected void checkTakeAchievements(ItemStack pStack) {
-        pStack.onCraftedBy(this.player.level, this.player, this.removeCount);
+        pStack.onCraftedBy(this.player.level(), this.player, this.removeCount);
         if(this.player instanceof ServerPlayer) this.blockEntity.awardUsedRecipesAndPopExperience((ServerPlayer) this.player);
         this.removeCount = 0;
     }

@@ -3,7 +3,6 @@ package com.newjumper.oredustry.integration;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.block.OredustryBlocks;
 import com.newjumper.oredustry.recipe.MeltingRecipe;
@@ -19,6 +18,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -78,16 +78,16 @@ public class MeltingCategory implements IRecipeCategory<MeltingRecipe> {
     public void setRecipe(IRecipeLayoutBuilder builder, MeltingRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 32).addIngredients(recipe.getIngredient());
         builder.addSlot(RecipeIngredientRole.INPUT, 44, 32).addIngredients(Ingredient.of(Items.WATER_BUCKET));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 91, 17).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 91, 17).addItemStack(RecipeUtil.getResultItem(recipe));
     }
 
     @Override
-    public void draw(MeltingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        this.meltingProgress.getUnchecked(time / 3).draw(stack, 2, 16);
-        this.coolingProgress.getUnchecked(time / 2).draw(stack, 43, 15);
+    public void draw(MeltingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        this.meltingProgress.getUnchecked(time / 3).draw(guiGraphics, 2, 16);
+        this.coolingProgress.getUnchecked(time / 2).draw(guiGraphics, 43, 15);
 
-        Font fontRenderer = Minecraft.getInstance().font;
-        int stringWidth = fontRenderer.width(time / 20.0 + "s");
-        fontRenderer.draw(stack, time / 20.0 + "s", background.getWidth() - stringWidth, background.getHeight() - 7, 0xff808080);
+        Font font = Minecraft.getInstance().font;
+        int stringWidth = font.width(time / 20.0 + "s");
+        guiGraphics.drawString(font, time / 20.0 + "s", background.getWidth() - stringWidth, background.getHeight() - 7, 0xff808080);
     }
 }

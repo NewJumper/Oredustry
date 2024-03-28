@@ -1,24 +1,22 @@
 package com.newjumper.oredustry.datagen.data;
 
-import com.newjumper.oredustry.block.OredustryBlocks;
-import net.minecraft.data.loot.BlockLoot;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import org.jetbrains.annotations.NotNull;
 
-public class OredustryLootTables extends BlockLoot {
-    @Override
-    protected void addTables() {
-        this.dropSelf(OredustryBlocks.MACHINE_FRAME.get());
-        this.dropSelf(OredustryBlocks.COMPRESSOR.get());
-        this.dropSelf(OredustryBlocks.CRUCIBLE.get());
-        this.dropSelf(OredustryBlocks.SEPARATOR.get());
-        this.dropSelf(OredustryBlocks.MINER.get());
+import java.util.List;
+import java.util.Map;
+
+public class OredustryLootTables extends LootTableProvider {
+    public OredustryLootTables(PackOutput pOutput) {
+        super(pOutput, BuiltInLootTables.all(), List.of(new LootTableProvider.SubProviderEntry(OredustryBlockLoot::new, LootContextParamSets.BLOCK)));
     }
 
-    @NotNull
     @Override
-    protected Iterable<Block> getKnownBlocks() {
-        return OredustryBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+    protected void validate(Map<ResourceLocation, LootTable> map, @NotNull ValidationContext context) {
+        map.forEach((id, table) -> table.validate(context.setParams(table.getParamSet()).enterElement("{" + id + "}", new LootDataId<>(LootDataType.TABLE, id))));
     }
 }

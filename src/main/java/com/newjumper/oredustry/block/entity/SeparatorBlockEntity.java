@@ -8,6 +8,7 @@ import com.newjumper.oredustry.screen.SeparatorMenu;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -162,7 +163,8 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
             level.setBlock(pos, state, 3);
         }
 
-        if(canSeparate(inventory, recipe) && !isActive) {
+        RegistryAccess registry = level.registryAccess();
+        if(canSeparate(registry, inventory, recipe) && !isActive) {
             double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
             constant += blockEntity.itemHandler.getStackInSlot(4).getCount() * constant / 8;
             blockEntity.maxFuel = (int) (blockEntity.maxProgress * constant);
@@ -171,11 +173,11 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
             if(!fuelRemainder.isEmpty()) blockEntity.itemHandler.setStackInSlot(0, fuelRemainder);
         }
 
-        if(canSeparate(inventory, recipe) && isActive) {
+        if(canSeparate(registry, inventory, recipe) && isActive) {
             blockEntity.progress++;
             if(blockEntity.progress >= blockEntity.maxProgress) {
                 blockEntity.itemHandler.extractItem(1, 1, false);
-                blockEntity.itemHandler.setStackInSlot(2, new ItemStack(recipe.get().getResultItem().getItem(), blockEntity.itemHandler.getStackInSlot(2).getCount() + recipe.get().getResultItem().getCount()));
+                blockEntity.itemHandler.setStackInSlot(2, new ItemStack(recipe.get().getResultItem(registry).getItem(), blockEntity.itemHandler.getStackInSlot(2).getCount() + recipe.get().getResultItem(registry).getCount()));
                 blockEntity.itemHandler.setStackInSlot(3, new ItemStack(recipe.get().getResultBlock().getItem(), blockEntity.itemHandler.getStackInSlot(3).getCount() + recipe.get().getResultBlock().getCount()));
                 blockEntity.progress = 0;
                 blockEntity.recipesUsed.addTo(recipe.get().getId(), 1);
@@ -186,9 +188,9 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
         setChanged(level, pos, state);
     }
 
-    private static boolean canSeparate(SimpleContainer inventory, Optional<SeparatingRecipe> recipe) {
-        return recipe.isPresent() && (inventory.getItem(2).sameItem(recipe.get().getResultItem()) || inventory.getItem(2).isEmpty()) && inventory.getItem(2).getCount() < inventory.getItem(2).getMaxStackSize() &&
-                (inventory.getItem(3).sameItem(recipe.get().getResultBlock()) || inventory.getItem(3).isEmpty()) && inventory.getItem(3).getCount() < inventory.getItem(3).getMaxStackSize();
+    private static boolean canSeparate(RegistryAccess registry, SimpleContainer inventory, Optional<SeparatingRecipe> recipe) {
+        return recipe.isPresent() && (inventory.getItem(2).is(recipe.get().getResultItem(registry).getItem()) || inventory.getItem(2).isEmpty()) && inventory.getItem(2).getCount() < inventory.getItem(2).getMaxStackSize() &&
+                (inventory.getItem(3).is(recipe.get().getResultBlock().getItem()) || inventory.getItem(3).isEmpty()) && inventory.getItem(3).getCount() < inventory.getItem(3).getMaxStackSize();
     }
 
     private boolean isActive() {
@@ -208,7 +210,7 @@ public class SeparatorBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public void awardUsedRecipesAndPopExperience(ServerPlayer player) {
-        List<Recipe<?>> list = this.getRecipesToAwardAndPopExperience(player.getLevel(), player.position());
+        List<Recipe<?>> list = this.getRecipesToAwardAndPopExperience(player.serverLevel(), player.position());
         player.awardRecipes(list);
         this.recipesUsed.clear();
     }

@@ -9,6 +9,7 @@ import com.newjumper.oredustry.util.MoltenLiquids;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -198,7 +199,8 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
             level.setBlock(pos, state, 3);
         }
 
-        if(canMelt(inventory, recipe) && blockEntity.liquidAmount + recipe.get().getResultItem().getCount() * 150 <= LIQUID_CAPACITY) {
+        RegistryAccess registry = level.registryAccess();
+        if(canMelt(registry, inventory, recipe) && blockEntity.liquidAmount + recipe.get().getResultItem(registry).getCount() * 150 <= LIQUID_CAPACITY) {
             if(!isActive) {
                 double constant = ForgeHooks.getBurnTime(blockEntity.itemHandler.getStackInSlot(0), null) / 200.0;
                 constant += blockEntity.itemHandler.getStackInSlot(4).getCount() * constant / 8;
@@ -212,9 +214,9 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
                 blockEntity.progress++;
                 if(blockEntity.progress >= blockEntity.maxProgress) {
                     blockEntity.itemHandler.extractItem(1, 1, false);
-                    blockEntity.liquid = MoltenLiquids.getLiquid(recipe.get().getResultItem());
+                    blockEntity.liquid = MoltenLiquids.getLiquid(recipe.get().getResultItem(registry));
                     blockEntity.maxCooling = blockEntity.liquid.getCapacity();
-                    blockEntity.liquidAmount += recipe.get().getResultItem().getCount() * blockEntity.maxCooling;
+                    blockEntity.liquidAmount += recipe.get().getResultItem(registry).getCount() * blockEntity.maxCooling;
 
                     blockEntity.progress = 0;
                     blockEntity.recipesUsed.addTo(recipe.get().getId(), 1);
@@ -249,8 +251,8 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
         setChanged(level, pos, state);
     }
 
-    private static boolean canMelt(SimpleContainer inventory, Optional<MeltingRecipe> recipe) {
-        return recipe.isPresent() && (inventory.getItem(3).sameItem(recipe.get().getResultItem()) || inventory.getItem(3).isEmpty()) && inventory.getItem(3).getCount() < inventory.getItem(3).getMaxStackSize();
+    private static boolean canMelt(RegistryAccess registry, SimpleContainer inventory, Optional<MeltingRecipe> recipe) {
+        return recipe.isPresent() && (inventory.getItem(3).is(recipe.get().getResultItem(registry).getItem()) || inventory.getItem(3).isEmpty()) && inventory.getItem(3).getCount() < inventory.getItem(3).getMaxStackSize();
     }
 
     private boolean isActive() {
@@ -278,7 +280,7 @@ public class CrucibleBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public void awardUsedRecipesAndPopExperience(ServerPlayer player) {
-        List<Recipe<?>> list = this.getRecipesToAwardAndPopExperience(player.getLevel(), player.position());
+        List<Recipe<?>> list = this.getRecipesToAwardAndPopExperience(player.serverLevel(), player.position());
         player.awardRecipes(list);
         this.recipesUsed.clear();
     }

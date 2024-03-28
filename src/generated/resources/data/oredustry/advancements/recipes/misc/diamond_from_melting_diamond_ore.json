@@ -28,5 +28,6 @@
     "recipes": [
       "oredustry:diamond_from_melting_diamond_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

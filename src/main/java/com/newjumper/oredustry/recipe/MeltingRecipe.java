@@ -1,6 +1,7 @@
 package com.newjumper.oredustry.recipe;
 
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -31,8 +32,8 @@ public class MeltingRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
-        return result;
+    public ItemStack assemble(SimpleContainer pContainer, RegistryAccess pRegistryAccess) {
+        return result.copy();
     }
 
     @Override
@@ -50,8 +51,8 @@ public class MeltingRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack getResultItem() {
-        return result.copy();
+    public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
+        return result;
     }
 
     public float getExperience() {
@@ -101,9 +102,9 @@ public class MeltingRecipe implements Recipe<SimpleContainer> {
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, MeltingRecipe pRecipe) {
             pRecipe.ingredient.toNetwork(pBuffer);
-            pBuffer.writeItem(pRecipe.getResultItem());
-            pBuffer.writeFloat(pRecipe.getExperience());
-            pBuffer.writeVarInt(pRecipe.getTime());
+            pBuffer.writeItem(pRecipe.result);
+            pBuffer.writeFloat(pRecipe.experience);
+            pBuffer.writeVarInt(pRecipe.time);
         }
     }
 }

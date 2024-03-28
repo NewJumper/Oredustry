@@ -38,7 +38,7 @@ public enum MoltenLiquids {
 
     public static MoltenLiquids getLiquid(ItemStack stack) {
         for(MoltenLiquids liquids : values()) {
-            if(liquids.getSolidItem(1).sameItem(stack)) return liquids;
+            if(liquids.getSolidItem(1).is(stack.getItem())) return liquids;
         }
 
         return COAL;

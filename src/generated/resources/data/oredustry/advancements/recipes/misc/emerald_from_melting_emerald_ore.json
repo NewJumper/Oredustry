@@ -28,5 +28,6 @@
     "recipes": [
       "oredustry:emerald_from_melting_emerald_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

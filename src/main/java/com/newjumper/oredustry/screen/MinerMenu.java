@@ -27,13 +27,13 @@ public class MinerMenu extends AbstractContainerMenu {
     public List<Slot> upgradeSlots = new ArrayList<>();
 
     public MinerMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer) {
-        this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(5));
+        this(containerId, inventory, inventory.player.level().getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(5));
     }
 
     public MinerMenu(int pContainerId, Inventory pInventory, BlockEntity pBlockEntity, ContainerData pContainerData) {
         super(OredustryMenuTypes.MINER_MENU.get(), pContainerId);
         this.blockEntity = (MinerBlockEntity) pBlockEntity;
-        this.level = pInventory.player.level;
+        this.level = pInventory.player.level();
         this.data = pContainerData;
 
         checkContainerSize(pInventory, MENU_SLOTS);

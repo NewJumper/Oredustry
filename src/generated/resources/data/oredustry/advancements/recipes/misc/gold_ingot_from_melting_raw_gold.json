@@ -28,5 +28,6 @@
     "recipes": [
       "oredustry:gold_ingot_from_melting_raw_gold"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }
