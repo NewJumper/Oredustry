@@ -76,6 +76,6 @@ public class CompressingCategory implements IRecipeCategory<CompressingRecipe> {
         this.progress.getUnchecked(time / 2).draw(guiGraphics, 28, 19);
         Font font = Minecraft.getInstance().font;
         int stringWidth = font.width(time / 20 + "s");
-        guiGraphics.drawString(font, time / 20 + "s", background.getWidth() - stringWidth, background.getHeight() - 7, 0xff808080);
+        guiGraphics.drawString(font, time / 20 + "s", background.getWidth() - stringWidth, background.getHeight() - 7, 0x808080, false);
     }
 }

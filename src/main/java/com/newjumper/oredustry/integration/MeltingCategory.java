@@ -88,6 +88,6 @@ public class MeltingCategory implements IRecipeCategory<MeltingRecipe> {
 
         Font font = Minecraft.getInstance().font;
         int stringWidth = font.width(time / 20.0 + "s");
-        guiGraphics.drawString(font, time / 20.0 + "s", background.getWidth() - stringWidth, background.getHeight() - 7, 0xff808080);
+        guiGraphics.drawString(font, time / 20.0 + "s", background.getWidth() - stringWidth, background.getHeight() - 7, 0x808080, false);
     }
 }

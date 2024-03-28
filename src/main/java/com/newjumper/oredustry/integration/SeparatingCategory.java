@@ -78,6 +78,6 @@ public class SeparatingCategory implements IRecipeCategory<SeparatingRecipe> {
 
         Font font = Minecraft.getInstance().font;
         int stringWidth = font.width(time / 20 + "s");
-        guiGraphics.drawString(font, time / 20 + "s", background.getWidth() - stringWidth - 32, background.getHeight() - 8, 0xff808080);
+        guiGraphics.drawString(font, time / 20 + "s", background.getWidth() - stringWidth - 32, background.getHeight() - 8, 0x808080, false);
     }
 }
