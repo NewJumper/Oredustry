@@ -78,21 +78,21 @@ public class CompressorMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
-        Slot sourceSlot = slots.get(pIndex);
+    public ItemStack quickMoveStack(Player player, int index) {
+        Slot sourceSlot = slots.get(index);
         if(!sourceSlot.hasItem()) return ItemStack.EMPTY;
 
         ItemStack sourceItem = sourceSlot.getItem();
-        if(pIndex < INV_SLOTS) {
+        if(index < INV_SLOTS) {
             if(!moveItemStackTo(sourceItem, INV_SLOTS, INV_SLOTS + MENU_SLOTS, false)) return ItemStack.EMPTY;
-        } else if(pIndex < INV_SLOTS + MENU_SLOTS) {
+        } else if(index < INV_SLOTS + MENU_SLOTS) {
             if(!moveItemStackTo(sourceItem, 0, INV_SLOTS, false)) return ItemStack.EMPTY;
         } else return ItemStack.EMPTY;
 
         if(sourceItem.getCount() == 0) sourceSlot.set(ItemStack.EMPTY);
         else sourceSlot.setChanged();
 
-        sourceSlot.onTake(pPlayer, sourceItem);
+        sourceSlot.onTake(player, sourceItem);
         return sourceItem;
     }
 

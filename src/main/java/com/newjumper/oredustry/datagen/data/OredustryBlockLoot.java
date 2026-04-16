@@ -28,6 +28,10 @@ public class OredustryBlockLoot extends BlockLootSubProvider {
         dropSelf(OredustryBlocks.CRUCIBLE.get());
         dropSelf(OredustryBlocks.SEPARATOR.get());
         dropSelf(OredustryBlocks.MINER.get());
+
+        dropSelf(OredustryBlocks.FORGE_BASE.get());
+        dropSelf(OredustryBlocks.FORGE_CONTROLLER.get());
+        dropSelf(OredustryBlocks.FORGE_TANK.get());
     }
 
     @Override

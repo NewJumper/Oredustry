@@ -26,6 +26,10 @@ public class OredustryItemModelProvider extends ItemModelProvider {
         blockModel(OredustryBlocks.SEPARATOR);
         blockModel(OredustryBlocks.MINER);
 
+        blockModel(OredustryBlocks.FORGE_BASE);
+        blockModel(OredustryBlocks.FORGE_CONTROLLER);
+        blockModel(OredustryBlocks.FORGE_TANK);
+
         itemModel(OredustryItems.DENSE_COAL);
         itemModel(OredustryItems.DENSE_RAW_COPPER);
         itemModel(OredustryItems.DENSE_RAW_GOLD);

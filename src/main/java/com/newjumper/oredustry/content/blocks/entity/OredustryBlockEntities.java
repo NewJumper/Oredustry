@@ -2,6 +2,7 @@ package com.newjumper.oredustry.content.blocks.entity;
 
 import com.newjumper.oredustry.Oredustry;
 import com.newjumper.oredustry.content.OredustryBlocks;
+import com.newjumper.oredustry.content.blocks.ForgeControllerBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -14,4 +15,7 @@ public class OredustryBlockEntities {
     public static final RegistryObject<BlockEntityType<CrucibleBlockEntity>> CRUCIBLE = BLOCK_ENTITIES.register("crucible", () -> BlockEntityType.Builder.of(CrucibleBlockEntity::new, OredustryBlocks.CRUCIBLE.get()).build(null));
     public static final RegistryObject<BlockEntityType<SeparatorBlockEntity>> SEPARATOR = BLOCK_ENTITIES.register("separator", () -> BlockEntityType.Builder.of(SeparatorBlockEntity::new, OredustryBlocks.SEPARATOR.get()).build(null));
     public static final RegistryObject<BlockEntityType<MinerBlockEntity>> MINER = BLOCK_ENTITIES.register("miner", () -> BlockEntityType.Builder.of(MinerBlockEntity::new, OredustryBlocks.MINER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<ForgeControllerBlockEntity>> FORGE_CONTROLLER = BLOCK_ENTITIES.register("forge_controller", () -> BlockEntityType.Builder.of(ForgeControllerBlockEntity::new, OredustryBlocks.FORGE_CONTROLLER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<ForgeTankBlockEntity>> FORGE_TANK = BLOCK_ENTITIES.register("forge_tank", () -> BlockEntityType.Builder.of(ForgeTankBlockEntity::new, OredustryBlocks.FORGE_TANK.get()).build(null));
 }

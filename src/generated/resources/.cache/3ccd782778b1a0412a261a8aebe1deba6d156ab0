@@ -1,5 +1,11 @@
-// 1.20.1	2024-03-28T16:04:16.782834	Block States: oredustry
+// 1.20.1	2024-03-28T17:45:49.6113564	Block States: oredustry
 e7e0f2d903898aa0f9b44e90580ecc0b223fa035 assets/oredustry/blockstates/compressor.json
+b2a826743b2356adaa2784bf20aa10cfd00dbb16 assets/oredustry/blockstates/forge_base.json
+e3cede84919610ded7c07dd50aab94c87d8355c8 assets/oredustry/blockstates/forge_controller.json
+265049eb3fb2387b229f39b3d46f5bd39abdab2b assets/oredustry/blockstates/forge_tank.json
 1c8f7ff20347f451f2c7f3c91261f2320b9f3fba assets/oredustry/blockstates/separator.json
 5abd5556ce5118885cb5b9c04d1adb011cc2bc3d assets/oredustry/models/block/compressor.json
+d62990c08f1847c56295483b2f466798529fc9b0 assets/oredustry/models/block/forge_base.json
+82fb341eab266481e3c15e6efb292f84e9b4877a assets/oredustry/models/block/forge_controller.json
+c81719e26fff816437adf1cea6f7fea5f22ddb01 assets/oredustry/models/block/forge_tank.json
 5b1203617b66f324b84047da06e67cd267b2e4f0 assets/oredustry/models/block/separator.json

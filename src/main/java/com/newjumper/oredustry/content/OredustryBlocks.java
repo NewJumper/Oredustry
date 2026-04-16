@@ -22,6 +22,11 @@ public class OredustryBlocks {
 
     public static final RegistryObject<Block> MINER = register("miner", () -> new MinerBlock(BlockBehaviour.Properties.of().strength(5f, 12f).requiresCorrectToolForDrops()));
 
+
+    public static final RegistryObject<Block> FORGE_BASE = register("forge_base", () -> new Block(BlockBehaviour.Properties.of().strength(4f, 10f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> FORGE_CONTROLLER = register("forge_controller", () -> new ForgeControllerBlock(BlockBehaviour.Properties.of().strength(4f, 10f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> FORGE_TANK = register("forge_tank", () -> new ForgeTankBlock(BlockBehaviour.Properties.of().strength(4f, 10f).requiresCorrectToolForDrops()));
+
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> pBlock) {
         RegistryObject<T> block = BLOCKS.register(name, pBlock);
         OredustryItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));

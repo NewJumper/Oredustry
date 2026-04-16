@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-28T16:04:16.7818332	Item Models: oredustry
+// 1.20.1	2024-03-28T17:45:49.6098511	Item Models: oredustry
 fa469a2777d2b1b15ed8356fd5862b63e6025088 assets/oredustry/models/item/compressor.json
 3b909e72a002112f1ef60dd83de37130a5803a70 assets/oredustry/models/item/compressor_upgrade.json
 2ef43be68fc694b2d45c61e4efa78160d1992cb0 assets/oredustry/models/item/conduction_cell.json
@@ -12,6 +12,9 @@ a92f7e5c5af486f23c4f44f6f670be5c93f5099e assets/oredustry/models/item/dense_raw_
 f30367113cd8c586f345de21a7cbf9a8ccec264e assets/oredustry/models/item/dense_raw_gold.json
 6fac5e61e6c49d3b520fd7a15ff75dd3a7ecc99f assets/oredustry/models/item/dense_raw_iron.json
 2b05a1b59e02e5fe7b06f16d95dd220f35cafffe assets/oredustry/models/item/dense_redstone.json
+9fed9a316cda92e5304d94bf845eb00ac1280123 assets/oredustry/models/item/forge_base.json
+a4a44becbea4ed53631e4044db779c81577b871a assets/oredustry/models/item/forge_controller.json
+2a5f03d9bd7d40f10881447ef26627a2af5ca9c0 assets/oredustry/models/item/forge_tank.json
 8e7e99ee06d5adc054a0940d0c41ee5eacc7165b assets/oredustry/models/item/fuel_upgrade.json
 f86897d7705565a6896891d971915dcdfec44072 assets/oredustry/models/item/induction_cell.json
 38e662a0b9ecd54bf2019a919c27bbdeada9b875 assets/oredustry/models/item/machine_frame.json

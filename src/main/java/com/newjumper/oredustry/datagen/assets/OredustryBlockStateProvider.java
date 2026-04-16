@@ -18,6 +18,10 @@ public class OredustryBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         horizontalBlock(OredustryBlocks.COMPRESSOR.get(), models().orientable("compressor", modLoc("block/machine_side"), blockLoc(OredustryBlocks.COMPRESSOR), modLoc("block/machine_top")));
         horizontalBlock(OredustryBlocks.SEPARATOR.get(), models().orientable("separator", modLoc("block/machine_side"), blockLoc(OredustryBlocks.SEPARATOR), modLoc("block/machine_top")));
+
+        simpleBlock(OredustryBlocks.FORGE_BASE.get());
+        simpleBlock(OredustryBlocks.FORGE_CONTROLLER.get());
+        simpleBlock(OredustryBlocks.FORGE_TANK.get());
     }
 
     public ResourceLocation blockLoc(RegistryObject<? extends Block> block) {
